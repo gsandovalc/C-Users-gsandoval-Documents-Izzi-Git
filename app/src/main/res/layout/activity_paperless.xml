@@ -1,0 +1,158 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="telecom.televisa.com.izzi.PaperlessActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/vista"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff">
+        <include layout="@layout/headerextra" />
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_gravity="center"
+            android:layout_height="90dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/paperless"/>
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:layout_marginBottom="60dp" >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="Suscríbete a paperless"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="¡Gracias por cuidar el medio ambiente! izzi te enviará mensualmente un correo electrónico para avisarte que tu estado de cuenta se encuentra disponible en línea"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="Paperless te ofrece"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#00C1B5"
+            android:textSize="14sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="Mayor privacidad"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="Cada estado de cuenta podrá ser revisado las veces que quieras desde tu cuenta de servicios en linea izzi"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#00C1B5"
+            android:textSize="14sp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="Mayor eficiencia"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="Recibe puntualmente un recordatorio para consultar tu estado de cuenta en línea y ahorra papel, espacio y tiempo para buscar la información."
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            />
+
+
+        </LinearLayout>
+        </ScrollView>
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                android:onClick="paperlesUp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/brounded_corners"
+                android:layout_weight=".5">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textColor="#fff"
+                    android:text="Suscribirme"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

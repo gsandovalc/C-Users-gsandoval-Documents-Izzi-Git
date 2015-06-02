@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="46dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:id="@+id/hdrcontainer"
+        android:layout_height="46dp">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:id="@+id/hcontainer"
+            android:layout_height="50dp"
+            android:background="#fff">
+
+            <ImageView
+                android:id="@+id/splash_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/logoizzi" />
+            <TextView
+                android:id="@+id/h_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+            <LinearLayout
+                android:layout_width="80dp"
+                android:clickable="true"
+                android:onClick="showMenu"
+                android:layout_height="fill_parent">
+            <ImageView
+                android:id="@+id/show_menu"
+                android:layout_width="40dp"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="15dp"
+
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="15dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/menu" />
+            </LinearLayout>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:background="#e54e00"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_height="1dp" />
+    </LinearLayout>
+</merge>

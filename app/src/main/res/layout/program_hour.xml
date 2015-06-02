@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="horizontal"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:id="@+id/vistaHora"
+	android:background="#d4d4d4"
+	>
+<RelativeLayout
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="#fff"
+	>
+
+		<TextView
+		    android:id="@+id/horario_celda"
+		    android:layout_width="wrap_content"
+		    android:layout_height="20dp"
+		    android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+		    android:textColor="#00C1B5"
+		    android:text="hola"
+		    android:textSize="18dp" />
+
+	</RelativeLayout>
+</LinearLayout>

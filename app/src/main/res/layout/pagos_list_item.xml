@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:background="#55dfdfdf"
+    android:padding="1dp"
+    android:layout_height="70dp">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/fechaL"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:textColor="#000"
+        android:layout_marginLeft="10dp"
+        android:text="Prueba"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/montoL"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:textColor="#000"
+            android:text="Prueba"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/formaL"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:textColor="#000"
+            android:maxWidth="90dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:text="Prueba"/>
+    </RelativeLayout>
+</LinearLayout>

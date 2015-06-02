@@ -1,0 +1,147 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="telecom.televisa.com.izzi.DrWifiActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/vista"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff">
+    <include layout="@layout/headerextra" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_gravity="center"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/icon_dr"/>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="15dp"
+            android:id="@+id/disc"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="¿En qué podemos ayudarte?"/>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_margin="15dp"
+            android:background="#55D60270"
+            android:layout_height="70dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_margin="1dp"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:layout_height="fill_parent">
+
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:inputType="textMultiLine"
+                    android:ems="6"
+                    android:textSize="15sp"
+                    android:gravity="top|left"
+                    android:background="#FFFFFF"
+
+                    android:layout_gravity="center_vertical"
+                    android:lines="20"
+                    android:id="@+id/commentario"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical"
+    android:layout_alignParentBottom="true">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:textSize="15sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="¿Cómo deseas contactarnos?"/>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:onClick="callDrWifi"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/brounded_corners"
+            android:layout_weight=".5">
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:textColor="#fff"
+                        android:text="Teléfono"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                    />
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:onClick="chatNow"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/brounded_corners"
+            android:layout_weight=".5">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:textColor="#fff"
+                android:text="Chat"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <WebView
+        android:layout_width="fill_parent"
+        android:background="#fff"
+        android:id="@+id/webview"
+        android:visibility="gone"
+        android:layout_marginTop="46dp"
+        android:layout_height="fill_parent">
+
+    </WebView>
+</RelativeLayout>

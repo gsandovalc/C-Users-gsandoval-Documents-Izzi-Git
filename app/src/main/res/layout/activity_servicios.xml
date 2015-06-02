@@ -1,0 +1,206 @@
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#fff"
+    tools:context="telecom.televisa.com.izzi.ServiciosActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/vista"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff">
+    <include layout="@layout/headerextra" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:background="#55dfdfdf"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:padding="1dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:background="#fff"
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:text="Tu servicio principal:"
+                    android:gravity="center_horizontal"
+                    android:textColor="#000"
+                    android:layout_marginTop="15dp"
+                    android:textSize="17dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:text="izzi + pack tv"
+                    android:gravity="center_horizontal"
+                    android:textColor="#D60270"
+                    android:id="@+id/textServicio"
+                    android:layout_marginTop="5dp"
+                    android:textSize="19dp"
+                    android:layout_height="wrap_content" />
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:scrollbars="none"
+                    android:id="@+id/scrollV"
+                    android:layout_height="fill_parent">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:padding="5dp"
+                    android:orientation="vertical"
+                    android:id="@+id/telefonia"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#FCD116">
+
+
+                        </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:src="@drawable/telefono"
+                            android:layout_height="30dp" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:gravity="center_vertical"
+                            android:textSize="15dp"
+                            android:text="Telefonía"/>
+                    </LinearLayout>
+
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:padding="5dp"
+                    android:orientation="vertical"
+                    android:id="@+id/internet"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#FFA807">
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:src="@drawable/internet"
+                            android:layout_height="30dp" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:gravity="center_vertical"
+                            android:textSize="15dp"
+                            android:text="Internet"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:padding="5dp"
+                    android:orientation="vertical"
+                    android:id="@+id/video"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#00C1B5">
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:src="@drawable/tv"
+                            android:layout_height="30dp" />
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#000"
+                            android:gravity="center_vertical"
+                            android:textSize="15dp"
+                            android:text="Televisión"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:padding="5dp"
+                    android:orientation="vertical"
+                    android:id="@+id/vacio"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#000">
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_marginTop="15dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textStyle="bold"
+                            android:textColor="#555"
+                            android:gravity="center"
+                            android:textSize="18dp"
+                            android:text="No tienes servicios adicionales"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+                </LinearLayout>
+                </ScrollView>
+                </LinearLayout>
+            </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

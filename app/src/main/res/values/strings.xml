@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">izzi</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="correo_electronico">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="o">Ó</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_user">UserActivity</string>
+    <string name="title_activity_servicios">Servicios contratados</string>
+    <string name="title_activity_edo_cuenta">EdoCuentaActivity</string>
+    <string name="title_activity_lista_pagos">ListaPagosActivity</string>
+    <string name="title_activity_pagos_main">PagosMainActivity</string>
+    <string name="title_activity_edit_card">EditCardActivity</string>
+    <string name="title_activity_add_card">AddCardActivity</string>
+    <string name="facebook_app_id">572566572836622</string>
+    <string name="title_activity_dr_wifi">DrWifiActivity</string>
+    <string name="title_activity_legales">LegalesActivity</string>
+    <string name="title_activity_paperless">PaperlessActivity</string>
+    <string name="title_activity_medios_de_pago">MediosDePagoActivity</string>
+    <string name="title_activity_pago_establecimientos">PagoEstablecimientosActivity</string>
+    <string name="title_activity_tv_guide">TvGuideActivity</string>
+    <string name="title_activity_payment_fail">PaymentFailActivity</string>
+    <string name="title_activity_payment_ok">PaymentOkActivity</string>
+    <string name="title_activity_chat">ChatActivity</string>
+</resources>

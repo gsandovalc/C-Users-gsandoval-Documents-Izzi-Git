@@ -1,0 +1,144 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="telecom.televisa.com.izzi.TvGuideActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/vista"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        android:background="#ffffff">
+    <include layout="@layout/headerextra" />
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="100dp"
+            />
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
+            android:layout_marginTop="5dp"
+            android:scrollbars="none"
+            android:layout_gravity="center"
+
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_height="40dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:src="@drawable/icon_all"
+                    android:id="@+id/todos"
+                    android:clickable="true"
+                    android:onClick="filter"
+                    android:layout_marginLeft="20dp"
+                    android:layout_height="fill_parent" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:src="@drawable/icon_sports"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/deportes"
+                    android:clickable="true"
+                    android:onClick="filter"
+                    android:layout_height="fill_parent" />
+                <ImageView
+                    android:layout_width="85dp"
+                    android:src="@drawable/icon_entertainment"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/entretenimiento"
+                    android:clickable="true"
+                    android:onClick="filter"
+                    android:layout_height="fill_parent" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:src="@drawable/icon_kids"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/ninos"
+                    android:clickable="true"
+                    android:onClick="filter"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="fill_parent" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="fill_parent" >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:background="#ff5800"
+                android:layout_height="40dp" >
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:orientation="horizontal"
+                    android:background="#fff"
+                    android:layout_height="40dp" />
+                <televisa.telecom.com.util.HorizontalScrollViewExt
+                    android:layout_width="fill_parent"
+                    android:id="@+id/hzScroll2"
+                    android:layout_height="fill_parent"
+                    android:scrollbars="none"
+                    android:background="#ff5800"
+                    android:fadingEdgeLength="0dp"
+                    android:overScrollMode="always"
+                    >
+                    <LinearLayout
+                        android:id="@+id/fila_horas"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent" >
+                    </LinearLayout>
+                </televisa.telecom.com.util.HorizontalScrollViewExt>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="horizontal"
+                android:layout_height="fill_parent" >
+
+                <ListView
+                    android:id="@+id/channel_list"
+                    android:layout_width="71dp"
+                    android:scrollbars="none"
+                    android:fadingEdge="none"
+                    android:layout_height="fill_parent"
+                    android:divider="#b2b9c4"
+                    android:dividerHeight="1dp"
+                   >
+                </ListView>
+
+                <televisa.telecom.com.util.HorizontalScrollViewExt
+                    android:layout_width="wrap_content"
+                    android:id="@+id/hzScroll"
+                    android:layout_height="fill_parent"
+                    android:scrollbars="none"
+                    android:fadingEdgeLength="0dp"
+                    android:overScrollMode="always"
+                    >
+                    <ListView
+                        android:id="@+id/table_programacion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:fadingEdge="none"
+                        android:scrollbars="none"
+                        android:divider="#b2b9c4"
+                        android:dividerHeight="1dp"
+                        android:background="#fff"
+                        android:orientation="vertical" >
+                    </ListView>
+                </televisa.telecom.com.util.HorizontalScrollViewExt>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
