@@ -12,10 +12,17 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <!-- Permission to use camera - required -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+    <permission android:name="telecom.televisa.com.izzi.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="telecom.televisa.com.izzi.permission.C2D_MESSAGE" />
     <!-- Camera features - recommended -->
     <uses-feature
         android:name="android.hardware.camera"
@@ -33,6 +40,23 @@
         android:icon="@mipmap/ic_launcher"
         android:label="izzi"
         android:theme="@style/AppTheme" >
+        <receiver android:name="com.appsflyer.MultipleInstallBroadcastReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="telecom.televisa.com.izzi" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".GcmMessageHandler" />
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="AA_DB_NAME"
             android:value="izziDB.db" />
@@ -159,6 +183,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
         </activity>
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

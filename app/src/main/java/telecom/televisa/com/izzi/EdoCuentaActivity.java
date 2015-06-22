@@ -13,6 +13,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class EdoCuentaActivity extends Activity {
     SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
     SimpleDateFormat sdf2=new SimpleDateFormat("MMMM", new Locale("es","MX"));
     SimpleDateFormat sdf3=new SimpleDateFormat("dd MMMM yyyy", new Locale("es","MX"));
+    NumberFormat baseFormat = NumberFormat.getCurrencyInstance();
     SimpleDateFormat sdff = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +47,20 @@ public class EdoCuentaActivity extends Activity {
                 ((TextView)findViewById(R.id.dueFactura)).setText(dueDate);
                 if(usuario.getSaldoMesAnterior()!=null){
                     String mesAnterior=AES.decrypt(usuario.getSaldoMesAnterior());
-                    ((TextView)findViewById(R.id.mesanteriordata)).setText("$"+mesAnterior);
+                    double saldo=Double.parseDouble(mesAnterior);
+                    mesAnterior=baseFormat.format(saldo);
+                    ((TextView)findViewById(R.id.mesanteriordata)).setText(mesAnterior);
 
                 }else{
                     ((TextView)findViewById(R.id.mesanteriordata)).setText("$0.00");
                 }
                 String saldo=AES.decrypt(usuario.getSaldoTotalCta());
+                double salds=Double.parseDouble(saldo);
+                saldo=baseFormat.format(salds);
                 ((TextView)findViewById(R.id.totalmes)).setText(saldo);
                 ((TextView)findViewById(R.id.paqname)).setText(AES.decrypt(usuario.getPaqName()));
-                ((TextView)findViewById(R.id.paqTotal)).setText("$"+AES.decrypt(usuario.getPaqTotal()));
+                String paqtotal=baseFormat.format(Double.parseDouble(AES.decrypt(usuario.getPaqTotal())));
+                ((TextView)findViewById(R.id.paqTotal)).setText(paqtotal);
                 boolean telefono=false;
                 boolean internet=false;
                 boolean video=false;
@@ -145,7 +152,9 @@ public class EdoCuentaActivity extends Activity {
                 }
 
 
-            }catch(Exception e){ }
+            }catch(Exception e){
+            e.printStackTrace();
+            }
 
         }else{
             // tomar la fecha de billdate y la de due date del otro servicio  detail
@@ -158,9 +167,11 @@ public class EdoCuentaActivity extends Activity {
             ((TextView)findViewById(R.id.mesanteriordata)).setVisibility(TextView.GONE);
             try {
                 String lastBalance = usuario.getCvLastBalance() != null ? AES.decrypt(usuario.getCvLastBalance()) : "0.00";
+                double saldo=Double.parseDouble(lastBalance);
+                lastBalance=baseFormat.format(saldo);
                 String fecha = usuario.getFechaLimite() != null ? AES.decrypt(usuario.getFechaLimite()) : null;
                 String fechaFactura = usuario.getFechaFactura() != null ? AES.decrypt(usuario.getFechaFactura()) : null;
-                ((TextView)findViewById(R.id.totalmes)).setText("$"+lastBalance);
+                ((TextView)findViewById(R.id.totalmes)).setText(lastBalance);
                 ((TextView)findViewById(R.id.paqname)).setText(AES.decrypt(usuario.getPaqName()));
 
                 if (fecha != null) {
@@ -180,7 +191,7 @@ public class EdoCuentaActivity extends Activity {
                 if(fechaFactura!=null){
                     if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {
                         Date fechaLimiteDate = sdff.parse(fechaFactura);
-                        DateFormat mediumFormat = new SimpleDateFormat("MMMMM", new Locale("es","MX"));
+                        DateFormat mediumFormat = new SimpleDateFormat("MMMM", new Locale("es","MX"));
                         ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
                         ((TextView) findViewById(R.id.mesFactura)).setText(mediumFormat.format(fechaLimiteDate));
 

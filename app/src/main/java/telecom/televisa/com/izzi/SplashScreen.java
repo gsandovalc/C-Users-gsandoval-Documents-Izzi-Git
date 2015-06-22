@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.activeandroid.query.Select;
+import com.appsflyer.AppsFlyerLib;
 import com.facebook.FacebookSdk;
 
 import java.util.ArrayList;
@@ -29,6 +30,8 @@ public class SplashScreen extends Activity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppsFlyerLib.setAppsFlyerKey("PNd7NVL8bDNQjHXJYj7dVH");
+
         setContentView(R.layout.splash_screen);
         List<Usuario> usr= new Select().from(Usuario.class).execute();
         if(usr!=null) {

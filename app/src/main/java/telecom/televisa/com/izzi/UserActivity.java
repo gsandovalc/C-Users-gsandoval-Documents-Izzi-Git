@@ -21,6 +21,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.kissmetrics.sdk.KISSmetricsAPI;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -35,6 +37,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -58,6 +61,10 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
     Bitmap img=null;
     Usuario usrin=null;
+    NumberFormat baseFormat = NumberFormat.getCurrencyInstance();
+    GoogleCloudMessaging gcm;
+    String regid;
+    String PROJECT_NUMBER = "726810758992";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -65,9 +72,43 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         super.onCreate(savedInstanceState);
         FileCache fc=new FileCache(this);
         fc.clear();
-       init();
+        init();
+        new LongOperation().execute();
+        KISSmetricsAPI.sharedAPI().record("Login Primera Vez en Apps", KISSmetricsAPI.RecordCondition.RECORD_ONCE_PER_INSTALL);
+        KISSmetricsAPI.sharedAPI().record("Login en Apps");
     }
+    private class LongOperation extends AsyncTask<Void, Void, String> {
 
+        @Override
+        protected String doInBackground(Void... params) {
+            String msg="";
+            try {
+                gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+                regid = gcm.register(PROJECT_NUMBER);
+                Map<String, String> mapa=new HashMap<>();
+                mapa.put("device",regid);
+                mapa.put("account",usrin.getCvNumberAccount());
+                mapa.put("type",AES.encrypt("2"));
+                IzziWS.callWebService(mapa,"push/register");
+                msg=("Device registered, registration ID=" + regid);
+                return msg;
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            return msg;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            System.out.println(result);
+        }
+
+        @Override
+        protected void onPreExecute() {}
+
+        @Override
+        protected void onProgressUpdate(Void... values) {}
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -84,7 +125,16 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
             ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0.00");
 
             String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0.00";
+            Double tot= Double.parseDouble(lastBalance);
+            if(tot<=0){
+                //debemos cambiar el mensaje del pago
+                ((TextView) findViewById(R.id.leyenda1Text)).setText("Estás al corriente gracias por tu pago");
+                ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
+            }
             double saldo=Double.parseDouble(lastBalance);
+            lastBalance=baseFormat.format(saldo);
+            ((TextView) findViewById(R.id.totalText)).setText(lastBalance);
+            //saldo=baseFormat.format(lastBalance);
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
             String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
             ((TextView) findViewById(R.id.leyenda1Text)).setTextColor(0xff000000);
@@ -153,12 +203,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
             }catch(Exception e){
                 e.printStackTrace();
             }
-            Double tot= Double.parseDouble(lastBalance);
-            if(tot<=0){
-                //debemos cambiar el mensaje del pago
-                ((TextView) findViewById(R.id.leyenda1Text)).setText("Estás al corriente gracias por tu pago");
-                ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
-            }
+
 
         }catch (Exception e){
             e.printStackTrace();
@@ -212,7 +257,15 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
             ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0.00");
 
             String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0.00";
+            Double tot= Double.parseDouble(lastBalance);
+            if(tot<=0){
+                //debemos cambiar el mensaje del pago
+                ((TextView) findViewById(R.id.leyenda1Text)).setText("Estás al corriente gracias por tu pago");
+                ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
+            }
             double saldo=Double.parseDouble(lastBalance);
+            lastBalance=baseFormat.format(saldo);
+            ((TextView) findViewById(R.id.totalText)).setText(lastBalance);
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
             String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
             try {
@@ -222,7 +275,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                         DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es","MX"));
                         ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
                         Calendar cal = Calendar.getInstance();
-                        if (fechaLimiteDate.getTime() > cal.getTime().getTime()&&saldo>0) {
+                        if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
                             TextView myText = (TextView) findViewById(R.id.totalText );
 
                             Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -278,12 +331,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
             }catch(Exception e){
                 e.printStackTrace();
             }
-            Double tot= Double.parseDouble(lastBalance);
-            if(tot<=0){
-                //debemos cambiar el mensaje del pago
-                ((TextView) findViewById(R.id.leyenda1Text)).setText("Estás al corriente gracias por tu pago");
-                ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
-            }
+
             ImageLoader loader;
             loader=new ImageLoader(this);
             if(info.getFotoPerfil()!=null) {

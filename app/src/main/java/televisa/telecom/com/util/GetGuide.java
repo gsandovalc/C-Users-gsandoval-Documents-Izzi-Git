@@ -40,6 +40,9 @@ public class GetGuide extends AsyncTask<Map<String,String>, Object, Object> {
     protected Object doInBackground(Map<String,String>... params) {
         String metodo="guide";
         Calendar cal=Calendar.getInstance();
+        if(params[0].containsKey("scrolls")){
+            cal.add(Calendar.HOUR_OF_DAY,(Integer.parseInt(params[0].get("scrolls"))*6));
+        }
         int minutos=cal.get(Calendar.MINUTE);
         if(minutos<30)
             minutos=0;

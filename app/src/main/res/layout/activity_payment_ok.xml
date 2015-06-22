@@ -92,7 +92,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
         android:clickable="true"
-        android:onClick="finishPayment"
+        android:onClick="askDom"
         android:layout_height="45dp">
         <LinearLayout
             android:layout_width="wrap_content"

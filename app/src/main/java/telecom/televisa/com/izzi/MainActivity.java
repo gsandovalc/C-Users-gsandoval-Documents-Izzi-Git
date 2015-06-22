@@ -23,6 +23,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.kissmetrics.sdk.KISSmetricsAPI;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -49,6 +50,7 @@ public class MainActivity extends Activity implements IzziRespondable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         facebookImg=null;
         if(((IzziMovilApplication)getApplication()).isLogged()){

@@ -228,6 +228,7 @@
                 android:layout_height="wrap_content"
                 android:text="$1200"
                 android:textStyle="bold"
+                android:digits=""
                 android:id="@+id/totalText"
                 android:textColor="#ffa807"
                 android:layout_gravity="center"

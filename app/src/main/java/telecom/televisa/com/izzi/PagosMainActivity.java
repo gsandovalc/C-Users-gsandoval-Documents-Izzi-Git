@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.activeandroid.query.Select;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,6 +35,8 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
     boolean togleRadio=false;
     Card selectedCard=null;
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
+    public static Map<String,String> parametros;
+    NumberFormat baseFormat = NumberFormat.getCurrencyInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,9 +79,14 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
             ((LinearLayout) findViewById(R.id.vista)).addView(layout, -1, (int) Util.dpToPx(this, 70));
             Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
             String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0.00";
+            double saldo=Double.parseDouble(lastBalance);
+            lastBalance=baseFormat.format(saldo);
+
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
             String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
-            ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0.00");
+
+
+            ((TextView) findViewById(R.id.totalText)).setText(lastBalance);
             try {
                 if (fecha != null) {
                     if (!fecha.isEmpty() && !fecha.equals("0")) {
@@ -159,7 +167,28 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
             mp.put("ammount",info.getCvLastBalance());
 
             mp.put("user",user);
+
             new AsyncResponse(this,false).execute(mp);
+            parametros=new HashMap<>();
+            parametros.put("METHOD","payments/domicilia");
+
+            parametros.put("token",info.getToken());
+            if(info.getUserName()==null)
+                user=info.getCorreoContacto();
+            else
+                user=AES.encrypt(info.getUserName());
+            parametros.put("account",info.getCvNumberAccount());
+            parametros.put("name", remove1(selectedCard.getName()));
+            parametros.put("number",selectedCard.getNumber());
+           date=AES.decrypt(selectedCard.getExpMonth())+"/"+AES.decrypt(selectedCard.getExpYear());
+            parametros.put("date",AES.encrypt(date));
+            parametros.put("code",selectedCard.getCvv());
+            parametros.put("type",selectedCard.getType());
+            parametros.put("ammount",info.getCvLastBalance());
+
+            parametros.put("user",user);
+
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -183,6 +212,7 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
     @Override
     public void notifyChanges(Object response) {
         if(response==null){
+
             Intent i=new Intent(getApplicationContext(),PaymentFailActivity.class);
             startActivity(i);
 
@@ -203,6 +233,7 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
        }
         if(pago.getResponse().getPaymentError()!=null){
             if(!pago.getResponse().getPaymentError().isEmpty()){
+
                 Intent i=new Intent(getApplicationContext(),PaymentFailActivity.class);
                 startActivity(i);
 

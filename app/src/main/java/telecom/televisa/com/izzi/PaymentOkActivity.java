@@ -1,29 +1,30 @@
 package telecom.televisa.com.izzi;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.activeandroid.query.Delete;
+import com.kissmetrics.sdk.KISSmetricsAPI;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
-import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.izziLoginResponse;
 
 
 public class PaymentOkActivity extends Activity implements IzziRespondable {
-
+    IzziRespondable acty=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,36 @@ public class PaymentOkActivity extends Activity implements IzziRespondable {
         ((TextView)findViewById(R.id.h_title)).setText("Pago en línea");
         Intent i=getIntent();
         ((TextView)findViewById(R.id.autorizacion)).setText(i.getExtras().getString("auth"));
+        KISSmetricsAPI.sharedAPI().record("Pago realizado en Apps");
+    }
+    public void askDom(View v){
+        final Dialog popup = new Dialog(this,android.R.style.Theme_Translucent);
+        popup.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        popup.setCancelable(true);
+        popup.setContentView(R.layout.popupdom);
+        WindowManager.LayoutParams lp = popup.getWindow().getAttributes();
+        lp.dimAmount=0f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
+        popup.getWindow().setAttributes(lp);
+        popup.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        popup.show();
+        LinearLayout llo=(LinearLayout)popup.findViewById(R.id.listo);
+        llo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AsyncResponse(acty,false).execute(PagosMainActivity.parametros);
+                popup.dismiss();
+            }
+        });
+        LinearLayout llos=(LinearLayout)popup.findViewById(R.id.nop);
+        llos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popup.dismiss();
+                PagosMainActivity.parametros=null;
+                closeView(v);
+            }
+        });
+
     }
     public void closeView(View v){
         Usuario usuario=((IzziMovilApplication)getApplication()).getCurrentUser();
@@ -51,6 +82,10 @@ public class PaymentOkActivity extends Activity implements IzziRespondable {
 
     @Override
     public void notifyChanges(Object response) {
+        if(PagosMainActivity.parametros!=null){
+            PagosMainActivity.parametros=null;
+            closeView(new View(this));
+        }
         if(response==null){
             response= (Object)(new izziLoginResponse());
             ((izziLoginResponse)response).setIzziError("Error inesperado");

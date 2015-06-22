@@ -82,7 +82,7 @@ public class Usuario extends Model implements MobileResponse {
     @Column
     public String perfilPago;
     @Column
-    private boolean legacy;
+    private boolean legacy=false;
     @Column
     public String paquete;
     @Column

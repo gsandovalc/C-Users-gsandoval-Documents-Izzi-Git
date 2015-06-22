@@ -3,6 +3,7 @@ package telecom.televisa.com.izzi;
 import android.app.Application;
 
 import com.activeandroid.query.Select;
+import com.kissmetrics.sdk.KISSmetricsAPI;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,10 @@ public class IzziMovilApplication extends com.activeandroid.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        KISSmetricsAPI.sharedAPI("dd865fa3fa9d8ffa87f79d7c1080180d8d66cfb0", getApplicationContext());
+        KISSmetricsAPI.sharedAPI().autoRecordInstalls();
+        KISSmetricsAPI.sharedAPI().autoSetAppProperties();
+        KISSmetricsAPI.sharedAPI().autoSetHardwareProperties();
     }
 
     public boolean isLogged() {

@@ -47,26 +47,10 @@ public class TvGuideActivity extends Activity implements ScrollViewListener,Izzi
     boolean isLeftListEnabled = true;
     boolean isRightListEnabled = true;
     private SliderLayout mDemoSlider;
-  /*
-    Calendar current_hour;
-
-    boolean isLeftListEnabled = true;
-    boolean isRightListEnabled = true;
-    public Date fechaInicial;
-    List<ChannelTO> channelLs;
-    LinearLayout ListCanales;
-    List<Schedule> schedule;
-    List<String> chnls;
-    static List<List<Schedule>> listadelistas;
-    Map<String,Integer> existe=new HashMap<String,Integer>();
-    SharedPreferences settings;
-    Map<String, Boolean> fav_map = new HashMap<String, Boolean>();
     int overscrolls=0;
     int leftScrollOverCount=0;
     int scrollOverCount=0;
-    public static ScheduleActivity cntxt;
-    public Date fechami=null;
-    private boolean fromscroll=false;*/
+
     final IzziRespondable act=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +91,68 @@ public class TvGuideActivity extends Activity implements ScrollViewListener,Izzi
     public void onScrollChanged(HorizontalScrollViewExt scrollView, int x, int y, int oldx, int oldy) {
         HorizontalScrollViewExt hsv=(HorizontalScrollViewExt)findViewById(R.id.hzScroll2);
         hsv.scrollTo(x, y);
+        View view = (View) scrollView.getChildAt(0);
+        int diff = (view.getWidth() - (scrollView.getScrollX()));
+        if (diff-scrollView.getWidth() <= 0) {
+            // do stuff
+            scrollOverCount++;
+            if(scrollOverCount>=20){
+                scrollView.scrollTo(0, 0);
+                if(overscrolls==7){
+                    scrollOverCount=0;
+                    return;
+                }
+                setTimeLine(++overscrolls);
+                scrollOverCount=0;
+            }
+        }
+        else if(scrollView.getScrollX()<=0&&overscrolls>0){
+            leftScrollOverCount++;
+            if(leftScrollOverCount>=20){
+                scrollView.scrollTo(0, 0);
+                setTimeLine(--overscrolls);
+                leftScrollOverCount=0;
+            }
+        }
+    }
+    private void setTimeLine(int scrolls){
+        LinearLayout tw=(LinearLayout)findViewById(R.id.fila_horas);
+        tw.removeAllViews();
+        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
+        Date fecha= (Date) fechaInicial.clone();
+        Calendar cla=Calendar.getInstance();
+        cla.setTime(fecha);
+        cla.add(Calendar.HOUR_OF_DAY,6*(scrolls));
+        fecha=cla.getTime();
+        anchoCelda= Util.dpToPx(this,150);
+        for(int i=0;i<12;i++){
+
+            TextView rowTextView = new TextView(this);
+            LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View row = inflater.inflate(R.layout.program_hour, tw, false);
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) row.getLayoutParams();
+            params.width=anchoCelda;
+            row.setLayoutParams(params);
+            rowTextView=(TextView)row.findViewById(R.id.horario_celda);
+            rowTextView.setText(sdf.format(fecha));
+            tw.addView(row);
+            Calendar cl=Calendar.getInstance();
+            cl.setTime(fecha);
+            cl.add(Calendar.MINUTE, 30);
+            fecha=cl.getTime();
+        }
+
+        int minutos=cla.get(Calendar.MINUTE);
+        if(minutos<30)
+            minutos=0;
+        else
+            minutos=30;
+        cla.set(Calendar.MINUTE,minutos);
+        cla.set(Calendar.SECOND,0);
+        fechaInicial=cla.getTime();
+        Map mapa=new HashMap<String, String>();
+        mapa.put("scrolls",scrolls+"");
+        new GetGuide(this,true).execute(mapa);
     }
     private void setTimeLine(){
         LinearLayout tw=(LinearLayout)findViewById(R.id.fila_horas);

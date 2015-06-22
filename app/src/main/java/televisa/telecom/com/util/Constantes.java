@@ -6,5 +6,5 @@ package televisa.telecom.com.util;
 public class Constantes {
     public static String endpoint="https://www.izzi.mx/izziMovil/";
    //public static String endpoint="http://10.25.11.223:8080/izziMovil/";
-   // public static String endpoint="http://172.21.40.139:7007/izziMovil/";
+    //public static String endpoint="http://172.21.40.139:7007/izziMovil/";
 }

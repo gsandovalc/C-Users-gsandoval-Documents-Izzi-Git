@@ -17,6 +17,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,6 +32,7 @@ import televisa.telecom.com.util.AES;
 public class MediosDePagoActivity extends Activity {
     private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
+    NumberFormat baseFormat = NumberFormat.getCurrencyInstance();
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +56,16 @@ public class MediosDePagoActivity extends Activity {
             try {
 
                 String lastBalance = info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()) : "0.00";
+                double saldo=Double.parseDouble(lastBalance);
+                lastBalance=baseFormat.format(saldo);
                 String fecha = info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()) : null;
                 String fechaFactura = info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()) : null;
-                ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$" + AES.decrypt(info.getCvLastBalance()) : "0.00");
+                ((TextView) findViewById(R.id.totalText)).setText(lastBalance);
                 if (fecha != null) {
                     if (!fecha.isEmpty() && !fecha.equals("0")) {
                         Date fechaLimiteDate = sdf.parse(fecha);
                         DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es", "MX"));
-                        DateFormat shortFormat = new SimpleDateFormat("MMMMM", new Locale("es", "MX"));
+                        DateFormat shortFormat = new SimpleDateFormat("MMMM", new Locale("es", "MX"));
                         ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
                         ((TextView) findViewById(R.id.fechaTextMonth)).setText(shortFormat.format(fechaLimiteDate));
                         Calendar cal = Calendar.getInstance();
@@ -71,9 +75,9 @@ public class MediosDePagoActivity extends Activity {
                     } else if (fechaFactura != null) {
                         if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {
                             Date fechaLimiteDate = sdf.parse(fechaFactura);
-                            DateFormat mediumFormat = new SimpleDateFormat("dd MMMMM yyyy", new Locale("es", "MX"));
+                            DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es", "MX"));
                             ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
-                            DateFormat shortFormat = new SimpleDateFormat("MMMMM", new Locale("es", "MX"));
+                            DateFormat shortFormat = new SimpleDateFormat("MMMM", new Locale("es", "MX"));
                             ((TextView) findViewById(R.id.fechaTextMonth)).setText(shortFormat.format(fechaLimiteDate));
                             Calendar cal = Calendar.getInstance();
                             ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
@@ -85,9 +89,9 @@ public class MediosDePagoActivity extends Activity {
                 } else if (fechaFactura != null) {
                     if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {
                         Date fechaLimiteDate = sdf.parse(fechaFactura);
-                        DateFormat mediumFormat = new SimpleDateFormat("dd MMMMM yyyy", new Locale("es", "MX"));
+                        DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es", "MX"));
                         ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
-                        DateFormat shortFormat = new SimpleDateFormat("MMMMM", new Locale("es", "MX"));
+                        DateFormat shortFormat = new SimpleDateFormat("MMMM", new Locale("es", "MX"));
                         ((TextView) findViewById(R.id.fechaTextMonth)).setText(shortFormat.format(fechaLimiteDate));
                         Calendar cal = Calendar.getInstance();
                         ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
