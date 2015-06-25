@@ -24,7 +24,7 @@ public class IzziMovilApplication extends com.activeandroid.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        KISSmetricsAPI.sharedAPI("dd865fa3fa9d8ffa87f79d7c1080180d8d66cfb0", getApplicationContext());
+        KISSmetricsAPI.sharedAPI("831d7f420b079a7e41295f416c7141393cec4032", getApplicationContext());
         KISSmetricsAPI.sharedAPI().autoRecordInstalls();
         KISSmetricsAPI.sharedAPI().autoSetAppProperties();
         KISSmetricsAPI.sharedAPI().autoSetHardwareProperties();

@@ -32,6 +32,8 @@ public class SplashScreen extends Activity  {
         super.onCreate(savedInstanceState);
         AppsFlyerLib.setAppsFlyerKey("PNd7NVL8bDNQjHXJYj7dVH");
 
+        AppsFlyerLib.sendTracking(getApplicationContext());
+
         setContentView(R.layout.splash_screen);
         List<Usuario> usr= new Select().from(Usuario.class).execute();
         if(usr!=null) {
