@@ -30,9 +30,12 @@ public class SplashScreen extends Activity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.splash_screen);
         AppsFlyerLib.setAppsFlyerKey("PNd7NVL8bDNQjHXJYj7dVH");
 
-        setContentView(R.layout.splash_screen);
+        AppsFlyerLib.sendTracking(getApplicationContext());
+
+
         List<Usuario> usr= new Select().from(Usuario.class).execute();
         if(usr!=null) {
             if (usr.size()>0) {

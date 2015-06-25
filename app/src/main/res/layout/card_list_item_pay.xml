@@ -64,18 +64,20 @@
             android:text="●●●●●●●●●●●●5478"/>
     </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:id="@+id/estado"
+        <LinearLayout
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:id="@+id/remove"
             android:gravity="center"
+            android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
-            android:textColor="#F00"
-            android:visibility="gone"
-            android:maxWidth="110dp"
-            android:layout_marginRight="40dp"
+            android:orientation="horizontal"
+            android:background="@drawable/remove"
+            android:clickable="true"
+            android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
-            android:text="Prueba"/>
+            >
+        </LinearLayout>
     </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

@@ -13,18 +13,24 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
 import televisa.telecom.com.model.Card;
+import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.AES;
+import televisa.telecom.com.util.AsyncResponse;
+import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.izziLoginResponse;
+import televisa.telecom.com.util.izziTokenResponse;
 
 
-public class AddCardActivity extends Activity {
+public class AddCardActivity extends Activity implements IzziRespondable {
     String cardType="";
-
+    Activity actv=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,14 +80,14 @@ public class AddCardActivity extends Activity {
         String numero="";
         String name="";
         String type="";
-        String csv="";
+
         String errorText="";
         boolean error=false;
         mes=((EditText)findViewById(R.id.cardMonth)).getText().toString();
         ano=((EditText)findViewById(R.id.cardYear)).getText().toString();
         numero=((EditText)findViewById(R.id.cardNumber)).getText().toString();
         name=((EditText)findViewById(R.id.cardName)).getText().toString();
-        csv=((EditText)findViewById(R.id.cardCVV)).getText().toString();
+        //csv=((EditText)findViewById(R.id.cardCVV)).getText().toString();
         switch (cardType){
             case "visa":
                 type="2";
@@ -120,14 +126,14 @@ public class AddCardActivity extends Activity {
             errorText="El mes de la tarjeta no es valido";
             error=true;
         }
-        else if(csv.length()!=3&&(type.equals("2")||type.equals("4"))){
+      /*  else if(csv.length()!=3&&(type.equals("2")||type.equals("4"))){
             errorText="El codigo de seguridad de la tarjeta no es valido";
             error=true;
         }
         else if(csv.length()!=4&&(type.equals("1"))){
             errorText="El codigo de seguridad de la tarjeta no es valido";
             error=true;
-        }
+        }*/
         else if(type.isEmpty()){
             errorText="Revisa el número de la tarjeta";
             error=true;
@@ -151,18 +157,18 @@ public class AddCardActivity extends Activity {
         }
 
     try {
-        Card tarjeta = new Card();
-        tarjeta.setExpMonth(AES.encrypt(mes));
-        tarjeta.setExpYear(AES.encrypt(ano));
-        tarjeta.setName(AES.encrypt(name));
-        tarjeta.setType(AES.encrypt(type));
-        tarjeta.setUser(((IzziMovilApplication) getApplication()).getCurrentUser().getUserName());
-        tarjeta.setCvv(AES.encrypt(csv));
-        tarjeta.setNumber(AES.encrypt(numero));
-        tarjeta.save();
-        Intent myIntent = new Intent(this, PagosMainActivity.class);
-        startActivityForResult(myIntent, 0);
-        finish();
+        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+        Map<String,String> mp=new HashMap<>();
+        mp.put("METHOD","payments/insertToken");
+        mp.put("token", info.getToken());
+        mp.put("account",AES.encrypt(info.getCvNumberAccount()));
+        mp.put("name", AES.encrypt(remove1(name)));
+        mp.put("number",AES.encrypt(numero));
+        String date=mes+"/"+ano;
+        mp.put("tipo",AES.encrypt(type));
+        mp.put("date",AES.encrypt(date));
+        mp.put("user",AES.encrypt(info.getUserName()));
+        new AsyncResponse(this,false).execute(mp);
     }catch(Exception e){
 
     }
@@ -173,7 +179,7 @@ public class AddCardActivity extends Activity {
 
         // customize these values to suit your needs.
         scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_EXPIRY, true); // default: false
-        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, true); // default: false
+        scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_CVV, false); // default: false
         scanIntent.putExtra(CardIOActivity.EXTRA_REQUIRE_POSTAL_CODE, false); // default: false
 
         // MY_SCAN_REQUEST_CODE is arbitrary and is only used within this activity.
@@ -197,29 +203,29 @@ public class AddCardActivity extends Activity {
                     ((TextView)findViewById(R.id.cardMonth)).setText(String.format("%02d", scanResult.expiryMonth)+"");
                     ((TextView)findViewById(R.id.cardYear)).setText((scanResult.expiryYear+"").substring(2));
                 }
+                cardType=scanResult.getCardType().name.toLowerCase();
+                switch (cardType){
+                    case "visa":
+                        ((ImageView)findViewById(R.id.imageView5)).setAlpha(255);
+                        ((ImageView)findViewById(R.id.imageView6)).setAlpha(85);
+                        ((ImageView)findViewById(R.id.imageView7)).setAlpha(85);
+                        break;
+                    case "mastercard":
+                        ((ImageView)findViewById(R.id.imageView5)).setAlpha(85);
+                        ((ImageView)findViewById(R.id.imageView6)).setAlpha(255);
+                        ((ImageView)findViewById(R.id.imageView7)).setAlpha(85);
+                        break;
+                    case "amex":
+                        ((ImageView)findViewById(R.id.imageView5)).setAlpha(85);
+                        ((ImageView)findViewById(R.id.imageView6)).setAlpha(85);
+                        ((ImageView)findViewById(R.id.imageView7)).setAlpha(255);
+                        break;
 
+                }
                 if (scanResult.cvv != null) {
                     ((LinearLayout)findViewById(R.id.hidescan)).setVisibility(LinearLayout.GONE);
                     ((TextView)findViewById(R.id.cardCVV)).setText(scanResult.cvv+"");
-                    cardType=scanResult.getCardType().name.toLowerCase();
-                    switch (cardType){
-                        case "visa":
-                            ((ImageView)findViewById(R.id.imageView5)).setAlpha(255);
-                            ((ImageView)findViewById(R.id.imageView6)).setAlpha(85);
-                            ((ImageView)findViewById(R.id.imageView7)).setAlpha(85);
-                            break;
-                        case "mastercard":
-                            ((ImageView)findViewById(R.id.imageView5)).setAlpha(85);
-                            ((ImageView)findViewById(R.id.imageView6)).setAlpha(255);
-                            ((ImageView)findViewById(R.id.imageView7)).setAlpha(85);
-                            break;
-                        case "amex":
-                            ((ImageView)findViewById(R.id.imageView5)).setAlpha(85);
-                            ((ImageView)findViewById(R.id.imageView6)).setAlpha(85);
-                            ((ImageView)findViewById(R.id.imageView7)).setAlpha(255);
-                            break;
 
-                    }
                 }
 
 
@@ -232,6 +238,66 @@ public class AddCardActivity extends Activity {
         }
         // else handle other activity results
     }
+    public String remove1(String input) {
+        // Cadena de caracteres original a sustituir.
+        String original = "áàäéèëíìïóòöúùuñÁÀÄÉÈËÍÌÏÓÒÖÚÙÜÑçÇ";
+        // Cadena de caracteres ASCII que reemplazarán los originales.
+        String ascii = "aaaeeeiiiooouuunAAAEEEIIIOOOUUUNcC";
+        String output = input;
+        for (int i=0; i<original.length(); i++) {
+            // Reemplazamos los caracteres especiales.
+            output = output.replace(original.charAt(i), ascii.charAt(i));
+        }//for i
+        return output;
+    }//remove1
+    @Override
+    public void notifyChanges(Object response) {
+            if(response!=null){
+                izziTokenResponse tkn=(izziTokenResponse)response;
+                if(tkn.getIzziErrorCode().equals("")){
+                    new AlertDialog.Builder(this)
+                            .setTitle("izzi")
+                            .setMessage("Se agregó de forma correcta tu tarjeta")
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                    dialog.dismiss();
+                                    actv.finish();
+                                }
+                            }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialog) {
+                            dialog.dismiss();
+                            actv.finish();
+                        }
+                    })
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                    return;
+                }
+            }else{
+                new AlertDialog.Builder(this)
+                        .setTitle("izzi")
+                        .setMessage("Ocurrio un error al intentar guardar tu tarjeta./n Intenta nuevamente")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                                dialog.dismiss();
+
+                            }
+                        }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        dialog.dismiss();
+
+                    }
+                })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+                return;
+            }
+    }
+
     public enum CardType {
 
         UNKNOWN,

@@ -3,12 +3,14 @@ package telecom.televisa.com.izzi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Config;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,10 @@ import android.widget.TextView;
 import com.activeandroid.query.Select;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.kissmetrics.sdk.KISSmetricsAPI;
+import com.threatmetrix.TrustDefenderMobile.ProfilingOptions;
+import com.threatmetrix.TrustDefenderMobile.ProfilingResult;
+import com.threatmetrix.TrustDefenderMobile.THMStatusCode;
+import com.threatmetrix.TrustDefenderMobile.TrustDefenderMobile;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -39,6 +45,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -65,17 +72,47 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
     GoogleCloudMessaging gcm;
     String regid;
     String PROJECT_NUMBER = "726810758992";
+    public static TrustDefenderMobile profile ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         layout=(R.layout.activity_user);
         super.onCreate(savedInstanceState);
+        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+        try {
+            profile = new TrustDefenderMobile("izzimx_" + (Integer.parseInt(AES.decrypt(info.getRpt())) == 0 ? "8" : "7"));
+          //file:///C:/Users/cevelez/AppData/Local/Temp/Rar$DRa0.798/TrustDefender_Android(v3.0)ReleaseNotes_10_Cod
+            profile.init(getApplicationContext());
+            profile.doProfileRequest();
+          ProfilingResult pr=  profile.getResult();
+            String dsdsd="";
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         FileCache fc=new FileCache(this);
         fc.clear();
         init();
         new LongOperation().execute();
         KISSmetricsAPI.sharedAPI().record("Login Primera Vez en Apps", KISSmetricsAPI.RecordCondition.RECORD_ONCE_PER_INSTALL);
         KISSmetricsAPI.sharedAPI().record("Login en Apps");
+    }
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus)
+    {
+        profile.pauseLocationServices(!hasFocus);
+    }
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
+        profile.tidyUp();
+    }
+
+    void initProfiling()
+    {
+
+
     }
     private class LongOperation extends AsyncTask<Void, Void, String> {
 
@@ -416,17 +453,9 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
     }
 
     public void pay(View v){
-        List<Card> tjts=new Select().from(Card.class).where("user=?", ((IzziMovilApplication)getApplication()).getCurrentUser().getUserName()).execute();
-        if(tjts==null) {
-            Intent myIntent = new Intent(this, AddCardActivity.class);
-            startActivityForResult(myIntent, 0);
-        }else if(tjts.size()<=0){
-            Intent myIntent = new Intent(this, AddCardActivity.class);
-            startActivityForResult(myIntent, 0);
-        }else{
+
             Intent myIntent = new Intent(this, PagosMainActivity.class);
             startActivityForResult(myIntent, 0);
-        }
     }
 
     private class UploadFileToServer extends AsyncTask<Void, Integer, String> {
