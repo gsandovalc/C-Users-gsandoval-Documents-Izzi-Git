@@ -63,7 +63,10 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
             String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0.00";
             double saldo=Double.parseDouble(lastBalance);
             lastBalance=baseFormat.format(saldo);
-
+            ((LinearLayout)findViewById(R.id.pagggar)).setVisibility(LinearLayout.VISIBLE);
+            if(((int)saldo)==0){
+                ((LinearLayout)findViewById(R.id.pagggar)).setVisibility(LinearLayout.GONE);
+            }
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
             String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
 
@@ -153,11 +156,11 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
                         tv.setVisibility(TextView.VISIBLE);
                         return;
                     }
-                    if(selectedCard.getCardType().equals("3")&&cvv.length()!=4){
+                    int tipot=Integer.parseInt(selectedCard.getCardType());
+                    if(tipot==3&&cvv.length()!=4){
                         tv.setVisibility(TextView.VISIBLE);
                         return;
-                    }
-                    if(!selectedCard.getCardType().equals("3")&&cvv.length()!=3){
+                    }else if(tipot!=3&&cvv.length()!=3){
                         tv.setVisibility(TextView.VISIBLE);
                         return;
                     }
@@ -170,7 +173,7 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
                         mp.put("account", info.getCvNumberAccount());
                         mp.put("code", AES.encrypt(cvv));
                         mp.put("subId", selectedCard.getSubscriptionId());
-                        mp.put("ammount", AES.encrypt("30.00"));
+                        mp.put("ammount", info.getCvLastBalance());
                         mp.put("user", user);
                         new AsyncResponse(acti, false).execute(mp);
                     }catch(Exception e){
@@ -277,6 +280,7 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
                     public void onClick(View v) {
                         Tokens t=(Tokens)v.getTag();
                         try{
+
                         Map<String,String> map = new HashMap<String, String>();
                         map.put("METHOD","payments/deleteToken");
                         map.put("subId",t.getSubscriptionId());
@@ -299,7 +303,7 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
                         }
                         int index=lsta.indexOf(v);
                         lsta.get(index).findViewById(R.id.radioon).setVisibility(LinearLayout.VISIBLE);
-                        selectedCard=selectedCard==null?tjts.get(index):null;
+                        selectedCard=tjts.get(index);
                     }
                 });
                 String type = tjts.get(i).getCardType();

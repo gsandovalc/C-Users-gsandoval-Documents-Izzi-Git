@@ -151,6 +151,8 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         super.onResume();
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         //llenamos obtenemnos los campos de texto
+        TextView myTextt = (TextView) findViewById(R.id.totalText );
+        myTextt.getAnimation().cancel();
         usrin=info;
         try {
             String ahhh=AES.decrypt(info.getPaquete());
@@ -250,8 +252,8 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
     void init(){
         final RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.cuadroParent);
         final UserActivity act=this;
-
-
+        TextView myTextt = (TextView) findViewById(R.id.totalText );
+        myTextt.getAnimation().cancel();
         myLayout.post(new Runnable()
         {
 

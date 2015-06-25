@@ -159,6 +159,7 @@
             android:layout_marginLeft="15dp"
             android:layout_alignParentBottom="true"
             android:clickable="true"
+            android:id="@+id/pagggar"
             android:onClick="payAccount"
             android:background="@drawable/orounded_corners">
             <TextView
