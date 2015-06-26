@@ -31,7 +31,6 @@ public class SplashScreen extends Activity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppsFlyerLib.setAppsFlyerKey("PNd7NVL8bDNQjHXJYj7dVH");
-
         AppsFlyerLib.sendTracking(getApplicationContext());
 
         setContentView(R.layout.splash_screen);

@@ -8,7 +8,7 @@ android {
         applicationId "telecom.televisa.com.izzi"
         minSdkVersion 10
         targetSdkVersion 11
-        versionCode 7
+        versionCode 8
         versionName "1.0"
     }
     buildTypes {
