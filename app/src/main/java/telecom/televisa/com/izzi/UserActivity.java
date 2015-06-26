@@ -151,8 +151,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         super.onResume();
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         //llenamos obtenemnos los campos de texto
-        TextView myTextt = (TextView) findViewById(R.id.totalText );
-        myTextt.getAnimation().cancel();
+
         usrin=info;
         try {
             String ahhh=AES.decrypt(info.getPaquete());
@@ -205,6 +204,12 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                             if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
                                 //TODO hacer el truco que quieren si tiene pago vencido
                                 ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
+                                try{
+                                TextView myTextt = (TextView) findViewById(R.id.totalText );
+                                myTextt.getAnimation().cancel();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                              /*   TextView myText = (TextView) findViewById(R.id.totalText );
 
                                 Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -224,6 +229,12 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                         Calendar cal = Calendar.getInstance();
                         if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
                             ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
+                            try{
+                                TextView myTextt = (TextView) findViewById(R.id.totalText );
+                                myTextt.getAnimation().cancel();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                            /* TextView myText = (TextView) findViewById(R.id.totalText );
 
                             Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -234,9 +245,21 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                             myText.startAnimation(anim);*/
                         }
                     }else{
+                        try{
+                            TextView myTextt = (TextView) findViewById(R.id.totalText );
+                            myTextt.getAnimation().cancel();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                         ((TextView) findViewById(R.id.fechaText)).setText("No disponible");
                     }
                 }else{
+                    try{
+                        TextView myTextt = (TextView) findViewById(R.id.totalText );
+                        myTextt.getAnimation().cancel();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     ((TextView) findViewById(R.id.fechaText)).setText("No disponible");
                 }
             }catch(Exception e){
@@ -253,7 +276,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         final RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.cuadroParent);
         final UserActivity act=this;
         TextView myTextt = (TextView) findViewById(R.id.totalText );
-        myTextt.getAnimation().cancel();
+       // myTextt.getAnimation().cancel();
         myLayout.post(new Runnable()
         {
 
