@@ -2,15 +2,18 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="telecom.televisa.com.izzi.PagoEstablecimientosActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/vista"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginBottom="40dp"
         android:background="#ffffff">
     <include layout="@layout/headerextra" />
         <ScrollView
             android:layout_width="fill_parent"
+
             android:layout_height="fill_parent">
 
             <LinearLayout
@@ -19,6 +22,14 @@
                 android:orientation="vertical"
                 android:padding="15dp">
 
+
+               <LinearLayout
+                   android:layout_width="fill_parent"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/contene"
+
+
+                   android:orientation="vertical">
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_marginBottom="5dp"
@@ -34,6 +45,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/bancoH"
                         android:layout_alignParentRight="true"
                         android:text="Pago reflejado en 24 hrs."
                         android:textSize="12sp"
@@ -55,6 +67,7 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_marginLeft="5dp"
+                        android:id="@+id/bank1"
                         android:layout_height="60dp">
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -100,6 +113,7 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_marginLeft="5dp"
+                        android:id="@+id/bank2"
                         android:layout_height="60dp">
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -146,6 +160,7 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_marginLeft="5dp"
+                        android:id="@+id/bank3"
                         android:layout_height="60dp">
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -191,6 +206,7 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_marginLeft="5dp"
+                        android:id="@+id/bank4"
                         android:layout_height="60dp">
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -236,6 +252,7 @@
                     <RelativeLayout
                         android:layout_width="fill_parent"
                         android:layout_marginLeft="5dp"
+                        android:id="@+id/bank5"
                         android:layout_height="60dp">
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -282,6 +299,7 @@
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_marginLeft="5dp"
+                    android:id="@+id/bank6"
                     android:layout_height="60dp">
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -324,8 +342,192 @@
 
                         android:layout_marginRight="15dp"></LinearLayout>
                 </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/bank7"
+                        android:layout_height="60dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+
+                            android:layout_height="fill_parent">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:textColor="#000"
+                                android:id="@+id/bankName7"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:text="Banamex"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:textColor="#000"
+                                android:id="@+id/bankRef7"
+                                android:textSize="12sp"
+                                android:text="Ref:00332030390004930389409"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:background="@drawable/geoloc"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:clickable="true"
+                            android:onClick="findBank"
+                            android:id="@+id/geolocBank7"
+                            android:layout_marginRight="10sp"
+                            android:layout_height="40dp"/>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="15dp"
+
+                            android:layout_marginRight="15dp"></LinearLayout>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/bank8"
+                        android:layout_height="60dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+
+                            android:layout_height="fill_parent">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:textColor="#000"
+                                android:id="@+id/bankName8"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:text="Banamex"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:textColor="#000"
+                                android:id="@+id/bankRef8"
+                                android:textSize="12sp"
+                                android:text="Ref:00332030390004930389409"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:background="@drawable/geoloc"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:clickable="true"
+                            android:onClick="findBank"
+                            android:id="@+id/geolocBank8"
+                            android:layout_marginRight="10sp"
+                            android:layout_height="40dp"/>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="15dp"
+
+                            android:layout_marginRight="15dp"></LinearLayout>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/bank9"
+                        android:layout_height="60dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+
+                            android:layout_height="fill_parent">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:textColor="#000"
+                                android:id="@+id/bankName9"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:text="Banamex"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:textColor="#000"
+                                android:id="@+id/bankRef9"
+                                android:textSize="12sp"
+                                android:text="Ref:00332030390004930389409"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:background="@drawable/geoloc"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:clickable="true"
+                            android:onClick="findBank"
+                            android:id="@+id/geolocBank9"
+                            android:layout_marginRight="10sp"
+                            android:layout_height="40dp"/>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="15dp"
+
+                            android:layout_marginRight="15dp"></LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
                 </RelativeLayout>
+                   <RelativeLayout
+                       android:layout_width="fill_parent"
+                       android:layout_marginLeft="5dp"
+                       android:id="@+id/bank10"
+                       android:layout_height="60dp">
+                       <LinearLayout
+                           android:layout_width="wrap_content"
+                           android:orientation="vertical"
+                           android:layout_centerVertical="true"
+                           android:gravity="center_vertical"
+
+                           android:layout_height="fill_parent">
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:textColor="#000"
+                               android:id="@+id/bankName10"
+                               android:textStyle="bold"
+                               android:textSize="14sp"
+                               android:text="Banamex"
+                               android:layout_height="wrap_content" />
+                           <TextView
+                               android:layout_width="wrap_content"
+                               android:textColor="#000"
+                               android:id="@+id/bankRef10"
+                               android:textSize="12sp"
+                               android:text="Ref:00332030390004930389409"
+                               android:layout_height="wrap_content" />
+                       </LinearLayout>
+                       <ImageView
+                           android:layout_width="40dp"
+                           android:background="@drawable/geoloc"
+                           android:layout_centerVertical="true"
+                           android:layout_alignParentRight="true"
+                           android:clickable="true"
+                           android:onClick="findBank"
+                           android:id="@+id/geolocBank10"
+                           android:layout_marginRight="10sp"
+                           android:layout_height="40dp"/>
+                       <LinearLayout
+                           android:layout_width="fill_parent"
+                           android:layout_height="1dp"
+                           android:layout_alignParentBottom="true"
+                           android:layout_marginLeft="15dp"
+
+                           android:layout_marginRight="15dp"></LinearLayout>
+                   </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="fill_parent"
                     android:layout_marginTop="5dp"
@@ -336,6 +538,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tiendas"
+                        android:id="@+id/tiendaN"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#00C1B5"/>
@@ -344,6 +547,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:text="Pago reflejado en 24 hrs."
+                        android:id="@+id/tiendaH"
                         android:textSize="12sp"
                         android:textColor="#00C1B5"/>
                 </RelativeLayout>
@@ -358,9 +562,11 @@
                         android:orientation="vertical"
                         android:padding="1dp"
                         android:layout_height="wrap_content">
-                        <RelativeLayout
+
+                       <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda1"
                             android:layout_height="60dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -381,7 +587,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
-                                    android:text="*Pago reflejado de forma inmediata."
+
                                     android:textSize="10sp"
                                     android:textColor="#00C1B5"/>
 
@@ -407,6 +613,7 @@
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda2"
                             android:layout_height="60dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -446,6 +653,7 @@
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda3"
                             android:layout_height="60dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -485,6 +693,7 @@
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda4"
                             android:layout_height="60dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -524,6 +733,7 @@
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda5"
                             android:layout_height="60dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -564,6 +774,7 @@
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda6"
                             android:layout_height="60dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -603,6 +814,7 @@
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda7"
                             android:layout_height="60dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -642,6 +854,7 @@
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda8"
                             android:layout_height="60dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -681,6 +894,7 @@
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda9"
                             android:layout_height="60dp">
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -712,15 +926,490 @@
                             <LinearLayout
                                 android:layout_width="fill_parent"
                                 android:layout_height="1dp"
+                                android:background="#55dfdfdf"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda10"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName10"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Sears"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:id="@+id/geolocTienda10"
+                                android:layout_marginRight="10sp"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginLeft="15dp"
+                                android:background="#55dfdfdf"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda11"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName11"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Elektra"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:textSize="10sp"
+                                    android:textColor="#00C1B5"/>
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/geolocTienda11"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="10sp"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:background="#55dfdfdf"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda12"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName12"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="7ELEVEN"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/geolocTienda12"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="10sp"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginLeft="15dp"
+                                android:background="#55dfdfdf"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda13"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName13"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Walmart"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:id="@+id/geolocTienda13"
+                                android:layout_marginRight="10sp"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:background="#55dfdfdf"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda14"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName14"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Bodega Aurrera"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:id="@+id/geolocTienda14"
+                                android:layout_marginRight="10sp"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginLeft="15dp"
+                                android:background="#55dfdfdf"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda15"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName15"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Bodega Aurrera Express"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="10sp"
+                                android:id="@+id/geolocTienda15"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginLeft="15dp"
+                                android:background="#55dfdfdf"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda16"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName16"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Sam´s Club"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:id="@+id/geolocTienda16"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="10sp"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginLeft="15dp"
+                                android:background="#55dfdfdf"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda17"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName17"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Suburbia"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:layout_marginRight="10sp"
+                                android:id="@+id/geolocTienda17"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginLeft="15dp"
+                                android:background="#55dfdfdf"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda18"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName18"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Sanborns"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:id="@+id/geolocTienda18"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:layout_marginRight="10sp"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginLeft="15dp"
+                                android:background="#55dfdfdf"
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda19"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName19"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Sears"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:id="@+id/geolocTienda19"
+                                android:layout_marginRight="10sp"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
                                 android:layout_alignParentBottom="true"
                                 android:layout_marginLeft="15dp"
 
                                 android:layout_marginRight="15dp"></LinearLayout>
                         </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_marginLeft="5dp"
+                            android:id="@+id/tienda20"
+                            android:layout_height="60dp">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+
+                                android:layout_height="fill_parent">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textColor="#000"
+                                    android:id="@+id/tiendaName20"
+                                    android:textStyle="bold"
+                                    android:textSize="14sp"
+                                    android:text="Sears"
+                                    android:layout_height="wrap_content" />
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="40dp"
+                                android:background="@drawable/geoloc"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:clickable="true"
+                                android:onClick="findBank"
+                                android:id="@+id/geolocTienda20"
+                                android:layout_marginRight="10sp"
+                                android:layout_height="40dp"/>
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginLeft="15dp"
+
+                                android:layout_marginRight="15dp"></LinearLayout>
+                        </RelativeLayout>
+
                     </LinearLayout>
                 </RelativeLayout>
+
+            </LinearLayout>
+
               </LinearLayout>
             </ScrollView>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:gravity="right"
+        android:id="@+id/qst"
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_height="40dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:background="@drawable/qm"
+            android:layout_centerVertical="true"
+            android:onClick="help"
+            android:layout_gravity="center"
+            android:layout_marginRight="10sp"
+            android:layout_height="20dp"/>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/hideme"
+        android:visibility="gone"
+        android:background="#77000000"></RelativeLayout>
 </RelativeLayout>

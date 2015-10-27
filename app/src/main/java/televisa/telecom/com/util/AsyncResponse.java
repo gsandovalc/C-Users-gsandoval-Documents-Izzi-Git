@@ -16,9 +16,12 @@ import com.google.gson.Gson;
 
 import java.util.Map;
 
+import telecom.televisa.com.izzi.PagoEstablecimientosActivity;
 import telecom.televisa.com.izzi.PagosMainActivity;
 import telecom.televisa.com.izzi.PaperlessActivity;
 import telecom.televisa.com.izzi.R;
+import telecom.televisa.com.izzi.RecuperaPass;
+import telecom.televisa.com.izzi.UserActivity;
 import televisa.telecom.com.ws.IzziWS;
 
 /**
@@ -52,6 +55,15 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                 return response;
             }else if(respondTo instanceof PagosMainActivity) {
                 izziPaymentResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziPaymentResponse.class);
+                return response;
+            }else if(respondTo instanceof RecuperaPass) {
+                izziRecuperaResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziRecuperaResponse.class);
+                return response;
+            }else if(respondTo instanceof PagoEstablecimientosActivity) {
+                izziDondePagarResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziDondePagarResponse.class);
+                return response;
+            }else if(respondTo instanceof UserActivity) {
+                izziEdoCuentaResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziEdoCuentaResponse.class);
                 return response;
             }else{
                 izziLoginResponse response = gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);
@@ -148,8 +160,9 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
         super.onPostExecute(response);
         try{
             loadingOverlay.dismiss();
+            respondTo.notifyChanges(response);
         }catch(Exception e){}
-        respondTo.notifyChanges(response);
+
     }
 
 

@@ -1,9 +1,12 @@
 package telecom.televisa.com.izzi;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -13,10 +16,13 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
+import com.facebook.FacebookActivity;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
@@ -46,6 +52,8 @@ public class MainActivity extends Activity implements IzziRespondable {
     CallbackManager callbackManager;
     MainActivity actividad=this;
     boolean fromfb=false;
+    boolean fromfbFail=false;
+
    public static String facebookImg=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +69,7 @@ public class MainActivity extends Activity implements IzziRespondable {
         }
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
-        try {
-            LoginManager mLoginManager = LoginManager.getInstance();
-            mLoginManager.logOut();
 
-        }catch(Exception e){}
 
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
@@ -81,6 +85,7 @@ public class MainActivity extends Activity implements IzziRespondable {
         } catch (NoSuchAlgorithmException e) {
 
         }
+
     }
 
 
@@ -101,6 +106,7 @@ public class MainActivity extends Activity implements IzziRespondable {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+            return;
         }
         if(password.isEmpty()){
             new AlertDialog.Builder(this)
@@ -130,11 +136,40 @@ public class MainActivity extends Activity implements IzziRespondable {
                     .show();
             return;
         }
-        Map<String,String>mp=new HashMap<>();
-        mp.put("METHOD","login");
-        mp.put("user",user);
-        mp.put("password",password);
-        new AsyncResponse(this,true).execute(mp);
+
+        if(((LinearLayout)findViewById(R.id.bfblg)).getVisibility()==LinearLayout.VISIBLE) {
+            Map<String, String> mp = new HashMap<>();
+            mp.put("METHOD", "login/");
+            mp.put("user", user);
+            mp.put("password", password);
+            new AsyncResponse(this, true).execute(mp);
+        }else{
+            if(AccessToken.getCurrentAccessToken()!=null){
+                try {
+                    Map<String, String> mp = new HashMap<>();
+                    mp.put("METHOD", "login/fbreg");
+                    mp.put("user", AES.encrypt(user));
+                    mp.put("password", AES.encrypt(password));
+                    mp.put("fbusrid", AES.encrypt(AccessToken.getCurrentAccessToken().getUserId()));
+                    mp.put("fbimgurl", "https://graph.facebook.com/" + AccessToken.getCurrentAccessToken().getUserId() + "/picture?type=large");
+                    mp.put("fbiprourl", "https://www.facebook.com/" + AccessToken.getCurrentAccessToken().getUserId());
+                    mp.put("fbexptoken", AccessToken.getCurrentAccessToken().getExpires().getTime() + "");
+                    mp.put("fbtoken", AccessToken.getCurrentAccessToken().getToken());
+                    new AsyncResponse(actividad, false).execute(mp);
+                   fromfbFail=false;
+
+                    return;
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }else{
+                Map<String, String> mp = new HashMap<>();
+                mp.put("METHOD", "login/");
+                mp.put("user", user);
+                mp.put("password", password);
+                new AsyncResponse(this, true).execute(mp);
+            }
+        }
     }
     public void registro(View v){
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.izzi.mx/registro"));
@@ -146,8 +181,22 @@ public class MainActivity extends Activity implements IzziRespondable {
         startActivity(browserIntent);
 
     }
+    public void closeView(View v){
+        Intent i = new Intent(this, BtfLanding.class);
+        startActivity(i);
+        finish();
+        overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
+    }
 
     public void fbLogin(View v){
+        if(AccessToken.getCurrentAccessToken()!=null){
+            Map<String,String> mp=new HashMap<>();
+            mp.put("METHOD","login/facebook");
+            mp.put("userID",AccessToken.getCurrentAccessToken().getUserId());
+            new AsyncResponse(actividad,true).execute(mp);
+            fromfb=true;
+            return;
+        }
         com.facebook.login.widget.LoginButton btn = new LoginButton(this);
         btn.performClick();
         btn.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -169,7 +218,7 @@ public class MainActivity extends Activity implements IzziRespondable {
 
             @Override
             public void onError(FacebookException e) {
-                System.out.println("Holaaaaa" + e);
+                System.out.println("Holaaaaa" + e.getMessage());
             }
 
 
@@ -196,6 +245,7 @@ public class MainActivity extends Activity implements IzziRespondable {
                     .show();
             return;
         }
+
         new Delete().from(Usuario.class).execute();
         new Delete().from(PagosList.class).execute();
         if(((izziLoginResponse)response).getIzziErrorCode().isEmpty()){
@@ -250,6 +300,10 @@ public class MainActivity extends Activity implements IzziRespondable {
         }else{
             // mostrar mensaje rosa de usuario o contraseña invalido si es el caso
             //si no popup
+            if(((izziLoginResponse)response).getIzziErrorCode().equals("103")){
+                ((izziLoginResponse)response).setIzziError("Tu cuenta de facebook no se encuentra vinculada con izzi, ayudanos a vincularla iniciando sesión");
+                ((LinearLayout)findViewById(R.id.bfblg)).setVisibility(LinearLayout.GONE);
+            }
             new AlertDialog.Builder(this)
                     .setTitle("izzi")
                     .setMessage(((izziLoginResponse)response).getIzziError())
@@ -261,6 +315,7 @@ public class MainActivity extends Activity implements IzziRespondable {
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+
 
         }
 

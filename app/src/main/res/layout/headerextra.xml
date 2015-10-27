@@ -21,20 +21,33 @@
                 android:visibility="visible"
                 android:text="Servicios contratados"
                 android:textColor="#000"
-                android:textSize="20dp"
+                android:textSize="17dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />
             <ImageView
                 android:id="@+id/show_menu"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="fill_parent"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:onClick="closeView"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="11dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/regresar" />
+            <ImageView
+                android:id="@+id/show_exmenu"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:onClick="showModal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/info" />
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:background="@drawable/lineascopy"

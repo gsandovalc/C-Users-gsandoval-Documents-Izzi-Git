@@ -36,16 +36,34 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
     Card selectedCard=null;
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
     public static Map<String,String> parametros;
-    NumberFormat baseFormat = NumberFormat.getCurrencyInstance();
+    NumberFormat baseFormat = NumberFormat.getCurrencyInstance(new Locale("es","MX"));
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagos_main);
         ((TextView)findViewById(R.id.h_title)).setText("Pago en línea");
         LayoutInflater inflater = LayoutInflater.from(this);
+       if (((IzziMovilApplication)getApplication()).getCurrentUser()==null){
+           finish();
+           Intent i= new Intent(getApplicationContext(),BtfLanding.class);
+           startActivity(i);
+           return;
+        }
         final List<Card> tjts=new Select().from(Card.class).where("user=?", ((IzziMovilApplication)getApplication()).getCurrentUser().getUserName()).execute();
        final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.card_list_item_pay, null, false);
         layout.findViewById(R.id.radioon).setVisibility(LinearLayout.VISIBLE);
+        if(tjts==null){
+            finish();
+            Intent i= new Intent(getApplicationContext(),AddCardActivity.class);
+            startActivity(i);
+            return;
+        }
+        if(tjts.size()==0){
+            finish();
+            Intent i= new Intent(getApplicationContext(),AddCardActivity.class);
+            startActivity(i);
+            return;
+        }
         selectedCard=tjts.get(0);
        /*  layout.setClickable(true);
         layout.setOnClickListener(new View.OnClickListener() {
@@ -78,10 +96,12 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
             ((TextView)layout.findViewById(R.id.tjtnumber)).setText(maskedNumber);
             ((LinearLayout) findViewById(R.id.vista)).addView(layout, -1, (int) Util.dpToPx(this, 70));
             Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
-            String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0.00";
+            String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0";
             double saldo=Double.parseDouble(lastBalance);
-            lastBalance=baseFormat.format(saldo);
-
+            lastBalance="$ "+saldo;
+            if(((int)saldo)==0){
+                ((LinearLayout)findViewById(R.id.pagobutton)).setVisibility(LinearLayout.GONE);
+            }
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
             String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
 
@@ -93,8 +113,8 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
                         Date fechaLimiteDate = sdf.parse(fecha);
                         DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es","MX"));
                         DateFormat shortFormat = new SimpleDateFormat("MMMMM", new Locale("es","MX"));
-                        ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
-                        ((TextView) findViewById(R.id.fechaTextMonth)).setText(shortFormat.format(fechaLimiteDate));
+                        ((TextView) findViewById(R.id.fechaText)).setText(AES.decrypt(info.getFechaLimit()));
+                        ((TextView) findViewById(R.id.fechaTextMonth)).setText(AES.decrypt(info.getMesFactura()));
                         Calendar cal = Calendar.getInstance();
                         if (fechaLimiteDate.getTime() > cal.getTime().getTime()) {
                             //TODO hacer el truco que quieren si tiene pago vencido
@@ -104,9 +124,9 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
                             Date fechaLimiteDate = sdf.parse(fechaFactura);
                             ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
                             DateFormat mediumFormat = new SimpleDateFormat("dd MMMMM yyyy", new Locale("es","MX"));
-                            ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
+                            ((TextView) findViewById(R.id.fechaText)).setText(AES.decrypt(info.getFechaLimit()));
                             DateFormat shortFormat = new SimpleDateFormat("MMMMM", new Locale("es","MX"));
-                            ((TextView) findViewById(R.id.fechaTextMonth)).setText(shortFormat.format(fechaLimiteDate));
+                            ((TextView) findViewById(R.id.fechaTextMonth)).setText(AES.decrypt(info.getMesFactura()));
                             Calendar cal = Calendar.getInstance();
                             if (fechaLimiteDate.getTime() > cal.getTime().getTime()) {
                                 //TODO hacer el truco que quieren si tiene pago vencido
@@ -118,9 +138,9 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
                         Date fechaLimiteDate = sdf.parse(fechaFactura);
                         ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
                         DateFormat mediumFormat = new SimpleDateFormat("dd MMMMM yyyy", new Locale("es","MX"));
-                        ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
+                        ((TextView) findViewById(R.id.fechaText)).setText(AES.decrypt(info.getFechaLimit()));
                         DateFormat shortFormat = new SimpleDateFormat("MMMMM", new Locale("es","MX"));
-                        ((TextView) findViewById(R.id.fechaTextMonth)).setText(shortFormat.format(fechaLimiteDate));
+                        ((TextView) findViewById(R.id.fechaTextMonth)).setText(AES.decrypt(info.getMesFactura()));
                         Calendar cal = Calendar.getInstance();
                         if (fechaLimiteDate.getTime() > cal.getTime().getTime()) {
                             //TODO hacer el truco que quieren si tiene pago vencido

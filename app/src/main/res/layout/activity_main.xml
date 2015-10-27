@@ -5,58 +5,50 @@
     android:paddingTop="5dp"
     android:background="#FFFFFF"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    <ImageView
+        android:id="@+id/show_menu"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:onClick="closeView"
+        android:src="@drawable/regresar" />
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
+        android:id="@+id/imageView"
+        android:src="@drawable/logoizzi" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:orientation="vertical"
         android:id="@+id/linearLayout">
-        <ImageView
-            android:layout_width="180dp"
-            android:layout_height="80dp"
 
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center_horizontal"
-            android:scaleType="centerInside"
-            android:id="@+id/imageView"
-            android:src="@drawable/logoizzi" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Usuario"
-            android:textStyle="bold"
-            android:textColor="#000000"
-            android:textSize="15sp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="1dp"
-         />
+
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#55D60270"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#55555555"
         android:layout_height="40dp">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_margin="1dp"
             android:background="#FFFFFF"
             android:layout_height="fill_parent">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageButton2"
-
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:src="@drawable/user" />
 
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:inputType="textEmailAddress"
                 android:ems="6"
+                android:layout_marginLeft="5dp"
                 android:textSize="15sp"
                 android:hint="(Correo@ejemplo.com)"
                 android:background="#FFFFFF"
@@ -67,40 +59,27 @@
 
         </LinearLayout>
     </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/password"
-            android:layout_marginTop="10dp"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="1dp"
-            />
+
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="#55D60270"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="#55555555"
             android:layout_height="40dp">
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_margin="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
                 android:background="#FFFFFF"
                 android:layout_height="fill_parent">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButton3"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/password" />
+
                <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:inputType="textPassword"
                     android:ems="8"
+                    android:layout_marginLeft="5dp"
                     android:hint="Contraseña"
                     android:background="#FFFFFF"
                     android:layout_gravity="center_vertical"
@@ -109,11 +88,17 @@
                     />
             </LinearLayout>
         </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:background="@drawable/rrounded_corners"
-            android:layout_marginTop="30dp"
-            android:layout_height="60dp"
+            android:background="#D60270"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:clickable="true"
@@ -129,41 +114,25 @@
                 android:id="@+id/textView3"
                 android:layout_alignParentTop="false"
                 android:textIsSelectable="false"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:layout_centerInParent="true"
                 android:textStyle="bold" />
         </RelativeLayout>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/o"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="25sp"
-            />
+
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:background="@drawable/botonfb"
-            android:layout_height="60dp"
+            android:background="#3B5998"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:orientation="horizontal"
             android:clickable="true"
+            android:id="@+id/bfblg"
+            android:layout_marginTop="10dp"
             android:onClick="fbLogin"
             >
 
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/fblogo" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -173,38 +142,10 @@
                 android:textColor="#ffffff"
                 android:layout_alignParentTop="false"
                 android:textIsSelectable="false"
-                android:textSize="17dp"
+                android:textSize="18dp"
 
-                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:gravity="center" />
-</LinearLayout>
+        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Olvide mi contraseña"
-        android:id="@+id/textView"
-        android:textColor="#D60270"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/linearLayout"
-        android:clickable="true"
-        android:onClick="olvideMiPass"
-        android:layout_alignStart="@+id/linearLayout" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Registrarme"
-        android:id="@+id/textView2"
-        android:textColor="#D60270"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:clickable="true"
-        android:onClick="registro"
-        android:layout_alignParentEnd="true" />
-
-
 </RelativeLayout>

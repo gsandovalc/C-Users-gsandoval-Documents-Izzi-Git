@@ -24,200 +24,92 @@ import televisa.telecom.com.util.AES;
 
 
 public class EdoCuentaActivity extends Activity {
-    SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-    SimpleDateFormat sdf2=new SimpleDateFormat("MMMM", new Locale("es","MX"));
-    SimpleDateFormat sdf3=new SimpleDateFormat("dd MMMM yyyy", new Locale("es","MX"));
-    NumberFormat baseFormat = NumberFormat.getCurrencyInstance();
-    SimpleDateFormat sdff = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edo_cuenta);
         ((TextView)findViewById(R.id.h_title)).setText("Estado de cuenta");
-        //obtenemos el usuario desde izziMobileApp
         Usuario usuario=((IzziMovilApplication)getApplication()).getCurrentUser();
         //si la fecha de la factura del estado de cuenta nos llega nula es que no existe y debemos de ocultar los campos que no tenemos
-        if(usuario.getEdoDate()!=null){
-            try {
-                String fechaFactura = AES.decrypt(usuario.getEdoDate());
-                fechaFactura=sdf2.format(sdf.parse(fechaFactura));
-                ((TextView)findViewById(R.id.mesFactura)).setText(fechaFactura);
-                String dueDate=AES.decrypt(usuario.getEdoDueDate());
-                 dueDate=sdf3.format(sdf.parse(dueDate));
-                ((TextView)findViewById(R.id.dueFactura)).setText(dueDate);
-                if(usuario.getSaldoMesAnterior()!=null){
-                    String mesAnterior=AES.decrypt(usuario.getSaldoMesAnterior());
-                    double saldo=Double.parseDouble(mesAnterior);
-                    mesAnterior=baseFormat.format(saldo);
-                    ((TextView)findViewById(R.id.mesanteriordata)).setText(mesAnterior);
+        //UserActivity.estado;
+        try {
+            ((TextView) findViewById(R.id.mes)).setText(AES.decrypt(UserActivity.estado.getResponse().getMes()));
+            ((TextView) findViewById(R.id.periodo)).setText(AES.decrypt(UserActivity.estado.getResponse().getPeriodo()));
+            ((TextView) findViewById(R.id.limite)).setText(AES.decrypt(UserActivity.estado.getResponse().getFechaLimite()));
+            ((TextView) findViewById(R.id.anterior)).setText(AES.decrypt(UserActivity.estado.getResponse().getSaldoAnterior()));
 
-                }else{
-                    ((TextView)findViewById(R.id.mesanteriordata)).setText("$0.00");
-                }
-                String saldo=AES.decrypt(usuario.getSaldoTotalCta());
-                double salds=Double.parseDouble(saldo);
-                saldo=baseFormat.format(salds);
-                ((TextView)findViewById(R.id.totalmes)).setText(saldo);
-                ((TextView)findViewById(R.id.paqname)).setText(AES.decrypt(usuario.getPaqName()));
-                String paqtotal=baseFormat.format(Double.parseDouble(AES.decrypt(usuario.getPaqTotal())));
-                ((TextView)findViewById(R.id.paqTotal)).setText(paqtotal);
-                boolean telefono=false;
-                boolean internet=false;
-                boolean video=false;
-                boolean otros =false;
-                boolean  veo=false;
-                if(usuario.getTelTotal()!=null){
-                    ((TextView)findViewById(R.id.teltotal)).setText("$"+AES.decrypt(usuario.getTelTotal()));
-                    String total=AES.decrypt(usuario.getTelTotal());
-                    if(Double.parseDouble(total)==0.00){
-                        ((LinearLayout)findViewById(R.id.telText)).setVisibility(LinearLayout.GONE);
-                        ((TextView)findViewById(R.id.teltotal)).setVisibility(TextView.GONE);
-                    }else{
-                        telefono=true;
-                    }
-                }else{
-                    ((LinearLayout)findViewById(R.id.telText)).setVisibility(LinearLayout.GONE);
-                    ((TextView)findViewById(R.id.teltotal)).setVisibility(TextView.GONE);
-                }
-                if(usuario.getIntTotal()!=null){
-                    ((TextView)findViewById(R.id.inttotal)).setText("$"+AES.decrypt(usuario.getIntTotal()));
-                    String total=AES.decrypt(usuario.getIntTotal());
-                    if(Double.parseDouble(total)==0.00){
-                        ((LinearLayout)findViewById(R.id.inttext)).setVisibility(LinearLayout.GONE);
-                        ((TextView)findViewById(R.id.inttotal)).setVisibility(TextView.GONE);
-                    }else{
-                        internet=true;
-                    }
-                }else{
-                    ((LinearLayout)findViewById(R.id.inttext)).setVisibility(LinearLayout.GONE);
-                    ((TextView)findViewById(R.id.inttotal)).setVisibility(TextView.GONE);
-                }
-                if(usuario.getVidTotal()!=null){
-                    ((TextView)findViewById(R.id.vidtotal)).setText("$"+AES.decrypt(usuario.getVidTotal()));
-                    String total=AES.decrypt(usuario.getVidTotal());
-                    if(Double.parseDouble(total)==0.00){
-                        ((LinearLayout)findViewById(R.id.vidtext)).setVisibility(LinearLayout.GONE);
-                        ((TextView)findViewById(R.id.vidtotal)).setVisibility(TextView.GONE);
-                    }else{
-                        video=true;
-                    }
-                }else{
-                    ((LinearLayout)findViewById(R.id.vidtext)).setVisibility(LinearLayout.GONE);
-                    ((TextView)findViewById(R.id.vidtotal)).setVisibility(TextView.GONE);
-                }
-                if(usuario.getOtrosTotal()!=null){
-                    ((TextView)findViewById(R.id.otrosTotal)).setText("$"+AES.decrypt(usuario.getOtrosTotal()));
-                    String total=AES.decrypt(usuario.getOtrosTotal());
-                    if(Double.parseDouble(total)==0.00){
-                        ((LinearLayout)findViewById(R.id.otrostext)).setVisibility(LinearLayout.GONE);
-                        ((TextView)findViewById(R.id.otrosTotal)).setVisibility(TextView.GONE);
-                    }else{
-                        otros=true;
-                    }
-                }else{
-                    ((LinearLayout)findViewById(R.id.otrostext)).setVisibility(LinearLayout.GONE);
-                    ((TextView)findViewById(R.id.otrosTotal)).setVisibility(TextView.GONE);
-                }
-                if(usuario.getVeoTotal()!=null){
-                    ((TextView)findViewById(R.id.veototal)).setText("$"+AES.decrypt(usuario.getVeoTotal()));
-                    String total=AES.decrypt(usuario.getVeoTotal());
-                    if(Double.parseDouble(total)==0.00){
-                        ((LinearLayout)findViewById(R.id.veotext)).setVisibility(LinearLayout.GONE);
-                        ((TextView)findViewById(R.id.veototal)).setVisibility(TextView.GONE);
-                    }else{
-                        otros=true;
-                    }
-                }else{
-                    ((LinearLayout)findViewById(R.id.veotext)).setVisibility(LinearLayout.GONE);
-                    ((TextView)findViewById(R.id.veototal)).setVisibility(TextView.GONE);
-                }
-
-                if(internet||veo||video||otros||telefono){
-
-                }else{
-                    ((LinearLayout)findViewById(R.id.cargosContenedor)).setVisibility(LinearLayout.GONE);
-                }
-
-                //bonificaciones
-                if(usuario.getBonTotal()!=null){
-                    ((TextView)findViewById(R.id.promoTotal)).setText("$"+AES.decrypt(usuario.getBonTotal()));
-                    String total=AES.decrypt(usuario.getBonTotal());
-                    if(Double.parseDouble(total)==0.00){
-                        ((LinearLayout)findViewById(R.id.contenedorPromo)).setVisibility(TextView.GONE);
-                    }else{
-                        otros=true;
-                    }
-                }else{
-                    ((LinearLayout)findViewById(R.id.contenedorPromo)).setVisibility(LinearLayout.GONE);
-                }
-
-
-            }catch(Exception e){
-            e.printStackTrace();
+            ((TextView) findViewById(R.id.paqName)).setText(AES.decrypt(UserActivity.estado.getResponse().getPaquete()));
+            ((TextView) findViewById(R.id.paqP)).setText(AES.decrypt(UserActivity.estado.getResponse().getTotalPaquete()));
+            if(UserActivity.estado.getResponse().isExtraTV()){
+                ((LinearLayout)findViewById(R.id.tv)).setVisibility(LinearLayout.VISIBLE);
+                ((TextView) findViewById(R.id.tvTot)).setText(AES.decrypt(UserActivity.estado.getResponse().getTotalTV()));
+            }else{
+                ((LinearLayout)findViewById(R.id.tv)).setVisibility(LinearLayout.GONE);
             }
-
-        }else{
-            // tomar la fecha de billdate y la de due date del otro servicio  detail
-            ((LinearLayout)findViewById(R.id.detail)).setVisibility(LinearLayout.GONE);
-            ((TextView)findViewById(R.id.detalleText)).setVisibility(TextView.VISIBLE);
-
-            ((LinearLayout)findViewById(R.id.contenedorPromo)).setVisibility(LinearLayout.GONE);
-            ((LinearLayout)findViewById(R.id.cargosContenedor)).setVisibility(LinearLayout.GONE);
-            ((TextView)findViewById(R.id.mesanterior)).setVisibility(TextView.GONE);
-            ((TextView)findViewById(R.id.mesanteriordata)).setVisibility(TextView.GONE);
-            try {
-                String lastBalance = usuario.getCvLastBalance() != null ? AES.decrypt(usuario.getCvLastBalance()) : "0.00";
-                double saldo=Double.parseDouble(lastBalance);
-                lastBalance=baseFormat.format(saldo);
-                String fecha = usuario.getFechaLimite() != null ? AES.decrypt(usuario.getFechaLimite()) : null;
-                String fechaFactura = usuario.getFechaFactura() != null ? AES.decrypt(usuario.getFechaFactura()) : null;
-                ((TextView)findViewById(R.id.totalmes)).setText(lastBalance);
-                ((TextView)findViewById(R.id.paqname)).setText(AES.decrypt(usuario.getPaqName()));
-
-                if (fecha != null) {
-                    if (!fecha.isEmpty() && !fecha.equals("0")) {
-                        Date fechaLimiteDate = sdff.parse(fecha);
-                        DateFormat mediumFormat = new SimpleDateFormat("dd MMM yyyy", new Locale("es","MX"));
-                        ((TextView) findViewById(R.id.dueFactura)).setText(mediumFormat.format(fechaLimiteDate));
-                    }else if(fechaFactura!=null){
-                        if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {
-                            Date fechaLimiteDate = sdff.parse(fechaFactura);
-                            DateFormat mediumFormat = new SimpleDateFormat("dd MMMMM yyyy", new Locale("es","MX"));
-                            ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
-                            ((TextView) findViewById(R.id.dueFactura)).setText(mediumFormat.format(fechaLimiteDate));
-                        }
-                    }
-                }
-                if(fechaFactura!=null){
-                    if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {
-                        Date fechaLimiteDate = sdff.parse(fechaFactura);
-                        DateFormat mediumFormat = new SimpleDateFormat("MMMM", new Locale("es","MX"));
-                        ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
-                        ((TextView) findViewById(R.id.mesFactura)).setText(mediumFormat.format(fechaLimiteDate));
-
-                    }else{
-                        ((TextView) findViewById(R.id.mesFactura)).setText("No disponible");
-                    }
-                }else{
-                    ((TextView) findViewById(R.id.mesFactura)).setText("No disponible");
-                }
-
-            }catch(Exception e){
-
+            if(UserActivity.estado.getResponse().isExtraTel()){
+                ((LinearLayout)findViewById(R.id.tel)).setVisibility(LinearLayout.VISIBLE);
+                ((TextView) findViewById(R.id.telTot)).setText(AES.decrypt(UserActivity.estado.getResponse().getTotalTel()));
+            }else{
+                ((LinearLayout)findViewById(R.id.tel)).setVisibility(LinearLayout.GONE);
             }
+            if(UserActivity.estado.getResponse().isExtraInt()){
+                ((LinearLayout)findViewById(R.id.inter)).setVisibility(LinearLayout.VISIBLE);
+                ((TextView) findViewById(R.id.intTot)).setText(AES.decrypt(UserActivity.estado.getResponse().getTotalInt()));
+            }else{
+                ((LinearLayout)findViewById(R.id.inter)).setVisibility(LinearLayout.GONE);
+            }
+            if(UserActivity.estado.getResponse().isExtraVeo()){
+                ((LinearLayout)findViewById(R.id.veo)).setVisibility(LinearLayout.VISIBLE);
+                ((TextView) findViewById(R.id.veoTot)).setText(AES.decrypt(UserActivity.estado.getResponse().getTotalInt()));
+            }else{
+                ((LinearLayout)findViewById(R.id.veo)).setVisibility(LinearLayout.GONE);
+            }
+            if(UserActivity.estado.getResponse().isExtraOtros()){
+                ((LinearLayout)findViewById(R.id.otros)).setVisibility(LinearLayout.VISIBLE);
+                ((TextView) findViewById(R.id.otrosTot)).setText(AES.decrypt(UserActivity.estado.getResponse().getTotalInt()));
+            }else{
+                ((LinearLayout)findViewById(R.id.otros)).setVisibility(LinearLayout.GONE);
+            }
+            if(UserActivity.estado.getResponse().isExtraBonus()){
+                ((LinearLayout)findViewById(R.id.bon)).setVisibility(LinearLayout.VISIBLE);
+                ((TextView) findViewById(R.id.bonTot)).setText(AES.decrypt(UserActivity.estado.getResponse().getTotalInt()));
+            }else{
+                ((LinearLayout)findViewById(R.id.bon)).setVisibility(LinearLayout.GONE);
+            }
+            ((TextView) findViewById(R.id.st)).setText(AES.decrypt(UserActivity.estado.getResponse().getTotal()));
+            ((TextView) findViewById(R.id.tp)).setText(AES.decrypt(UserActivity.estado.getResponse().getPagos()));
+            ((TextView) findViewById(R.id.infop)).setText(AES.decrypt(UserActivity.estado.getResponse().getPagoTexto()));
+            Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+            ((TextView) findViewById(R.id.total)).setText("$"+AES.decrypt(info.getCvLastBalance()));
+            int bal=Integer.parseInt(AES.decrypt(info.getCvLastBalance()));
+            if(bal>0){
+                ((TextView) findViewById(R.id.aclara)).setText("Pagar");
+            }
+        }catch(Exception e){
 
         }
-
 
     }
 public void aclaraciones(View v){
     Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
     String telefono="";
-    if(info.isLegacy()){
-        telefono="51699699";
-    }else{
-        telefono="018001205000";
-        System.out.println("Es izzi");
+    try {
+        int bal=Integer.parseInt(AES.decrypt(info.getCvLastBalance()));
+        if(bal<=0) {
+            if (info.isLegacy()) {
+                telefono = "51699699";
+            } else {
+                telefono = "018001205000";
+                System.out.println("Es izzi");
+            }
+        }else{
+            Intent i =new Intent(this,PagosMainActivity.class);
+            finish();
+            startActivity(i);
+            overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
+        }
+    }catch(Exception e){
+
     }
 
     Intent callIntent = new Intent(Intent.ACTION_CALL);

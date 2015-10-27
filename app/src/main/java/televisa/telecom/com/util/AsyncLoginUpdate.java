@@ -31,6 +31,8 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
     Application respondTo=null;
     Dialog loadingOverlay;
     boolean encryptData=false;
+    static String USR="";
+    static String PASS="";
     public AsyncLoginUpdate(Application respondTo, boolean encryptData){
         this.respondTo=respondTo;
         this.encryptData=encryptData;
@@ -42,6 +44,8 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
     protected Object doInBackground(Map<String,String>... params) {
         String metodo=params[0].get("METHOD");
         params[0].remove("METHOD");
+        USR=new String(params[0].get("user"));
+        PASS=new String(params[0].get("password"));
         try {
             Map<String,String> infoMap=params[0];
             if(encryptData){
@@ -80,9 +84,12 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
             String password="";
             IzziMovilApplication res=(IzziMovilApplication)respondTo;
             try {
-                user = res.getCurrentUser().getUserName();
-                password = res.getCurrentUser().getPassword();
-            }catch(Exception e){}
+                user = USR;
+                password = PASS;
+            }catch(Exception e){
+
+                e.printStackTrace();
+            }
             sr.setUserName(user);
             sr.setPassword(password);
             if(sr.getPagos()!=null)

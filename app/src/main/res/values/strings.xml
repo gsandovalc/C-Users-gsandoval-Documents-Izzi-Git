@@ -24,4 +24,7 @@
     <string name="title_activity_payment_fail">PaymentFailActivity</string>
     <string name="title_activity_payment_ok">PaymentOkActivity</string>
     <string name="title_activity_chat">ChatActivity</string>
+    <string name="title_activity_btf_landing">BtfLanding</string>
+    <string name="title_activity_recupera_pass">RecuperaPass</string>
+    <string name="title_activity_recupera_fin">RecuperaFinActivity</string>
 </resources>

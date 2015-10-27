@@ -3,11 +3,13 @@ package telecom.televisa.com.izzi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
@@ -25,14 +27,15 @@ import java.util.EnumMap;
 import java.util.Locale;
 import java.util.Map;
 
+import televisa.telecom.com.controls.PopoverView;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.AES;
 
 
-public class MediosDePagoActivity extends Activity {
+public class MediosDePagoActivity extends Activity  {
     private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
-    NumberFormat baseFormat = NumberFormat.getCurrencyInstance();
+    NumberFormat baseFormat = NumberFormat.getCurrencyInstance(new Locale("es","MX"));
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,9 @@ public class MediosDePagoActivity extends Activity {
             String barcode_data = AES.decrypt(info.getBarcode());
             ((TextView)findViewById(R.id.codetext)).setText(barcode_data);
             // barcode image
+            ((TextView)findViewById(R.id.tel)).setText(AES.decrypt(info.getTelefonoPrincipal()));
+            ((TextView)findViewById(R.id.cuenta)).setText(AES.decrypt(info.getCvNumberAccount()));
+            ((TextView)findViewById(R.id.ref)).setText(AES.decrypt(info.getBarcode()));
             Bitmap bitmap = null;
             ImageView iv = (ImageView) findViewById(R.id.codebar);
             bitmap = encodeAsBitmap(barcode_data, BarcodeFormat.CODE_128, 600, 300);
@@ -55,9 +61,9 @@ public class MediosDePagoActivity extends Activity {
 
             try {
 
-                String lastBalance = info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()) : "0.00";
+                String lastBalance = info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()) : "0";
                 double saldo=Double.parseDouble(lastBalance);
-                lastBalance=baseFormat.format(saldo);
+                lastBalance="$"+lastBalance+".00";
                 String fecha = info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()) : null;
                 String fechaFactura = info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()) : null;
                 ((TextView) findViewById(R.id.totalText)).setText(lastBalance);
@@ -66,8 +72,8 @@ public class MediosDePagoActivity extends Activity {
                         Date fechaLimiteDate = sdf.parse(fecha);
                         DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es", "MX"));
                         DateFormat shortFormat = new SimpleDateFormat("MMMM", new Locale("es", "MX"));
-                        ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
-                        ((TextView) findViewById(R.id.fechaTextMonth)).setText(shortFormat.format(fechaLimiteDate));
+                        ((TextView) findViewById(R.id.fechaText)).setText(AES.decrypt(info.getFechaLimit()));
+                        ((TextView) findViewById(R.id.fechaTextMonth)).setText(AES.decrypt(info.getMesFactura()));
                         Calendar cal = Calendar.getInstance();
                         if (fechaLimiteDate.getTime() > cal.getTime().getTime()) {
                             //TODO hacer el truco que quieren si tiene pago vencido
@@ -76,9 +82,10 @@ public class MediosDePagoActivity extends Activity {
                         if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {
                             Date fechaLimiteDate = sdf.parse(fechaFactura);
                             DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es", "MX"));
-                            ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
+
                             DateFormat shortFormat = new SimpleDateFormat("MMMM", new Locale("es", "MX"));
-                            ((TextView) findViewById(R.id.fechaTextMonth)).setText(shortFormat.format(fechaLimiteDate));
+                            ((TextView) findViewById(R.id.fechaText)).setText(AES.decrypt(info.getFechaLimit()));
+                            ((TextView) findViewById(R.id.fechaTextMonth)).setText(AES.decrypt(info.getMesFactura()));
                             Calendar cal = Calendar.getInstance();
                             ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
                             if (fechaLimiteDate.getTime() > cal.getTime().getTime()) {
@@ -90,9 +97,8 @@ public class MediosDePagoActivity extends Activity {
                     if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {
                         Date fechaLimiteDate = sdf.parse(fechaFactura);
                         DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es", "MX"));
-                        ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
-                        DateFormat shortFormat = new SimpleDateFormat("MMMM", new Locale("es", "MX"));
-                        ((TextView) findViewById(R.id.fechaTextMonth)).setText(shortFormat.format(fechaLimiteDate));
+                        ((TextView) findViewById(R.id.fechaText)).setText(AES.decrypt(info.getFechaLimit()));
+                        ((TextView) findViewById(R.id.fechaTextMonth)).setText(AES.decrypt(info.getMesFactura()));
                         Calendar cal = Calendar.getInstance();
                         ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
                         if (fechaLimiteDate.getTime() > cal.getTime().getTime()) {

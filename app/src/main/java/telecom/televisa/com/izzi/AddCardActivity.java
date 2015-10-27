@@ -37,7 +37,7 @@ public class AddCardActivity extends Activity {
                 if (!hasFocus) {
                     String numberc=((EditText)v).getText().toString();
                     if(numberc!=null)
-                        if(numberc.length()==16){
+                        if(numberc.length()<=17){
                             switch (CardType.detect(numberc)){
                                 case VISA:
                                     cardType="visa";
@@ -258,7 +258,9 @@ public class AddCardActivity extends Activity {
                 if (null == cardType.pattern) continue;
                 if (cardType.pattern.matcher(cardNumber).matches()) return cardType;
             }
-
+            if(cardNumber.length()==15&&cardNumber.charAt(0)=='3'){
+                return AMERICAN_EXPRESS;
+            }
             return UNKNOWN;
         }
 

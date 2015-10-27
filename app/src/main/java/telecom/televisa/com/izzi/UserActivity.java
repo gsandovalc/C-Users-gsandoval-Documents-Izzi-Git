@@ -1,5 +1,7 @@
 package telecom.televisa.com.izzi;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -51,9 +53,12 @@ import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AndroidMultiPartEntity;
+import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.FileCache;
 import televisa.telecom.com.util.ImageLoader;
 import televisa.telecom.com.util.IzziRespondable;
+import televisa.telecom.com.util.izziEdoCuentaResponse;
+import televisa.telecom.com.util.izziLoginResponse;
 import televisa.telecom.com.ws.IzziWS;
 
 
@@ -61,17 +66,31 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
     Bitmap img=null;
     Usuario usrin=null;
-    NumberFormat baseFormat = NumberFormat.getCurrencyInstance();
+    NumberFormat baseFormat = NumberFormat.getCurrencyInstance(new Locale("es","MX"));
     GoogleCloudMessaging gcm;
     String regid;
     String PROJECT_NUMBER = "726810758992";
+    public static izziEdoCuentaResponse estado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        layout=(R.layout.activity_user);
+        setContentView(R.layout.activity_user);
         super.onCreate(savedInstanceState);
+        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+        if(info==null){
+            finish();
+            Intent i= new Intent(getApplicationContext(),BtfLanding.class);
+            startActivity(i);
+            return;
+        }
+        if(info.isEsNegocios()) {
+            ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
+            ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
+            ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
+        }
         FileCache fc=new FileCache(this);
         fc.clear();
+
         init();
         new LongOperation().execute();
         KISSmetricsAPI.sharedAPI().record("Login Primera Vez en Apps", KISSmetricsAPI.RecordCondition.RECORD_ONCE_PER_INSTALL);
@@ -114,17 +133,22 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         super.onResume();
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         //llenamos obtenemnos los campos de texto
+        if(info.isEsNegocios()) {
+            ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
+            ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
+            ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
+        }
         usrin=info;
         try {
             String ahhh=AES.decrypt(info.getPaquete());
             System.out.println(ahhh);
-            ((TextView) findViewById(R.id.nameText)).setText(info.getNombreContacto() != null ? AES.decrypt(info.getNombreContacto()).split(" ")[0] : "");
-            ((TextView) findViewById(R.id.phoneText)).setText(info.getTelefonoPrincipal() != null ? AES.decrypt(info.getTelefonoPrincipal()).replaceAll("(.{2})(?!$)", "$1 ") : "");
+            ((TextView) findViewById(R.id.nameText)).setText(info.getNombreContacto() != null ? AES.decrypt(info.getNombreContacto()).split(" ")[0] +" "+AES.decrypt(info.getApellidoPaterno()) : "");
+            ((TextView) findViewById(R.id.phoneText)).setText(info.getTelefonoPrincipal() != null ? AES.decrypt(info.getTelefonoPrincipal()):"");
             ((TextView) findViewById(R.id.accountText)).setText(info.getCvNumberAccount() != null ? AES.decrypt(info.getCvNumberAccount()): "");
             ((TextView) findViewById(R.id.paqueteText)).setText(info.getPaquete() != null ? AES.decrypt(info.getPaquete()): "No disponible");
             ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0.00");
 
-            String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0.00";
+            String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0";
             Double tot= Double.parseDouble(lastBalance);
             if(tot<=0){
                 //debemos cambiar el mensaje del pago
@@ -132,12 +156,12 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                 ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
             }
             double saldo=Double.parseDouble(lastBalance);
-            lastBalance=baseFormat.format(saldo);
+            lastBalance="$"+lastBalance+".00";
             ((TextView) findViewById(R.id.totalText)).setText(lastBalance);
             //saldo=baseFormat.format(lastBalance);
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
             String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
-            ((TextView) findViewById(R.id.leyenda1Text)).setTextColor(0xff000000);
+
             try {
                 if (fecha != null) {
                     if (!fecha.isEmpty() && !fecha.equals("0")) {
@@ -148,7 +172,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                         if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
                             TextView myText = (TextView) findViewById(R.id.totalText );
                             ((TextView) findViewById(R.id.leyenda1Text)).setText("Saldo vencido pagar de inmediato ");
-                            ((TextView) findViewById(R.id.leyenda1Text)).setTextColor(0xffff0000);
+
                             Animation anim = new AlphaAnimation(0.0f, 1.0f);
                             anim.setDuration(50); //You can manage the time of the blink with this parameter
                             anim.setStartOffset(20);
@@ -211,52 +235,26 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
     }
 
     void init(){
-        final RelativeLayout myLayout = (RelativeLayout) findViewById(R.id.cuadroParent);
+
         final UserActivity act=this;
 
 
-        myLayout.post(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-                System.out.println("TEST Layout width : "+ myLayout.getWidth());
-                ((LinearLayout)findViewById(R.id.cuadroInfo1)).getLayoutParams().width=(myLayout.getWidth()-televisa.telecom.com.util.Util.dpToPx(act,30))/2;
-                ((LinearLayout)findViewById(R.id.cuadroInfo2)).getLayoutParams().width=(myLayout.getWidth()-televisa.telecom.com.util.Util.dpToPx(act,30))/2;
-                ((RelativeLayout)findViewById(R.id.cuadroInfo3)).getLayoutParams().width=(myLayout.getWidth()-televisa.telecom.com.util.Util.dpToPx(act,30))/2-televisa.telecom.com.util.Util.dpToPx(act,3);
-                ((RelativeLayout)findViewById(R.id.cuadroInfo4)).getLayoutParams().width=(myLayout.getWidth()-televisa.telecom.com.util.Util.dpToPx(act,30))/2-televisa.telecom.com.util.Util.dpToPx(act,3);
-            }
-        });
-
-        final ScrollView sLayout = (ScrollView) findViewById(R.id.scrollV);
-        sLayout.post(new Runnable()
-        {
-
-            @Override
-            public void run()
-            {
-                int alto=((LinearLayout)act.findViewById(R.id.inerscroll)).getHeight();
-                System.out.println(alto+"fue el altoo y el del scroll es" +sLayout.getHeight());
-                if(alto<=sLayout.getHeight()) {
-                    ((LinearLayout) act.findViewById(R.id.inerscroll)).getLayoutParams().height = sLayout.getHeight();
-                    ((LinearLayout.LayoutParams)((LinearLayout)act.findViewById(R.id.lastButton)).getLayoutParams()).topMargin=((LinearLayout.LayoutParams)((LinearLayout)act.findViewById(R.id.lastButton)).getLayoutParams()).topMargin+(sLayout.getHeight()-alto-20);
-                }
-
-            }
-        });
-
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         //llenamos obtenemnos los campos de texto
+        if(!info.isEsNegocios()) {
+            ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
+            ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
+            ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
+        }
         try {
 
-            ((TextView) findViewById(R.id.nameText)).setText(info.getNombreContacto() != null ? AES.decrypt(info.getNombreContacto()).split(" ")[0] : "");
-            ((TextView) findViewById(R.id.phoneText)).setText(info.getTelefonoPrincipal() != null ? AES.decrypt(info.getTelefonoPrincipal()).replaceAll("(.{2})(?!$)", "$1 ") : "");
+            ((TextView) findViewById(R.id.nameText)).setText(info.getNombreContacto() != null ? AES.decrypt(info.getNombreContacto()).split(" ")[0] +" "+AES.decrypt(info.getApellidoPaterno()): "");
+            ((TextView) findViewById(R.id.phoneText)).setText(info.getTelefonoPrincipal() != null ? AES.decrypt(info.getTelefonoPrincipal()):"");
             ((TextView) findViewById(R.id.accountText)).setText(info.getCvNumberAccount() != null ? AES.decrypt(info.getCvNumberAccount()): "");
             ((TextView) findViewById(R.id.paqueteText)).setText(info.getPaquete() != null ? AES.decrypt(info.getPaquete()): "No disponible");
             ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0.00");
 
-            String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0.00";
+            String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0";
             Double tot= Double.parseDouble(lastBalance);
             if(tot<=0){
                 //debemos cambiar el mensaje del pago
@@ -264,7 +262,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                 ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
             }
             double saldo=Double.parseDouble(lastBalance);
-            lastBalance=baseFormat.format(saldo);
+            lastBalance="$"+lastBalance+".00";
             ((TextView) findViewById(R.id.totalText)).setText(lastBalance);
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
             String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
@@ -354,8 +352,17 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         startActivityForResult(myIntent, 0);
     }
     public void estadoCuenta(View v){
-        Intent myIntent = new Intent(this, EdoCuentaActivity.class);
-        startActivityForResult(myIntent, 0);
+        try {
+            Usuario info = ((IzziMovilApplication) getApplication()).getCurrentUser();
+            Map<String, String> mp = new HashMap<>();
+            mp.put("METHOD", "estado");
+            mp.put("user", AES.encrypt(info.getUserName()));
+            mp.put("cuenta", info.getCvNumberAccount());
+            mp.put("token", info.getToken());
+            new AsyncResponse(this, false).execute(mp);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void foto(View v){
@@ -397,6 +404,40 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
 
     @Override
     public void notifyChanges(Object response) {
+        //vemos el pedo del estado de cuenta
+        if(response==null){
+            new AlertDialog.Builder(this)
+                    .setTitle("izzi")
+                    .setMessage("Lo sentimos, aun no esta disponible el detalle de tu factura de este mes")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            dialog.dismiss();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            return;
+        }
+        izziEdoCuentaResponse rs=(izziEdoCuentaResponse)response;
+
+        if(!rs.getIzziErrorCode().isEmpty()){
+            new AlertDialog.Builder(this)
+                    .setTitle("izzi")
+                    .setMessage("Lo sentimos, aun no esta disponible el detalle de tu factura de este mes")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            dialog.dismiss();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            return;
+        }
+        Intent myIntent = new Intent(this, EdoCuentaActivity.class);
+        startActivityForResult(myIntent, 0);
+        estado=rs;
 
     }
     public void establecimientos(View v){

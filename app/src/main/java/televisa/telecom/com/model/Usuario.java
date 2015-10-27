@@ -169,7 +169,52 @@ public class Usuario extends Model implements MobileResponse {
     private String extra1=null;
     @Column
     private String extra2=null;
+    @Column
+    private String ttAccount=null;
 
+    @Column
+    private boolean esMigrado=false;
+
+    @Column
+    private boolean esNegocios=false;
+
+    @Column
+    private String mesFactura;
+
+    @Column
+    private String fechaLimit;
+
+    public boolean isEsMigrado() {
+        return esMigrado;
+    }
+
+    public void setEsMigrado(boolean esMigrado) {
+        this.esMigrado = esMigrado;
+    }
+
+    public String getMesFactura() {
+        return mesFactura;
+    }
+
+    public void setMesFactura(String mesFactura) {
+        this.mesFactura = mesFactura;
+    }
+
+    public String getFechaLimit() {
+        return fechaLimit;
+    }
+
+    public void setFechaLimit(String fechaLimit) {
+        this.fechaLimit = fechaLimit;
+    }
+
+    public String getTtAccount() {
+        return ttAccount;
+    }
+
+    public void setTtAccount(String ttAccount) {
+        this.ttAccount = ttAccount;
+    }
 
     public Usuario() {
         super();
@@ -764,5 +809,13 @@ public class Usuario extends Model implements MobileResponse {
 
     public void setExtra2(String extra2) {
         this.extra2 = extra2;
+    }
+
+    public boolean isEsNegocios() {
+        return esNegocios;
+    }
+
+    public void setEsNegocios(boolean esNegocios) {
+        this.esNegocios = esNegocios;
     }
 }
