@@ -241,7 +241,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
 
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         //llenamos obtenemnos los campos de texto
-        if(!info.isEsNegocios()) {
+        if(info.isEsNegocios()) {
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
             ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
             ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
