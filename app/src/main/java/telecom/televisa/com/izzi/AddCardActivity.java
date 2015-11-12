@@ -22,6 +22,7 @@ import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.izziLoginResponse;
 
 
+
 public class AddCardActivity extends Activity {
     String cardType="";
 
@@ -167,7 +168,6 @@ public class AddCardActivity extends Activity {
 
     }
     }
-
     public void scanCard(View v){
         Intent scanIntent = new Intent(this, CardIOActivity.class);
 
@@ -184,7 +184,7 @@ public class AddCardActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 201) {
+            if (requestCode == 201) {
             String resultDisplayStr;
             if (data != null && data.hasExtra(CardIOActivity.EXTRA_SCAN_RESULT)) {
                 CreditCard scanResult = data.getParcelableExtra(CardIOActivity.EXTRA_SCAN_RESULT);

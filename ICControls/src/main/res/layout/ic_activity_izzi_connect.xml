@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="0dp"
+    android:background="#fff"
+    android:paddingRight="0dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="0dp"
+    tools:context="izzi.connect.controls.IzziConnectActivity">
+    <ImageView
+        android:id="@+id/show_menu"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:onClick="closeView"
+        android:src="@drawable/ic_regresar" />
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
+        android:id="@+id/imageView"
+        android:src="@drawable/ic_logoizzi" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="#55555555"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_margin="1dp"
+                android:background="#FFFFFF"
+                android:layout_height="fill_parent">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:inputType="textEmailAddress"
+                    android:ems="6"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp"
+                    android:hint="(Correo@ejemplo.com)"
+                    android:background="#FFFFFF"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:id="@+id/ic_user"
+                    />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="#55555555"
+            android:layout_height="40dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_marginBottom="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="1dp"
+                android:background="#FFFFFF"
+                android:layout_height="fill_parent">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:inputType="textPassword"
+                    android:ems="8"
+                    android:layout_marginLeft="5dp"
+                    android:hint="Contraseña"
+                    android:background="#FFFFFF"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:id="@+id/ic_password"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:background="#00C1B5"
+            android:layout_height="40dp"
+            android:clickable="true"
+            android:onClick="login"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Ingresar"
+                android:textColor="#ffffff"
+                android:layout_alignParentTop="false"
+                android:textIsSelectable="false"
+                android:textSize="18dp"
+                android:layout_centerInParent="true"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+</RelativeLayout>

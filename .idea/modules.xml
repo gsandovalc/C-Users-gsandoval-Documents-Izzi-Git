@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ICControls/ICControls.iml" filepath="$PROJECT_DIR$/ICControls/ICControls.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/izzi.iml" filepath="$PROJECT_DIR$/izzi.iml" />
     </modules>
