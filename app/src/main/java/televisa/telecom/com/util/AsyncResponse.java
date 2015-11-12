@@ -16,7 +16,9 @@ import com.google.gson.Gson;
 
 import java.util.Map;
 
+
 import telecom.televisa.com.izzi.PagoEstablecimientosActivity;
+import telecom.televisa.com.izzi.AddCardActivity;
 import telecom.televisa.com.izzi.PagosMainActivity;
 import telecom.televisa.com.izzi.PaperlessActivity;
 import telecom.televisa.com.izzi.R;
@@ -53,9 +55,10 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
             if(respondTo instanceof PaperlessActivity){
                 izziPaperlessResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziPaperlessResponse.class);
                 return response;
-            }else if(respondTo instanceof PagosMainActivity) {
+            }else if(respondTo instanceof PagosMainActivity && metodo.equals("payments/payToken")) {
                 izziPaymentResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziPaymentResponse.class);
                 return response;
+
             }else if(respondTo instanceof RecuperaPass) {
                 izziRecuperaResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziRecuperaResponse.class);
                 return response;
@@ -65,7 +68,20 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
             }else if(respondTo instanceof UserActivity) {
                 izziEdoCuentaResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziEdoCuentaResponse.class);
                 return response;
-            }else{
+
+            }else if(respondTo instanceof PagosMainActivity && metodo.equals("payments/deleteToken")){
+                String mtd=(String) IzziWS.callWebService(params[0], metodo);
+                return "payments/deleteToken";
+            }
+            else if(respondTo instanceof PagosMainActivity) {
+                izziTokenResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziTokenResponse.class);
+                return response;
+            }
+            else if(respondTo instanceof AddCardActivity){
+                izziTokenResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziTokenResponse.class);
+                return response;
+            }
+            else{
                 izziLoginResponse response = gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);
                 return response;
             }

@@ -1,13 +1,18 @@
 package telecom.televisa.com.izzi;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
@@ -15,6 +20,7 @@ import com.activeandroid.query.Select;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,84 +29,53 @@ import java.util.Locale;
 import java.util.Map;
 
 import televisa.telecom.com.model.Card;
+import televisa.telecom.com.model.Tokens;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.Util;
 import televisa.telecom.com.util.izziPaymentResponse;
+import televisa.telecom.com.util.izziTokenResponse;
 
 
 public class PagosMainActivity extends Activity implements IzziRespondable{
     boolean togleRadio=false;
-    Card selectedCard=null;
+    Tokens selectedCard=null;
+    List<View> lsta;
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
     public static Map<String,String> parametros;
+
     NumberFormat baseFormat = NumberFormat.getCurrencyInstance(new Locale("es","MX"));
+
+    IzziRespondable acti=this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagos_main);
         ((TextView)findViewById(R.id.h_title)).setText("Pago en línea");
         LayoutInflater inflater = LayoutInflater.from(this);
-       if (((IzziMovilApplication)getApplication()).getCurrentUser()==null){
-           finish();
-           Intent i= new Intent(getApplicationContext(),BtfLanding.class);
-           startActivity(i);
-           return;
-        }
-        final List<Card> tjts=new Select().from(Card.class).where("user=?", ((IzziMovilApplication)getApplication()).getCurrentUser().getUserName()).execute();
-       final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.card_list_item_pay, null, false);
-        layout.findViewById(R.id.radioon).setVisibility(LinearLayout.VISIBLE);
-        if(tjts==null){
+        if (((IzziMovilApplication)getApplication()).getCurrentUser()==null){
             finish();
-            Intent i= new Intent(getApplicationContext(),AddCardActivity.class);
+            Intent i= new Intent(getApplicationContext(),BtfLanding.class);
             startActivity(i);
             return;
         }
-        if(tjts.size()==0){
-            finish();
-            Intent i= new Intent(getApplicationContext(),AddCardActivity.class);
-            startActivity(i);
-            return;
-        }
-        selectedCard=tjts.get(0);
-       /*  layout.setClickable(true);
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                layout.findViewById(R.id.radioon).setVisibility(togleRadio?LinearLayout.GONE:LinearLayout.VISIBLE);
-                togleRadio=!togleRadio;
 
-                selectedCard=selectedCard==null?tjts.get(0):null;
-            }
-        });
-        */
+        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+        Map<String,String> parametross=new HashMap<>();
+        parametross.put("METHOD","payments/getTokens");
+        parametross.put("token",info.getToken());
+        parametross.put("account",info.getCvNumberAccount());
+        new AsyncResponse(this,false).execute(parametross);
         try {
-            String type = AES.decrypt(tjts.get(0).getType());
-            String typeName="";
-            switch(type){
-                case "1":
-                    typeName="Amex/Vigente";
-                    break;
-                case "2":
-                    typeName="Visa/Vigente";
-                    break;
-                case "4":
-                     typeName="MasterCard/Vigente";
-                break;
-            }
-            ((TextView)layout.findViewById(R.id.vendortjt)).setText(typeName);
-            String number=AES.decrypt(tjts.get(0).getNumber());
-            String maskedNumber="●●●● ●●●● ●●●● "+number.substring(12);
-            ((TextView)layout.findViewById(R.id.tjtnumber)).setText(maskedNumber);
-            ((LinearLayout) findViewById(R.id.vista)).addView(layout, -1, (int) Util.dpToPx(this, 70));
-            Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
-            String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0";
+            String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0.00";
             double saldo=Double.parseDouble(lastBalance);
-            lastBalance="$ "+saldo;
+            lastBalance=baseFormat.format(saldo);
+            ((LinearLayout)findViewById(R.id.pagggar)).setVisibility(LinearLayout.VISIBLE);
             if(((int)saldo)==0){
-                ((LinearLayout)findViewById(R.id.pagobutton)).setVisibility(LinearLayout.GONE);
+                ((LinearLayout)findViewById(R.id.pagggar)).setVisibility(LinearLayout.GONE);
             }
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
             String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
@@ -161,42 +136,77 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
     }
     public void editCard(View v) {
         finish();
-        Intent myIntent = new Intent(this, EditCardActivity.class);
+        Intent myIntent = new Intent(this, AddCardActivity.class);
         startActivityForResult(myIntent, 0);
     }
 
     public void payAccount(View v){
-        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+       final Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         try {
+            final Dialog popup = new Dialog(this,android.R.style.Theme_Translucent);
+            popup.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            popup.setCancelable(true);
+            popup.setContentView(R.layout.popupcode);
+            WindowManager.LayoutParams lp = popup.getWindow().getAttributes();
+            lp.dimAmount=0f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
+            popup.getWindow().setAttributes(lp);
+            popup.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            popup.show();
+            LinearLayout llo=(LinearLayout)popup.findViewById(R.id.listo);
+            llo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String cvv="";
+                    TextView tv= (TextView)popup.findViewById(R.id.pop_error);
+                    tv.setVisibility(TextView.GONE);
+                    try {
+                        cvv = ((EditText) popup.findViewById(R.id.code)).getText().toString();
+                        Integer.parseInt(cvv);
+                    }catch(Exception e){
+                        tv.setVisibility(TextView.VISIBLE);
+                        return;
+                    }
+                    int tipot=Integer.parseInt(selectedCard.getCardType());
+                    if(tipot==3&&cvv.length()!=4){
+                        tv.setVisibility(TextView.VISIBLE);
+                        return;
+                    }else if(tipot!=3&&cvv.length()!=3){
+                        tv.setVisibility(TextView.VISIBLE);
+                        return;
+                    }
+                    Map<String,String> mp=new HashMap<>();
+                    mp.put("METHOD","payments/payToken");
+                    mp.put("token","inxnsinNSnimcennJISjijxmskomxnIMSm==");
+                    String user;
+                    try {
+                        user = AES.encrypt(info.getUserName());
+                        mp.put("account", info.getCvNumberAccount());
+                        mp.put("code", AES.encrypt(cvv));
+                        mp.put("subId", selectedCard.getSubscriptionId());
+                        mp.put("ammount", info.getCvLastBalance());
+                        mp.put("user", user);
+                        new AsyncResponse(acti, false).execute(mp);
+                    }catch(Exception e){
+
+                    }
+                    popup.dismiss();
+                }
+            });
+            LinearLayout llos=(LinearLayout)popup.findViewById(R.id.nop);
+            llos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    popup.dismiss();
+                }
+            });
             System.out.println(AES.decrypt(info.getCorreoContacto()));
-            Map<String,String> mp=new HashMap<>();
-            mp.put("METHOD","payments");
-            mp.put("token",info.getToken());
-            String user;
-            if(info.getUserName()==null)
-                user=info.getCorreoContacto();
-            else
-                user=AES.encrypt(info.getUserName());
-            mp.put("account",info.getCvNumberAccount());
-            mp.put("name", remove1(selectedCard.getName()));
-            mp.put("number",selectedCard.getNumber());
-            String date=AES.decrypt(selectedCard.getExpMonth())+"/"+AES.decrypt(selectedCard.getExpYear());
-            mp.put("date",AES.encrypt(date));
-            mp.put("code",selectedCard.getCvv());
-            mp.put("type",selectedCard.getType());
-            mp.put("ammount",info.getCvLastBalance());
-
-            mp.put("user",user);
-
-            new AsyncResponse(this,false).execute(mp);
+           /*
             parametros=new HashMap<>();
             parametros.put("METHOD","payments/domicilia");
 
             parametros.put("token",info.getToken());
-            if(info.getUserName()==null)
-                user=info.getCorreoContacto();
-            else
-                user=AES.encrypt(info.getUserName());
+
+            user=AES.encrypt(info.getUserName());
             parametros.put("account",info.getCvNumberAccount());
             parametros.put("name", remove1(selectedCard.getName()));
             parametros.put("number",selectedCard.getNumber());
@@ -206,7 +216,7 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
             parametros.put("type",selectedCard.getType());
             parametros.put("ammount",info.getCvLastBalance());
 
-            parametros.put("user",user);
+            parametros.put("user",user);*/
 
 
         }catch(Exception e){
@@ -231,13 +241,106 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
 
     @Override
     public void notifyChanges(Object response) {
-        if(response==null){
 
+
+        if(response==null){
+// cambiar por error
             Intent i=new Intent(getApplicationContext(),PaymentFailActivity.class);
             startActivity(i);
 
             return;
         }
+
+        if(response instanceof String){
+            Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+            Map<String,String> parametross=new HashMap<>();
+            parametross.put("METHOD","payments/getTokens");
+            parametross.put("token",info.getToken());
+            parametross.put("account",info.getCvNumberAccount());
+            new AsyncResponse(this,false).execute(parametross);
+            return;
+        }
+        if(response instanceof izziTokenResponse){
+            ((LinearLayout) findViewById(R.id.contenedortjt)).removeAllViews();
+            final List<Tokens> tjts=((izziTokenResponse) response).getResponse().getPidt();
+            if(tjts.size()==0){
+                Intent i= new Intent(getApplicationContext(),AddCardActivity.class);
+                startActivity(i);
+                finish();
+                return;
+            }
+            if(tjts.size()>=3){
+                ((RelativeLayout)findViewById(R.id.lastButton)).setVisibility(RelativeLayout.GONE);
+            }else{
+                ((RelativeLayout)findViewById(R.id.lastButton)).setVisibility(RelativeLayout.VISIBLE);
+            }
+            selectedCard=tjts.get(0);
+            lsta=new ArrayList<>();
+            for(int i=0;i<tjts.size();i++) {
+                LayoutInflater inflater = LayoutInflater.from(this);
+                final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.card_list_item_pay, null, false);
+                lsta.add(layout);
+                if(i==0)
+                layout.findViewById(R.id.radioon).setVisibility(LinearLayout.VISIBLE);
+
+                layout.findViewById(R.id.remove).setClickable(true);
+                layout.findViewById(R.id.remove).setTag(tjts.get(i));
+                layout.findViewById(R.id.remove).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Tokens t=(Tokens)v.getTag();
+                        try{
+
+                        Map<String,String> map = new HashMap<String, String>();
+                        map.put("METHOD","payments/deleteToken");
+                        map.put("subId",t.getSubscriptionId());
+                        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+                        map.put("token",info.getToken());
+                        map.put("account",AES.encrypt(t.getAccountNumber()));
+                         new AsyncResponse(acti,false).execute(map);
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                layout.setClickable(true);
+                layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        for(View vi:lsta){
+                             vi.findViewById(R.id.radioon).setVisibility(LinearLayout.GONE);
+                        }
+                        int index=lsta.indexOf(v);
+                        lsta.get(index).findViewById(R.id.radioon).setVisibility(LinearLayout.VISIBLE);
+                        selectedCard=tjts.get(index);
+                    }
+                });
+                String type = tjts.get(i).getCardType();
+                String typeName = "";
+                int tipo=Integer.parseInt(type);
+                switch (tipo) {
+                    case 3:
+                        typeName = "Amex/Vigente";
+                        break;
+                    case 1:
+                        typeName = "Visa/Vigente";
+                        break;
+                    case 2:
+                        typeName = "MasterCard/Vigente";
+                        break;
+                }
+                ((TextView) layout.findViewById(R.id.vendortjt)).setText(typeName);
+                String number = tjts.get(i).getCardDigits();
+                String maskedNumber = "●●●● ●●●● ●●●● " + number;
+                ((TextView) layout.findViewById(R.id.tjtnumber)).setText(maskedNumber);
+                ((LinearLayout) findViewById(R.id.contenedortjt)).addView(layout, -1, (int) Util.dpToPx(this, 70));
+            }
+            //Acaba lo de la tarjeta me robo lo de abajo para el oncreate
+
+            return;
+        }
+
         izziPaymentResponse pago=(izziPaymentResponse)response;
         if(!pago.getIzziErrorCode().isEmpty()){
             Intent i=new Intent(getApplicationContext(),PaymentFailActivity.class);

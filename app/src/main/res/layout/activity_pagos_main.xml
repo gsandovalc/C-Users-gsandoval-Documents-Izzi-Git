@@ -141,6 +141,20 @@
             android:text="Estas son tus tarjetas registradas"
             android:textStyle="bold"
             android:textSize="15sp"/>
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_marginBottom="120dp"
+            android:layout_height="fill_parent">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:id="@+id/contenedortjt"
+                android:orientation="vertical"
+
+                android:layout_height="wrap_content">
+
+                </LinearLayout>
+            </ScrollView>
+        
 
     </LinearLayout>
     <LinearLayout
@@ -156,8 +170,8 @@
             android:layout_marginLeft="15dp"
             android:layout_alignParentBottom="true"
             android:clickable="true"
+            android:id="@+id/pagggar"
             android:onClick="payAccount"
-            android:id="@+id/pagobutton"
             android:background="@drawable/rrounded_corners">
             <TextView
                 android:layout_width="fill_parent"
@@ -188,8 +202,8 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:text="Editar Tarjetas"
-            android:textColor="#fff"
+            android:text="Agregar Tarjeta"
+            android:textColor="#FFA807"
             android:layout_marginLeft="5dp"
             android:textSize="15sp"
             android:gravity="center"

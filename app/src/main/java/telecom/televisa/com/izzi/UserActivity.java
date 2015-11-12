@@ -5,12 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Config;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,7 @@ import android.widget.TextView;
 import com.activeandroid.query.Select;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.kissmetrics.sdk.KISSmetricsAPI;
+
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -41,6 +44,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -70,13 +74,16 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
     GoogleCloudMessaging gcm;
     String regid;
     String PROJECT_NUMBER = "726810758992";
+
     public static izziEdoCuentaResponse estado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         setContentView(R.layout.activity_user);
         super.onCreate(savedInstanceState);
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+
         if(info==null){
             finish();
             Intent i= new Intent(getApplicationContext(),BtfLanding.class);
@@ -87,6 +94,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
             ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
             ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
+
         }
         FileCache fc=new FileCache(this);
         fc.clear();
@@ -95,6 +103,13 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         new LongOperation().execute();
         KISSmetricsAPI.sharedAPI().record("Login Primera Vez en Apps", KISSmetricsAPI.RecordCondition.RECORD_ONCE_PER_INSTALL);
         KISSmetricsAPI.sharedAPI().record("Login en Apps");
+    }
+
+
+    void initProfiling()
+    {
+
+
     }
     private class LongOperation extends AsyncTask<Void, Void, String> {
 
@@ -133,11 +148,13 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         super.onResume();
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         //llenamos obtenemnos los campos de texto
+
         if(info.isEsNegocios()) {
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
             ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
             ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
         }
+
         usrin=info;
         try {
             String ahhh=AES.decrypt(info.getPaquete());
@@ -190,6 +207,12 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                             if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
                                 //TODO hacer el truco que quieren si tiene pago vencido
                                 ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
+                                try{
+                                TextView myTextt = (TextView) findViewById(R.id.totalText );
+                                myTextt.getAnimation().cancel();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                              /*   TextView myText = (TextView) findViewById(R.id.totalText );
 
                                 Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -209,6 +232,12 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                         Calendar cal = Calendar.getInstance();
                         if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
                             ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
+                            try{
+                                TextView myTextt = (TextView) findViewById(R.id.totalText );
+                                myTextt.getAnimation().cancel();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                            /* TextView myText = (TextView) findViewById(R.id.totalText );
 
                             Animation anim = new AlphaAnimation(0.0f, 1.0f);
@@ -219,9 +248,21 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
                             myText.startAnimation(anim);*/
                         }
                     }else{
+                        try{
+                            TextView myTextt = (TextView) findViewById(R.id.totalText );
+                            myTextt.getAnimation().cancel();
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                         ((TextView) findViewById(R.id.fechaText)).setText("No disponible");
                     }
                 }else{
+                    try{
+                        TextView myTextt = (TextView) findViewById(R.id.totalText );
+                        myTextt.getAnimation().cancel();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     ((TextView) findViewById(R.id.fechaText)).setText("No disponible");
                 }
             }catch(Exception e){
@@ -457,17 +498,9 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
     }
 
     public void pay(View v){
-        List<Card> tjts=new Select().from(Card.class).where("user=?", ((IzziMovilApplication)getApplication()).getCurrentUser().getUserName()).execute();
-        if(tjts==null) {
-            Intent myIntent = new Intent(this, AddCardActivity.class);
-            startActivityForResult(myIntent, 0);
-        }else if(tjts.size()<=0){
-            Intent myIntent = new Intent(this, AddCardActivity.class);
-            startActivityForResult(myIntent, 0);
-        }else{
+
             Intent myIntent = new Intent(this, PagosMainActivity.class);
             startActivityForResult(myIntent, 0);
-        }
     }
 
     private class UploadFileToServer extends AsyncTask<Void, Integer, String> {
