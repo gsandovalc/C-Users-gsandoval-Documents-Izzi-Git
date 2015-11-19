@@ -432,7 +432,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
          String telefono="";
         if(info.isLegacy()){
-            telefono="51699699";
+            telefono="018001205000";
         }else{
             telefono="018001205000";
             System.out.println("Es izzi");
@@ -485,10 +485,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
 
         Intent myIntent;
-        if(!info.isLegacy())
-            myIntent = new Intent(this, MediosDePagoActivity.class);
-        else
-            myIntent = new Intent(this, PagoEstablecimientosActivity.class);
+        myIntent = new Intent(this, MediosDePagoActivity.class);
         startActivityForResult(myIntent, 0);
     }
     public void pagos(View v){

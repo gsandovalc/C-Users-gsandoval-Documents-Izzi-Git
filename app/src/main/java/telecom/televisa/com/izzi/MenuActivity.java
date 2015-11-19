@@ -42,6 +42,7 @@ public class MenuActivity extends Activity implements View.OnClickListener{
     ResideMenuItem illamanos;
     ResideMenuItem iPaper;
     ResideMenuItem ichatea;
+    ResideMenuItem inotifica;
 
 
     @Override
@@ -120,7 +121,9 @@ public class MenuActivity extends Activity implements View.OnClickListener{
             finish();
             overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
             return;
-        } else
+        } else if(v==inotifica){
+
+        }else
                 return;
 
         if(i!=null) {
@@ -146,13 +149,14 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
         //valid scale factor is between 0.0f and 1.0f. leftmenu'width is 150dip.
         resideMenu.setScaleValue(0.5f);
         resideMenu.getCerrarSession().setOnClickListener(this);
-         ipago     = new ResideMenuItem(this,R.drawable.lugares,"Lugares de pago");
-         iwifi  = new ResideMenuItem(this, R.drawable.wifi,  "Dr WiFi");
-         iguia     = new ResideMenuItem(this,R.drawable.guia,"Guía de programación");
-         iLegales  = new ResideMenuItem(this, R.drawable.legales,  "Avisos Legales");
-         illamanos     = new ResideMenuItem(this,R.drawable.call,"Llamanos");
-         ichatea  = new ResideMenuItem(this, R.drawable.chat,  "Chatea con nosotros");
+        ipago     = new ResideMenuItem(this,R.drawable.lugares,"Lugares de pago");
+        iwifi  = new ResideMenuItem(this, R.drawable.wifi,  "Dr WiFi");
+        iguia     = new ResideMenuItem(this,R.drawable.guia,"Guía de programación");
+        iLegales  = new ResideMenuItem(this, R.drawable.legales,  "Avisos Legales");
+        illamanos     = new ResideMenuItem(this,R.drawable.call,"Llamanos");
+        ichatea  = new ResideMenuItem(this, R.drawable.chat,  "Chatea con nosotros");
         iPaper = new ResideMenuItem(this, R.drawable.paperless2, "Paperless");
+        inotifica=new ResideMenuItem(this,R.drawable.pushnotification,"Centro de mensajes");
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         if(info==null){
             finish();
@@ -199,6 +203,7 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
         illamanos.setOnClickListener(this);
         ichatea.setOnClickListener(this);
         iPaper.setOnClickListener(this);
+        inotifica.setOnClickListener(this);
         // create menu items;
 
         resideMenu.addMenuItem(iguia, ResideMenu.DIRECTION_LEFT);
@@ -211,6 +216,7 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
                 resideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
             }
         });
+        resideMenu.addMenuItem(inotifica,ResideMenu.DIRECTION_LEFT);
     }
 
 

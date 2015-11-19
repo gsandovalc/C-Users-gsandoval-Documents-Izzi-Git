@@ -47,10 +47,7 @@ public class PagoEstablecimientosActivity extends Activity implements IzziRespon
         ((TextView)findViewById(R.id.h_title)).setText("Pago en establecimientos");
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         ((LinearLayout)findViewById(R.id.contene)).setVisibility(LinearLayout.GONE);
-        if(info.isLegacy()){
-findViewById(R.id.qst).setVisibility(View.GONE);
 
-        }else{
             findViewById(R.id.show_exmenu).setVisibility(View.VISIBLE);
             try {
                 ((TextView)popoverView.vista.findViewById(R.id.leyenda).findViewById(R.id.tel)).setText(AES.decrypt(info.getTelefonoPrincipal()));
@@ -67,12 +64,11 @@ findViewById(R.id.qst).setVisibility(View.GONE);
             }catch (Exception e){
 
             }
-        }
 
         try {
             Map<String, String> mp = new HashMap<>();
             mp.put("METHOD", "dondepagar");
-            mp.put("legacy", info.isLegacy() ? "1" : "0");
+            mp.put("legacy", info.isLegacy() ? "0" : "0");
             mp.put("rpt", info.getRpt());
             new AsyncResponse(this,false).execute(mp);
         }catch (Exception e){

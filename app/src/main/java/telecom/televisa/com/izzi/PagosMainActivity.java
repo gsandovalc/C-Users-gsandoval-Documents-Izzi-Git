@@ -41,6 +41,8 @@ import televisa.telecom.com.util.izziTokenResponse;
 
 public class PagosMainActivity extends Activity implements IzziRespondable{
     boolean togleRadio=false;
+    boolean deleteCard=false;
+    boolean getCards=false;
     Tokens selectedCard=null;
     List<View> lsta;
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
@@ -68,7 +70,9 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
         parametross.put("METHOD","payments/getTokens");
         parametross.put("token",info.getToken());
         parametross.put("account",info.getCvNumberAccount());
+        getCards=true;
         new AsyncResponse(this,false).execute(parametross);
+
         try {
             String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0.00";
             double saldo=Double.parseDouble(lastBalance);
@@ -175,6 +179,7 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
                         return;
                     }
                     Map<String,String> mp=new HashMap<>();
+
                     mp.put("METHOD","payments/payToken");
                     mp.put("token","inxnsinNSnimcennJISjijxmskomxnIMSm==");
                     String user;
@@ -245,12 +250,20 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
 
         if(response==null){
 // cambiar por error
+            if(getCards){
+                getCards=false;
+                return;
+            }
+            if(deleteCard){
+                deleteCard=false;
+                return;
+            }
             Intent i=new Intent(getApplicationContext(),PaymentFailActivity.class);
             startActivity(i);
 
             return;
         }
-
+        getCards=false;
         if(response instanceof String){
             Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
             Map<String,String> parametross=new HashMap<>();

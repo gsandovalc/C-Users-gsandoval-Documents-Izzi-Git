@@ -203,7 +203,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:text="Agregar Tarjeta"
-            android:textColor="#FFA807"
+            android:textColor="#fff"
             android:layout_marginLeft="5dp"
             android:textSize="15sp"
             android:gravity="center"
