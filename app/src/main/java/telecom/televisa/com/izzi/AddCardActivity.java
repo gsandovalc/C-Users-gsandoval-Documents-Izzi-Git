@@ -264,11 +264,17 @@ public class AddCardActivity extends Activity implements IzziRespondable {
                                     // continue with delete
                                     dialog.dismiss();
                                     actv.finish();
+
+                                    Intent myIntent = new Intent(actv, PagosMainActivity.class);
+                                    startActivityForResult(myIntent, 0);
                                 }
                             }).setOnCancelListener(new DialogInterface.OnCancelListener() {
                         @Override
                         public void onCancel(DialogInterface dialog) {
                             dialog.dismiss();
+
+                            Intent myIntent = new Intent(actv, PagosMainActivity.class);
+                            startActivityForResult(myIntent, 0);
                             actv.finish();
                         }
                     })

@@ -35,32 +35,7 @@ public class PaymentOkActivity extends Activity implements IzziRespondable {
         KISSmetricsAPI.sharedAPI().record("Pago realizado en Apps");
     }
     public void askDom(View v){
-        final Dialog popup = new Dialog(this,android.R.style.Theme_Translucent);
-        popup.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        popup.setCancelable(true);
-        popup.setContentView(R.layout.popupdom);
-        WindowManager.LayoutParams lp = popup.getWindow().getAttributes();
-        lp.dimAmount=0f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
-        popup.getWindow().setAttributes(lp);
-        popup.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        popup.show();
-        LinearLayout llo=(LinearLayout)popup.findViewById(R.id.listo);
-        llo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new AsyncResponse(acty,false).execute(PagosMainActivity.parametros);
-                popup.dismiss();
-            }
-        });
-        LinearLayout llos=(LinearLayout)popup.findViewById(R.id.nop);
-        llos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popup.dismiss();
-                PagosMainActivity.parametros=null;
-                closeView(v);
-            }
-        });
+        closeView(v);
 
     }
     public void closeView(View v){
