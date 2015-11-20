@@ -99,7 +99,7 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
             String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0";
             double saldo=Double.parseDouble(lastBalance);
             lastBalance="$ "+saldo;
-            if(((int)saldo)==0){
+            if(((int)saldo)<=0){
                 ((LinearLayout)findViewById(R.id.pagobutton)).setVisibility(LinearLayout.GONE);
             }
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
