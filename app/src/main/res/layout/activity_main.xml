@@ -1,10 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+    android:layout_height="match_parent"
     android:paddingTop="5dp"
     android:background="#FFFFFF"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+  tools:context=".MainActivity">
     <ImageView
         android:id="@+id/show_menu"
         android:layout_width="50dp"
@@ -28,27 +27,35 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/loginback"
         android:id="@+id/linearLayout">
 
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:background="#55555555"
-        android:layout_height="40dp">
+
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_margin="1dp"
-            android:background="#FFFFFF"
-            android:layout_height="fill_parent">
-
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            >
+        <ImageView
+            android:layout_width="30dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_vertical"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="4dp"
+            android:src="@drawable/user"/>
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:inputType="textEmailAddress"
                 android:ems="6"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="4dp"
                 android:textSize="15sp"
                 android:hint="(Correo@ejemplo.com)"
                 android:background="#FFFFFF"
@@ -58,28 +65,34 @@
                />
 
         </LinearLayout>
-    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:background="#55555555"
-            android:layout_height="40dp">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:background="#55555555"
+        android:layout_height="1dp"
+        />
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_marginBottom="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginLeft="1dp"
-                android:background="#FFFFFF"
-                android:layout_height="fill_parent">
 
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:orientation="horizontal"
+                android:layout_height="40dp">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:scaleType="fitCenter"
+                    android:layout_marginLeft="4dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/password"/>
                <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:inputType="textPassword"
                     android:ems="8"
-                    android:layout_marginLeft="5dp"
+                   android:layout_marginLeft="6dp"
+                   android:layout_marginRight="4dp"
                     android:hint="Contraseña"
                     android:background="#FFFFFF"
                     android:layout_gravity="center_vertical"
@@ -87,20 +100,43 @@
                     android:id="@+id/password"
                     />
             </LinearLayout>
-        </RelativeLayout>
+
 
     </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:id="@+id/textoo"
+        android:layout_centerHorizontal="true"
+        android:textColor="#66333333"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:text="Para poder utilizar el servicio de izzi App es necesario registrarse en:"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/textoo"
+        android:layout_centerHorizontal="true"
+        android:textColor="#D60270"
+        android:layout_marginTop="5dp"
+        android:text="izzi.mx"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:onClick="registro"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="horizontal">
         <RelativeLayout
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:background="#D60270"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:clickable="true"
             android:onClick="login"
             >
@@ -114,22 +150,22 @@
                 android:id="@+id/textView3"
                 android:layout_alignParentTop="false"
                 android:textIsSelectable="false"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:layout_centerInParent="true"
                 android:textStyle="bold" />
         </RelativeLayout>
 
 
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
             android:background="#3B5998"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+
             android:orientation="horizontal"
             android:clickable="true"
             android:id="@+id/bfblg"
-            android:layout_marginTop="10dp"
+
             android:onClick="fbLogin"
             >
 
@@ -142,7 +178,7 @@
                 android:textColor="#ffffff"
                 android:layout_alignParentTop="false"
                 android:textIsSelectable="false"
-                android:textSize="18dp"
+                android:textSize="16dp"
 
                 android:layout_gravity="center"
                 android:gravity="center" />
