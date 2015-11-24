@@ -1,12 +1,9 @@
 package telecom.televisa.com.izzi;
 
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -19,31 +16,27 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.activeandroid.query.Delete;
-import com.activeandroid.query.Select;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
-import com.facebook.FacebookActivity;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.kissmetrics.sdk.KISSmetricsAPI;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+import televisa.telecom.com.model.Cuentas;
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AsyncResponse;
-import televisa.telecom.com.util.GetGuide;
 import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.izziLoginResponse;
 
@@ -88,6 +81,20 @@ public class MainActivity extends Activity implements IzziRespondable {
 
     }
 
+    public void test(View v){
+        // customize these values to suit your needs.
+     //   Intent izziOauth = new Intent(this, IzziConnectActivity.class);
+       // izziOauth.putExtra(IzziConnectActivity.CLIENT_ID, "1516b4bcf2a5432ab715988411d0294f");
+        //izziOauth.putExtra(IzziConnectActivity.CLIENT_SECRET, "tOby1RZDVN");
+        //startActivityForResult(izziOauth, 201);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //if (resultCode == 201) {
+          //  IzziConnectResponse result = (IzziConnectResponse)data.getSerializableExtra(IzziConnectActivity.OAUTH_RESULT);
+        //}
+    }
 
     public void login(View v){
         String user="";
@@ -248,6 +255,7 @@ public class MainActivity extends Activity implements IzziRespondable {
 
         new Delete().from(Usuario.class).execute();
         new Delete().from(PagosList.class).execute();
+        new Delete().from(Cuentas.class).execute();
         if(((izziLoginResponse)response).getIzziErrorCode().isEmpty()){
             Usuario sr=((izziLoginResponse)response).getResponse();
             String user="";
@@ -268,6 +276,11 @@ public class MainActivity extends Activity implements IzziRespondable {
             if(sr.getPagos()!=null)
             for(PagosList pago:sr.getPagos()){
                 pago.save();
+            }
+
+            if(sr.getCuentasAsociadas()!=null){
+                for(Cuentas ac:sr.getCuentasAsociadas())
+                    ac.save();
             }
             if(sr.isExtrasVideo()){
                 String extra="";
@@ -320,11 +333,7 @@ public class MainActivity extends Activity implements IzziRespondable {
         }
 
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
+
 
     public  boolean isEmailValid(String email) {
         boolean isValid = false;

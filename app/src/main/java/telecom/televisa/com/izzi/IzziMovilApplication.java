@@ -1,19 +1,15 @@
 package telecom.televisa.com.izzi;
 
-import android.app.Application;
-
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
 import com.kissmetrics.sdk.KISSmetricsAPI;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import televisa.telecom.com.model.Cuentas;
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
-import televisa.telecom.com.util.AsyncLoginUpdate;
 
 /**
  * Created by cevelez on 25/04/2015.
@@ -51,6 +47,8 @@ public class IzziMovilApplication extends com.activeandroid.app.Application {
                 setLogged(true);
                 List<PagosList> pagos = new Select().from(PagosList.class).execute();
                 currentUser.setPagos(pagos);
+                List<Cuentas> cuentas=new Select().from(Cuentas.class).execute();
+                currentUser.setCuentasAsociadas(cuentas);
                 if (currentUser.isExtrasTelefono()) {
                     String[] extra = currentUser.getExtraTelefono().split("##");
                     List<String> ex = new ArrayList<>();

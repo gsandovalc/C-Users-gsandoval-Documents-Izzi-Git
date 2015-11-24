@@ -184,6 +184,14 @@ public class Usuario extends Model implements MobileResponse {
     @Column
     private String fechaLimit;
 
+    @Column
+    private String parentType="";
+
+    @Column
+    private String parentAccount="";
+
+    private List<Cuentas> cuentasAsociadas;
+
     public boolean isEsMigrado() {
         return esMigrado;
     }
@@ -817,5 +825,29 @@ public class Usuario extends Model implements MobileResponse {
 
     public void setEsNegocios(boolean esNegocios) {
         this.esNegocios = esNegocios;
+    }
+
+    public List<Cuentas> getCuentasAsociadas() {
+        return cuentasAsociadas;
+    }
+
+    public void setCuentasAsociadas(List<Cuentas> cuentasAsociadas) {
+        this.cuentasAsociadas = cuentasAsociadas;
+    }
+
+    public String getParentType() {
+        return parentType;
+    }
+
+    public void setParentType(String parentType) {
+        this.parentType = parentType;
+    }
+
+    public String getParentAccount() {
+        return parentAccount;
+    }
+
+    public void setParentAccount(String parentAccount) {
+        this.parentAccount = parentAccount;
     }
 }

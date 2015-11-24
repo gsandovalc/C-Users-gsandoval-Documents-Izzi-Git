@@ -19,6 +19,7 @@ import java.util.TimerTask;
 
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
+import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AsyncLoginUpdate;
 import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.IzziRespondable;
@@ -45,9 +46,23 @@ public class SplashScreen extends Activity  {
                 List<PagosList> pagos=new Select().from(PagosList.class).execute();
                 currentUser.setPagos(pagos);
                 Map<String,String> mp=new HashMap<>();
-                mp.put("METHOD","login");
-                mp.put("user",currentUser.getUserName());
-                mp.put("password",currentUser.getPassword());
+                //if para refrescar cuenta hijo o principal
+
+                if(currentUser.getParentAccount().isEmpty()) {
+                    mp.put("METHOD", "login");
+                    mp.put("user", currentUser.getUserName());
+                    mp.put("password", currentUser.getPassword());
+                }else{
+                    try {
+                        mp.put("METHOD", "login/getChildAccountInfo");
+                        mp.put("user", currentUser.getUserName());
+                        mp.put("password", currentUser.getPassword());
+                        mp.put("childAccount", AES.decrypt(currentUser.getCvNumberAccount()));
+                        mp.put("type", currentUser.getParentType());
+                    }catch(Exception e){
+
+                    }
+                }
                 ((IzziMovilApplication)getApplication()).setCurrentUser(currentUser);
                 new AsyncLoginUpdate(((IzziMovilApplication)getApplication()),true).execute(mp);
                 if(currentUser.isExtrasTelefono()){

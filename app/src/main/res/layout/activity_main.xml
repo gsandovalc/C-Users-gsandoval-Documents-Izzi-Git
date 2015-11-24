@@ -4,6 +4,7 @@
     android:paddingTop="5dp"
     android:background="#FFFFFF"
   tools:context=".MainActivity">
+
     <ImageView
         android:id="@+id/show_menu"
         android:layout_width="50dp"
@@ -127,6 +128,7 @@
         android:onClick="registro"
         android:gravity="center"
         android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

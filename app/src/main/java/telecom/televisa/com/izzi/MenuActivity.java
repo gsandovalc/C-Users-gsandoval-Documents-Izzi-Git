@@ -43,7 +43,7 @@ public class MenuActivity extends Activity implements View.OnClickListener{
     ResideMenuItem iPaper;
     ResideMenuItem ichatea;
     ResideMenuItem inotifica;
-
+    ResideMenuItem iuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +103,7 @@ public class MenuActivity extends Activity implements View.OnClickListener{
             Usuario info = ((IzziMovilApplication) getApplication()).getCurrentUser();
             String telefono = "";
             if (info.isLegacy() && !info.isEsMigrado()) {
-                telefono = "51699699";
+                telefono = "018001205000";
             } else {
                 telefono = "018001205000";
             }
@@ -123,7 +123,9 @@ public class MenuActivity extends Activity implements View.OnClickListener{
             return;
         } else if(v==inotifica){
 
-        }else
+        } else if(v==iuser){
+            i=new Intent(getApplicationContext(),SwitchUserActivity.class);
+          }else
                 return;
 
         if(i!=null) {
@@ -137,10 +139,11 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
     return resideMenu.dispatchTouchEvent(ev);
 }
 
-    private void setUpMenu() {
+    protected void setUpMenu() {
 
         // attach to current activity;
         resideMenu = new ResideMenu(this);
+
         //resideMenu.setUse3D(true);
     resideMenu.setBackground(R.drawable.bluee);
         resideMenu.attachToActivity(this);
@@ -157,6 +160,7 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
         ichatea  = new ResideMenuItem(this, R.drawable.chat,  "Chatea con nosotros");
         iPaper = new ResideMenuItem(this, R.drawable.paperless2, "Paperless");
         inotifica=new ResideMenuItem(this,R.drawable.pushnotification,"Centro de mensajes");
+        iuser=new ResideMenuItem(this,R.drawable.switchuser,"Cambio de usuario");
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         if(info==null){
             finish();
@@ -205,6 +209,7 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
         iPaper.setOnClickListener(this);
         inotifica.setOnClickListener(this);
         // create menu items;
+        iuser.setOnClickListener(this);
 
         resideMenu.addMenuItem(iguia, ResideMenu.DIRECTION_LEFT);
         resideMenu.addMenuItem(iLegales, ResideMenu.DIRECTION_LEFT);
@@ -217,6 +222,9 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
             }
         });
         resideMenu.addMenuItem(inotifica,ResideMenu.DIRECTION_LEFT);
+        if(info.getCuentasAsociadas().size()>0){
+            resideMenu.addMenuItem(iuser,ResideMenu.DIRECTION_LEFT);
+        }
     }
 
 

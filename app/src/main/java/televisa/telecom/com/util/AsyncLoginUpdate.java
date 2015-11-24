@@ -2,16 +2,7 @@ package televisa.telecom.com.util;
 
 import android.app.Application;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.AsyncTask;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.RotateAnimation;
-import android.view.animation.TranslateAnimation;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import com.activeandroid.query.Delete;
 import com.google.gson.Gson;
@@ -19,7 +10,7 @@ import com.google.gson.Gson;
 import java.util.Map;
 
 import telecom.televisa.com.izzi.IzziMovilApplication;
-import telecom.televisa.com.izzi.R;
+import televisa.telecom.com.model.Cuentas;
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.ws.IzziWS;
@@ -77,25 +68,42 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
             return;
         izziLoginResponse r=((izziLoginResponse)response);
         if(r.getIzziErrorCode().isEmpty()){
-            new Delete().from(Usuario.class).execute();
-            new Delete().from(PagosList.class).execute();
-            Usuario sr=((izziLoginResponse)response).getResponse();
             String user="";
             String password="";
+
+            String cuenta="";
+            String type="";
             IzziMovilApplication res=(IzziMovilApplication)respondTo;
             try {
                 user = USR;
                 password = PASS;
+                cuenta = res.getCurrentUser().getParentAccount().equals("") ? "" : res.getCurrentUser().getParentAccount();
+                type=res.getCurrentUser().getParentType().equals("") ? "" : res.getCurrentUser().getParentType();
             }catch(Exception e){
 
                 e.printStackTrace();
             }
+            new Delete().from(Usuario.class).execute();
+            new Delete().from(PagosList.class).execute();
+            new Delete().from(Cuentas.class).execute();
+            Usuario sr=((izziLoginResponse)response).getResponse();
+
+
+
+
+
             sr.setUserName(user);
             sr.setPassword(password);
+            sr.setParentAccount(cuenta);
+            sr.setParentType(type);
             if(sr.getPagos()!=null)
                 for(PagosList pago:sr.getPagos()){
                     pago.save();
                 }
+            if(sr.getCuentasAsociadas()!=null){
+                for(Cuentas ac:sr.getCuentasAsociadas())
+                    ac.save();
+            }
             if(sr.isExtrasVideo()){
                 String extra="";
                 for(String complemento:sr.getDataExtrasVideo()){

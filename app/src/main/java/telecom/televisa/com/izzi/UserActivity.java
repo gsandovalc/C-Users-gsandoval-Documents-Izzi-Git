@@ -105,7 +105,10 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         KISSmetricsAPI.sharedAPI().record("Login en Apps");
     }
 
-
+public void swUsr(View v){
+    Intent i=new Intent(this,SwitchUserActivity.class);
+    startActivity(i);
+}
     void initProfiling()
     {
 
@@ -146,6 +149,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
     @Override
     protected void onResume() {
         super.onResume();
+        setUpMenu();
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         //llenamos obtenemnos los campos de texto
 
@@ -153,6 +157,10 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
             ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
             ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
+        }else{
+            ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.logoizzi);
+            ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9900c1b5);
+            ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x88d60270);
         }
 
         usrin=info;
