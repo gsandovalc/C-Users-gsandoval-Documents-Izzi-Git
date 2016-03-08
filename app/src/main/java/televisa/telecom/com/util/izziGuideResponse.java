@@ -1,14 +1,20 @@
 package televisa.telecom.com.util;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
 /**
  * Created by cevelez on 11/05/2015.
  */
 public class izziGuideResponse {
+    @Expose
     private String izziError="";
+    @Expose
     private String izziErrorCode="";
+    @Expose
     private MobileGuideResponse response;
+    @Expose
     private String token="";
 
     public String getIzziError() {
@@ -43,8 +49,9 @@ public class izziGuideResponse {
         this.token = token;
     }
     public class MobileGuideResponse {
-
+        @Expose
         private List<TVStation> lineUp;
+        @Expose
         private List<String> banners;
         public List<TVStation> getLineUp() {
             return lineUp;
@@ -64,11 +71,17 @@ public class izziGuideResponse {
         }
     }
     public class TVStation {
+        @Expose
         private String nombre;
+        @Expose
         private String canal;
+        @Expose
         private String thumb;
+        @Expose
         private String descripcion;
+        @Expose
         private List<String> categorias;
+        @Expose
         private List<StationRecord> programas;
 
         public String getNombre() {
@@ -109,14 +122,23 @@ public class izziGuideResponse {
         }
     }
     public class StationRecord {
+        @Expose
         private String titulo;
+        @Expose
         private String descripcion;
+        @Expose
         private String portada;
+        @Expose
         private String  pais;
+        @Expose
         private String actores;
+        @Expose
         private ScheduleRecord horario;
+        @Expose
         private String duracion;
+        @Expose
         private  List<String> idiomas;
+        @Expose
         private List<String> categorias;
         public String getTitulo() {
             return titulo;
@@ -174,8 +196,11 @@ public class izziGuideResponse {
         }
     }
     public class ScheduleRecord {
+        @Expose
         public String inicial;
+        @Expose
         public String end;
+
         public String getInicial() {
             return inicial;
         }

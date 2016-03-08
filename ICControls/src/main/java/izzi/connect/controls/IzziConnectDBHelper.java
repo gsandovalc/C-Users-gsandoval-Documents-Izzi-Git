@@ -27,11 +27,8 @@ import android.database.sqlite.SQLiteOpenHelper;
                     +" UID TEXT, "
                     +" SECRET TEXT, "
                     +" TOKEN TEXT, "
-                    +" TOKEN_TYPE TEXT, "
-                    +" NAME TEXT, "
-                    +" ACCOUNT TEXT, "
-                    +" PAQ TEXT, "
-                    +" EXP TEXT)");
+                    +" TOKEN_REFRESH TEXT, "
+                    +" RESPONSE TEXT)");
 
         }catch (Exception e){
             e.printStackTrace();

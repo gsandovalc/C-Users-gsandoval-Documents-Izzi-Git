@@ -12,12 +12,73 @@ public class IzziConnectResponse implements Serializable {
     public String expires_in="";
     public String token_type="";
     public String access_token="";
+    public String refresh_token="";
     public String error="";
     public String error_description="";
     public String uid="";
-    public String mail="";
+    public String Region="";
+    public String Paquetes="";
     public String lastname="";
     public String firstname="";
+    public String uri="";
+    public String Status="";
+    public String SubscriberID="";
+
+    public String getRegion() {
+        return Region;
+    }
+
+    public void setRegion(String region) {
+        Region = region;
+    }
+
+    public String getPaquetes() {
+        return Paquetes;
+    }
+
+    public void setPaquetes(String paquetes) {
+        Paquetes = paquetes;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
+    }
+
+    public String getSubscriberID() {
+        return SubscriberID;
+    }
+
+    public void setSubscriberID(String subscriberID) {
+        SubscriberID = subscriberID;
+    }
 
     public String getUid() {
         return uid;
@@ -67,6 +128,12 @@ public class IzziConnectResponse implements Serializable {
     public void setError_description(String error_description) {
         this.error_description = error_description;
     }
+    public String getRefresh_token() {
+        return refresh_token;
+    }
 
+    public void setRefresh_token(String refresh_token) {
+        this.refresh_token = refresh_token;
+    }
 
 }

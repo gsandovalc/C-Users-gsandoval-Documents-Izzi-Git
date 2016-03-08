@@ -57,6 +57,7 @@ import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AndroidMultiPartEntity;
+import televisa.telecom.com.util.AsyncLoginUpdate;
 import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.FileCache;
 import televisa.telecom.com.util.ImageLoader;
@@ -82,6 +83,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
 
         setContentView(R.layout.activity_user);
         super.onCreate(savedInstanceState);
+        AsyncLoginUpdate.refresca=this;
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
 
         if(info==null){
@@ -145,6 +147,9 @@ public void swUsr(View v){
 
         @Override
         protected void onProgressUpdate(Void... values) {}
+    }
+    public void refresh(){
+            init();
     }
     @Override
     protected void onResume() {
@@ -290,6 +295,7 @@ public void swUsr(View v){
 
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         //llenamos obtenemnos los campos de texto
+        setUpMenu();
         if(info.isEsNegocios()) {
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
             ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);

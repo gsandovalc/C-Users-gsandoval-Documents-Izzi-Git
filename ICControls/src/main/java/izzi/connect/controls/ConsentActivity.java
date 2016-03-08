@@ -7,6 +7,7 @@ import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 
@@ -32,6 +33,8 @@ public class ConsentActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consent);
+
+        ((TextView)findViewById(R.id.infoprivacidad)).setText(getResources().getString(R.string.app_name)+" recibirá la siguiente información:");
         client_id=getIntent().getStringExtra(IzziConnectActivity.CLIENT_ID);
         client_secret=getIntent().getStringExtra(IzziConnectActivity.CLIENT_SECRET);
         pass=getIntent().getStringExtra("PASSWORD");
@@ -95,8 +98,10 @@ public class ConsentActivity extends Activity {
                 IzziConnectResponse rs=gson.fromJson(result.toString(),IzziConnectResponse.class);
                 if(!rs.error_description.isEmpty())
                     return rs;
+
                 HttpClient client2 =new DefaultHttpClient();
-                HttpPost requestRes = new HttpPost("http://52.21.207.24:14100/ms_oauth/resources/consentmanagement/grant?scope=UserProfile.me&client_id="+client_id+"&oracle_user_id="+usr+"&lang=en");
+
+                HttpPost requestRes = new HttpPost(Constantes.endpoint +"/ms_oauth/resources/consentmanagement/grant?scope=UserProfile.me&client_id="+client_id+"&oracle_user_id="+usr+"&lang=en");
                 requestRes.setHeader("Authorization",rs.getAccess_token().toString());
                 requestRes.setHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
                 HttpResponse response2 = client2.execute(requestRes);

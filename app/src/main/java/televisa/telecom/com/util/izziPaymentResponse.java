@@ -1,12 +1,18 @@
 package televisa.telecom.com.util;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Created by cevelez on 05/05/2015.
  */
 public class izziPaymentResponse {
+    @Expose
     private String izziError="";
+    @Expose
     private String izziErrorCode="";
+    @Expose
     private MobilePaymentResponse response;
+    @Expose
     private String token="";
 
     public String getIzziError() {
@@ -42,8 +48,11 @@ public class izziPaymentResponse {
     }
 
     public class MobilePaymentResponse{
+        @Expose
         private String autorizacion="";
+        @Expose
         private String referencia="";
+        @Expose
         private String paymentError="";
 
 

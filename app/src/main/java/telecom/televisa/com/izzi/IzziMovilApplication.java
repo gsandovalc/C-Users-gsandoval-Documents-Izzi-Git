@@ -26,6 +26,11 @@ public class IzziMovilApplication extends com.activeandroid.app.Application {
         }catch(Exception e){
             e.printStackTrace();
         }
+        try{
+            ActiveAndroid.execSQL("CREATE TABLE Push(message TEXT,correo TEXT,fecha TEXT,status TEXT);");
+        }catch(Exception e){
+
+        }
         KISSmetricsAPI.sharedAPI("831d7f420b079a7e41295f416c7141393cec4032", getApplicationContext());
         KISSmetricsAPI.sharedAPI().autoRecordInstalls();
         KISSmetricsAPI.sharedAPI().autoSetAppProperties();

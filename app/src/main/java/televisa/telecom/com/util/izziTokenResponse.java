@@ -1,14 +1,20 @@
 package televisa.telecom.com.util;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
 /**
  * Created by cevelez on 22/06/2015.
  */
 public class izziTokenResponse {
+    @Expose
     private String izziError="";
+    @Expose
     private String izziErrorCode="";
+    @Expose
     private MobileTokenResponse response;
+    @Expose
     private String token="";
 
     public String getIzziError() {

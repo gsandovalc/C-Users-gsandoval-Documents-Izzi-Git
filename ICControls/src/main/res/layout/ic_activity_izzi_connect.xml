@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="0dp"
-    android:background="#fff"
+    android:background="#222"
     android:paddingRight="0dp"
     android:paddingTop="5dp"
     android:paddingBottom="0dp"
@@ -11,24 +11,35 @@
         android:id="@+id/show_menu"
         android:layout_width="50dp"
         android:layout_height="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:clickable="true"
         android:onClick="closeView"
         android:src="@drawable/ic_regresar" />
     <ImageView
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="60dp"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:scaleType="centerInside"
         android:id="@+id/imageView"
         android:src="@drawable/ic_logoizzi" />
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:id="@+id/imageView2"
+        android:src="@drawable/lineaspash">
+
+        </ImageView>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_marginTop="120dp"
         android:orientation="vertical"
         android:id="@+id/linearLayout">
 
@@ -37,13 +48,11 @@
             android:layout_width="fill_parent"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:background="#55555555"
-            android:layout_height="40dp">
+            android:layout_height="70dp">
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_margin="1dp"
-                android:background="#FFFFFF"
-                android:layout_height="fill_parent">
+                android:background="@drawable/woval"
+                android:layout_height="50dp">
 
                 <EditText
                     android:layout_width="fill_parent"
@@ -52,8 +61,8 @@
                     android:ems="6"
                     android:layout_marginLeft="5dp"
                     android:textSize="15sp"
-                    android:hint="(Correo@ejemplo.com)"
-                    android:background="#FFFFFF"
+                    android:hint="usuario (Correo@ejemplo.com)"
+                    android:background="@drawable/woval"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:id="@+id/ic_user"
@@ -66,24 +75,22 @@
             android:layout_width="fill_parent"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:background="#55555555"
-            android:layout_height="40dp">
+
+            android:layout_height="50dp">
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_marginBottom="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginLeft="1dp"
-                android:background="#FFFFFF"
-                android:layout_height="fill_parent">
+
+                android:background="@drawable/woval"
+                android:layout_height="80dp">
 
                 <EditText
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="50dp"
                     android:inputType="textPassword"
                     android:ems="8"
                     android:layout_marginLeft="5dp"
                     android:hint="Contraseña"
-                    android:background="#FFFFFF"
+                    android:background="@drawable/woval"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:id="@+id/ic_password"
@@ -95,12 +102,14 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:background="#00C1B5"
-            android:layout_height="40dp"
+            android:background="@drawable/goval"
+            android:layout_height="60dp"
             android:clickable="true"
             android:onClick="login"
             >
@@ -109,11 +118,70 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:text="Ingresar"
+                android:text="Iniciar sesión"
                 android:textColor="#ffffff"
                 android:layout_alignParentTop="false"
                 android:textIsSelectable="false"
-                android:textSize="18dp"
+                android:textSize="20dp"
+                android:layout_centerInParent="true"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+         android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="370dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:background="#545454"
+            android:layout_gravity="center_vertical"
+            android:layout_height="1dp"
+            android:layout_weight=".45"></LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="O"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textSize="18sp"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:background="#545454"
+            android:layout_gravity="center_vertical"
+            android:layout_height="1dp"
+            android:layout_weight=".45"></LinearLayout>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:background="@drawable/goval"
+            android:layout_height="60dp"
+            android:clickable="true"
+            android:onClick="registro"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Registrate aquí"
+                android:textColor="#ffffff"
+                android:layout_alignParentTop="false"
+                android:textIsSelectable="false"
+                android:textSize="20dp"
                 android:layout_centerInParent="true"
                 android:textStyle="bold" />
         </RelativeLayout>

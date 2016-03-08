@@ -2,20 +2,26 @@ package televisa.telecom.com.model;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
+import com.google.gson.annotations.Expose;
 
 /**
  * Created by cevelez on 24/04/2015.
  */
 public class PagosList  extends Model {
     @Column
+    @Expose
     private String pinfldamount;
     @Column
+    @Expose
     private String pinfldauthdate;
     @Column
+    @Expose
     private String pinflddescr;
     @Column
+    @Expose
     private String pinfldreceiptno;
     @Column
+    @Expose
     private String pinfldtransid;
 
     public String getPinfldamount() {

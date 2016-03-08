@@ -40,16 +40,21 @@ public class IzziConnectActivity extends Activity {
     public static String CLIENT_ID="client_id";
     public static String CLIENT_SECRET="client_secret";
     public static String OAUTH_RESULT="OAUTH_RESULT";
+    public static String FULL_RESPONSE="FULL_RESPONSE";
     String client_id;
     String client_secret;
     String pass;
     String usr;
+    IzziConnectResponse rrrr;
+    boolean fullResponse=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ic_activity_izzi_connect);
-         client_id=getIntent().getStringExtra(IzziConnectActivity.CLIENT_ID);
-         client_secret=getIntent().getStringExtra(IzziConnectActivity.CLIENT_SECRET);
+        client_id=getIntent().getStringExtra(IzziConnectActivity.CLIENT_ID);
+        client_secret=getIntent().getStringExtra(IzziConnectActivity.CLIENT_SECRET);
+        fullResponse=getIntent().getBooleanExtra(IzziConnectActivity.FULL_RESPONSE,true);
+
         if(client_id==null ||client_secret==null)
         {
             setResult(301);
@@ -62,6 +67,12 @@ public class IzziConnectActivity extends Activity {
         setResult(300);//cancelado por el usuario
         finish();
     }
+
+    public void registro(View v){
+        Intent myIntent = new Intent(this, ic_activity_izzi_registro.class);
+        startActivityForResult(myIntent, 600);
+    }
+
     public void login(View v) {
         String user = "";
         String password = "";
@@ -111,7 +122,7 @@ public class IzziConnectActivity extends Activity {
         }
         usr=user;
         pass=password;
-        new AsyncResponse(this,client_id,client_secret,user,password).execute();
+        new AsyncResponse(this,client_id,client_secret,user,password,fullResponse).execute();
     }
 
     public  boolean isEmailValid(String email) {
@@ -159,9 +170,48 @@ public class IzziConnectActivity extends Activity {
             }
         }else{
             Intent i=new Intent();
-            i.putExtra(IzziConnectActivity.OAUTH_RESULT,(Serializable)rs);
-            setResult(234,i);
-            finish();
+            if(rs.getStatus()!=null){
+                if(!rs.getStatus().toLowerCase().equals("activo")){
+                    String errmsg="Por favor comunicate al servicio de atención a clientes";
+                    if(rs.getStatus().toLowerCase().equals("no servicio"))
+                        errmsg="Lo sentimos, debes contar con servicio de video";
+                    if(rs.getStatus().toLowerCase().equals("inactivo pago"))
+                        errmsg="Nuestros registros indican que tu cuenta presenta un adeudo";
+                    if(rs.getStatus().toLowerCase().equals("suspendido pago"))
+                        errmsg="Nuestros registros indican que tu cuenta presenta un adeudo";
+                    new AlertDialog.Builder(this)
+                            .setTitle("izzi")
+                            .setMessage(errmsg)
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // continue with delete
+                                    dialog.dismiss();
+                                    setResult(303);
+                                    finish();
+                                    return;
+                                }
+                            })
+
+                            .show();
+                    return;
+                }
+            }
+            if(rs.getPaquetes().toLowerCase().contains("blim")) {
+                i.putExtra(IzziConnectActivity.OAUTH_RESULT, fullResponse?rs.getToken_type():rs.getUid());
+                setResult(234, i);
+                finish();
+            }else{
+                rrrr=rs;
+                Intent myIntent = new Intent(this, IzziConnectContrataActivity.class);
+                myIntent.putExtra(IzziConnectActivity.CLIENT_ID,client_id);
+                myIntent.putExtra(IzziConnectActivity.CLIENT_SECRET,client_secret);
+                myIntent.putExtra("PASSWORD",pass);
+                myIntent.putExtra("USER",usr);
+                myIntent.putExtra(IzziConnectActivity.OAUTH_RESULT, rs.getToken_type());
+                myIntent.putExtra("ac_token",rs.getAccess_token());
+                startActivityForResult(myIntent, 700);
+            }
+
         }
     }
 
@@ -169,8 +219,13 @@ public class IzziConnectActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode==111){
-            new AsyncResponse(this,client_id,client_secret,usr,pass).execute();
+            new AsyncResponse(this,client_id,client_secret,usr,pass,fullResponse).execute();///////////mover
             return;
+        }else if(resultCode==711){
+            Intent i=new Intent();
+            i.putExtra(IzziConnectActivity.OAUTH_RESULT, rrrr.getToken_type());
+            setResult(234, i);
+            finish();
         }
     }
 
@@ -180,14 +235,15 @@ public class IzziConnectActivity extends Activity {
     String client_secret;
         String user;
         String pass;
-        public AsyncResponse(IzziConnectActivity respondTo,String st1,String st2,String st3,String st4) {
+        boolean fullResponse;
+        public AsyncResponse(IzziConnectActivity respondTo,String st1,String st2,String st3,String st4, boolean full) {
             this.act = respondTo;
             // hacer algo generico
             client_id=st1;
             client_secret=st2;
             user=st3;
             pass=st4;
-
+            fullResponse=full;
         }
 
         @Override
@@ -196,6 +252,7 @@ public class IzziConnectActivity extends Activity {
 
                // HttpPost request = new HttpPost(Constantes.endpoint + "/ms_oauth/oauth2/endpoints/oauthservice/tokens?" + "grant_type=password&username=" + user + "&password=" + pass + "&scope=UserProfile.me");
                 String url=(Constantes.endpoint + "/ms_oauth/oauth2/endpoints/oauthservice/tokens?" + "grant_type=password&username=" + user + "&password=" + pass + "&scope=UserProfile.me" );
+                //IzziConnectRefresh.refreshUser("eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCIsImtpZCI6Im9yYWtleSJ9.eyJvcmFjbGUub2F1dGgudXNlcl9vcmlnaW5faWRfdHlwZSI6IkxEQVBfVUlEIiwib3JhY2xlLm9hdXRoLnVzZXJfb3JpZ2luX2lkIjoidm11cmlsbG9AaXp6aS5teCIsImlzcyI6Ind3dy5vcmFjbGUuZXhhbXBsZS5jb20iLCJvcmFjbGUub2F1dGgucnQudHRjIjoicmVzb3VyY2VfYWNjZXNzX3RrIiwib3JhY2xlLm9hdXRoLnN2Y19wX24iOiJPQXV0aFNlcnZpY2VQcm9maWxlIiwiaWF0IjoxNDUwODI2NDY1MDAwLCJvcmFjbGUub2F1dGgudGtfY29udGV4dCI6InJlZnJlc2hfdG9rZW4iLCJleHAiOjE0NTA4NDA4NjUwMDAsInBybiI6bnVsbCwianRpIjoiYTY3ZDgxY2ItOTg5OC00MWFkLWFjM2UtOTMzYzgzOTI3ZjY4Iiwib3JhY2xlLm9hdXRoLmNsaWVudF9vcmlnaW5faWQiOiIxNTE2YjRiY2YyYTU0MzJhYjcxNTk4ODQxMWQwMjk0ZiIsIm9yYWNsZS5vYXV0aC5zY29wZSI6IlVzZXJQcm9maWxlLm1lIiwidXNlci50ZW5hbnQubmFtZSI6IkRlZmF1bHREb21haW4iLCJvcmFjbGUub2F1dGguaWRfZF9pZCI6IjEyMzQ1Njc4LTEyMzQtMTIzNC0xMjM0LTEyMzQ1Njc4OTAxMiJ9.eURv7Iyc2oa0xM48wWLrFtukS-hv2JXEAeZEqzN9A-iCnN2I3hDXcufdaDcD5SI1_iAiL3PV1luvwszgpUw76VfVutaOIzIN9F292PoyJMRC1dXRT02kJyrNrqbnG2avv7JOy_xaW4fq6e8wTKp-I6esP6iMSJKG7wTorakmuU4",client_id,client_secret);
                 HttpClient client =new DefaultHttpClient();
                 HttpPost request = new HttpPost(url);
                 request.setHeader("Authorization","Basic "+Base64.encodeToString((client_id + ":" + client_secret).getBytes(), Base64.NO_WRAP));
@@ -208,25 +265,35 @@ public class IzziConnectActivity extends Activity {
                 while ((line = rd.readLine()) != null)
                     result.append(line);
                 System.out.println(result);
+                String resultadoT=result.toString();
                 Gson gson = new Gson();
                 IzziConnectResponse rs=gson.fromJson(result.toString(),IzziConnectResponse.class);
                 if(!rs.error_description.isEmpty())
                     return rs;
+
                 HttpGet requestRes = new HttpGet(Constantes.endpoint+"/ms_oauth/resources/userprofile/me");
                 requestRes.setHeader("Authorization",rs.getAccess_token());
                 response = client.execute(requestRes);
                 rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
                 result = new StringBuffer();
                 line = "";
+                Gson datos=new Gson();
                 while ((line = rd.readLine()) != null)
                     result.append(line);
                 System.out.println(result);
+                IzziConnectResponse fin =datos.fromJson(result.toString(),IzziConnectResponse.class);
                 //si llego aca armar objeto de respuesta bien
-                IzziConnectResponse fin=gson.fromJson(result.toString(),IzziConnectResponse.class);
+                result=new StringBuffer(result.substring(0,result.length()-1)+",");
+                result.append(resultadoT.substring(1));
+               // IzziConnectResponse fin=new IzziConnectResponse();//gson.fromJson(result.toString(),IzziConnectResponse.class);
                 fin.setAccess_token(rs.getAccess_token());
+                fin.setToken_type(result.toString());
+                fin.setUid(resultadoT);
+
                 return fin;
 
             }catch (Exception e){
+                e.printStackTrace();
                 return null;
             }
 

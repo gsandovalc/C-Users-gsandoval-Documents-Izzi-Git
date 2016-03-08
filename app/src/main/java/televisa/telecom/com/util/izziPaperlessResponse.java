@@ -1,16 +1,21 @@
 package televisa.telecom.com.util;
 
+import com.google.gson.annotations.Expose;
+
 import televisa.telecom.com.model.Usuario;
 
 /**
  * Created by cevelez on 05/05/2015.
  */
 public class izziPaperlessResponse {
-
+    @Expose
         private String izziError="";
-        private String izziErrorCode="";
-        private Paperless response;
-        private String token="";
+    @Expose
+    private String izziErrorCode="";
+    @Expose
+    private Paperless response;
+    @Expose
+    private String token="";
         public String getIzziError() {
             return izziError;
         }
@@ -37,6 +42,7 @@ public class izziPaperlessResponse {
         }
 
     public class Paperless{
+        @Expose
         private String paperlessResponse="";
 
         public String getPaperlessResponse() {

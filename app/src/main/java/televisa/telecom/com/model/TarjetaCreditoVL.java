@@ -1,6 +1,7 @@
 package televisa.telecom.com.model;
 
 import com.activeandroid.Model;
+import com.google.gson.annotations.Expose;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -11,14 +12,23 @@ import java.util.GregorianCalendar;
  */
 public class TarjetaCreditoVL extends Model
 {
+    @Expose
     private String nombre;
+    @Expose
     private String numero;
+    @Expose
     private String tipo;
+    @Expose
     private String codigoSeguridad;
+    @Expose
     private String mesExpiracion;
+    @Expose
     private String anioExpiracion;
+    @Expose
     private String banco;
+    @Expose
     private String formaPago;
+    @Expose
     private boolean efectivo;
 
     public boolean isEfectivo() {

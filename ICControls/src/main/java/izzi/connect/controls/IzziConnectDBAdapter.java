@@ -20,17 +20,14 @@ import java.sql.SQLException;
     public static final String C_UID = "UID";
     public static final String C_SECRET = "SECRET";
     public static final String C_TOKEN = "TOKEN";
-    public static final String C_TOKEN_TYPE = "TOKEN_TYPE";
-    public static final String C_NAME = "NAME";
-    public static final String C_ACCOUNT= "ACCOUNT";
-    public static final String C_PAQ = "PAQ";
-    public static final String C_EXP="EXP";
+    public static final String C_TOKEN_REFRESH = "TOKEN_REFRESH";
+    public static final String C_RESPONSE = "RESPONSE";
 
     private Context contexto;
     private IzziConnectDBHelper dbHelper;
     private SQLiteDatabase db;
 
-    private String[] columnas = new String[]{ C_CLIENT_ID,C_CLIENT_SECRET,C_UID,C_SECRET,C_TOKEN,C_TOKEN_TYPE,C_NAME,C_ACCOUNT,C_PAQ,C_EXP} ;
+    private String[] columnas = new String[]{ C_CLIENT_ID,C_CLIENT_SECRET,C_UID,C_SECRET,C_TOKEN,C_TOKEN_REFRESH,C_RESPONSE} ;
 
     public IzziConnectDBAdapter(Context context){
 
@@ -52,14 +49,16 @@ import java.sql.SQLException;
         return c;
     }
 
-    public Cursor getRecord() throws SQLException
+    public IzziConnectResponse getRecord() throws SQLException
     {
         Cursor c = db.rawQuery("SELECT * FROM "+C_TABLA,null);
-
+        IzziConnectResponse response=null;
         //Nos movemos al primer registro de la consult
         if (c != null) {
             c.moveToFirst();
+            response=new IzziConnectResponse();
+            response.setToken_type(c.getString(0));
         }
-        return c;
+        return response;
     }
 }

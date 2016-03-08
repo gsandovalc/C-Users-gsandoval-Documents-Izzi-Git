@@ -3,6 +3,7 @@ package televisa.telecom.com.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.google.gson.annotations.Expose;
 
 /**
  * Created by cevelez on 30/04/2015.
@@ -10,19 +11,25 @@ import com.activeandroid.annotation.Table;
 @Table(name="Card")
 public class Card extends Model {
     @Column
+    @Expose
     private String name;
     @Column
+    @Expose
     private String number;
     @Column
+    @Expose
     private String expMonth;
     @Column
+    @Expose
     private String expYear;
     @Column
+    @Expose
     private String user;
     @Column
+    @Expose
     private String type;
 
-
+    @Expose
     @Column
     private String cvv;
 

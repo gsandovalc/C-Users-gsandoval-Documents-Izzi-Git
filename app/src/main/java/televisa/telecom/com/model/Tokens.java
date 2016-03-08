@@ -1,33 +1,36 @@
 package televisa.telecom.com.model;
 
+import com.google.gson.annotations.Expose;
+
 import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * Created by cevelez on 22/06/2015.
  */
 public class Tokens {
+    @Expose
     private String reasonCode;
- 
+    @Expose
     private String accountNumber;
- 
+    @Expose
     private String requestId;
- 
+    @Expose
     private String reconciliationId;
- 
+    @Expose
     private String subscriptionId;
- 
+    @Expose
     private String requestToken;
- 
+    @Expose
     private String createdDate;
- 
+    @Expose
     private String cardDigits;
- 
+    @Expose
     private String cardType;
- 
+    @Expose
     private String cardMonth;
- 
+    @Expose
     private String cardYear;
- 
+    @Expose
     private String active;
 
     public String getReasonCode() {

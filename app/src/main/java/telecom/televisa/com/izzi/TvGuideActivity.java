@@ -28,6 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.ChannelListAdapter;
 import televisa.telecom.com.util.GetGuide;
 import televisa.telecom.com.util.HorizontalScrollViewExt;
@@ -52,6 +53,7 @@ public class TvGuideActivity extends Activity implements ScrollViewListener,Izzi
     int scrollOverCount=0;
 
     final IzziRespondable act=this;
+    Usuario info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +69,9 @@ public class TvGuideActivity extends Activity implements ScrollViewListener,Izzi
         cal.set(Calendar.MINUTE,minutos);
         cal.set(Calendar.SECOND,0);
         fechaInicial=cal.getTime();
-        new GetGuide(this,true).execute(new HashMap<String, String>());
+         info=((IzziMovilApplication)getApplication()).getCurrentUser();
+
+        new GetGuide(this,true,info.getRpt()).execute(new HashMap<String, String>());
         setTimeLine();
         initControls();
     }
@@ -152,7 +156,7 @@ public class TvGuideActivity extends Activity implements ScrollViewListener,Izzi
         fechaInicial=cla.getTime();
         Map mapa=new HashMap<String, String>();
         mapa.put("scrolls",scrolls+"");
-        new GetGuide(this,true).execute(mapa);
+        new GetGuide(this,true,info.getRpt()).execute(mapa);
     }
     private void setTimeLine(){
         LinearLayout tw=(LinearLayout)findViewById(R.id.fila_horas);
@@ -244,7 +248,7 @@ public class TvGuideActivity extends Activity implements ScrollViewListener,Izzi
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
-                            new GetGuide(act,true).execute(new HashMap<String, String>());
+                            new GetGuide(act,true,info.getRpt()).execute(new HashMap<String, String>());
                             dialog.dismiss();
                         }
                     })

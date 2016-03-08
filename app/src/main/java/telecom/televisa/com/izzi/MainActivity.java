@@ -80,22 +80,60 @@ public class MainActivity extends Activity implements IzziRespondable {
         }
 
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode,
+                resultCode, data);
+    }
 
     public void test(View v){
-        // customize these values to suit your needs.
-     //   Intent izziOauth = new Intent(this, IzziConnectActivity.class);
-       // izziOauth.putExtra(IzziConnectActivity.CLIENT_ID, "1516b4bcf2a5432ab715988411d0294f");
-        //izziOauth.putExtra(IzziConnectActivity.CLIENT_SECRET, "tOby1RZDVN");
+      //   customize these values to suit your needs.
+      //  Intent izziOauth = new Intent(this, IzziConnectActivity.class);
+        //izziOauth.putExtra(IzziConnectActivity.CLIENT_ID, "35ae4f9aa9574e1a86a9319e32f318d31");
+        //izziOauth.putExtra(IzziConnectActivity.CLIENT_SECRET, "Y6XyZSibOpDsy9L00WBK");
+        //izziOauth.putExtra(IzziConnectActivity.FULL_RESPONSE,true);
+
         //startActivityForResult(izziOauth, 201);
     }
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //if (resultCode == 201) {
-          //  IzziConnectResponse result = (IzziConnectResponse)data.getSerializableExtra(IzziConnectActivity.OAUTH_RESULT);
-        //}
-    }
+        if (resultCode == 234) {
+            String result = data.getStringExtra(IzziConnectActivity.OAUTH_RESULT);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    this);
 
+            // set title
+            alertDialogBuilder.setTitle("Respuesta");
+
+            // set dialog message
+            alertDialogBuilder
+                    .setMessage(result)
+                    .setCancelable(false)
+                    .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            // if this button is clicked, close
+                            // current activity
+                            MainActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,int id) {
+                            // if this button is clicked, just close
+                            // the dialog box and do nothing
+                            dialog.cancel();
+                        }
+                    });
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
+        }
+    }
+*/
     public void login(View v){
         String user="";
         String password="";
@@ -220,6 +258,7 @@ public class MainActivity extends Activity implements IzziRespondable {
 
             @Override
             public void onCancel() {
+
                 System.out.println("Holaaaaa canceladooooo");
             }
 

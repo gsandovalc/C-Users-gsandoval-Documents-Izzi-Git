@@ -1,12 +1,18 @@
 package televisa.telecom.com.util;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Created by cevelez on 22/07/2015.
  */
 public class izziEdoCuentaResponse {
+    @Expose
     protected String izziError="";
+    @Expose
     protected String izziErrorCode="";
+    @Expose
     private MobileEdoCuentaResponse response;
+    @Expose
     protected String token="";
 
     public String getIzziError() {
@@ -42,36 +48,55 @@ public class izziEdoCuentaResponse {
     }
 
     public class MobileEdoCuentaResponse implements MobileResponse{
+        @Expose
         private boolean extraInt;
+        @Expose
         private boolean extraTV;
+        @Expose
         private boolean extraTel;
+        @Expose
         private boolean extraVeo;
+        @Expose
         private boolean extraOtros;
+        @Expose
         private boolean extraBonus;
-
+        @Expose
         private String mes;
+        @Expose
         private String periodo;
+        @Expose
         private String fechaLimite;
+        @Expose
         private String saldoAnterior;
 
         //Cargos del mes
+        @Expose
         private String paquete;
+        @Expose
         private String totalPaquete;
-
+        @Expose
         private String totalInt="";
+        @Expose
         private String totalTV="";
+        @Expose
         private String totalTel="";
+        @Expose
         private String totalVeo="";
+        @Expose
         private String totalOtros="";
+        @Expose
         private String totalBonus="";
-
+        @Expose
         private String subTotal;
+        @Expose
         private String pagos="0";
+        @Expose
         private String pagoTexto;
-
+        @Expose
         private String total;
-
+        @Expose
         private String contrato;
+        @Expose
         private String url;
 
 

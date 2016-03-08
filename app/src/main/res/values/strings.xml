@@ -28,4 +28,5 @@
     <string name="title_activity_recupera_pass">RecuperaPass</string>
     <string name="title_activity_recupera_fin">RecuperaFinActivity</string>
     <string name="title_activity_switch_user">SwitchUserActivity</string>
+    <string name="title_activity_push_notification_center">PushNotificationCenterActivity</string>
 </resources>

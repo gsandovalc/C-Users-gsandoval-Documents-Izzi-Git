@@ -29,11 +29,13 @@ public class GetGuide extends AsyncTask<Map<String,String>, Object, Object> {
     IzziRespondable respondTo=null;
     Dialog loadingOverlay;
     boolean encryptData=false;
-    public GetGuide(IzziRespondable respondTo, boolean encryptData){
+    String rpt;
+
+    public GetGuide(IzziRespondable respondTo, boolean encryptData, String rpt){
         this.respondTo=respondTo;
         this.encryptData=encryptData;
         // hacer algo generico
-
+        this.rpt=rpt;
     }
 
     @Override

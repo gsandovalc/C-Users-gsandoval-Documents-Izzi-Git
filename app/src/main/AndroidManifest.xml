@@ -223,9 +223,15 @@
 
         <activity
             android:name=".SwitchUserActivity"
+            android:label="@string/title_activity_switch_user"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".PushNotificationCenterActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/title_activity_switch_user" >
+            android:label="@string/title_activity_push_notification_center" >
         </activity>
     </application>
 

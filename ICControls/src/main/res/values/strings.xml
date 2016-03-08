@@ -4,4 +4,12 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="ic_text"> recibirá la siguiente información:</string>
+    <string name="ic_namename">@string/app_name </string>
+    <string name="ic_can"><u>cancelar</u></string>
+
+    <string name="ic_contrata">Aún no cuentas con Blim \n Por <b>$89.00 al mes </b>adicionales. </string>
+    <string name="title_activity_ic_activity_izzi_registro">ic_activity_izzi_registro</string>
+    <string name="title_activity_izzi_connect_contrata">IzziConnectContrataActivity</string>
+
 </resources>

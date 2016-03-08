@@ -3,6 +3,7 @@ package televisa.telecom.com.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
@@ -14,182 +15,257 @@ import televisa.telecom.com.util.MobileResponse;
 
 @Table(name = "Usuario")
 public class Usuario extends Model implements MobileResponse {
+    @Expose
     @Column
     public String userName;
+    @Expose
     @Column
     public String password;
+    @Expose
     @Column
     public String apellidoMaterno;
     @Column
+    @Expose
     public String apellidoPaterno;
     @Column
+    @Expose
     public String correoContacto;
     @Column
+    @Expose
     public String cvEmail;
     @Column
+    @Expose
     public String cvLastBalance;
     @Column
+    @Expose
     public String cvMailAddres;
     @Column
+    @Expose
     public String cvNameAccount;
     @Column
+    @Expose
     public String cvNumberAccount;
     @Column
+    @Expose
     public String fechaFactura ;
     @Column
+    @Expose
     public String fechaLimite ;
     @Column
+    @Expose
     public String ipCable;
     @Column
+    @Expose
     public String nombreContacto;
     @Column
+    @Expose
     public String telefonoPrincipal;
     @Column
+    @Expose
     public String fechaUltimoPago;
     @Column
+    @Expose
     public boolean tieneCuentaSiebel;
     @Column
+    @Expose
     public String tipoSource;
 
 
     //Datos clientes migrados Cablemas
     @Column
+    @Expose
     public String telMigrado;
     @Column
+    @Expose
     public String ctaMigrada;
 
     // Propiedades comunes
+    @Expose
     @Column
     public boolean digitalFlag;
     @Column
+    @Expose
     public String latitud;
     @Column
+    @Expose
     public String longitud;
     @Column
+    @Expose
     public String nodo;
     @Column
+    @Expose
     public String ramal;
     @Column
+    @Expose
     public String hub;
     @Column
+    @Expose
     public String retorno;
+    @Expose
     @Column(name = "rpt")
     public String rpt;
     @Column
+    @Expose
     public Integer antiguedad;
     @Column
+    @Expose
     public String clienteDesde;
     @Column
+    @Expose
     public String perfilPago;
     @Column
+    @Expose
     private boolean legacy=false;
     @Column
+    @Expose
     public String paquete;
     @Column
+    @Expose
     private String token;
     @Column
+    @Expose
     public String fotoPerfil;
     @Column
+    @Expose
     public  TarjetaCreditoVL payment;
+    @Expose
     public List<PagosList> pagos = null;
 
     //seccion de extras;
     @Column
+    @Expose
     public boolean extrasInternet=false;
     @Column
+    @Expose
     public boolean extrasVideo=false;
     @Column
+    @Expose
     public boolean extrasTelefono=false;
+    @Expose
     public List<String> dataExtrasInternet;
+    @Expose
     public List<String> dataExtrasVideo;
+    @Expose
     public List<String> dataExtrasTelefono;
 
     @Column
+    @Expose
     public  String extraInternet;
     @Column
+    @Expose
     public  String extraVideo;
 
 
     @Column
+    @Expose
     public  String extraTelefono;
 
+    @Expose
     @Column
     public String bankLineN1;
     @Column
+    @Expose
     public String bankLineN2;
     @Column
+    @Expose
     public String bankLineN3;
     @Column
+    @Expose
     public String bankLineN4;
     @Column
+    @Expose
     public String bankLineN5;
     @Column
+    @Expose
     public String bankLineN6;
     @Column
+    @Expose
     public String bankLine1;
     @Column
+    @Expose
     public String bankLine2;
     @Column
+    @Expose
     public String bankLine3;
     @Column
+    @Expose
     public String bankLine4;
     @Column
+    @Expose
     public String bankLine5;
     @Column
+    @Expose
     public String bankLine6;
     @Column
+    @Expose
     private String paqTotal;
     @Column
+    @Expose
     private String otrosTotal;
     @Column
+    @Expose
     private String telTotal;
     @Column
+    @Expose
     private String intTotal;
     @Column
+    @Expose
     private String vidTotal;
     @Column
+    @Expose
     private String veoTotal;
     @Column
+    @Expose
     private String bonTotal;
     @Column
+    @Expose
     private String saldoMesAnterior;
     @Column
+    @Expose
     private String saldoTotalCta;
     @Column
+    @Expose
     private String edoDate;
     @Column
+    @Expose
     private String edoDueDate;
     @Column
+    @Expose
     private String paqName;
     @Column
+    @Expose
     private boolean paperless=false;
     @Column
+    @Expose
     private String barcode="";
     @Column
+    @Expose
     private String extra1=null;
     @Column
+    @Expose
     private String extra2=null;
     @Column
+    @Expose
     private String ttAccount=null;
-
+    @Expose
     @Column
     private boolean esMigrado=false;
-
+    @Expose
     @Column
     private boolean esNegocios=false;
-
+    @Expose
     @Column
     private String mesFactura;
-
+    @Expose
     @Column
     private String fechaLimit;
-
+    @Expose
     @Column
     private String parentType="";
-
+    @Expose
     @Column
     private String parentAccount="";
-
+    @Expose
     private List<Cuentas> cuentasAsociadas;
 
     public boolean isEsMigrado() {

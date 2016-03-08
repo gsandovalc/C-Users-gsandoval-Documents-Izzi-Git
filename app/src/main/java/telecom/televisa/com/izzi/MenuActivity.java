@@ -97,7 +97,10 @@ public class MenuActivity extends Activity implements View.OnClickListener{
         } else if (v == iguia) {
             i = new Intent(getApplicationContext(), TvGuideActivity.class);
 
-        } else if (v == ichatea){
+        } else if (v == inotifica) {
+            i = new Intent(getApplicationContext(), PushNotificationCenterActivity.class);
+
+        }else if (v == ichatea){
             i = new Intent(getApplicationContext(), ChatActivity.class);
          }else if( v==illamanos) {
             Usuario info = ((IzziMovilApplication) getApplication()).getCurrentUser();

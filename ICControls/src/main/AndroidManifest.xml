@@ -15,6 +15,16 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
+        <activity
+            android:name=".ic_activity_izzi_registro"
+            android:label="@string/title_activity_ic_activity_izzi_registro"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".IzziConnectContrataActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/title_activity_izzi_connect_contrata" >
+        </activity>
     </application>
 
 </manifest>

@@ -6,10 +6,12 @@ import android.os.AsyncTask;
 
 import com.activeandroid.query.Delete;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
 import telecom.televisa.com.izzi.IzziMovilApplication;
+import telecom.televisa.com.izzi.UserActivity;
 import televisa.telecom.com.model.Cuentas;
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
@@ -24,6 +26,7 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
     boolean encryptData=false;
     static String USR="";
     static String PASS="";
+    public static UserActivity refresca;
     public AsyncLoginUpdate(Application respondTo, boolean encryptData){
         this.respondTo=respondTo;
         this.encryptData=encryptData;
@@ -44,7 +47,7 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
                     entry.setValue(AES.encrypt(entry.getValue()));
                 }
             }
-            Gson gson = new Gson();
+            Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
             izziLoginResponse response = gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);
 
             return response;
@@ -127,6 +130,8 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
             }
             sr.save();
             res.setCurrentUser(sr);
+            if(refresca!=null)
+                refresca.refresh();
         }else{
             //llenar una bandera de error en el login async
         }

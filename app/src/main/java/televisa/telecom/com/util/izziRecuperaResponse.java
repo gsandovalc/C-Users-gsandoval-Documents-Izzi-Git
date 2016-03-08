@@ -1,13 +1,18 @@
 package televisa.telecom.com.util;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Created by cevelez on 20/07/2015.
  */
 public class izziRecuperaResponse {
-
+    @Expose
     protected String izziError="";
+    @Expose
     protected String izziErrorCode="";
+    @Expose
     private MobileRecuperarResponse response;
+    @Expose
     protected String token="";
 
     public String getIzziError() {

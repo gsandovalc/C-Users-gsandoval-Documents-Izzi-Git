@@ -13,6 +13,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
@@ -51,7 +52,11 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                   entry.setValue(AES.encrypt(entry.getValue()));
               }
             }
-            Gson gson = new Gson();
+            //Gson gson = new Gson();
+           Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+            //GsonBuilder gsb=new GsonBuilder();
+
+
             if(respondTo instanceof PaperlessActivity){
                 izziPaperlessResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziPaperlessResponse.class);
                 return response;
@@ -60,9 +65,11 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                 return response;
 
             }else if(respondTo instanceof RecuperaPass) {
+
                 izziRecuperaResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziRecuperaResponse.class);
                 return response;
             }else if(respondTo instanceof PagoEstablecimientosActivity) {
+                String ahhh =(String) IzziWS.callWebService(params[0], metodo);
                 izziDondePagarResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziDondePagarResponse.class);
                 return response;
             }else if(respondTo instanceof UserActivity) {
@@ -82,6 +89,7 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                 return response;
             }
             else{
+              //  izziLoginResponse responsse=gsb.create().fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);
                 izziLoginResponse response = gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);
                 return response;
             }
@@ -177,7 +185,10 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
         try{
             loadingOverlay.dismiss();
             respondTo.notifyChanges(response);
-        }catch(Exception e){}
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
 
     }
 

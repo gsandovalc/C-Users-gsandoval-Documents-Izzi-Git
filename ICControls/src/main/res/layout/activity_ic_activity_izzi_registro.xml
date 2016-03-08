@@ -1,0 +1,167 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="0dp"
+    android:background="#222"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    tools:context="izzi.connect.controls.ic_activity_izzi_registro">
+    <ImageView
+        android:id="@+id/show_menu"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="30dp"
+        android:clickable="true"
+        android:onClick="cancelar"
+        android:src="@drawable/ic_regresar" />
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
+        android:id="@+id/imageView"
+        android:src="@drawable/ic_logoizzi" />
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:id="@+id/imageView2"
+        android:src="@drawable/lineaspash">
+
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:layout_marginBottom="20dp"
+            android:textAlignment="center"
+            android:text="Crea tu usuario y contraseña"/>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_height="70dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:background="@drawable/woval"
+                android:layout_height="50dp">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:inputType="number"
+                    android:ems="6"
+                    android:maxLength="8"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp"
+                    android:hint="Número de cuenta"
+                    android:background="@drawable/woval"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:id="@+id/ic_contrato"
+                    />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_height="70dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:background="@drawable/woval"
+                android:layout_height="50dp">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:inputType="textEmailAddress"
+                    android:ems="6"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp"
+                    android:hint="usuario (Correo@ejemplo.com)"
+                    android:background="@drawable/woval"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:id="@+id/ic_user"
+                    />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+
+            android:layout_height="50dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+
+                android:background="@drawable/woval"
+                android:layout_height="80dp">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:ems="8"
+                    android:layout_marginLeft="5dp"
+                    android:hint="Contraseña"
+                    android:background="@drawable/woval"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:id="@+id/ic_password"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="370dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:background="@drawable/goval"
+            android:layout_height="60dp"
+            android:clickable="true"
+            android:onClick="registro"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Confirmar registro"
+                android:textColor="#ffffff"
+                android:layout_alignParentTop="false"
+                android:textIsSelectable="false"
+                android:textSize="20dp"
+                android:layout_centerInParent="true"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

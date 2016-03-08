@@ -14,7 +14,14 @@ import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.activeandroid.query.Select;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import java.util.Calendar;
+import java.util.List;
+
+import televisa.telecom.com.model.Push;
+import televisa.telecom.com.model.Usuario;
 
 /**
  * Created by cevelez on 05/06/2015.
@@ -23,6 +30,7 @@ public class GcmMessageHandler  extends IntentService {
 
     String mes;
     private Handler handler;
+    GcmMessageHandler papa=this;
     public GcmMessageHandler() {
         super("GcmMessageHandler");
     }
@@ -58,7 +66,7 @@ public class GcmMessageHandler  extends IntentService {
                                 .setContentTitle("izzi")
                                 .setContentText(mes);
                 Intent resultIntent = new Intent(getApplicationContext(), MainActivity.class);
-                Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                Uri alarmSound = Uri.parse("android.resource://" + papa.getPackageName() + "izziSound.mp3");
                 mBuilder.setSound(alarmSound);
                 mBuilder.setAutoCancel(true);
                 TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
@@ -75,6 +83,21 @@ public class GcmMessageHandler  extends IntentService {
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
                 mNotificationManager.notify(257, mBuilder.build());
+                List<Usuario> usr= new Select().from(Usuario.class).execute();
+
+                if(usr!=null) {
+                    if (usr.size() > 0) {
+                        Usuario currentUser = usr.get(0);
+                        currentUser.getUserName();
+                        Push p=new Push();
+                        p.setCorreo(currentUser.getUserName());
+                        p.setFecha(Calendar.getInstance().getTime().getTime()+"");
+                        p.setMessage(mes);
+                        p.setStatus("1");
+                        p.save();
+                    }
+                }
+
 
             }
         });
