@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.net.SocketTimeoutException;
 import java.util.Map;
 
 
@@ -96,6 +97,8 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
 
         }catch(Exception e){
             e.printStackTrace();
+            if(e instanceof SocketTimeoutException)
+                return e;
             return null;
         }
 
@@ -184,6 +187,10 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
         super.onPostExecute(response);
         try{
             loadingOverlay.dismiss();
+            if(response instanceof Exception){
+              respondTo.slowInternet();
+                return;
+            }
             respondTo.notifyChanges(response);
         }catch(Exception e){
             e.printStackTrace();

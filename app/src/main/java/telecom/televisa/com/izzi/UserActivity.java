@@ -495,6 +495,12 @@ public void swUsr(View v){
         estado=rs;
 
     }
+
+    @Override
+    public void slowInternet() {
+        //showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
+    }
+
     public void establecimientos(View v){
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
 

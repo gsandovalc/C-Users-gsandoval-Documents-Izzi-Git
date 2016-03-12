@@ -16,7 +16,7 @@ import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.IzziRespondable;
 
 
-public class RecuperaFinActivity extends Activity implements IzziRespondable{
+public class RecuperaFinActivity extends IzziActivity implements IzziRespondable{
     String account;
     String type;
     @Override
@@ -62,5 +62,11 @@ public class RecuperaFinActivity extends Activity implements IzziRespondable{
         startActivity(i);
         finish();
         overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
+    }
+
+    @Override
+    public void slowInternet() {
+        showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
+
     }
 }

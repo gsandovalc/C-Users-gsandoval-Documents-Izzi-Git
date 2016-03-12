@@ -1,5 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="telecom.televisa.com.izzi.AddCardActivity">
     <LinearLayout
@@ -95,43 +97,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ingresa el número"
+            android:text="Ingresa el número de tu tarjeta"
 
             android:textColor="#000000"
             android:textSize="15sp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="1dp"
             />
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:background="#55D60270"
-            android:layout_height="40dp">
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_margin="1dp"
-                android:background="#FFFFFF"
-                android:layout_height="fill_parent">
 
-
-                <EditText
+                <com.devmarvel.creditcardentry.library.CreditCardForm
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:inputType="number"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"
+                    app:include_exp="false"
                     android:ems="6"
                     android:textSize="15sp"
-                    android:maxLength="16"
+                    app:include_zip="false"
+                    app:include_security="false"
                     android:background="#FFFFFF"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
                     android:id="@+id/cardNumber"
+                    app:input_background="@drawable/trjetacuadro"
                     />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
 
 
         <LinearLayout
@@ -140,82 +128,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tarjeta detectada"
-            android:textColor="#000000"
-            android:textSize="15sp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="1dp"
-            />
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="30dp">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/visa"
-                android:id="@+id/imageView5" />
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
-                android:src="@drawable/mastercard"
-                android:id="@+id/imageView6" />
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="fill_parent"
-                android:layout_marginLeft="5dp"
-                android:src="@drawable/amex"
-                android:id="@+id/imageView7" />
-        </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
             android:orientation="vertical"
             android:layout_marginTop="0dp"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre como aparece en la tarjeta"
-
-                android:textColor="#000000"
-                android:textSize="15sp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="1dp"
-                />
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="#55D60270"
-                android:layout_height="40dp">
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_margin="1dp"
-                    android:orientation="vertical"
-                    android:background="#FFFFFF"
-                    android:layout_height="fill_parent">
-
-
-                    <EditText
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:inputType="textPersonName"
-                        android:ems="6"
-                        android:textSize="15sp"
-                        android:maxLength="40"
-                        android:background="#FFFFFF"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:id="@+id/cardName"
-                        />
-
-                </LinearLayout>
-            </RelativeLayout>
 
 
 
@@ -224,15 +142,15 @@
               android:layout_height="wrap_content"
               android:orientation="horizontal">
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight=".4"
+                android:layout_width="fill_parent"
+
                 android:layout_gravity="left"
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mes"
+                android:text="Fecha de expiración"
 
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -241,30 +159,38 @@
                 android:layout_marginBottom="1dp"
                 />
             <RelativeLayout
-                android:layout_width="fill_parent"
+                android:layout_width="150dp"
                 android:layout_marginLeft="20dp"
-
-                android:background="#55D60270"
-                android:layout_height="40dp">
+                android:layout_marginTop="5dp"
+                android:background="#dfdfdf"
+                android:layout_height="35dp">
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_margin="1dp"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:background="#FFFFFF"
                     android:layout_height="fill_parent">
 
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="2dp"
 
+                        android:layout_height="fill_parent"
+                        android:src="@drawable/calendar"/>
                     <EditText
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:inputType="number"
                         android:ems="6"
                         android:textSize="15sp"
-                        android:maxLength="2"
+                        android:maxLength="5"
+                        android:hint="MM/YY"
+                        android:inputType="datetime"
                         android:background="#FFFFFF"
                         android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:id="@+id/cardMonth"
+                        android:gravity="center"
+                        android:id="@+id/cardExp"
                         />
 
                 </LinearLayout>
@@ -278,45 +204,7 @@
                   android:layout_gravity="left"
                   android:orientation="vertical"
                   android:layout_height="wrap_content">
-                  <TextView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:text="Año"
 
-                      android:layout_marginTop="5dp"
-                      android:textColor="#000000"
-                      android:textSize="15sp"
-                      android:layout_marginBottom="1dp"
-                      />
-                  <RelativeLayout
-                      android:layout_width="fill_parent"
-                        android:layout_marginRight="20dp"
-                      android:background="#55D60270"
-                      android:layout_height="40dp">
-                      <LinearLayout
-                          android:layout_width="fill_parent"
-                          android:layout_margin="1dp"
-                          android:orientation="vertical"
-                          android:background="#FFFFFF"
-                          android:layout_height="fill_parent">
-
-
-                          <EditText
-                              android:layout_width="fill_parent"
-                              android:layout_height="fill_parent"
-                              android:inputType="number"
-                              android:ems="6"
-                              android:textSize="15sp"
-                              android:maxLength="16"
-                              android:background="#FFFFFF"
-                              android:layout_gravity="center_vertical"
-                              android:gravity="center_vertical"
-                              android:id="@+id/cardYear"
-                              />
-
-                      </LinearLayout>
-
-                  </RelativeLayout>
               </LinearLayout>
               <LinearLayout
                   android:layout_width="0dp"

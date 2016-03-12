@@ -23,7 +23,7 @@ import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.izziLoginResponse;
 
 
-public class PaymentOkActivity extends Activity implements IzziRespondable {
+public class PaymentOkActivity extends IzziActivity implements IzziRespondable {
     IzziRespondable acty=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +115,12 @@ public class PaymentOkActivity extends Activity implements IzziRespondable {
             // mostrar mensaje rosa de usuario o contraseña invalido si es el caso
             //si no popup
         }
+
+    }
+
+    @Override
+    public void slowInternet() {
+        showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
 
     }
 }

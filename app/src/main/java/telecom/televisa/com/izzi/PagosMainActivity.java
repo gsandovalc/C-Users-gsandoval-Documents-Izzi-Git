@@ -1,21 +1,18 @@
 package telecom.televisa.com.izzi;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
-
-import com.activeandroid.query.Select;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -28,7 +25,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import televisa.telecom.com.model.Card;
 import televisa.telecom.com.model.Tokens;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.AES;
@@ -39,7 +35,7 @@ import televisa.telecom.com.util.izziPaymentResponse;
 import televisa.telecom.com.util.izziTokenResponse;
 
 
-public class PagosMainActivity extends Activity implements IzziRespondable{
+public class PagosMainActivity extends IzziActivity implements IzziRespondable{
     boolean togleRadio=false;
     boolean deleteCard=false;
     boolean getCards=false;
@@ -80,6 +76,13 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
             lastBalance="$ "+saldo;
             if(((int)saldo)<=0){
                 ((LinearLayout)findViewById(R.id.pagggar)).setVisibility(LinearLayout.GONE);
+                try {
+                    LinearLayout.LayoutParams lpr = ((LinearLayout.LayoutParams) ((ScrollView) findViewById(R.id.tjtsv)).getLayoutParams());
+                    lpr.bottomMargin = Util.dpToPx(this, 60);
+                    ((ScrollView) findViewById(R.id.tjtsv)).setLayoutParams(lpr);
+                }catch(Exception e){
+
+                }
 
             }
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
@@ -331,24 +334,30 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
                     }
                 });
                 String type = tjts.get(i).getCardType();
-                String typeName = "";
+                int recurso = -1;
                 int tipo=Integer.parseInt(type);
                 switch (tipo) {
                     case 3:
-                        typeName = "Amex/Vigente";
+                        recurso = R.drawable.amex;//"Amex/Vigente";
                         break;
                     case 1:
-                        typeName = "Visa/Vigente";
+                        recurso = R.drawable.visa;//"Visa/Vigente";
                         break;
                     case 2:
-                        typeName = "MasterCard/Vigente";
+                        recurso = R.drawable.master_card;//"MasterCard/Vigente";
                         break;
                 }
-                ((TextView) layout.findViewById(R.id.vendortjt)).setText(typeName);
+                ((ImageView)layout.findViewById(R.id.crdimg)).setImageResource(recurso);
+                ((TextView) layout.findViewById(R.id.vendortjt)).setText(tjts.get(i).getCardMonth() + "/" + tjts.get(i).getCardYear());
                 String number = tjts.get(i).getCardDigits();
-                String maskedNumber = "●●●● ●●●● ●●●● " + number;
+                String maskedNumber;
+                if(tipo==3){
+                    maskedNumber = "XXXX XXXXXX X" + number;
+                }else {
+                     maskedNumber = "XXXX XXXX XXXX " + number;
+                }
                 ((TextView) layout.findViewById(R.id.tjtnumber)).setText(maskedNumber);
-                ((LinearLayout) findViewById(R.id.contenedortjt)).addView(layout, -1, (int) Util.dpToPx(this, 70));
+                ((LinearLayout) findViewById(R.id.contenedortjt)).addView(layout, -1, (int) Util.dpToPx(this, 140));
             }
             //Acaba lo de la tarjeta me robo lo de abajo para el oncreate
 
@@ -381,6 +390,11 @@ public class PagosMainActivity extends Activity implements IzziRespondable{
         i.putExtra("auth", pago.getResponse().getAutorizacion());
         startActivity(i);
         finish();
+    }
+
+    @Override
+    public void slowInternet() {
+        showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
     }
 
 }

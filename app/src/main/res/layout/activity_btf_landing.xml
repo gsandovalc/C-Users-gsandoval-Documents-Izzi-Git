@@ -27,7 +27,7 @@
                 android:layout_height="fill_parent"
                 android:textColor="#fff"
                 android:textAlignment="center"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:gravity="center"
                 android:text="Ingresar"/>
             </RelativeLayout>
@@ -40,12 +40,12 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:textColor="#fff"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:clickable="true"
                 android:onClick="recupera"
                 android:textAlignment="center"
                 android:gravity="center"
-                android:text="Recuperar contraseña"
+                android:text="Registrar"
                  />
         </RelativeLayout>
         </LinearLayout>

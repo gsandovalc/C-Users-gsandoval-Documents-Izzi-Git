@@ -24,12 +24,12 @@ import televisa.telecom.com.util.Constantes;
 public class IzziWS {
     private final String METHOD_TOLOGIN="login";
     public static final String METHOD_ENCRYPT="test/encrypt";
-    static int timeoutSocket = 600000;
+    static int timeoutSocket = 60000;
     public IzziWS() {
     }
     public static Object callWebService(Map<String,String> params,String method) throws Exception{
         HttpParams httpParameters = new BasicHttpParams();
-        int timeoutConnection = 300000;
+        int timeoutConnection = 60000;
         HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
         HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
         HttpClient httpclient = new DefaultHttpClient(httpParameters);
@@ -46,6 +46,7 @@ public class IzziWS {
         BasicResponseHandler handler = new BasicResponseHandler();
         String resultado = httpclient.execute(request, handler);
         httpclient.getConnectionManager().shutdown();
+
         return resultado;
     }
 

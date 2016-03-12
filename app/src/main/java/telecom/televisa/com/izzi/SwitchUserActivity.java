@@ -33,7 +33,7 @@ import televisa.telecom.com.util.PagosListAdapter;
 import televisa.telecom.com.util.izziLoginResponse;
 
 
-public class SwitchUserActivity extends Activity implements IzziRespondable {
+public class SwitchUserActivity extends IzziActivity implements IzziRespondable {
     ListView lv;
     List<Cuentas> cuentas;
     SwitchUserActivity act=this;
@@ -180,5 +180,10 @@ public class SwitchUserActivity extends Activity implements IzziRespondable {
 
         }
 
+    }
+
+    @Override
+    public void slowInternet() {
+        showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
     }
 }

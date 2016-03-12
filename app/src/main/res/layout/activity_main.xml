@@ -112,11 +112,11 @@
         android:layout_below="@+id/linearLayout"
         android:id="@+id/textoo"
         android:layout_centerHorizontal="true"
-        android:textColor="#66333333"
+        android:textColor="#000"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:text="Para poder utilizar el servicio de izzi App es necesario registrarse en:"
+        android:text="¿Olvidaste tu contraseña?"
         android:gravity="center"
         android:layout_height="wrap_content" />
     <TextView
@@ -125,7 +125,7 @@
         android:layout_centerHorizontal="true"
         android:textColor="#D60270"
         android:layout_marginTop="5dp"
-        android:text="izzi.mx"
+        android:text="recupera aquí"
         android:textStyle="bold"
         android:clickable="true"
         android:onClick="registro"
@@ -179,11 +179,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Entra con Facebook"
+                android:text="Ingresar con Facebook"
                 android:textColor="#ffffff"
                 android:layout_alignParentTop="false"
                 android:textIsSelectable="false"
-                android:textSize="16dp"
+                android:textSize="15dp"
 
                 android:layout_gravity="center"
                 android:gravity="center" />

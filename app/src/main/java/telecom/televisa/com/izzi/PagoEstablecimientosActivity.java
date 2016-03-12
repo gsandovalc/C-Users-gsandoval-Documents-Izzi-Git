@@ -24,9 +24,10 @@ import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.izziDondePagarResponse;
+import televisa.telecom.com.util.izziLoginResponse;
 
 
-public class PagoEstablecimientosActivity extends Activity implements IzziRespondable, View.OnClickListener, PopoverView.PopoverViewDelegate {
+public class PagoEstablecimientosActivity extends IzziActivity implements IzziRespondable, View.OnClickListener, PopoverView.PopoverViewDelegate {
     int[]bancos=new int[]{R.id.bankName1,R.id.bankName2,R.id.bankName3,R.id.bankName4,R.id.bankName5,R.id.bankName6,R.id.bankName7,R.id.bankName8,R.id.bankName9,R.id.bankName10};
     int[]bank=new int[]{R.id.bank1,R.id.bank2,R.id.bank3,R.id.bank4,R.id.bank5,R.id.bank6,R.id.bank7,R.id.bank8,R.id.bank9,R.id.bank10};
     int[]referencias=new int[]{R.id.bankRef1,R.id.bankRef2,R.id.bankRef3,R.id.bankRef4,R.id.bankRef5,R.id.bankRef6,R.id.bankRef7,R.id.bankRef8,R.id.bankRef9,R.id.bankRef10};
@@ -122,33 +123,16 @@ public class PagoEstablecimientosActivity extends Activity implements IzziRespon
     @Override
     public void notifyChanges(Object response) {
         if(response==null){
-            new AlertDialog.Builder(this)
-                    .setTitle("izzi")
-                    .setMessage("No se pudo obtener los lugares de pago")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+
+            String errorD="No se pudo obtener los lugares de pago";
+            showError(errorD,1);
             return;
         }
 
          izziDondePagarResponse rs=   (izziDondePagarResponse)response;
         if(!rs.getIzziErrorCode().isEmpty()){
-            new AlertDialog.Builder(this)
-                    .setTitle("izzi")
-                    .setMessage("No se pudo obtener los lugares de pago")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+            String errorD="No se pudo obtener los lugares de pago";
+            showError(errorD,1);
             return;
         }
         int contador=0;
@@ -181,6 +165,11 @@ public class PagoEstablecimientosActivity extends Activity implements IzziRespon
             ((RelativeLayout)findViewById(tiendas[i])).setVisibility(RelativeLayout.GONE);
         }
         ((LinearLayout)findViewById(R.id.contene)).setVisibility(LinearLayout.VISIBLE);
+    }
+
+    @Override
+    public void slowInternet() {
+        showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
     }
 
     @Override

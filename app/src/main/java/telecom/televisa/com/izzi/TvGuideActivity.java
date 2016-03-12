@@ -39,7 +39,7 @@ import televisa.telecom.com.util.ViewListAdapter;
 import televisa.telecom.com.util.izziGuideResponse;
 
 
-public class TvGuideActivity extends Activity implements ScrollViewListener,IzziRespondable {
+public class TvGuideActivity extends IzziActivity implements ScrollViewListener,IzziRespondable {
     public Date fechaInicial;
     public int anchoCelda;
     private ListView listViewLeft;
@@ -284,6 +284,12 @@ public class TvGuideActivity extends Activity implements ScrollViewListener,Izzi
         mDemoSlider.setVisibility(SliderLayout.VISIBLE);
         setCanales();
         setLineUp();
+    }
+
+    @Override
+    public void slowInternet() {
+        showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
+
     }
 
     public void filter(View v){

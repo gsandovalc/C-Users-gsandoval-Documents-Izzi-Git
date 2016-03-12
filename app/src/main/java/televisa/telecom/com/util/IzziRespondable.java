@@ -5,4 +5,5 @@ package televisa.telecom.com.util;
  */
 public interface IzziRespondable {
     public void notifyChanges(Object response);
+    public void slowInternet();
 }

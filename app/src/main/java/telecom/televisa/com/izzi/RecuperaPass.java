@@ -20,7 +20,7 @@ import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.izziRecuperaResponse;
 
 
-public class RecuperaPass extends Activity  implements IzziRespondable {
+public class RecuperaPass extends IzziActivity  implements IzziRespondable {
     String account;
     String tipo;
     @Override
@@ -87,7 +87,7 @@ public class RecuperaPass extends Activity  implements IzziRespondable {
     @Override
     public void notifyChanges(Object response) {
         if(response==null){
-            showError(null);
+            showError("Ocurrio un error inesperado",1);
             return;
         }
 try {
@@ -102,8 +102,13 @@ try {
     i.putExtra("response", AES.decrypt(rs.getResponse().getInfo()));
     startActivityForResult(i, 233);
 }catch(Exception e){
-    showError("Ocurrio un error inesperado");
+    showError("Ocurrio un error inesperado",1);
 }
+    }
+
+    @Override
+    public void slowInternet() {
+        showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
     }
 
     @Override

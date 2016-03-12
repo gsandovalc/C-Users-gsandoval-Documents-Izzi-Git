@@ -2,6 +2,7 @@ package telecom.televisa.com.izzi;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -9,11 +10,16 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.activeandroid.query.Delete;
 import com.facebook.AccessToken;
@@ -41,7 +47,7 @@ import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.izziLoginResponse;
 
 
-public class MainActivity extends Activity implements IzziRespondable {
+public class MainActivity extends IzziActivity implements IzziRespondable {
     CallbackManager callbackManager;
     MainActivity actividad=this;
     boolean fromfb=false;
@@ -276,19 +282,10 @@ public class MainActivity extends Activity implements IzziRespondable {
 
         if(response==null){
             response= (Object)(new izziLoginResponse());
-            ((izziLoginResponse)response).setIzziError("Error inesperado");
+            ((izziLoginResponse)response).setIzziError("Revisa tu conexión a internet");
             ((izziLoginResponse)response).setIzziErrorCode("999");
-            new AlertDialog.Builder(this)
-                    .setTitle("izzi")
-                    .setMessage("Ocurrio un error al cargar la información.\n Intentarlo de nuevo")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+            String errorD=((izziLoginResponse)response).getIzziError();
+            showError(errorD,2);
             return;
         }
 
@@ -356,24 +353,18 @@ public class MainActivity extends Activity implements IzziRespondable {
                 ((izziLoginResponse)response).setIzziError("Tu cuenta de facebook no se encuentra vinculada con izzi, ayudanos a vincularla iniciando sesión");
                 ((LinearLayout)findViewById(R.id.bfblg)).setVisibility(LinearLayout.GONE);
             }
-            new AlertDialog.Builder(this)
-                    .setTitle("izzi")
-                    .setMessage(((izziLoginResponse)response).getIzziError())
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
-
+            String errorD=((izziLoginResponse)response).getIzziError();
+            showError(errorD,errorD.contains("ines")?1:0);
 
         }
 
     }
 
 
+    @Override
+    public void slowInternet(){
+        showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
+    }
     public  boolean isEmailValid(String email) {
         boolean isValid = false;
         String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";

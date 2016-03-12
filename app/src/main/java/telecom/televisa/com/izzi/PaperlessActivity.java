@@ -26,7 +26,7 @@ import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.IzziRespondable;
 
 
-public class PaperlessActivity extends Activity implements IzziRespondable {
+public class PaperlessActivity extends IzziActivity implements IzziRespondable {
     Dialog popup;
     Activity actvty=this;
     @Override
@@ -94,6 +94,12 @@ public class PaperlessActivity extends Activity implements IzziRespondable {
                 }
             });
         }
+    }
+
+    @Override
+    public void slowInternet() {
+        showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
+
     }
 
     public  boolean isEmailValid(String email) {

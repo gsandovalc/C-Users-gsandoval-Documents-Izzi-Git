@@ -4,12 +4,19 @@
     android:shape="rectangle">
 
     <!-- view background color -->
-    <solid
-        android:color="#dd000000" >
-    </solid>
+    <gradient
+        android:startColor="#000000"
+        android:endColor="#fff"
+        android:angle="270"
+        >
+    </gradient>
     <!-- Here is the corner radius -->
     <corners
         android:radius="10dp"   >
     </corners>
+    <stroke
+        android:color="#f3f3f3"
+        android:width="1dp"
+       ></stroke>
 
 </shape>
