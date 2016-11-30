@@ -30,4 +30,7 @@
     <string name="title_activity_switch_user">SwitchUserActivity</string>
     <string name="title_activity_push_notification_center">PushNotificationCenterActivity</string>
     <string name="title_activity_registro_main_activity">Registro_main_activity</string>
+    <string name="title_activity_registro_step2">RegistroStep2Activity</string>
+    <string name="title_activity_registro_paso3">RegistroPaso3</string>
+    <string name="title_activity_smsconfirma">SMSConfirmaActivity</string>
 </resources>

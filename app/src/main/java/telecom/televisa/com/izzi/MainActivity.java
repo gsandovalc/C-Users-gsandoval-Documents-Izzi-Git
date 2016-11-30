@@ -10,9 +10,13 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.Html;
+import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -84,6 +88,57 @@ public class MainActivity extends IzziActivity implements IzziRespondable {
         } catch (NoSuchAlgorithmException e) {
 
         }
+        final TextView txtview2 = (TextView)findViewById(R.id.mostrar);
+        final EditText txtview = (EditText)findViewById(R.id.password);
+        txtview2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    case MotionEvent.ACTION_DOWN:
+                        txtview.setTransformationMethod(null);
+                        break;
+
+                    case MotionEvent.ACTION_MOVE:
+
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        txtview.setTransformationMethod(new PasswordTransformationMethod());
+
+                        break;
+                }
+                return false;            }
+        });
+
+        txtview.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // TODO Auto-generated method stub
+                String pass="";
+                if(s==null) {
+                    pass = "";
+                }else{
+                    pass=s.toString();
+                }
+                if(pass.isEmpty()){
+                    findViewById(R.id.mostrar).setVisibility(View.GONE);
+                }else{
+                    findViewById(R.id.mostrar).setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
     }
     @Override
@@ -222,14 +277,12 @@ public class MainActivity extends IzziActivity implements IzziRespondable {
             }
         }
     }
-    public void registro(View v){
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.izzi.mx/registro"));
-        startActivity(browserIntent);
-    }
 
-    public void olvideMiPass(View v){
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.izzi.mx/home?log=in"));
-        startActivity(browserIntent);
+    public void registro(View v){
+        Intent i = new Intent(this, RecuperaPass.class);
+        startActivity(i);
+        overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
+        finish();
 
     }
     public void closeView(View v){

@@ -96,13 +96,24 @@
                     android:inputType="textPassword"
                     android:ems="8"
                    android:layout_marginLeft="6dp"
-                   android:layout_marginRight="4dp"
+                   android:layout_marginRight="70dp"
                     android:hint="Contraseña"
                     android:background="#FFFFFF"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:id="@+id/password"
                     />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:id="@+id/mostrar"
+                    android:visibility="gone"
+                    android:layout_marginLeft="-63dp"
+                    android:text="MOSTRAR"/>
             </LinearLayout>
 
 

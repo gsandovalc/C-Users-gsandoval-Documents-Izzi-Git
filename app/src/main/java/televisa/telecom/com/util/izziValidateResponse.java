@@ -2,16 +2,18 @@ package televisa.telecom.com.util;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
+
 /**
- * Created by cevelez on 20/07/2015.
+ * Created by cevelez on 30/03/2016.
  */
-public class izziRecuperaResponse {
+public class izziValidateResponse implements Serializable{
     @Expose
     protected String izziError="";
     @Expose
     protected String izziErrorCode="";
     @Expose
-    private MobileRecuperarResponse response;
+    private MobileValidateResponse response;
     @Expose
     protected String token="";
 
@@ -31,11 +33,11 @@ public class izziRecuperaResponse {
         this.izziErrorCode = izziErrorCode;
     }
 
-    public MobileRecuperarResponse getResponse() {
+    public MobileValidateResponse getResponse() {
         return response;
     }
 
-    public void setResponse(MobileRecuperarResponse response) {
+    public void setResponse(MobileValidateResponse response) {
         this.response = response;
     }
 
@@ -47,16 +49,25 @@ public class izziRecuperaResponse {
         this.token = token;
     }
 
-    public class MobileRecuperarResponse{
+    public class MobileValidateResponse implements Serializable{
         @Expose
-        private String info;
-
-        public String getInfo() {
-            return info;
+        private String code="";
+        @Expose
+        private String smsEnabled="";
+        public String getCode() {
+            return code;
         }
 
-        public void setInfo(String info) {
-            this.info = info;
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        public String getSmsEnabled() {
+            return smsEnabled;
+        }
+
+        public void setSmsEnabled(String smsEnabled) {
+            this.smsEnabled = smsEnabled;
         }
 
 

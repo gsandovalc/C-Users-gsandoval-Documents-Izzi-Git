@@ -202,7 +202,6 @@ public void swUsr(View v){
                         if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
                             TextView myText = (TextView) findViewById(R.id.totalText );
                             ((TextView) findViewById(R.id.leyenda1Text)).setText("Saldo vencido pagar de inmediato ");
-
                             Animation anim = new AlphaAnimation(0.0f, 1.0f);
                             anim.setDuration(50); //You can manage the time of the blink with this parameter
                             anim.setStartOffset(20);

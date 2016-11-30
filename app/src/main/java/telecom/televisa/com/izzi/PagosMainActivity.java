@@ -335,6 +335,7 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
                 });
                 String type = tjts.get(i).getCardType();
                 int recurso = -1;
+
                 int tipo=Integer.parseInt(type);
                 switch (tipo) {
                     case 3:

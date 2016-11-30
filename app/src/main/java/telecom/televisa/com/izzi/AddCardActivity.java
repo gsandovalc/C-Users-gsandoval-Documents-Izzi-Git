@@ -67,6 +67,10 @@ public class AddCardActivity extends IzziActivity implements IzziRespondable {
         com.devmarvel.creditcardentry.library.CreditCard cc=form.getCreditCard();
 
         boolean error=false;
+        if(((EditText)findViewById(R.id.cardExp)).getText().toString().isEmpty()){
+            showError("Revisa la fecha de expiración",0);
+            return;
+        }
         mes=((EditText)findViewById(R.id.cardExp)).getText().toString().split("/")[0];
         ano=((EditText)findViewById(R.id.cardExp)).getText().toString().split("/")[1];
         numero=cc.getCardNumber().replace(" ","");

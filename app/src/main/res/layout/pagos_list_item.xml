@@ -75,4 +75,48 @@
             android:text="Prueba"/>
     </RelativeLayout>
 </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:background="#000"
+        android:id="@+id/monthedoC"
+        android:visibility="gone"
+
+        android:layout_height="60dp">
+        <LinearLayout
+            android:layout_marginRight="60dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Enviar estado de cuenta de"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:id="@+id/monthedo"
+                android:textSize="18sp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center_horizontal"
+                android:text="ABRIL"/>
+            </LinearLayout>
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:scaleType="fitStart"
+            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/envelope"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
     </LinearLayout>

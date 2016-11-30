@@ -31,7 +31,7 @@ public class RecuperaPass extends IzziActivity  implements IzziRespondable {
 
     }
     public void closeView(View v){
-        Intent i = new Intent(this, BtfLanding.class);
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
         finish();

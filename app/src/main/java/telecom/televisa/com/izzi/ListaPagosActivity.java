@@ -11,10 +11,11 @@ import android.widget.TextView;
 import java.util.List;
 
 import televisa.telecom.com.model.PagosList;
+import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.PagosListAdapter;
 
 
-public class ListaPagosActivity extends Activity {
+public class ListaPagosActivity extends Activity  implements IzziRespondable {
     ListView lv;
     List<PagosList> pagos;
     @Override
@@ -38,12 +39,22 @@ public class ListaPagosActivity extends Activity {
             lv.setVisibility(ListView.GONE);
             ((TextView)findViewById(R.id.sinpagos)).setVisibility(TextView.VISIBLE);
         }else {
-            PagosListAdapter adapter = new PagosListAdapter(this, R.layout.pagos_list_item, pagos, 0);
+            PagosListAdapter adapter = new PagosListAdapter(this, R.layout.pagos_list_item, pagos, 0,this);
             lv.setAdapter(adapter);
         }
     }
 
     public void closeView(View v){
         this.finish();
+    }
+
+    @Override
+    public void notifyChanges(Object response) {
+
+    }
+
+    @Override
+    public void slowInternet() {
+
     }
 }

@@ -8,12 +8,13 @@ android {
         applicationId "telecom.televisa.com.izzi"
         minSdkVersion 15
         targetSdkVersion 15
-        versionCode 23
-        versionName "2.2.6"
+        versionCode 29
+        versionName "2.5.6"
     }
     buildTypes {
         release {
             minifyEnabled false
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

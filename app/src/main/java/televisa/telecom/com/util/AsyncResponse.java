@@ -25,6 +25,10 @@ import telecom.televisa.com.izzi.PagosMainActivity;
 import telecom.televisa.com.izzi.PaperlessActivity;
 import telecom.televisa.com.izzi.R;
 import telecom.televisa.com.izzi.RecuperaPass;
+import telecom.televisa.com.izzi.RegistroPaso3;
+import telecom.televisa.com.izzi.RegistroStep2Activity;
+import telecom.televisa.com.izzi.Registro_main_activity;
+import telecom.televisa.com.izzi.SMSConfirmaActivity;
 import telecom.televisa.com.izzi.UserActivity;
 import televisa.telecom.com.ws.IzziWS;
 
@@ -75,6 +79,10 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                 return response;
             }else if(respondTo instanceof UserActivity) {
                 izziEdoCuentaResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziEdoCuentaResponse.class);
+                return response;
+
+            }else if(respondTo instanceof Registro_main_activity||respondTo instanceof RegistroStep2Activity||respondTo instanceof RegistroPaso3||respondTo instanceof SMSConfirmaActivity) {
+                izziValidateResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziValidateResponse.class);
                 return response;
 
             }else if(respondTo instanceof PagosMainActivity && metodo.equals("payments/deleteToken")){

@@ -31,12 +31,14 @@ public class BtfLanding extends Activity {
         overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
         finish();
     }
-    public void recupera(View v){
-        Intent i = new Intent(this, RecuperaPass.class);
+
+    public void registro(View v){
+        Intent i = new Intent(this, Registro_main_activity.class);
         startActivity(i);
         overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
         finish();
     }
+
 
 
 }

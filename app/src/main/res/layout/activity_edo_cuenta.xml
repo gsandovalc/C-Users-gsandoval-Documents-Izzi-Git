@@ -422,22 +422,25 @@
 </LinearLayout>
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:background="@drawable/brounded_corners"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
-        android:clickable="true"
-        android:onClick="aclaraciones"
+
         android:layout_height="45dp">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_centerInParent="true"
             android:orientation="horizontal">
-
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:background="#cc00C1B5"
+            android:clickable="true"
+            android:onClick="aclaraciones"
+            android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -450,6 +453,29 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="#ffffff"
                 />
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="fill_parent"
+                android:layout_centerInParent="true"
+                android:background="#ccD60270"
+                android:clickable="true"
+                android:onClick="sendBill"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:src="@drawable/envelope"
+                    android:layout_margin="11dp"
+                    android:id="@+id/edocuenta"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#ffffff"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>
