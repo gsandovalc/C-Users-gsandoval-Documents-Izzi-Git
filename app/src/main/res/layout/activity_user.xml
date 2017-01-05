@@ -3,500 +3,439 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@drawable/black_back"
     tools:context="telecom.televisa.com.izzi.UserActivity">
-
-
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ffffff">
+    >
     <include layout="@layout/header" />
 <RelativeLayout
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:id="@+id/cuadroParent"
-    android:layout_height="0dp"
+    android:layout_height="wrap_content"
     android:minHeight="120dp"
-    android:layout_weight=".28">
+    >
     <LinearLayout
         android:layout_width="fill_parent"
-        android:background="#fff"
         android:orientation="vertical"
-        android:layout_height="fill_parent">
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="#11b1b1b1"
+            android:orientation="horizontal">
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/imageView1"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:padding="4dp"
-            android:src="@drawable/avatar1"
+            android:src="@drawable/avatar2"
             android:clickable="true"
+            android:layout_marginLeft="15dp"
             android:onClick="foto"
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
             app:riv_corner_radius="100dip"
             app:riv_oval="true"
             />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textSize="16sp"
-                android:layout_marginTop="2dp"
-                android:textAllCaps="true"
-                android:text="Carlos"
-                android:textColor="#000"
-                android:id="@+id/nameText" />
-            </RelativeLayout>
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:layout_height="wrap_content">
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:textSize="15sp"
-                android:text="Teléfono"
-                android:textColor="#881a1a1a"
-                 />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="2dp"
-                android:textSize="15sp"
-                android:text="55 52 43 03 30"
-                android:textColor="#881a1a1a"
-                android:id="@+id/phoneText" />
-            </LinearLayout>
-            </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="Cuenta"
-                    android:textColor="#881a1a1a"
-                     />
+                    android:layout_centerHorizontal="true"
+                    android:textSize="25sp"
+                    android:textAllCaps="true"
+                    android:text="Buenos días "
+                    android:textColor="#b1b1b1"
+                    android:id="@+id/greating" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                  android:layout_marginTop="2dp"
-                    android:textSize="15sp"
-                    android:text="55 52 43 03 30"
-                    android:textColor="#881a1a1a"
-                    android:id="@+id/accountText" />
-            </LinearLayout>
-            </RelativeLayout>
-            </LinearLayout>
-     </LinearLayout>
-
-</RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:background="#ffffff"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
-        android:layout_weight=".22"
-        android:layout_height="0dp">
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:background="#9900c1b5"
-            android:id="@+id/cuadroInfo3"
-            android:layout_marginRight="1dp"
-            android:layout_height="fill_parent">
-
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:orientation="vertical"
-
-                android:layout_height="fill_parent">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="SERVICIO"
-                    android:textSize="16sp"
-                    android:textColor="#FFF"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal"
-                    android:layout_marginTop="3dp"
-                    android:id="@+id/textView8" />
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="izzi + TV PackHD"
-
-                    android:id="@+id/paqueteText"
-                    android:textStyle="bold"
-                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="30sp"
+                    android:layout_marginTop="2dp"
+                    android:textAllCaps="true"
+                    android:text="Carlos"
                     android:textColor="#fff"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="17sp"
-                    android:layout_centerHorizontal="true" />
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:background="#66ffffff"
-                android:layout_alignParentBottom="true"
-
-                android:clickable="true"
-                android:onClick="servicios"
-                android:layout_height="30dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ver detalle"
-                    android:id="@+id/textView6"
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textColor="#fff"
-                    android:textSize="15sp"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:background="#88d60270"
-            android:id="@+id/cuadroInfo4"
-            android:layout_gravity="right"
-            android:layout_marginLeft="1dp"
-            android:layout_height="fill_parent">
-            <LinearLayout
-                android:layout_width="fill_parent"
-
-                android:orientation="vertical"
-
-                android:layout_height="fill_parent">
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pagar antes de:"
-                    android:id="@+id/leyenda1Text"
-                    android:textColor="#fff"
-                    android:layout_marginTop="0dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="13sp"
-                    android:layout_centerHorizontal="true" />
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="03 de Julio 2015"
-                    android:id="@+id/fechaText"
-                    android:layout_alignParentBottom="true"
-                    android:textColor="#fff"
-                    android:layout_marginTop="1dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textSize="13sp"
-                    android:layout_centerHorizontal="true" />
-
-
-
+                    android:id="@+id/nameText" />
 
             </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="$1200"
-                android:textStyle="bold"
-                android:digits=""
-                android:id="@+id/totalText"
-                android:textColor="#fff"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:layout_centerInParent="true" />
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:background="#66ffffff"
-                android:layout_alignParentBottom="true"
-                android:clickable="true"
-                android:onClick="estadoCuenta"
-                android:layout_height="30dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ver detalle"
-
-                    android:textStyle="bold"
-                    android:layout_centerVertical="true"
-                    android:textColor="#fff"
-                    android:textSize="15sp"
-                    android:layout_centerHorizontal="true" />
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-    </LinearLayout>
-
-
-
-      <ScrollView
-          android:layout_width="fill_parent"
-          android:layout_weight=".50"
-          android:scrollbars="none"
-          android:layout_height="0dp">
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:orientation="vertical"
-        android:id="@+id/inerscroll"
-        android:layout_height="wrap_content">
-
-
-        <LinearLayout
-        android:layout_width="fill_parent"
-        android:background="#ffffff"
-        android:orientation="vertical"
-        android:layout_height="fill_parent">
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:background="#fff"
-            android:clickable="true"
-            android:onClick="pay"
-            android:layout_height="55dp">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitStart"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/pagol"
-                android:layout_alignParentLeft="true"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:textSize="16sp"
-                android:layout_marginLeft="70dp"
-                android:text="Pago en linea"
-                android:layout_centerVertical="true"
-                android:textColor="#000"
-                android:id="@+id/textView10" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imageView2"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-
-                android:src="@drawable/flecha"
-                android:layout_alignParentRight="true"
-                 />
-
-        </RelativeLayout>
-           <LinearLayout
-               android:layout_width="fill_parent"
-               android:background="#441a1a1a"
-               android:layout_marginLeft="20dp"
-               android:layout_height="1dp"></LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:background="#fff"
-
-            android:clickable="true"
-            android:onClick="callPay"
-            android:layout_height="55dp">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitStart"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/pagot"
-                android:layout_alignParentLeft="true"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:textSize="16sp"
-                android:layout_marginLeft="70dp"
-                android:text="Pago por teléfono"
-                android:layout_centerVertical="true"
-                android:textColor="#000"
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/flecha"
-                android:layout_alignParentRight="true"
-                />
-        </RelativeLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:background="#441a1a1a"
-                android:layout_marginLeft="20dp"
-                android:layout_height="1dp"></LinearLayout>
-
-            <RelativeLayout
-            android:layout_width="fill_parent"
-            android:background="#fff"
-            android:clickable="true"
-            android:onClick="establecimientos"
-            android:layout_height="55dp">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:scaleType="fitStart"
-                android:layout_marginLeft="20dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/pagoe"
-                android:layout_alignParentLeft="true"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:textSize="16sp"
-                android:layout_marginLeft="70dp"
-                android:text="Pago en establecimientos"
-                android:layout_centerVertical="true"
-                android:textColor="#000"
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/flecha"
-                android:layout_alignParentRight="true"
-                />
-        </RelativeLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:background="#441a1a1a"
-                android:layout_marginLeft="20dp"
-                android:layout_height="1dp"></LinearLayout>
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:background="#fff"
-                android:clickable="true"
-                android:onClick="pagos"
-                android:layout_height="55dp">
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:scaleType="fitStart"
-                    android:layout_marginLeft="20dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/pagoh"
-                    android:layout_alignParentLeft="true"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textSize="16sp"
-                    android:layout_marginLeft="70dp"
-                    android:text="Historial"
-                    android:layout_centerVertical="true"
-                    android:textColor="#000"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/flecha"
-                    android:layout_alignParentRight="true"
-                    />
-            </RelativeLayout>
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:background="#441a1a1a"
-                android:layout_marginLeft="20dp"
-                android:layout_height="1dp"></LinearLayout>
-            <RelativeLayout
-                android:layout_width="fill_parent"
-                android:background="#fff"
-                android:clickable="true"
-                android:onClick="estadoCuenta"
-                android:layout_height="55dp">
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:scaleType="fitStart"
-                    android:layout_marginLeft="20dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/pagoc"
-                    android:layout_alignParentLeft="true"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:textSize="16sp"
-                    android:layout_marginLeft="70dp"
-                    android:text="Estado de cuenta"
-                    android:layout_centerVertical="true"
-                    android:textColor="#000"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/flecha"
-                    android:layout_alignParentRight="true"
-                    />
-            </RelativeLayout>
 
         </LinearLayout>
 
+     </LinearLayout>
 
+</RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mi Factura"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
+        android:clickable="true"
+        android:onClick="pay"
+        >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="#11b1b1b1"
+                android:orientation="horizontal">
+              <ImageView
+                  android:layout_width="80dp"
+                  android:layout_marginLeft="15dp"
+                  android:src="@drawable/mifactura"
+                  android:layout_height="80dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="$1200"
+                        android:textStyle="bold"
+                        android:digits=""
+                        android:id="@+id/totalText"
+                        android:textColor="#fff"
+                        android:layout_gravity="left"
+                        android:gravity="left"
+                        android:textSize="30sp"
+                        android:layout_centerInParent="true" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pagar antes de:"
+                        android:id="@+id/leyenda1Text"
+                        android:textColor="#fff"
+                        android:layout_marginTop="0dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="17sp"
+                        android:layout_centerHorizontal="true" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="03 de Julio 2015"
+                        android:id="@+id/fechaText"
+                        android:layout_alignParentBottom="true"
+                        android:textColor="#fff"
+                        android:layout_marginTop="1dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="17sp"
+                        android:layout_centerHorizontal="true" />
+                </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mis Datos"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:layout_marginLeft="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
+
+        >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="#11b1b1b1"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/usuario"
+                    android:layout_height="80dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="#b1b1b1"
+                            android:layout_height="wrap_content"
+                            android:text="Cuenta:"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="55 52 43 03 30"
+                            android:textColor="#fff"
+                            android:id="@+id/accountText" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="#b1b1b1"
+                            android:layout_height="wrap_content"
+                            android:text="Teléfono:"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="2dp"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="55 52 43 03 30"
+                            android:textColor="#fff"
+                            android:id="@+id/phoneText" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="#b1b1b1"
+                            android:layout_height="wrap_content"
+                            android:text="Referencia:"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:textSize="20sp"
+
+                            android:layout_marginLeft="5dp"
+                            android:textStyle="bold"
+                            android:text="55 52 43 03 30"
+                            android:textColor="#fff"
+                            android:id="@+id/referenceText" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mi Servicio"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:layout_marginLeft="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
+        android:clickable="true"
+        android:onClick="servicios"
+        >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="#11b1b1b1"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/services"
+                    android:layout_height="80dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="#b1b1b1"
+                            android:layout_height="wrap_content"
+                            android:text="Servicio:"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginLeft="5dp"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:text="55 52 43 03 30"
+                            android:textColor="#fff"
+                            android:id="@+id/paqueteText" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/right"
+            android:layout_marginRight="10dp"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mi código de barras"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:layout_marginLeft="5dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="establecimientos"
+        android:minHeight="120dp"
+        >
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="#11b1b1b1"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="fill_parent"
+                            android:layout_gravity="center"
+                            android:layout_centerHorizontal="true"
+                            android:layout_height="70dp"
+                            android:id="@+id/codebar"
+                            />
+                    </RelativeLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textColor="#b1b1b1"
+                        android:id="@+id/codetext"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:text="Con este código puedes pagar en Tiendas izzi y en tiendas de Grupo Walmart."
+                        android:textColor="#b1b1b1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
-  </ScrollView>
-
-
+    </ScrollView>
 </LinearLayout>
 
 </RelativeLayout>

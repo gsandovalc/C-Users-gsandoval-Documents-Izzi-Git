@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="5dp"
-    android:background="#fff"
+    android:background="@drawable/black_back"
     tools:context="telecom.televisa.com.izzi.RegistroStep2Activity">
 
     <ImageView
@@ -31,7 +31,7 @@
         android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:text="Selecciona una opción"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:id="@+id/textView"
         android:textSize="17sp"
         android:layout_alignParentTop="true"
@@ -52,18 +52,15 @@
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="fill_parent"
-        android:background="#fff"
         android:layout_centerVertical="true"
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="fill_parent"
-            android:background="#55dfdfdf"
             android:id="@+id/telcont"
             android:clickable="true"
             android:layout_height="60dp">
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:background="#fff"
                 android:orientation="horizontal"
                 android:layout_height="fill_parent">
 
@@ -95,19 +92,17 @@
                     android:gravity="center_vertical"
                     android:layout_marginRight="20dp"
                     android:textSize="16sp"
-                    android:textColor="#000"
+                    android:textColor="#fff"
                     android:text="Deseo confirmar mi cuenta, mediante un correo electrónico"/>
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
-            android:background="#55dfdfdf"
             android:id="@+id/smsc"
             android:clickable="true"
             android:layout_height="60dp">
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:background="#fff"
                 android:orientation="horizontal"
                 android:layout_height="fill_parent">
 
@@ -137,8 +132,8 @@
                     android:layout_marginLeft="60dp"
                     android:gravity="center_vertical"
                     android:layout_marginRight="20dp"
+                    android:textColor="#fff"
                     android:textSize="16sp"
-                    android:textColor="#000"
                     android:text="Deseo confirmar mi cuenta, mediante un mensaje de texto (SMS)."/>
             </RelativeLayout>
 

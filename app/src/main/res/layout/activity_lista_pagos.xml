@@ -1,13 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/black_back"
     tools:context="telecom.televisa.com.izzi.ListaPagosActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/vista"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#ffffff">
+        android:orientation="vertical">
     <include layout="@layout/headerextra" />
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -53,9 +53,9 @@
         android:scrollbars="none"
         android:layout_marginTop="2dp"
         android:overScrollMode="never"
-        android:divider="#FFF"
-        android:background="#fff"
-        android:dividerHeight="10dp"
+        android:divider="#bbb"
+
+        android:dividerHeight="1dp"
         android:layout_height="fill_parent">
 
         </ListView>

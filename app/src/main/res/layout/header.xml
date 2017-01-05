@@ -11,7 +11,7 @@
             android:layout_width="fill_parent"
             android:id="@+id/hcontainer"
             android:layout_height="50dp"
-            android:background="#fff">
+            >
 
             <ImageView
                 android:id="@+id/splash_logo"
@@ -49,24 +49,7 @@
                 android:layout_centerVertical="true"
                 android:src="@drawable/menu" />
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="60dp"
-                android:clickable="true"
-                android:layout_alignParentRight="true"
-                android:onClick="swUsr"
-                android:id="@+id/swUsr"
-                android:gravity="right"
-                android:layout_height="fill_parent">
-                <ImageView
 
-                    android:layout_width="40dp"
-                    android:layout_height="fill_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/switchuser" />
-            </LinearLayout>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="fill_parent"

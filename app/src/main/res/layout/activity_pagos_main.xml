@@ -1,146 +1,182 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/black_back"
+    android:id="@+id/vista"
     tools:context="telecom.televisa.com.izzi.PagosMainActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:id="@+id/vista"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#ffffff">
+        >
     <include layout="@layout/headerextra" />
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:background="#fff"
             android:layout_marginTop="5dp"
             android:padding="1dp"
-            android:layout_height="50dp">
+            android:layout_height="90dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/llborder"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true">
             <LinearLayout
-                android:layout_width="fill_parent"
-                android:orientation="horizontal"
-                android:layout_height="fill_parent">
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight=".3333333"
-                    android:layout_height="fill_parent">
-                    <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight=".49">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"
+                    android:textColor="#b1b1b1"
+                    android:text="Total a pagar"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:id="@+id/totalText"
+                    android:text="$0.00"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/llborder"
+                android:orientation="vertical"
+                android:layout_weight=".49">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#b1b1b1"
+                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:text="Mes de facturación"
+                        />
+                    <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
-                        android:orientation="vertical"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:background="#fff"
-                        >
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000"
-                            android:textSize="11sp"
-                            android:gravity="center"
-                            android:text="Mes de facturación"
-                            />
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:gravity="center"
-                            android:textColor="#000"
-                            android:textSize="13sp"
-                            android:id="@+id/fechaTextMonth"
-                            android:text="Junio"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="2dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#00C1B5"></LinearLayout>
-                    </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight=".3333333"
-                    android:layout_height="fill_parent">
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:background="#fff"
-                        android:layout_marginTop="5dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:textSize="11sp"
-                            android:id="@+id/leyenda1Text"
-                            android:textColor="#000"
-                            android:text="Pagar antes de"
-                            />
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:gravity="center"
-                            android:textColor="#000"
-                            android:textSize="12sp"
-                            android:id="@+id/fechaText"
-                            android:text="Junio"
-                            />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="2dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#D60270"></LinearLayout>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_weight=".3333333"
-                    android:layout_height="fill_parent">
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:background="#fff"
-                        android:layout_marginTop="5dp"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:textColor="#fff"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        android:id="@+id/fechaTextMonth"
+                        android:text="Junio"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/llborder"
+                    android:orientation="vertical"
+                    android:layout_weight=".50">
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textSize="11sp"
-                        android:textColor="#000"
-                        android:text="Total a pagar"
+                        android:textSize="15sp"
+                        android:id="@+id/leyenda1Text"
+                        android:textColor="#b1b1b1"
+                        android:text="Pagar antes de"
                         />
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:gravity="center"
-                        android:textColor="#000"
-                        android:textSize="13sp"
-                        android:id="@+id/totalText"
-                        android:text="$0.00"
+                        android:textColor="#fff"
+                        android:textSize="19sp"
+                        android:id="@+id/fechaText"
+                        android:text="Junio"
                         />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="2dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="#FCD116"></LinearLayout>
-                </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="230dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:padding="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/cardout"
+            android:layout_height="130dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/cardin">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:src="@drawable/chip"
+                    android:layout_marginLeft="8dp"
+                    android:layout_centerVertical="true"
+                    android:layout_height="20dp" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:src="@drawable/tori1"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="45dp" />
+                <ImageView
+                    android:layout_width="40dp"
+                    android:src="@drawable/amex"
+                    android:id="@+id/crdimg"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="40dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vendortjt"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#FFF"
+                    android:textSize="17sp"
+                    android:layout_marginBottom="10dp"
+                   android:layout_alignParentBottom="true"
+                    android:text="01 / 23"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="25dp"
+                    android:paddingTop="10dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tjtnumber"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical"
+                        android:layout_centerVertical="true"
+                        android:textSize="15sp"
+                        android:layout_centerInParent="true"
+
+                        android:textColor="#fff"
+                        android:text="●●●● ●●●● ●●●● 5478"/>
                 </LinearLayout>
             </RelativeLayout>
-
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#000"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="10dp"
-            android:text="Estas son tus tarjetas registradas"
-            android:textStyle="bold"
-            android:textSize="15sp"/>
+        </LinearLayout>
         <ScrollView
             android:layout_width="fill_parent"
             android:layout_marginBottom="120dp"
@@ -158,6 +194,33 @@
         
 
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="55dp"
+        android:layout_marginBottom="65dp"
+        android:layout_height="55dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/lastButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:onClick="editCard"
+        android:background="@drawable/rrcircle">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="+"
+                android:textColor="#fff"
+                android:textSize="30sp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true" />
+        </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="fill_parent"
         android:orientation="vertical"
@@ -165,15 +228,12 @@
         android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_marginBottom="10dp"
             android:layout_height="45dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
             android:layout_alignParentBottom="true"
             android:clickable="true"
             android:id="@+id/pagggar"
             android:onClick="payAccount"
-            android:background="@drawable/rrounded_corners">
+            android:background="#00C1B5">
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -184,32 +244,5 @@
 
                 android:layout_centerHorizontal="true" />
         </LinearLayout>
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_height="45dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:id="@+id/lastButton"
-        android:clickable="true"
-        android:onClick="editCard"
-        android:background="@drawable/brounded_corners">
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:text="Agregar Tarjeta"
-            android:textColor="#fff"
-            android:layout_marginLeft="5dp"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:layout_centerHorizontal="true" />
-        </LinearLayout>
-    </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>

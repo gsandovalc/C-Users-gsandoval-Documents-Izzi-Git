@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/black_back"
     tools:context="telecom.televisa.com.izzi.AddCardActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/vista"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#ffffff">
+        >
         <include layout="@layout/headerextra" />
 
         <LinearLayout
@@ -60,14 +61,14 @@
                 android:layout_weight=".45"
                 android:gravity="center_vertical"
                 android:layout_gravity="center"
-                android:background="#55dfdfdf"
+                android:background="@drawable/ggline"
                 android:layout_height="1dp">
 
                 </LinearLayout>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textSize="16sp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -78,7 +79,7 @@
                 android:layout_weight=".45"
                 android:gravity="center_vertical"
                 android:layout_gravity="center"
-                android:background="#55dfdfdf"
+                android:background="@drawable/ggline"
                 android:layout_height="1dp">
 
             </LinearLayout>
@@ -99,7 +100,7 @@
             android:layout_height="wrap_content"
             android:text="Ingresa el número de tu tarjeta"
 
-            android:textColor="#000000"
+            android:textColor="#fff"
             android:textSize="15sp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="1dp"
@@ -107,7 +108,7 @@
 
                 <com.devmarvel.creditcardentry.library.CreditCardForm
                     android:layout_width="fill_parent"
-                    android:layout_height="45dp"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="5dp"
@@ -153,7 +154,7 @@
                 android:text="Fecha de expiración"
 
                 android:layout_marginTop="5dp"
-                android:textColor="#000000"
+                android:textColor="#fff"
                 android:textSize="15sp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="1dp"
@@ -162,8 +163,8 @@
                 android:layout_width="150dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:background="#dfdfdf"
-                android:layout_height="35dp">
+                android:background="#b1b1b1"
+                android:layout_height="36dp">
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_margin="1dp"
@@ -184,6 +185,7 @@
                         android:layout_height="fill_parent"
                         android:ems="6"
                         android:textSize="15sp"
+                        android:textColorHint="#b1b1b1"
                         android:maxLength="5"
                         android:hint="MM/YY"
                         android:inputType="datetime"

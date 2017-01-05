@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
+    compileSdkVersion 22
     buildToolsVersion "21.1.2"
 
     defaultConfig {
@@ -36,7 +36,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.makeramen:roundedimageview:2.0.1'
     compile 'com.google.code.gson:gson:2.5'
@@ -51,5 +50,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-gcm:7.5.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.11'
     compile 'com.github.dbachelder:CreditCardEntry:1.4.7'
+    compile 'com.hudomju:swipe-to-dismiss-undo:1.0'
 
 }

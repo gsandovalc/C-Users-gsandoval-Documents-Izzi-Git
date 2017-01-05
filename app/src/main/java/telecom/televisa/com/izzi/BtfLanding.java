@@ -26,10 +26,11 @@ public class BtfLanding extends Activity {
             finish();
             return;
         }
+        finish();
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
-        finish();
+
     }
 
     public void registro(View v){

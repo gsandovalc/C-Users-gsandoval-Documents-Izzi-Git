@@ -1,20 +1,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@drawable/black_back"
     tools:context="telecom.televisa.com.izzi.RecuperaFinActivity">
     <RelativeLayout
         android:layout_width="fill_parent"
         android:id="@+id/hcontainer"
         android:layout_height="40dp"
-        android:background="#fff">
+        >
         <TextView
             android:id="@+id/h_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="visible"
             android:text="Servicios contratados"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:textSize="18dp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
@@ -52,7 +52,7 @@
             android:layout_gravity="center"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:gravity="center"/>
 
     </LinearLayout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
-    android:background="#fff"
+    android:paddingBottom="1dp"
+    android:paddingTop="1dp"
     android:layout_height="wrap_content">
     <TextView
         android:layout_width="wrap_content"
@@ -10,18 +11,16 @@
         android:visibility="gone"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:layout_marginLeft="10dp"
         android:textSize="13sp"
         android:text="Prueba"/>
     <LinearLayout
         android:orientation="horizontal" android:layout_width="fill_parent"
-        android:background="#dfdfdf"
         android:padding="1dp"
         android:layout_height="60dp">
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:background="#fff"
         android:orientation="horizontal"
         android:layout_height="fill_parent">
     <LinearLayout
@@ -44,7 +43,7 @@
         android:id="@+id/formaL"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:layout_marginLeft="5dp"
         android:textSize="12sp"
         android:text="Prueba"/>
@@ -58,7 +57,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:text="Prueba"/>
 
         <TextView
@@ -68,7 +67,7 @@
             android:textSize="12sp"
             android:gravity="center"
             android:layout_gravity="center_vertical"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:maxWidth="90dp"
             android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"

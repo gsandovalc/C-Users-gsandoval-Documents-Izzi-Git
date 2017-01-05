@@ -34,7 +34,7 @@ public class PagosListAdapter extends ArrayAdapter<PagosList>{
     int contador=0;
     PagosListAdapter act=this;
     Map<String,Integer> months=new HashMap<>();
-    int[] colores=new int[]{0xAA00C1B5,0xAAFFA807,0xAAD60270,0xAAFCD116};
+    int[] colores=new int[]{0xFF00C1B5,0xFFFFA807,0xFFD60270,0xFFFCD116};
     public PagosListAdapter(Context context, int textViewResourceId,
                              List<PagosList> pagos, int type, Activity activi) {
         super(context, textViewResourceId, pagos);

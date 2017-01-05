@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import televisa.telecom.com.controls.RelativeLayoutTouchListener;
 import televisa.telecom.com.model.Tokens;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.AES;
@@ -43,7 +44,7 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
     List<View> lsta;
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
     public static Map<String,String> parametros;
-
+    List<Tokens> tjts;
     NumberFormat baseFormat = NumberFormat.getCurrencyInstance(new Locale("es","MX"));
 
     IzziRespondable acti=this;
@@ -208,25 +209,6 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
                     popup.dismiss();
                 }
             });
-            System.out.println(AES.decrypt(info.getCorreoContacto()));
-           /*
-            parametros=new HashMap<>();
-            parametros.put("METHOD","payments/domicilia");
-
-            parametros.put("token",info.getToken());
-
-            user=AES.encrypt(info.getUserName());
-            parametros.put("account",info.getCvNumberAccount());
-            parametros.put("name", remove1(selectedCard.getName()));
-            parametros.put("number",selectedCard.getNumber());
-           date=AES.decrypt(selectedCard.getExpMonth())+"/"+AES.decrypt(selectedCard.getExpYear());
-            parametros.put("date",AES.encrypt(date));
-            parametros.put("code",selectedCard.getCvv());
-            parametros.put("type",selectedCard.getType());
-            parametros.put("ammount",info.getCvLastBalance());
-
-            parametros.put("user",user);*/
-
 
         }catch(Exception e){
             e.printStackTrace();
@@ -279,7 +261,7 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
         }
         if(response instanceof izziTokenResponse){
             ((LinearLayout) findViewById(R.id.contenedortjt)).removeAllViews();
-            final List<Tokens> tjts=((izziTokenResponse) response).getResponse().getPidt();
+            tjts=((izziTokenResponse) response).getResponse().getPidt();
             if(tjts.size()==0){
                 Intent i= new Intent(getApplicationContext(),AddCardActivity.class);
                 startActivity(i);
@@ -295,11 +277,12 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
             lsta=new ArrayList<>();
             for(int i=0;i<tjts.size();i++) {
                 LayoutInflater inflater = LayoutInflater.from(this);
-                final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.card_list_item_pay, null, false);
+                final RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.card_list_item_pay, null, false);
                 lsta.add(layout);
                 if(i==0)
                 layout.findViewById(R.id.radioon).setVisibility(LinearLayout.VISIBLE);
-
+                RelativeLayout rl=(RelativeLayout)layout.findViewById(R.id.movinglayout);
+                rl.setOnTouchListener(new RelativeLayoutTouchListener(this));
                 layout.findViewById(R.id.remove).setClickable(true);
                 layout.findViewById(R.id.remove).setTag(tjts.get(i));
                 layout.findViewById(R.id.remove).setOnClickListener(new View.OnClickListener() {
@@ -320,26 +303,16 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
                         }
                     }
                 });
-                layout.setClickable(true);
-                layout.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        for(View vi:lsta){
-                             vi.findViewById(R.id.radioon).setVisibility(LinearLayout.GONE);
-                        }
-                        int index=lsta.indexOf(v);
-                        lsta.get(index).findViewById(R.id.radioon).setVisibility(LinearLayout.VISIBLE);
-                        selectedCard=tjts.get(index);
-                    }
-                });
                 String type = tjts.get(i).getCardType();
                 int recurso = -1;
 
                 int tipo=Integer.parseInt(type);
+                String maskedNumber3="●●●● ●●●● ●●●● ";
                 switch (tipo) {
                     case 3:
                         recurso = R.drawable.amex;//"Amex/Vigente";
+                         maskedNumber3="●●●● ●●●●●● ●●";
                         break;
                     case 1:
                         recurso = R.drawable.visa;//"Visa/Vigente";
@@ -353,15 +326,31 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
                 String number = tjts.get(i).getCardDigits();
                 String maskedNumber;
                 if(tipo==3){
-                    maskedNumber = "XXXX XXXXXX X" + number;
-                }else {
-                     maskedNumber = "XXXX XXXX XXXX " + number;
+                    maskedNumber = "American Express teminación " + number;
+                }else if(tipo==1) {
+                     maskedNumber = "Visa terminación " + number;
+                }else{
+                    maskedNumber="Mastercard terminación "+number;
                 }
                 ((TextView) layout.findViewById(R.id.tjtnumber)).setText(maskedNumber);
-                ((LinearLayout) findViewById(R.id.contenedortjt)).addView(layout, -1, (int) Util.dpToPx(this, 140));
+                ((LinearLayout) findViewById(R.id.contenedortjt)).addView(layout, -1, (int) Util.dpToPx(this, 50));
+                int tipo2=Integer.parseInt(selectedCard.getCardType());
+                switch (tipo2) {
+                    case 3:
+                        recurso = R.drawable.amex;//"Amex/Vigente";
+                        maskedNumber3="●●●● ●●●●●● ●●";
+                        break;
+                    case 1:
+                        recurso = R.drawable.visa;//"Visa/Vigente";
+                        break;
+                    case 2:
+                        recurso = R.drawable.master_card;//"MasterCard/Vigente";
+                        break;
+                }
+                ((ImageView)findViewById(R.id.crdimg)).setImageResource(recurso);
+                ((TextView)findViewById(R.id.tjtnumber)).setText(maskedNumber3+selectedCard.getCardDigits());
+                ((TextView)findViewById(R.id.vendortjt)).setText(selectedCard.getCardMonth() + "/" + selectedCard.getCardYear());
             }
-            //Acaba lo de la tarjeta me robo lo de abajo para el oncreate
-
             return;
         }
 
@@ -397,5 +386,37 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
     public void slowInternet() {
         showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
     }
-
+    public void viewClick(View v){
+        for(View vi:lsta){
+            vi.findViewById(R.id.radioon).setVisibility(LinearLayout.GONE);
+        }
+        int index=lsta.indexOf((RelativeLayout)v.getParent());
+        int recurso=0;
+        lsta.get(index).findViewById(R.id.radioon).setVisibility(LinearLayout.VISIBLE);
+        selectedCard=tjts.get(index);
+        int tipo=Integer.parseInt(selectedCard.getCardType());
+        String maskedNumber="●●●● ●●●● ●●●● ";
+        switch (tipo) {
+            case 3:
+                recurso = R.drawable.amex;//"Amex/Vigente";
+                maskedNumber="●●●● ●●●●●● ●●";
+                break;
+            case 1:
+                recurso = R.drawable.visa;//"Visa/Vigente";
+                break;
+            case 2:
+                recurso = R.drawable.master_card;//"MasterCard/Vigente";
+                break;
+        }
+        ((ImageView)findViewById(R.id.crdimg)).setImageResource(recurso);
+        ((TextView)findViewById(R.id.tjtnumber)).setText(maskedNumber+selectedCard.getCardDigits());
+        ((TextView)findViewById(R.id.vendortjt)).setText(selectedCard.getCardMonth() + "/" + selectedCard.getCardYear());
+    }
+    public void closeOthers(View v){
+        for(View vi:lsta){
+            if(!vi.equals((RelativeLayout)v.getParent())){
+                vi.findViewById(R.id.movinglayout).animate().x(0).setDuration(100).start();
+            }
+        }
+    }
 }

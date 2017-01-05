@@ -20,16 +20,21 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import telecom.televisa.com.izzi.MenuActivity;
+import telecom.televisa.com.izzi.UserActivity;
+
 public class ImageLoader {
     
     MemoryCache memoryCache=new MemoryCache();
     FileCache fileCache;
     private Map<ImageView, String> imageViews=Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
-    ExecutorService executorService; 
+    ExecutorService executorService;
+    Context ctx;
     
     public ImageLoader(Context context){
         fileCache=new FileCache(context);
         executorService=Executors.newFixedThreadPool(5);
+        ctx=context;
     }
     
 
@@ -76,7 +81,9 @@ public class ImageLoader {
             Utils.CopyStream(is, os);
             os.close();
             bitmap = decodeFile(f);
-            
+            if(ctx instanceof UserActivity){
+                MenuActivity.prf=bitmap;
+            }
             return bitmap;
         } catch (Exception ex){
            ex.printStackTrace();

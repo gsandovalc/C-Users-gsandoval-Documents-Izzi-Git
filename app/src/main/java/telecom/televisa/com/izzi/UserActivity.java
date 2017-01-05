@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.activeandroid.query.Select;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.google.zxing.BarcodeFormat;
 import com.kissmetrics.sdk.KISSmetricsAPI;
 
 
@@ -59,6 +60,7 @@ import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AndroidMultiPartEntity;
 import televisa.telecom.com.util.AsyncLoginUpdate;
 import televisa.telecom.com.util.AsyncResponse;
+import televisa.telecom.com.util.CodeBarGenerator;
 import televisa.telecom.com.util.FileCache;
 import televisa.telecom.com.util.ImageLoader;
 import televisa.telecom.com.util.IzziRespondable;
@@ -69,12 +71,13 @@ import televisa.telecom.com.ws.IzziWS;
 
 public class UserActivity extends MenuActivity implements IzziRespondable{
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
-    Bitmap img=null;
+
     Usuario usrin=null;
     NumberFormat baseFormat = NumberFormat.getCurrencyInstance(new Locale("es","MX"));
     GoogleCloudMessaging gcm;
     String regid;
     String PROJECT_NUMBER = "726810758992";
+    Bitmap img=null;
 
     public static izziEdoCuentaResponse estado;
 
@@ -85,18 +88,8 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         super.onCreate(savedInstanceState);
         AsyncLoginUpdate.refresca=this;
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
-
-        if(info==null){
-            finish();
-            Intent i= new Intent(getApplicationContext(),BtfLanding.class);
-            startActivity(i);
-            return;
-        }
         if(info.isEsNegocios()) {
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
-            ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
-            ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
-
         }
         FileCache fc=new FileCache(this);
         fc.clear();
@@ -111,11 +104,7 @@ public void swUsr(View v){
     Intent i=new Intent(this,SwitchUserActivity.class);
     startActivity(i);
 }
-    void initProfiling()
-    {
 
-
-    }
     private class LongOperation extends AsyncTask<Void, Void, String> {
 
         @Override
@@ -154,164 +143,43 @@ public void swUsr(View v){
     @Override
     protected void onResume() {
         super.onResume();
-        setUpMenu();
-        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
-        //llenamos obtenemnos los campos de texto
-
-        if(info.isEsNegocios()) {
-            ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
-            ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
-            ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
-        }else{
-            ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.logoizzi);
-            ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9900c1b5);
-            ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x88d60270);
-        }
-
-        usrin=info;
-        try {
-            String ahhh=AES.decrypt(info.getPaquete());
-            System.out.println(ahhh);
-            ((TextView) findViewById(R.id.nameText)).setText(info.getNombreContacto() != null ? AES.decrypt(info.getNombreContacto()).split(" ")[0] +" "+AES.decrypt(info.getApellidoPaterno()) : "");
-            ((TextView) findViewById(R.id.phoneText)).setText(info.getTelefonoPrincipal() != null ? AES.decrypt(info.getTelefonoPrincipal()):"");
-            ((TextView) findViewById(R.id.accountText)).setText(info.getCvNumberAccount() != null ? AES.decrypt(info.getCvNumberAccount()): "");
-            ((TextView) findViewById(R.id.paqueteText)).setText(info.getPaquete() != null ? AES.decrypt(info.getPaquete()): "No disponible");
-            ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0.00");
-
-            String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0";
-            Double tot= Double.parseDouble(lastBalance);
-            if(tot<=0){
-                //debemos cambiar el mensaje del pago
-                ((TextView) findViewById(R.id.leyenda1Text)).setText("Estás al corriente gracias por tu pago");
-                ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
-            }
-            double saldo=Double.parseDouble(lastBalance);
-            lastBalance="$"+lastBalance+".00";
-            ((TextView) findViewById(R.id.totalText)).setText(lastBalance);
-            //saldo=baseFormat.format(lastBalance);
-            String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
-            String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
-
-            try {
-                if (fecha != null) {
-                    if (!fecha.isEmpty() && !fecha.equals("0")) {
-                        Date fechaLimiteDate = sdf.parse(fecha);
-                        DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es","MX"));
-                        ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
-                        Calendar cal = Calendar.getInstance();
-                        if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
-                            TextView myText = (TextView) findViewById(R.id.totalText );
-                            ((TextView) findViewById(R.id.leyenda1Text)).setText("Saldo vencido pagar de inmediato ");
-                            Animation anim = new AlphaAnimation(0.0f, 1.0f);
-                            anim.setDuration(50); //You can manage the time of the blink with this parameter
-                            anim.setStartOffset(20);
-                            anim.setRepeatMode(Animation.REVERSE);
-                            anim.setRepeatCount(Animation.INFINITE);
-                            myText.startAnimation(anim);
-                        }
-                    }else if(fechaFactura!=null){
-                        if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {
-                            Date fechaLimiteDate = sdf.parse(fechaFactura);
-                            DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es","MX"));
-                            String datee=mediumFormat.format(fechaLimiteDate);
-                            ((TextView) findViewById(R.id.fechaText)).setText(datee);
-                            Calendar cal = Calendar.getInstance();
-                            if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
-                                //TODO hacer el truco que quieren si tiene pago vencido
-                                ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
-                                try{
-                                TextView myTextt = (TextView) findViewById(R.id.totalText );
-                                myTextt.getAnimation().cancel();
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-                             /*   TextView myText = (TextView) findViewById(R.id.totalText );
-
-                                Animation anim = new AlphaAnimation(0.0f, 1.0f);
-                                anim.setDuration(50); //You can manage the time of the blink with this parameter
-                                anim.setStartOffset(20);
-                                anim.setRepeatMode(Animation.REVERSE);
-                                anim.setRepeatCount(Animation.INFINITE);
-                                myText.startAnimation(anim);*/
-                            }
-                        }
-                    }
-                }else if(fechaFactura!=null){
-                    if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {
-                        Date fechaLimiteDate = sdf.parse(fechaFactura);
-                        DateFormat mediumFormat = new SimpleDateFormat("dd MMMM yyyy", new Locale("es","MX"));
-                        ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
-                        Calendar cal = Calendar.getInstance();
-                        if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
-                            ((TextView) findViewById(R.id.leyenda1Text)).setText("Fecha de facturación");
-                            try{
-                                TextView myTextt = (TextView) findViewById(R.id.totalText );
-                                myTextt.getAnimation().cancel();
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-                           /* TextView myText = (TextView) findViewById(R.id.totalText );
-
-                            Animation anim = new AlphaAnimation(0.0f, 1.0f);
-                            anim.setDuration(50); //You can manage the time of the blink with this parameter
-                            anim.setStartOffset(20);
-                            anim.setRepeatMode(Animation.REVERSE);
-                            anim.setRepeatCount(Animation.INFINITE);
-                            myText.startAnimation(anim);*/
-                        }
-                    }else{
-                        try{
-                            TextView myTextt = (TextView) findViewById(R.id.totalText );
-                            myTextt.getAnimation().cancel();
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                        ((TextView) findViewById(R.id.fechaText)).setText("No disponible");
-                    }
-                }else{
-                    try{
-                        TextView myTextt = (TextView) findViewById(R.id.totalText );
-                        myTextt.getAnimation().cancel();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    ((TextView) findViewById(R.id.fechaText)).setText("No disponible");
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        init();
     }
 
     void init(){
-
         final UserActivity act=this;
-
-
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
-        //llenamos obtenemnos los campos de texto
-        setUpMenu();
-        if(info.isEsNegocios()) {
-            ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
-            ((RelativeLayout) findViewById(R.id.cuadroInfo3)).setBackgroundColor(0x9992d400);
-            ((RelativeLayout) findViewById(R.id.cuadroInfo4)).setBackgroundColor(0x99fcd116);
-        }
-        try {
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        String greating="";
+        if(hour>=6&&hour<12)
+            greating="BUENOS DIAS";
+        else if(hour >=12&&hour<20)
+            greating="BUENAS TARDES";
+        else if(hour>=20 &&hour<24)
+            greating="BUENAS NOCHES";
+        else
+            greating="¿AÚN DESPIETO?";
 
+        ((TextView)findViewById(R.id.greating)).setText(greating);
+        if(info.isEsNegocios())
+            ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
+        try {
+            String barcode_data = AES.decrypt(info.getBarcode());
+            Bitmap bitmap = null;
+            ImageView iv = (ImageView) findViewById(R.id.codebar);
+            bitmap = CodeBarGenerator.encodeAsBitmap(barcode_data, BarcodeFormat.CODE_128, 600, 300);
+            iv.setImageBitmap(bitmap);
+            ((TextView)findViewById(R.id.codetext)).setText(barcode_data);
             ((TextView) findViewById(R.id.nameText)).setText(info.getNombreContacto() != null ? AES.decrypt(info.getNombreContacto()).split(" ")[0] +" "+AES.decrypt(info.getApellidoPaterno()): "");
             ((TextView) findViewById(R.id.phoneText)).setText(info.getTelefonoPrincipal() != null ? AES.decrypt(info.getTelefonoPrincipal()):"");
             ((TextView) findViewById(R.id.accountText)).setText(info.getCvNumberAccount() != null ? AES.decrypt(info.getCvNumberAccount()): "");
-            ((TextView) findViewById(R.id.paqueteText)).setText(info.getPaquete() != null ? AES.decrypt(info.getPaquete()): "No disponible");
+            ((TextView)findViewById(R.id.referenceText)).setText(barcode_data);
+            String paquete=info.getPaquete() != null ? AES.decrypt(info.getPaquete()): "No disponible";
+            ((TextView) findViewById(R.id.paqueteText)).setText(paquete.replace("+","\n+\n"));
             ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0.00");
-
             String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0";
             Double tot= Double.parseDouble(lastBalance);
             if(tot<=0){
-                //debemos cambiar el mensaje del pago
                 ((TextView) findViewById(R.id.leyenda1Text)).setText("Estás al corriente gracias por tu pago");
                 ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
             }
@@ -329,7 +197,6 @@ public void swUsr(View v){
                         Calendar cal = Calendar.getInstance();
                         if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
                             TextView myText = (TextView) findViewById(R.id.totalText );
-
                             Animation anim = new AlphaAnimation(0.0f, 1.0f);
                             anim.setDuration(50); //You can manage the time of the blink with this parameter
                             anim.setStartOffset(20);
@@ -388,14 +255,11 @@ public void swUsr(View v){
             loader=new ImageLoader(this);
             if(info.getFotoPerfil()!=null) {
                 String image=AES.decrypt(info.getFotoPerfil());
-                if(!image.isEmpty()) {
+                if(!image.isEmpty())
                     loader.DisplayImage(image, (ImageView) findViewById(R.id.imageView1));
-                }
             }
-            if(MainActivity.facebookImg!=null){
+            if(MainActivity.facebookImg!=null)
                     loader.DisplayImage(MainActivity.facebookImg, (ImageView) findViewById(R.id.imageView1));
-                    System.out.println(MainActivity.facebookImg);
-            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -502,19 +366,18 @@ public void swUsr(View v){
 
     public void establecimientos(View v){
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
-
         Intent myIntent;
         myIntent = new Intent(this, MediosDePagoActivity.class);
         startActivityForResult(myIntent, 0);
+        overridePendingTransition( R.transition.slide_in_up, R.transition.slide_out_up );
+
     }
     public void pagos(View v){
         Intent myIntent = new Intent(this, ListaPagosActivity.class);
         startActivityForResult(myIntent, 0);
-
     }
 
     public void pay(View v){
-
             Intent myIntent = new Intent(this, PagosMainActivity.class);
             startActivityForResult(myIntent, 0);
     }
