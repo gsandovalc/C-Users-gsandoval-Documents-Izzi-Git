@@ -1,5 +1,7 @@
 package televisa.telecom.com.util;
 
+import android.view.View;
+
 import com.google.gson.annotations.Expose;
 
 /**

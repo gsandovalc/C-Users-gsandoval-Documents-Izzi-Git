@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="izzi_turquesa" type="color">#00c1b5</item>
+    <item name="izzi_turquesa70" type="color">#AA00c1b5</item>
+    <item name="izzi_rosa" type="color">#d60270</item>
+    <item name="izzi_amarillo" type="color">#fcd116</item>
+    <item name="izzi_naranja" type="color">#f36f24</item>
+    <item name="izzi_negocios_verde" type="color">#92d400</item>
+    <item name="izzi_gris_dd1" type="color">#1adddddd</item>
+    <item name="izzi_text_color" type="color">#ffffff</item>
+    <item name="izzi_button1" type="color">#cc00C1B5</item>
+    <item name="izzi_button2" type="color">#ccD60270</item>
+
+    <integer-array name="androidcolors">
+        <item>@color/izzi_turquesa</item>
+        <item>@color/izzi_turquesa70</item>
+        <item>@color/izzi_rosa</item>
+        <item>@color/izzi_amarillo</item>
+        <item>@color/izzi_naranja</item>
+        <item>@color/izzi_negocios_verde</item>
+        <item>@color/izzi_gris_dd1</item>
+        <item>@color/izzi_text_color</item>
+        <item>@color/izzi_button1</item>
+        <item>@color/izzi_button2</item>
+    </integer-array>
+
+</resources>

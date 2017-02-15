@@ -30,11 +30,11 @@
                 android:layout_height="fill_parent"
                 android:layout_marginTop="10dp"
                 android:clickable="true"
-                android:onClick="closeView"
+                android:onClick="showMenu"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="11dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/regresar" />
+                android:src="@drawable/menu" />
             <ImageView
                 android:id="@+id/show_exmenu"
                 android:layout_width="50dp"

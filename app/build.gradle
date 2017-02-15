@@ -8,8 +8,8 @@ android {
         applicationId "telecom.televisa.com.izzi"
         minSdkVersion 15
         targetSdkVersion 15
-        versionCode 30
-        versionName "2.5.7"
+        versionCode 34
+        versionName "2.5.9"
     }
     buildTypes {
         release {

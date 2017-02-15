@@ -1,7 +1,10 @@
 package telecom.televisa.com.izzi;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
@@ -15,6 +18,7 @@ import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -91,7 +95,7 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
     public void goToView(View v){
         Intent i=null;
         switch(v.getId()){
-            case R.id.vHome:
+            /*case R.id.vHome:
                 i=new Intent(getApplicationContext(),UserActivity.class);
                 break;
             case R.id.vServices:
@@ -99,14 +103,14 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
                 break;
             case R.id.vLegales:
                 i=new Intent(getApplicationContext(),LegalesActivity.class);
-                break;
+                break;*/
             case R.id.vEstado:
                 i=new Intent(getApplicationContext(),EdoCuentaActivity.class);
                 break;
             default:
                 break;
         }
-        finish();
+       finish();
         startActivity(i);
     }
     @Override
@@ -354,5 +358,46 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
 
     }
 
+    //viene de izzi activity
+    protected void showError(String error,int type){
+        if(type==0) {
+            new AlertDialog.Builder(this)
+                    .setTitle("izzi")
+                    .setMessage(error)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            dialog.dismiss();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            return;
+        }
+
+        int layout=0;
+        if(type==2)
+            layout=R.layout.nointernet_error;
+        else if(type==3)
+            layout=R.layout.slowinternet_error;
+        else
+            layout=R.layout.unexpected_error;
+        final Dialog popup = new Dialog(this,android.R.style.Theme_Translucent);
+        popup.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        popup.setCancelable(true);
+        popup.setContentView(layout);
+        WindowManager.LayoutParams lp = popup.getWindow().getAttributes();
+        lp.dimAmount=0f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
+        popup.getWindow().setAttributes(lp);
+        popup.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        popup.show();
+        ((TextView)popup.findViewById(R.id.error_desc)).setText(error);
+        ((RelativeLayout)popup.findViewById(R.id.fondoError)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popup.dismiss();
+            }
+        });
+    }
 
 }

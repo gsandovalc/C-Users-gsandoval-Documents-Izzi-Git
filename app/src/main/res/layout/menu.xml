@@ -53,7 +53,7 @@
                                 android:background="#1cc1b6" >
                             </LinearLayout>
                         </RelativeLayout>
-                        <RelativeLayout
+                        <!--<RelativeLayout
                             android:layout_width="fill_parent"
                             android:onClick="menuClick"
                             android:clickable="true"
@@ -86,8 +86,8 @@
                                 android:layout_marginLeft="0dp"
                                 android:background="#1cc1b6" >
                             </LinearLayout>
-                        </RelativeLayout>
-                        <RelativeLayout
+                        </RelativeLayout>-->
+                        <!--<RelativeLayout
                             android:layout_width="fill_parent"
                             android:clickable="true"
                             android:id="@+id/dr_wifi"
@@ -121,7 +121,7 @@
                                 android:layout_marginLeft="0dp"
                                 android:background="#1cc1b6" >
                             </LinearLayout>
-                        </RelativeLayout>
+                        </RelativeLayout>-->
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:clickable="true"
@@ -156,7 +156,7 @@
                                 android:background="#1cc1b6" >
                             </LinearLayout>
                         </RelativeLayout>
-                        <RelativeLayout
+                        <!--<RelativeLayout
                             android:layout_width="fill_parent"
                             android:clickable="true"
 
@@ -191,7 +191,7 @@
                                 android:layout_marginLeft="0dp"
                                 android:background="#1cc1b6" >
                             </LinearLayout>
-                        </RelativeLayout>
+                        </RelativeLayout>-->
                         <RelativeLayout
                             android:layout_width="fill_parent"
                             android:clickable="true"

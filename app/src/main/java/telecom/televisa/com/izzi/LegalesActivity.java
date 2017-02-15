@@ -17,12 +17,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class LegalesActivity extends Activity {
+public class LegalesActivity extends MenuActivity {
     boolean wvVisible=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_legales);
+        super.onCreate(savedInstanceState);
+
         ((TextView)findViewById(R.id.h_title)).setText("Avisos legales");
     }
 

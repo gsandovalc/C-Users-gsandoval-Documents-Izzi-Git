@@ -90,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
                         android:layout_height="50dp"
@@ -114,8 +114,8 @@
                             android:textSize="18sp"
                             android:text="Home"
                             android:gravity="center_vertical"/>
-                    </LinearLayout>
-                    <LinearLayout
+                    </LinearLayout>-->
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
                         android:layout_height="50dp"
@@ -138,12 +138,13 @@
                             android:textSize="18sp"
                             android:text="Mis Servicios"
                             android:gravity="center_vertical"/>
-                    </LinearLayout>
-                    <LinearLayout
+                    </LinearLayout>-->
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
                         android:layout_height="50dp"
                         android:id="@+id/vLegales"
+                        android:onClick="goToView"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="25dp"
@@ -161,12 +162,13 @@
                             android:textSize="18sp"
                             android:text="Legales"
                             android:gravity="center_vertical"/>
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
                         android:id="@+id/vEstado"
+                        android:onClick="goToView"
                         android:layout_height="50dp"
                         android:orientation="horizontal">
                         <ImageView
@@ -184,6 +186,28 @@
                             android:textColor="#b1b1b1"
                             android:textSize="18sp"
                             android:text="Estado de cuenta"
+                            android:gravity="center_vertical"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:paddingLeft="15dp"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="2dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/cuentas_g"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="#b1b1b1"
+                            android:textSize="18sp"
+                            android:text="Mis cuentas"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
                     <LinearLayout
@@ -254,28 +278,7 @@
                             android:gravity="center_vertical"/>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginTop="2dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/cuentas_g"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
-                            android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
-                            android:text="Mis cuentas"
-                            android:gravity="center_vertical"/>
-                    </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
@@ -298,7 +301,7 @@
                             android:text="Centro de mensajes"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
-                    <LinearLayout
+                    <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
@@ -326,7 +329,7 @@
                             android:textSize="18sp"
                             android:text="Ajustes"
                             android:gravity="center_vertical"/>
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                 </LinearLayout>
             </ScrollView>
