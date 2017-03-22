@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:orientation="vertical"
-        android:background="#fff">
+        android:background="@color/izzi_menu_back">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,13 +31,13 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:padding="2dp"
-                android:src="@drawable/avatar1"
+                android:src="@drawable/avatar2"
                 android:clickable="true"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitXY"
                 app:riv_corner_radius="100dip"
                 app:riv_oval="true"
-                app:riv_border_color="#fff"
+                app:riv_border_color="#000"
                 app:riv_border_width="2dp"
                 />
             <LinearLayout
@@ -51,17 +51,18 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/nombre"
                     android:textAllCaps="true"
-                    android:textColor="#000"
-                    android:textSize="20sp"
+                    android:textColor="@color/izzi_menu_font"
+                    android:textSize="17sp"
                     android:text="Carlos Velez"/>
+
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="5dp"
                     android:id="@+id/contrato"
-                    android:textColor="#b1b1b1"
-                    android:textSize="17sp"
+                    android:textColor="@color/izzi_menu_font"
+                    android:textSize="15sp"
                     android:text="11094921"/>
             </LinearLayout>
 
@@ -72,10 +73,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_height="1dp"
-            android:background="@drawable/ggline"></LinearLayout>
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:src="@drawable/lineaspash"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
 
         <!--scroll con los elementos del menu-->
         <RelativeLayout
@@ -110,8 +115,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Home"
                             android:gravity="center_vertical"/>
                     </LinearLayout>-->
@@ -134,8 +139,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Mis Servicios"
                             android:gravity="center_vertical"/>
                     </LinearLayout>-->
@@ -158,8 +163,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Legales"
                             android:gravity="center_vertical"/>
                     </LinearLayout>-->
@@ -183,8 +188,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Estado de cuenta"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
@@ -205,14 +210,15 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Mis cuentas"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
+                        android:visibility="gone"
                         android:layout_height="50dp"
                         android:orientation="horizontal">
                         <ImageView
@@ -227,8 +233,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Pagos"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
@@ -237,6 +243,7 @@
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
                         android:layout_height="50dp"
+                        android:visibility="gone"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="25dp"
@@ -250,8 +257,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Chatea con nosotros"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
@@ -272,12 +279,36 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Lugares de pago"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:paddingLeft="15dp"
+                        android:layout_height="50dp"
+                        android:clickable="true"
+                        android:onClick="goToView"
+                        android:id="@+id/vGuide"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="2dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/guide_g"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
+                            android:text="Guía de programación"
+                            android:gravity="center_vertical"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -296,8 +327,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Centro de mensajes"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
@@ -325,8 +356,8 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="15dp"
                             android:layout_gravity="center_vertical"
-                            android:textColor="#b1b1b1"
-                            android:textSize="18sp"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
                             android:text="Ajustes"
                             android:gravity="center_vertical"/>
                     </LinearLayout>-->
@@ -342,11 +373,15 @@
                 android:layout_marginBottom="5dp">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_height="1dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:background="@drawable/ggline"></LinearLayout>
+                    >
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:src="@drawable/lineaspash"
+                        android:scaleType="fitXY"/>
+                </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -360,15 +395,17 @@
                     android:layout_marginTop="2dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/logout_g"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="#b1b1b1"
-                    android:textSize="18sp"
+                    android:textColor="@color/izzi_menu_font"
+                    android:textSize="15sp"
                     android:text="Cerrar sesión"
-                    android:gravity="center_vertical"/>
+                    android:gravity="center_vertical"
+                    android:id="@+id/textView4" />
             </LinearLayout>
             </LinearLayout>
         </RelativeLayout>

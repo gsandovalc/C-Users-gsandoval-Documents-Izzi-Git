@@ -107,6 +107,8 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
             case R.id.vEstado:
                 i=new Intent(getApplicationContext(),EdoCuentaActivity.class);
                 break;
+            case R.id.vGuide:
+                i=new Intent(getApplicationContext(),TvGuideActivity.class);
             default:
                 break;
         }

@@ -8,9 +8,12 @@
     <item name="izzi_naranja" type="color">#f36f24</item>
     <item name="izzi_negocios_verde" type="color">#92d400</item>
     <item name="izzi_gris_dd1" type="color">#1adddddd</item>
-    <item name="izzi_text_color" type="color">#ffffff</item>
+    <item name="izzi_text_color" type="color">#000</item>
     <item name="izzi_button1" type="color">#cc00C1B5</item>
     <item name="izzi_button2" type="color">#ccD60270</item>
+    <item name="izzi_background" type="color">#fff</item>
+    <item name="izzi_menu_back" type="color">#bfbfc0</item>
+    <item name="izzi_menu_font" type="color">#000</item>
 
     <integer-array name="androidcolors">
         <item>@color/izzi_turquesa</item>
@@ -23,6 +26,9 @@
         <item>@color/izzi_text_color</item>
         <item>@color/izzi_button1</item>
         <item>@color/izzi_button2</item>
+        <item>@color/izzi_background</item>
+        <item>@color/izzi_menu_back</item>
+        <item>@color/izzi_menu_font</item>
     </integer-array>
 
 </resources>

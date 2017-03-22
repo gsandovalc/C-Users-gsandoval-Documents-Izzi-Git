@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="5dp"
-    android:background="@drawable/black_back"
+    android:background="@color/izzi_background"
   tools:context=".MainActivity">
 
 
@@ -17,8 +17,8 @@
 
 
 <ImageView
-        android:layout_width="240dp"
-        android:layout_height="240dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_centerHorizontal="true"
@@ -123,7 +123,7 @@
         android:layout_below="@+id/linearLayout"
         android:id="@+id/textoo"
         android:layout_centerHorizontal="true"
-        android:textColor="#fff"
+        android:textColor="@color/izzi_text_color"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"

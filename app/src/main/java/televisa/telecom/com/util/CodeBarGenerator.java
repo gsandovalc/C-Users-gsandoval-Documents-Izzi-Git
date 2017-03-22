@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class CodeBarGenerator {
     private static final int WHITE = 0x00FFFFFF;
-    private static final int BLACK = 0xFFb1b1b1;
+    private static final int BLACK = 0xFF000000;
     public static Bitmap encodeAsBitmap(String contents, BarcodeFormat format, int img_width, int img_height) throws WriterException {
         String contentsToEncode = contents;
         if (contentsToEncode == null) {
