@@ -164,6 +164,21 @@ public void swUsr(View v){
         if(info.isEsNegocios())
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
         try {
+            if(info.isDisplayWifiInfo()) {
+                ((TextView)findViewById(R.id.ssid)).setText(AES.decrypt(info.getWifiName()));
+                ((TextView)findViewById(R.id.ssid_pass)).setText(AES.decrypt(info.getWifiPass()));
+                ((TextView)findViewById(R.id.ssid_peers)).setText(AES.decrypt(info.getWifiPeers()));
+
+            }else{
+                ((RelativeLayout)findViewById(R.id.wifiinfo)).setVisibility(RelativeLayout.GONE);
+            }
+            String count=AES.decrypt(info.getCountNotifications());
+            int noti=Integer.parseInt(count);
+            if(noti>0){
+                ((TextView)findViewById(R.id.notificationCount)).setText(count);
+            }else{
+                ((TextView)findViewById(R.id.notificationCount)).setVisibility(TextView.GONE);
+            }
             String barcode_data = AES.decrypt(info.getBarcode());
             Bitmap bitmap = null;
             ImageView iv = (ImageView) findViewById(R.id.codebar);
@@ -363,7 +378,22 @@ public void swUsr(View v){
     public void slowInternet() {
         //showError("Tu conexión esta muy lenta\n Por favor, intenta de nuevo",3);
     }
+    public void edocuenta(View v){
+        Intent i=new Intent(getApplicationContext(),EdoCuentaActivity.class);
+        startActivity(i);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
+    public void ayudaa(View v){
+        Intent i=new Intent(getApplicationContext(),AyudaActivity.class);
+        startActivity(i);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
+    public void notifications(View v){
+        Intent i=new Intent(getApplicationContext(),PushNotificationCenterActivity.class);
+        startActivity(i);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
+    }
     public void establecimientos(View v){
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         Intent myIntent;
@@ -371,6 +401,11 @@ public void swUsr(View v){
         startActivityForResult(myIntent, 0);
         overridePendingTransition( R.transition.slide_in_up, R.transition.slide_out_up );
 
+    }
+    public void ajustes(View v){
+        Intent myIntent = new Intent(this, EditAccountActivity.class);
+        startActivityForResult(myIntent, 0);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
     public void pagos(View v){
         Intent myIntent = new Intent(this, ListaPagosActivity.class);

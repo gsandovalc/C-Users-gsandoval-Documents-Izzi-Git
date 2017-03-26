@@ -33,14 +33,14 @@ import televisa.telecom.com.util.PagosListAdapter;
 import televisa.telecom.com.util.izziLoginResponse;
 
 
-public class SwitchUserActivity extends IzziActivity implements IzziRespondable {
+public class SwitchUserActivity extends MenuActivity implements IzziRespondable {
     ListView lv;
     List<Cuentas> cuentas;
     SwitchUserActivity act=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_switch_user);
+        super.onCreate(savedInstanceState);
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         ImageView im=(ImageView)findViewById(R.id.show_menu);
         im.setImageResource(R.drawable.regresar);
@@ -55,9 +55,7 @@ public class SwitchUserActivity extends IzziActivity implements IzziRespondable 
         }
         initList();
     }
-    public void showMenu(View v){
-        finish();
-    }
+
     private void initList(){
         lv=(ListView)findViewById(R.id.lista_cuenta);
         IzziMovilApplication app=(IzziMovilApplication)getApplication();
@@ -174,6 +172,8 @@ public class SwitchUserActivity extends IzziActivity implements IzziRespondable 
             this.finish();
             ((IzziMovilApplication)this.getApplication()).setCurrentUser(sr);
             ((IzziMovilApplication)this.getApplication()).setLogged(true);
+            Intent i=new Intent(getApplicationContext(),UserActivity.class);
+            startActivity(i);
         }else{
             // mostrar mensaje rosa de usuario o contraseña invalido si es el caso
             //si no popup

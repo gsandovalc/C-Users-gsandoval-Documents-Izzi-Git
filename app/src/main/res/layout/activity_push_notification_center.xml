@@ -2,12 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="telecom.televisa.com.izzi.PushNotificationCenterActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/vista"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
         <include layout="@layout/headerextra" />
 
         <RelativeLayout
@@ -27,13 +30,28 @@
                 android:layout_height="fill_parent">
 
             </ListView>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="100dp"
-                android:gravity="center"
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:paddingBottom="15dp"
                 android:id="@+id/sinpagos"
-                android:textSize="20dp"
-                android:text="Aun no tienes notificaciones"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/campana2"
+                    android:layout_height="100dp" />
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="50dp"
+                    android:textColor="#000"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:text="Aun no tienes notificaciones"/>
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 

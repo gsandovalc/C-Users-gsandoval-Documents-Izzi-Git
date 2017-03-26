@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -29,6 +30,7 @@ public class ChatActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         ((TextView)findViewById(R.id.h_title)).setText("Chat");
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         Builder builder = new Builder();
         try {
@@ -81,7 +83,7 @@ public class ChatActivity extends Activity {
         }
 
     }
-    public void closeView(View v){
+    public void showMenu(View v){
         this.finish();
     }
 }

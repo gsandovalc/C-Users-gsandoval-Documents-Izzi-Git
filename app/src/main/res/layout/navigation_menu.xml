@@ -20,9 +20,12 @@
         android:orientation="vertical"
         android:background="@color/izzi_menu_back">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/profile"
+            android:onClick="goToView"
+            android:clickable="true"
+
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:orientation="horizontal">
@@ -197,6 +200,9 @@
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
                         android:layout_height="50dp"
+                        android:clickable="true"
+                        android:id="@+id/miscuentas"
+                        android:onClick="goToView"
                         android:orientation="horizontal">
                         <ImageView
                             android:layout_width="25dp"
@@ -265,6 +271,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
+                        android:clickable="true"
+                        android:onClick="goToView"
+                        android:id="@+id/lugarespago"
                         android:layout_height="50dp"
                         android:orientation="horizontal">
                         <ImageView
@@ -313,6 +322,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
+                        android:clickable="true"
+                        android:id="@+id/notifica"
+                        android:onClick="goToView"
                         android:layout_height="50dp"
                         android:orientation="horizontal">
                         <ImageView
@@ -367,7 +379,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="15dp"
+
                 android:orientation="vertical"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="5dp">
@@ -386,6 +398,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:clickable="true"
+                android:paddingLeft="15dp"
                 android:onClick="logout"
                 android:orientation="horizontal">
                 <ImageView

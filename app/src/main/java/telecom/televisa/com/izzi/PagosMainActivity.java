@@ -54,6 +54,7 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagos_main);
         ((TextView)findViewById(R.id.h_title)).setText("Pago en línea");
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
         LayoutInflater inflater = LayoutInflater.from(this);
         if (((IzziMovilApplication)getApplication()).getCurrentUser()==null){
             finish();
@@ -333,6 +334,7 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
                     maskedNumber="Mastercard terminación "+number;
                 }
                 ((TextView) layout.findViewById(R.id.tjtnumber)).setText(maskedNumber);
+
                 ((LinearLayout) findViewById(R.id.contenedortjt)).addView(layout, -1, (int) Util.dpToPx(this, 50));
                 int tipo2=Integer.parseInt(selectedCard.getCardType());
                 switch (tipo2) {
@@ -349,6 +351,8 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
                 }
                 ((ImageView)findViewById(R.id.crdimg)).setImageResource(recurso);
                 ((TextView)findViewById(R.id.tjtnumber)).setText(maskedNumber3+selectedCard.getCardDigits());
+                if(i>0)
+                    ((TextView)findViewById(R.id.tjtnumber)).setTextColor(0xff000000);
                 ((TextView)findViewById(R.id.vendortjt)).setText(selectedCard.getCardMonth() + "/" + selectedCard.getCardYear());
             }
             return;

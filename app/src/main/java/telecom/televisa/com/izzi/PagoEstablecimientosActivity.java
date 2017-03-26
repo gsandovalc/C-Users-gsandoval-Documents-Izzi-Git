@@ -37,6 +37,11 @@ public class PagoEstablecimientosActivity extends IzziActivity implements IzziRe
     int[]tiendaB=new int[]{R.id.geolocTienda1,R.id.geolocTienda2,R.id.geolocTienda3,R.id.geolocTienda4,R.id.geolocTienda5,R.id.geolocTienda6,R.id.geolocTienda7,R.id.geolocTienda8,R.id.geolocTienda9,R.id.geolocTienda10,R.id.geolocTienda11,R.id.geolocTienda12,R.id.geolocTienda13,R.id.geolocTienda14,R.id.geolocTienda15,R.id.geolocTienda16,R.id.geolocTienda17,R.id.geolocTienda18,R.id.geolocTienda19,R.id.geolocTienda20};
     RelativeLayout rootView;
     PopoverView popoverView;
+
+    //por dios esta clase es horrible
+    //crear de nuevo todo fue culpa del ramon
+    //q horror
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,6 +51,7 @@ public class PagoEstablecimientosActivity extends IzziActivity implements IzziRe
         rootView = (RelativeLayout)findViewById(R.id.vista).getParent();
         popoverView = new PopoverView(this, R.layout.popover_showed_view);
         ((TextView)findViewById(R.id.h_title)).setText("Pago en establecimientos");
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         ((LinearLayout)findViewById(R.id.contene)).setVisibility(LinearLayout.GONE);
 
@@ -78,7 +84,7 @@ public class PagoEstablecimientosActivity extends IzziActivity implements IzziRe
 
 
     }
-    public void closeView(View v){
+    public void showMenu(View v){
         this.finish();
     }
     public void help(View v){

@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -31,18 +33,24 @@ import televisa.telecom.com.util.izziEdoCuentaResponse;
 import televisa.telecom.com.ws.IzziWS;
 
 
-public class EdoCuentaActivity extends MenuActivity implements IzziRespondable {
+public class EdoCuentaActivity extends IzziActivity implements IzziRespondable {
+    boolean sendmail=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_edo_cuenta);
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_edo_cuenta);
         izziEdoCuentaResponse estado;  // VHP segun yo jajajaja
-
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
 
         ((TextView)findViewById(R.id.h_title)).setText("Estado de cuenta");
         try {
+
             Usuario info = ((IzziMovilApplication) getApplication()).getCurrentUser();
+            ((TextView)findViewById(R.id.totalText)).setText("$ "+AES.decrypt(info.getCvLastBalance())+".00");
+            int bal=Integer.parseInt(AES.decrypt(info.getCvLastBalance()));
+            if(bal>0){
+                ((TextView) findViewById(R.id.aclara)).setText("Pagar");
+            }
             Map<String, String> mp = new HashMap<>();
             mp.put("METHOD", "estado");
             mp.put("user", AES.encrypt(info.getUserName()));
@@ -59,7 +67,15 @@ public class EdoCuentaActivity extends MenuActivity implements IzziRespondable {
 
 
     }
+    public void showMenu(View v){
+        finish();
+    }
+    public void goToHistoric(View v){
+        Intent  i=new Intent(getApplicationContext(),ListaPagosActivity.class);
+        startActivity(i);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
+    }
     public void sendBill(View v){
         Usuario usuario=((IzziMovilApplication)getApplication()).getCurrentUser();
         Map <String,String> mp=new HashMap<>();
@@ -90,9 +106,9 @@ public class EdoCuentaActivity extends MenuActivity implements IzziRespondable {
             }
             mp.put("year",ano);
             new AsyncResponse(this,true).execute(mp);
-
+            sendmail=true;
         }catch(Exception e){
-
+            showError("Tu estado de cuenta aun no esta disponible",1);
         }
     }
 public void aclaraciones(View v){
@@ -115,7 +131,7 @@ public void aclaraciones(View v){
             Intent i =new Intent(this,PagosMainActivity.class);
             finish();
             startActivity(i);
-            overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
+            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         }
     }catch(Exception e){
         e.printStackTrace();
@@ -131,37 +147,23 @@ public void aclaraciones(View v){
 
     @Override
     public void notifyChanges(Object response) {
+        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+        if(sendmail){
+            showError("Se envió tu estado de cuenta a" +info.getUserName(),4);
+            sendmail=false;
+            return;
+        }
         if(response==null){
-            new AlertDialog.Builder(this)
-                    .setTitle("izzi")
-                    .setMessage("Lo sentimos, aun no esta disponible el detalle de tu factura de este mes")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+
             return;
         }
         izziEdoCuentaResponse rs=(izziEdoCuentaResponse)response;
 
         if(!rs.getIzziErrorCode().isEmpty()){
-            new AlertDialog.Builder(this)
-                    .setTitle("izzi")
-                    .setMessage("Lo sentimos, aun no esta disponible el detalle de tu factura de este mes")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+
             return;
         }
-
+        ((RelativeLayout)findViewById(R.id.vista)).setVisibility(RelativeLayout.GONE);
         //si la fecha de la factura del estado de cuenta nos llega nula es que no existe y debemos de ocultar los campos que no tenemos
         //UserActivity.estado;
         try {
@@ -212,12 +214,9 @@ public void aclaraciones(View v){
             ((TextView) findViewById(R.id.tp)).setText(AES.decrypt(rs.getResponse().getPagos()));
             ((TextView) findViewById(R.id.infop)).setText(AES.decrypt(rs.getResponse().getPagoTexto()));
             System.out.println(AES.decrypt(rs.getResponse().getTotal()));
-            Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+
             ((TextView) findViewById(R.id.total)).setText("$"+AES.decrypt(info.getCvLastBalance()));
-            int bal=Integer.parseInt(AES.decrypt(info.getCvLastBalance()));
-            if(bal>0){
-                ((TextView) findViewById(R.id.aclara)).setText("Pagar");
-            }
+
         }catch(Exception e){
 
         }

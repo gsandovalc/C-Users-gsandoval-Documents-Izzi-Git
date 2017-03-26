@@ -14,20 +14,21 @@ import java.util.List;
 import java.util.Locale;
 
 import telecom.televisa.com.izzi.R;
+import televisa.telecom.com.model.Notification;
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Push;
 
 /**
  * Created by cevelez on 28/04/2015.
  */
-public class PushListAdapter extends ArrayAdapter<Push>{
-    private List<Push> push;
+public class PushListAdapter extends ArrayAdapter<Notification>{
+    private List<Notification> push;
     Context context;
     String mesActual="";
     int contador=0;
     int[] colores=new int[]{0xAA00C1B5,0xAAFFA807,0xAAD60270,0xAAFCD116};
     public PushListAdapter(Context context, int textViewResourceId,
-                           List<Push> push, int type) {
+                           List<Notification> push, int type) {
         super(context, textViewResourceId, push);
         this.push = push;
         this.context=context;
@@ -39,7 +40,7 @@ public class PushListAdapter extends ArrayAdapter<Push>{
     }
 
     @Override
-    public Push getItem(int position) {
+    public Notification getItem(int position) {
         return super.getItem(position);
     }
 
@@ -55,12 +56,12 @@ public class PushListAdapter extends ArrayAdapter<Push>{
         TextView mes=(TextView)row.findViewById(R.id.formaL);
         ImageView img=(ImageView)row.findViewById(R.id.imageIcon);
         TextView mesView=(TextView)row.findViewById(R.id.textMes);
-        Push cent=push.get(position);
+        Notification cent=push.get(position);
         SimpleDateFormat sdf =new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdf2 =new SimpleDateFormat("dd MMM yyyy",new Locale("es","MX"));
         SimpleDateFormat sdf3 =new SimpleDateFormat("MMMM",new Locale("es","MX"));
         try {
-            fecha.setText(sdf.format(new Date(Long.parseLong(cent.getFecha()))));
+            fecha.setText(cent.getDate());
             String lugarCadena=cent.getMessage();
 
             if(lugarCadena.toLowerCase().contains("cta izzi")){
@@ -77,6 +78,9 @@ public class PushListAdapter extends ArrayAdapter<Push>{
                 mesView.setText("Aviso");
             }
             mes.setText(lugarCadena);
+            if(cent.getViewed()==0){
+                ((ImageView)row.findViewById(R.id.wave)).setVisibility(ImageView.VISIBLE);
+            }
         }catch(Exception e){
             e.printStackTrace();
         }

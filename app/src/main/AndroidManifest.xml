@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="telecom.televisa.com.izzi" >
+    package="telecom.televisa.com.izzi">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -42,17 +42,17 @@
         android:icon="@mipmap/ic_launcher"
         android:label="izzi"
         android:largeHeap="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <receiver
             android:name="com.appsflyer.MultipleInstallBroadcastReceiver"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
         <receiver
             android:name=".GcmBroadcastReceiver"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
@@ -70,7 +70,7 @@
             android:value="izziDB.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="5" />
+            android:value="9" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -80,8 +80,7 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -92,7 +91,7 @@
             android:name=".SplashScreen"
             android:label="izzi"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -103,98 +102,82 @@
             android:name=".UserActivity"
             android:label="@string/title_activity_user"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity
             android:name=".ServiciosActivity"
             android:label="@string/title_activity_servicios"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".EdoCuentaActivity"
             android:label="@string/title_activity_edo_cuenta"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".ListaPagosActivity"
             android:label="@string/title_activity_lista_pagos"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".PagosMainActivity"
             android:label="@string/title_activity_pagos_main"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".EditCardActivity"
             android:label="@string/title_activity_edit_card"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".AddCardActivity"
             android:label="@string/title_activity_add_card"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".DrWifiActivity"
             android:label="@string/title_activity_dr_wifi"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".LegalesActivity"
             android:label="@string/title_activity_legales"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".PaperlessActivity"
             android:label="@string/title_activity_paperless"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".MediosDePagoActivity"
             android:label="@string/title_activity_medios_de_pago"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".PagoEstablecimientosActivity"
             android:label="@string/title_activity_pago_establecimientos"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".TvGuideActivity"
             android:label="@string/title_activity_tv_guide"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".PaymentFailActivity"
             android:label="@string/title_activity_payment_fail"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".PaymentOkActivity"
             android:label="@string/title_activity_payment_ok"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".ChatActivity"
             android:label="@string/title_activity_chat"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -204,19 +187,16 @@
             android:name=".BtfLanding"
             android:label="@string/title_activity_btf_landing"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
-        </activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
         <activity
             android:name=".RecuperaPass"
             android:label="@string/title_activity_recupera_pass"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity
             android:name=".RecuperaFinActivity"
             android:label="@string/title_activity_recupera_fin"
-            android:theme="@android:style/Theme.Black.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -226,38 +206,39 @@
             android:name=".SwitchUserActivity"
             android:label="@string/title_activity_switch_user"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".PushNotificationCenterActivity"
             android:label="@string/title_activity_push_notification_center"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".Registro_main_activity"
             android:label="@string/title_activity_registro_main_activity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".RegistroStep2Activity"
             android:label="@string/title_activity_registro_step2"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".RegistroPaso3"
             android:label="@string/title_activity_registro_paso3"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".SMSConfirmaActivity"
+            android:label="@string/title_activity_smsconfirma"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:label="@string/title_activity_smsconfirma" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".EditAccountActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <activity android:name=".AyudaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
     </application>
 
 </manifest>

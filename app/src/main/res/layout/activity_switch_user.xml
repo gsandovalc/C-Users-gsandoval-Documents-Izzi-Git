@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#ffffff">
-        <include layout="@layout/header" />
+        <include layout="@layout/headerextra" />
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="40dp"

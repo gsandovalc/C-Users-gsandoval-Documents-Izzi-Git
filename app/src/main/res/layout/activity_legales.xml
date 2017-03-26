@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/black_back"
+    android:background="@color/izzi_background"
     tools:context="telecom.televisa.com.izzi.LegalesActivity">
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:background="#000000"
+
             android:orientation="vertical"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"

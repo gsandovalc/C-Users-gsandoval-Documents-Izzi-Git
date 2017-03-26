@@ -55,5 +55,7 @@ public class IzziActivity extends Activity  {
         });
     }
 
-
+    public void showMenu(View v){
+        finish();
+    }
 }

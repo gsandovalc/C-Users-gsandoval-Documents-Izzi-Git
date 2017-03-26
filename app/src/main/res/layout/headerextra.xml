@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 android:text="Servicios contratados"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:textSize="17dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true" />

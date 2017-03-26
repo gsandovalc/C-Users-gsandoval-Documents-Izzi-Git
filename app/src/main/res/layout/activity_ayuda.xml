@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_ayuda"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/izzi_background"
+    tools:context="telecom.televisa.com.izzi.AyudaActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/headerextra" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#bebebe"></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="90dp"
+            android:clickable="true"
+            android:onClick="chat"
+            >
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:background="#77a3a8"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:background="#fff"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/n_chat"
+                        android:layout_height="70dp"
+                        android:id="@+id/imageView3" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxWidth="200dp"
+                                android:text="Te atendemos uno a uno para ayudarte"
+                                android:id="@+id/leyenda1Text"
+                                android:textColor="#666"
+                                android:layout_marginTop="0dp"
+                                android:layout_gravity="center"
+                                android:gravity="left"
+                                android:textSize="14sp"
+                                android:layout_centerHorizontal="true" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/adelante"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#bebebe"></LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="90dp"
+            android:clickable="true"
+            android:onClick="callPay"
+            >
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:background="#77a3a8"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:background="#fff"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/n_call"
+                        android:layout_height="70dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxWidth="200dp"
+                                android:text="01 800 120 5000"
+
+                                android:textColor="@color/izzi_rosa"
+                                android:layout_marginTop="0dp"
+                                android:layout_gravity="center"
+                                android:gravity="left"
+                                android:textSize="14sp"
+                                android:layout_centerHorizontal="true" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/adelante"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#bebebe"></LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="90dp"
+            android:clickable="true"
+            android:onClick="chat"
+            >
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:background="#77a3a8"
+                android:clickable="true"
+                android:onClick="legal"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:background="#fff"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/jued"
+                        android:layout_height="70dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxWidth="200dp"
+                                android:text="Consulta nuestros avisos legales"
+                                android:textColor="#666"
+                                android:layout_marginTop="0dp"
+                                android:layout_gravity="center"
+                                android:gravity="left"
+                                android:textSize="14sp"
+                                android:layout_centerHorizontal="true"
+                                 />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/adelante"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#bebebe"></LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#55bebebe"></LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fafafa"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:alpha=".5"
+                android:clickable="true"
+                android:onClick="miizzi"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:layout_weight=".333">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/t_home"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mi izzi"
+
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:textSize="10sp"
+                    android:textColor="#000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:alpha=".5"
+                android:clickable="true"
+                android:onClick="edocuenta"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:layout_weight=".333">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/t_bill"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Mi estado de cuenta"
+
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:textSize="10sp"
+                    android:textColor="#000"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:layout_weight=".333">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/t_help"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ayuda"
+
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:textSize="10sp"
+                    android:textColor="#000"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

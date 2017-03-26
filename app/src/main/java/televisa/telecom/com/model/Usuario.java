@@ -267,7 +267,101 @@ public class Usuario extends Model implements MobileResponse {
     private String parentAccount="";
     @Expose
     private List<Cuentas> cuentasAsociadas;
+    @Expose
+    @Column
+    private String wifiName="";
+    @Expose
+    @Column
+    private String wifiPass="";
+    @Expose
+    @Column
+    private String wifiPeers="";
 
+
+
+    @Expose
+    @Column
+    private boolean displayWifiInfo=false;
+
+
+    @Expose
+    @Column
+    private String cvSaldoVencido="";
+
+    @Expose
+    @Column
+    private String countNotifications="";
+    @Expose
+    @Column
+    private String smsNumber="";
+    @Expose
+    @Column
+    private boolean withSmsNumber=false;
+
+    public String getCountNotifications() {
+        return countNotifications;
+    }
+
+    public String getSmsNumber() {
+        return smsNumber;
+    }
+
+    public void setSmsNumber(String smsNumber) {
+        this.smsNumber = smsNumber;
+    }
+
+    public boolean isWithSmsNumber() {
+        return withSmsNumber;
+    }
+
+    public void setWithSmsNumber(boolean withSmsNumber) {
+        this.withSmsNumber = withSmsNumber;
+    }
+
+    public void setCountNotifications(String countNotifications) {
+
+        this.countNotifications = countNotifications;
+    }
+
+    public String getWifiName() {
+        return wifiName;
+    }
+
+    public void setWifiName(String wifiName) {
+        this.wifiName = wifiName;
+    }
+
+    public String getCvSaldoVencido() {
+        return cvSaldoVencido;
+    }
+
+    public void setCvSaldoVencido(String cvSaldoVencido) {
+        this.cvSaldoVencido = cvSaldoVencido;
+    }
+
+    public boolean isDisplayWifiInfo() {
+        return displayWifiInfo;
+    }
+
+    public void setDisplayWifiInfo(boolean displayWifiInfo) {
+        this.displayWifiInfo = displayWifiInfo;
+    }
+
+    public String getWifiPass() {
+        return wifiPass;
+    }
+
+    public void setWifiPass(String wifiPass) {
+        this.wifiPass = wifiPass;
+    }
+
+    public String getWifiPeers() {
+        return wifiPeers;
+    }
+
+    public void setWifiPeers(String wifiPeers) {
+        this.wifiPeers = wifiPeers;
+    }
     public boolean isEsMigrado() {
         return esMigrado;
     }

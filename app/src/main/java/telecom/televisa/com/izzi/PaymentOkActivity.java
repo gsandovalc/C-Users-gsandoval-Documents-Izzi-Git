@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,15 +31,17 @@ public class PaymentOkActivity extends IzziActivity implements IzziRespondable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_ok);
         ((TextView)findViewById(R.id.h_title)).setText("Pago en línea");
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
+
         Intent i=getIntent();
         ((TextView)findViewById(R.id.autorizacion)).setText(i.getExtras().getString("auth"));
         KISSmetricsAPI.sharedAPI().record("Pago realizado en Apps");
     }
     public void askDom(View v){
-        closeView(v);
+        showMenu(v);
 
     }
-    public void closeView(View v){
+    public void showMenu(View v){
         Usuario usuario=((IzziMovilApplication)getApplication()).getCurrentUser();
         Map<String,String> mp=new HashMap<>();
 
@@ -52,14 +55,14 @@ public class PaymentOkActivity extends IzziActivity implements IzziRespondable {
         new AsyncResponse(this,true).execute(mp);
     }
    public void finishPayment(View v){
-       closeView(v);
+       showMenu(v);
    }
 
     @Override
     public void notifyChanges(Object response) {
         if(PagosMainActivity.parametros!=null){
             PagosMainActivity.parametros=null;
-            closeView(new View(this));
+            showMenu(new View(this));
         }
         if(response==null){
             response= (Object)(new izziLoginResponse());

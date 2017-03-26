@@ -209,7 +209,7 @@
                     android:layout_width="fill_parent"
                     android:layout_margin="1dp"
                     android:orientation="horizontal"
-                    android:background="#b3b3b3"
+                    android:background="#fff"
                     android:layout_height="fill_parent">
 
                     <ImageView

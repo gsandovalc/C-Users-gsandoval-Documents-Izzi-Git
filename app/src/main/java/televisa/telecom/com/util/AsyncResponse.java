@@ -19,11 +19,13 @@ import java.net.SocketTimeoutException;
 import java.util.Map;
 
 
+import telecom.televisa.com.izzi.EditAccountActivity;
 import telecom.televisa.com.izzi.EdoCuentaActivity;
 import telecom.televisa.com.izzi.PagoEstablecimientosActivity;
 import telecom.televisa.com.izzi.AddCardActivity;
 import telecom.televisa.com.izzi.PagosMainActivity;
 import telecom.televisa.com.izzi.PaperlessActivity;
+import telecom.televisa.com.izzi.PushNotificationCenterActivity;
 import telecom.televisa.com.izzi.R;
 import telecom.televisa.com.izzi.RecuperaPass;
 import telecom.televisa.com.izzi.RegistroPaso3;
@@ -100,7 +102,17 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
             }else if(respondTo instanceof EdoCuentaActivity){
                 izziEdoCuentaResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziEdoCuentaResponse.class);
                 return response;
-            }else{
+            }else if(respondTo instanceof PushNotificationCenterActivity && !metodo.equals("push/view")){
+                izziPushResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziPushResponse.class);
+                return response;
+            }else if(respondTo instanceof PushNotificationCenterActivity && metodo.equals("push/view")){
+                IzziWS.callWebService(params[0], metodo);
+                return new Integer(2);
+            }else if(respondTo instanceof EditAccountActivity){
+                izziPassResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziPassResponse.class);
+                return response;
+            }
+            else{
               //  izziLoginResponse responsse=gsb.create().fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);
                 izziLoginResponse response = gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);
                 return response;

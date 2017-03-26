@@ -87,6 +87,11 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
         try{
             ((TextView)findViewById(R.id.nombre)).setText(AES.decrypt(i.getNombreContacto()));
             ((TextView)findViewById(R.id.contrato)).setText(i.getUserName());
+            if(i.getCuentasAsociadas()!=null)
+                if(i.getCuentasAsociadas().isEmpty())
+                    findViewById(R.id.miscuentas).setVisibility(LinearLayout.GONE);
+            else
+                    findViewById(R.id.miscuentas).setVisibility(LinearLayout.VISIBLE);
         }catch (Exception e){
 
         }
@@ -95,25 +100,37 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
     public void goToView(View v){
         Intent i=null;
         switch(v.getId()){
-            /*case R.id.vHome:
+            case R.id.lugarespago:
+                i=new Intent(getApplicationContext(),PagoEstablecimientosActivity.class);
+                showMenu(v);
+                break;
+            case R.id.miscuentas:
+                i=new Intent(getApplicationContext(),SwitchUserActivity.class);
+                finish();
+                break;
+            case R.id.profile:
                 i=new Intent(getApplicationContext(),UserActivity.class);
+                finish();
                 break;
-            case R.id.vServices:
-                i=new Intent(getApplicationContext(),ServiciosActivity.class);
-                break;
-            case R.id.vLegales:
-                i=new Intent(getApplicationContext(),LegalesActivity.class);
-                break;*/
             case R.id.vEstado:
                 i=new Intent(getApplicationContext(),EdoCuentaActivity.class);
+                showMenu(v);
                 break;
             case R.id.vGuide:
                 i=new Intent(getApplicationContext(),TvGuideActivity.class);
+                finish();
+                break;
+            case R.id.notifica:
+                i=new Intent(getApplicationContext(),PushNotificationCenterActivity.class);
+                showMenu(v);
+                break;
             default:
                 break;
         }
-       finish();
+
         startActivity(i);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+
     }
     @Override
     public void setContentView(int id){
@@ -382,7 +399,9 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
             layout=R.layout.nointernet_error;
         else if(type==3)
             layout=R.layout.slowinternet_error;
-        else
+        else if(type==4)
+            layout=R.layout.sendmail;
+            else
             layout=R.layout.unexpected_error;
         final Dialog popup = new Dialog(this,android.R.style.Theme_Translucent);
         popup.requestWindowFeature(Window.FEATURE_NO_TITLE);

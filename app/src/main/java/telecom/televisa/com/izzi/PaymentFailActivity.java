@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -15,9 +16,11 @@ public class PaymentFailActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_fail);
         ((TextView)findViewById(R.id.h_title)).setText("Pago en línea");
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
+
     }
 
-    public void closeView(View v){
+    public void showMenu(View v){
         this.finish();
     }
 

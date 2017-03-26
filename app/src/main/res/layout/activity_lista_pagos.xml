@@ -1,17 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/black_back"
+    android:background="@color/izzi_background"
     tools:context="telecom.televisa.com.izzi.ListaPagosActivity">
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/vista"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
     <include layout="@layout/headerextra" />
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
             <TextView
@@ -45,27 +52,133 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-    <ListView
-        android:layout_width="fill_parent"
-        android:id="@+id/lista_pagos"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:scrollbars="none"
-        android:layout_marginTop="2dp"
-        android:overScrollMode="never"
-        android:divider="#bbb"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:paddingBottom="15dp"
+                android:id="@+id/sinpagos"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/nobill"
+                    android:layout_height="150dp" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                android:textColor="#000"
+                android:gravity="center"
 
-        android:dividerHeight="1dp"
-        android:layout_height="fill_parent">
+                android:textSize="20dp"
+                android:text="No tienes pagos registrados"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true" />
+            </LinearLayout>
+            <ListView
+                android:layout_width="fill_parent"
+                android:id="@+id/lista_pagos"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:divider="#bbb"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:dividerHeight="0dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
 
-        </ListView>
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:id="@+id/sinpagos"
-            android:textSize="20dp"
-            android:text="No tienes pagos registrados"/>
+                </ListView>
         </RelativeLayout>
     </LinearLayout>
+   <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="51dp"
+    android:orientation="vertical"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentLeft="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#55bebebe"></LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fafafa"
+
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:alpha=".5"
+            android:onClick="edocuenta"
+            android:clickable="true"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight=".333">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/t_bill"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estado de cuenta"
+
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="10sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:alpha=".5"
+            android:clickable="true"
+            android:onClick="sendBill"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight=".333">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/envelope2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enviar por correo"
+
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="10sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight=".333">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/phistory"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Historial"
+
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="10sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
 </RelativeLayout>

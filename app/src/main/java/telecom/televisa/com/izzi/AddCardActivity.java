@@ -48,10 +48,11 @@ public class AddCardActivity extends IzziActivity implements IzziRespondable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
         ((TextView)findViewById(R.id.h_title)).setText("Agregar una tarjeta");
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
         exp=(EditText)findViewById(R.id.cardExp);
         exp.addTextChangedListener(new TwoDigitsCardTextWatcher(exp));
     }
-    public void closeView(View v){
+    public void showMenu(View v){
         this.finish();
     }
 

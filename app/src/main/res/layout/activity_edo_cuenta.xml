@@ -1,19 +1,83 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-
+    android:background="@color/izzi_background"
     tools:context="telecom.televisa.com.izzi.EdoCuentaActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:id="@+id/vista"
+
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/black_back">
+        >
     <include layout="@layout/headerextra" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="130dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Total a pagar"
+                android:textSize="19sp"
+                android:gravity="center_horizontal"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/izzi_rosa"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="$1200"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:id="@+id/totalText"
+                android:textColor="#666"
+                android:gravity="center_horizontal"
+                android:textSize="30sp"
+                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/brounded_corners"
+                android:clickable="true"
+                android:onClick="aclaraciones"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+
+                    android:text="Aclaraciones"
+                    android:id="@+id/aclara"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#fff"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="9dp"
+                android:background="#bebebe"></LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/container_edo"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/izzi_turquesa70"
+            android:background="@color/izzi_turquesa"
             android:padding="11dp"
             >
 
@@ -160,6 +224,16 @@
                         android:id="@+id/paqName"
                         android:gravity="center_vertical"
                         android:layout_weight=".5"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:textColor="@color/izzi_text_color"
+                        android:textSize="14dp"
+                        android:id="@+id/intTot"
+                        android:gravity="center"
+                        android:layout_weight=".5"/>
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
@@ -209,14 +283,6 @@
                         android:layout_marginLeft="15dp"
                         android:text="Internet"
                         android:gravity="center_vertical"
-                        android:layout_weight=".5"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="fill_parent"
-                        android:textColor="@color/izzi_text_color"
-                        android:textSize="14dp"
-                        android:id="@+id/intTot"
-                        android:gravity="center"
                         android:layout_weight=".5"/>
 
                 </LinearLayout>
@@ -411,63 +477,129 @@
             </ScrollView>
 
 </LinearLayout>
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_alignParentBottom="true"
 
-        android:layout_height="45dp">
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="51dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="175dp"
+        android:id="@+id/vista"
+        android:background="#eaeaea"
+        >
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
             android:layout_centerInParent="true"
-            android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight=".5"
-            android:layout_height="fill_parent"
-            android:layout_centerInParent="true"
-            android:background="@color/izzi_button1"
-            android:clickable="true"
-            android:onClick="aclaraciones"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/nobill"
+            android:layout_height="200dp" />
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_width="300sp"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="15sp"
-                android:layout_marginLeft="5dp"
-                android:text="Aclaraciones"
-                android:id="@+id/aclara"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:textColor="@color/izzi_text_color"
-                />
-        </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight=".5"
-                android:layout_height="fill_parent"
-                android:layout_centerInParent="true"
-                android:background="@color/izzi_button2"
-                android:clickable="true"
-                android:onClick="sendBill"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:src="@drawable/envelope"
-                    android:layout_margin="11dp"
-                    android:id="@+id/edocuenta"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@color/izzi_text_color"
-                    />
-            </LinearLayout>
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:text="Lo sentimos, aun no esta disponible el detalle de tu factura de este mes."/>
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#55bebebe"></LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fafafa"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight=".333">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/t_bill"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estado de cuenta"
+
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="10sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:alpha=".5"
+            android:clickable="true"
+            android:onClick="sendBill"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight=".333">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/envelope2"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enviar por correo"
+
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="10sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:alpha=".5"
+            android:clickable="true"
+            android:onClick="goToHistoric"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight=".333">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/phistory"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Historial"
+
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="10sp"
+                android:textColor="#000"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
@@ -23,7 +24,7 @@ public class LegalesActivity extends MenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_legales);
         super.onCreate(savedInstanceState);
-
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
         ((TextView)findViewById(R.id.h_title)).setText("Avisos legales");
     }
 
@@ -56,7 +57,7 @@ public class LegalesActivity extends MenuActivity {
         startActivity(browserIntent);
     }
 
-    public void closeView(View v){
+    public void showMenu(View v){
         if(wvVisible){
             WebView wv= ((WebView)findViewById(R.id.webview));
             wv.setVisibility(WebView.GONE);

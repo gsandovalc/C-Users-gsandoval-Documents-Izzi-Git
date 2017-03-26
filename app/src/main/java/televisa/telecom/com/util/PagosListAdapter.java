@@ -139,7 +139,7 @@ public class PagosListAdapter extends ArrayAdapter<PagosList>{
                             new AsyncResponse((IzziRespondable)ativi,true).execute(mp);
 
                         }catch(Exception e){
-                            e.printStackTrace();
+                            ((IzziRespondable)ativi).notifyChanges(null);
                         }
                     }
                 });

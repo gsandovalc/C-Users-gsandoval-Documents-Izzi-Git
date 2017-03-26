@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="5dp"
-    android:background="@drawable/black_back"
+    android:background="@color/izzi_background"
     tools:context="telecom.televisa.com.izzi.RegistroStep2Activity">
 
     <ImageView
@@ -31,7 +31,7 @@
         android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:text="Selecciona una opción"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:id="@+id/textView"
         android:textSize="17sp"
         android:layout_alignParentTop="true"
@@ -46,7 +46,7 @@
         android:layout_gravity="center"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:textColor="#fff"
+        android:textColor="#000"
         android:layout_alignParentBottom="true"
         android:gravity="center"/>
 
@@ -92,7 +92,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginRight="20dp"
                     android:textSize="16sp"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:text="Deseo confirmar mi cuenta, mediante un correo electrónico"/>
             </RelativeLayout>
         </LinearLayout>
@@ -132,7 +132,7 @@
                     android:layout_marginLeft="60dp"
                     android:gravity="center_vertical"
                     android:layout_marginRight="20dp"
-                    android:textColor="#fff"
+                    android:textColor="#000"
                     android:textSize="16sp"
                     android:text="Deseo confirmar mi cuenta, mediante un mensaje de texto (SMS)."/>
             </RelativeLayout>

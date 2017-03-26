@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,6 +45,7 @@ public class MediosDePagoActivity extends Activity  {
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         setContentView(R.layout.activity_medios_de_pago);
         ((TextView)findViewById(R.id.h_title)).setText("Código de barras");
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
         //lo obtenemos desde el servicio
         try {
             String barcode_data = AES.decrypt(info.getBarcode());
@@ -58,7 +60,9 @@ public class MediosDePagoActivity extends Activity  {
 
     }
 
-
+    public void showMenu(View v){
+        closeView(v);
+    }
 
     public void closeView(View v){
         this.finish();
