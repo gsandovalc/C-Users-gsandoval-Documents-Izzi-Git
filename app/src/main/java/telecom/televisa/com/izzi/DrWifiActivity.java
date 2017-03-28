@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -32,6 +33,7 @@ public class DrWifiActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dr_wifi);
         ((TextView)findViewById(R.id.h_title)).setText("izzi Dr. Wifi");
+        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         Uri.Builder builder = new Uri.Builder();
         try {
@@ -87,7 +89,7 @@ public class DrWifiActivity extends Activity {
     }
 
 
-    public void closeView(View v){
+    public void showMenu(View v){
         this.finish();
     }
 

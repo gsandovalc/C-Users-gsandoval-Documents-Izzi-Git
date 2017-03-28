@@ -171,10 +171,60 @@
                             android:text="Legales"
                             android:gravity="center_vertical"/>
                     </LinearLayout>-->
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
+                        android:clickable="true"
+                        android:id="@+id/notifica"
+                        android:onClick="goToView"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="2dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/message_g"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
+                            android:text="Centro de mensajes"
+                            android:gravity="center_vertical"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:paddingLeft="15dp"
+                        android:clickable="true"
+                        android:onClick="goToView"
+                        android:id="@+id/lugarespago"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="2dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/location_g"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="15sp"
+                            android:text="Lugares de pago"
+                            android:gravity="center_vertical"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:paddingLeft="15dp"
+                        android:visibility="gone"
                         android:id="@+id/vEstado"
                         android:onClick="goToView"
                         android:layout_height="50dp"
@@ -268,31 +318,7 @@
                             android:text="Chatea con nosotros"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
-                        android:clickable="true"
-                        android:onClick="goToView"
-                        android:id="@+id/lugarespago"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginTop="2dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/location_g"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
-                            android:layout_gravity="center_vertical"
-                            android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
-                            android:text="Lugares de pago"
-                            android:gravity="center_vertical"/>
-                    </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:paddingLeft="15dp"
@@ -319,31 +345,7 @@
                             android:gravity="center_vertical"/>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
-                        android:clickable="true"
-                        android:id="@+id/notifica"
-                        android:onClick="goToView"
-                        android:layout_height="50dp"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginTop="2dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/message_g"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
-                            android:layout_gravity="center_vertical"
-                            android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
-                            android:text="Centro de mensajes"
-                            android:gravity="center_vertical"/>
-                    </LinearLayout>
+
                     <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_marginLeft="10dp"

@@ -32,6 +32,10 @@ public class AyudaActivity extends Activity {
         Intent  i = new Intent(getApplicationContext(), ChatActivity.class);
         startActivity(i);
     }
+    public void chatdr(View v){
+        Intent  i = new Intent(getApplicationContext(), DrWifiActivity.class);
+        startActivity(i);
+    }
     public void edocuenta(View v){
         Intent i=new Intent(getApplicationContext(),EdoCuentaActivity.class);
         startActivity(i);

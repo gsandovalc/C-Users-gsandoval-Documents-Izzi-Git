@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 import televisa.telecom.com.model.Cuentas;
+import televisa.telecom.com.model.ExtrasInt;
+import televisa.telecom.com.model.ExtrasTv;
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.util.AES;
@@ -129,6 +131,8 @@ public class SwitchUserActivity extends MenuActivity implements IzziRespondable 
         new Delete().from(Usuario.class).execute();
         new Delete().from(PagosList.class).execute();
         new Delete().from(Cuentas.class).execute();
+        new Delete().from(ExtrasTv.class).execute();
+        new Delete().from(ExtrasInt.class).execute();
         if(((izziLoginResponse)response).getIzziErrorCode().isEmpty()){
             Usuario sr=((izziLoginResponse)response).getResponse();
 
@@ -147,6 +151,12 @@ public class SwitchUserActivity extends MenuActivity implements IzziRespondable 
                 for(Cuentas ac:sr.getCuentasAsociadas())
                     ac.save();
             }
+            if(sr.getComplementosTV()!=null)
+                for(ExtrasTv et:sr.getComplementosTV())
+                    et.save();
+            if(sr.getComplementosINT()!=null)
+                for(ExtrasInt et:sr.getComplementosINT())
+                    et.save();
             if(sr.isExtrasVideo()){
                 String extra="";
                 for(String complemento:sr.getDataExtrasVideo()){

@@ -68,7 +68,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:maxWidth="200dp"
-                                android:text="Te atendemos uno a uno para ayudarte"
+                                android:text="Fallas de video, internet o telefonía; aclaraciones y otros servicios"
                                 android:id="@+id/leyenda1Text"
                                 android:textColor="#666"
                                 android:layout_marginTop="0dp"
@@ -93,6 +93,7 @@
                 android:src="@drawable/adelante"
                 android:layout_marginRight="10dp"/>
         </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -173,6 +174,82 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#bebebe"></LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="90dp"
+                android:clickable="true"
+                android:onClick="chatdr"
+                >
+
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:orientation="vertical"
+                    android:background="#77a3a8"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="#fff"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_marginLeft="15dp"
+                            android:src="@drawable/n_drwifi"
+                            android:layout_height="70dp"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:maxWidth="220dp"
+                                    android:text="Asistencia técnica en configuración de computadoras, consolas de videojuegos y otros dispositivos"
+
+                                    android:textColor="#666"
+                                    android:layout_marginTop="0dp"
+                                    android:layout_gravity="center"
+                                    android:gravity="left"
+                                    android:textSize="14sp"
+                                    android:layout_centerHorizontal="true" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/adelante"
+                    android:layout_marginRight="10dp"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#bebebe"></LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -13,6 +13,8 @@ import java.util.Map;
 import telecom.televisa.com.izzi.IzziMovilApplication;
 import telecom.televisa.com.izzi.UserActivity;
 import televisa.telecom.com.model.Cuentas;
+import televisa.telecom.com.model.ExtrasInt;
+import televisa.telecom.com.model.ExtrasTv;
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
 import televisa.telecom.com.ws.IzziWS;
@@ -89,6 +91,8 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
             new Delete().from(Usuario.class).execute();
             new Delete().from(PagosList.class).execute();
             new Delete().from(Cuentas.class).execute();
+            new Delete().from(ExtrasTv.class).execute();
+            new Delete().from(ExtrasInt.class).execute();
             Usuario sr=((izziLoginResponse)response).getResponse();
 
 
@@ -107,6 +111,12 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
                 for(Cuentas ac:sr.getCuentasAsociadas())
                     ac.save();
             }
+            if(sr.getComplementosTV()!=null)
+                for(ExtrasTv et:sr.getComplementosTV())
+                    et.save();
+            if(sr.getComplementosINT()!=null)
+                for(ExtrasInt et:sr.getComplementosINT())
+                    et.save();
             if(sr.isExtrasVideo()){
                 String extra="";
                 for(String complemento:sr.getDataExtrasVideo()){
@@ -132,6 +142,7 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
             res.setCurrentUser(sr);
             if(refresca!=null)
                 refresca.refresh();
+
         }else{
             //llenar una bandera de error en el login async
         }

@@ -6,23 +6,18 @@
     android:background="#fff"
     tools:context="telecom.televisa.com.izzi.ServiciosActivity">
 
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:id="@+id/vista"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
     <include layout="@layout/headerextra" />
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:background="#55dfdfdf"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp"
-            android:padding="1dp"
-            android:layout_height="wrap_content">
-
             <LinearLayout
                 android:background="#fff"
                 android:layout_width="fill_parent"
@@ -30,177 +25,202 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="fill_parent"
-                    android:text="Tu servicio principal:"
-                    android:gravity="center_horizontal"
-                    android:textColor="#000"
-                    android:layout_marginTop="15dp"
-                    android:textSize="17dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_width="fill_parent"
                     android:text="izzi + pack tv"
                     android:gravity="center_horizontal"
                     android:textColor="#D60270"
                     android:id="@+id/textServicio"
                     android:layout_marginTop="5dp"
-                    android:textSize="19dp"
+                    android:textSize="14dp"
                     android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/extrascontainer"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:textSize="13sp"
+                        android:layout_marginTop="5dp"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:textColor="#666"
+                        android:text="con:"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/extasint"
+                            android:layout_weight=".5">
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/internet"
+                                    android:layout_height="20dp" />
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="#888"
+                                    android:gravity="center_vertical"
+                                    android:textSize="13dp"
+                                    android:text="Internet"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/extastv"
+                            android:layout_weight=".5">
+
+                            <LinearLayout
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:src="@drawable/tv"
+                                    android:layout_height="20dp" />
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="#888"
+                                    android:gravity="center_vertical"
+                                    android:textSize="13dp"
+                                    android:text="Televisión"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
                 <ScrollView
                     android:layout_width="fill_parent"
                     android:scrollbars="none"
+                    android:layout_marginBottom="45dp"
                     android:id="@+id/scrollV"
+                    android:layout_marginTop="10dp"
                     android:layout_height="fill_parent">
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:padding="5dp"
-                    android:orientation="vertical"
-                    android:id="@+id/telefonia"
-                    android:layout_height="wrap_content">
                     <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#FCD116">
-
-
-                        </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:id="@+id/posextras"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:src="@drawable/telefono"
-                            android:layout_height="30dp" />
+                        android:orientation="vertical">
                         <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_marginLeft="15dp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:textSize="15dp"
-                            android:text="Telefonía"/>
-                    </LinearLayout>
-
-                    </LinearLayout>
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:padding="5dp"
-                    android:orientation="vertical"
-                    android:id="@+id/internet"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#FFA807">
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_marginTop="15dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:src="@drawable/internet"
-                            android:layout_height="30dp" />
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_marginLeft="15dp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:textSize="15dp"
-                            android:text="Internet"/>
-                    </LinearLayout>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:padding="5dp"
-                    android:orientation="vertical"
-                    android:id="@+id/video"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#00C1B5">
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_marginTop="15dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:src="@drawable/tv"
-                            android:layout_height="30dp" />
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_marginLeft="15dp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:gravity="center_vertical"
-                            android:textSize="15dp"
-                            android:text="Televisión"/>
-                    </LinearLayout>
-
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:padding="5dp"
-                    android:orientation="vertical"
-                    android:id="@+id/vacio"
-                    android:visibility="gone"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#000">
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_marginTop="15dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_marginLeft="15dp"
-                            android:textStyle="bold"
-                            android:textColor="#555"
+                            android:layout_width="match_parent"
+                            android:background="#686868"
+                            android:textColor="#fff"
+                            android:padding="3dp"
+                            android:layout_gravity="center"
                             android:gravity="center"
-                            android:textSize="18dp"
-                            android:text="No tienes servicios adicionales"/>
+                            android:layout_height="wrap_content"
+                            android:text="Modifica tu servicio" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                           >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:id="@+id/posintcontainer"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:background="#9d9d9d"
+                                    android:textColor="#fff"
+                                    android:padding="3dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="left"
+                                    android:gravity="left"
+                                    android:layout_height="wrap_content"
+                                    android:text="     Crece tu Internet" />
+                                <HorizontalScrollView
+                                    android:layout_width="wrap_content"
+                                    android:overScrollMode="ifContentScrolls"
+                                    android:scrollbars="none"
+                                    android:layout_height="140dp">
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent"
+                                        android:id="@+id/posIntelem"
+                                        android:gravity="center"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_gravity="center"
+                                        android:orientation="horizontal">
+                                    </LinearLayout>
+                                </HorizontalScrollView>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:id="@+id/postvcontainer"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:background="#9d9d9d"
+                                    android:textColor="#fff"
+                                    android:padding="3dp"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_gravity="left"
+                                    android:gravity="left"
+                                    android:layout_height="wrap_content"
+                                    android:text="     Crece tu Televisión" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:orientation="vertical"
+                                    android:layout_margin="5dp"
+                                    android:id="@+id/posTvelem"
+                                    android:layout_height="wrap_content">
+
+                                </LinearLayout>
+                                </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
-
-
-                </LinearLayout>
-                </LinearLayout>
                 </ScrollView>
                 </LinearLayout>
-            </RelativeLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:visibility="gone"
+        android:clickable="true"
+        android:onClick="sendChanges"
+        android:id="@+id/haschanges"
+        android:layout_alignParentBottom="true"
+        android:background="@color/izzi_turquesa">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Continuar"/>
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/clear"
+        android:visibility="gone"
+        android:layout_marginRight="5dp"
+        android:clickable="true"
+        android:onClick="clear"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/clear"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>

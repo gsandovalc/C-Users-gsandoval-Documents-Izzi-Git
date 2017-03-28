@@ -164,10 +164,24 @@ public void swUsr(View v){
         if(info.isEsNegocios())
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
         try {
+            ((RelativeLayout)findViewById(R.id.wifiNOOK)).setVisibility(RelativeLayout.GONE);
+            ((ImageView)findViewById(R.id.wifilogo)).setImageResource(R.drawable.miwifi);
+            ((RelativeLayout)findViewById(R.id.wifiOFFLINE)).setVisibility(RelativeLayout.GONE);
+
             if(info.isDisplayWifiInfo()) {
-                ((TextView)findViewById(R.id.ssid)).setText(AES.decrypt(info.getWifiName()));
-                ((TextView)findViewById(R.id.ssid_pass)).setText(AES.decrypt(info.getWifiPass()));
-                ((TextView)findViewById(R.id.ssid_peers)).setText(AES.decrypt(info.getWifiPeers()));
+                if(!info.isRouterOffline()&&info.isWifiStatus()) {
+                    ((TextView) findViewById(R.id.ssid)).setText(AES.decrypt(info.getWifiName()));
+                    ((TextView) findViewById(R.id.ssid_pass)).setText(AES.decrypt(info.getWifiPass()));
+                    ((TextView) findViewById(R.id.ssid_peers)).setText(AES.decrypt(info.getWifiPeers()));
+                    //modificiar
+                }if(!info.isWifiStatus()){
+                    ((RelativeLayout)findViewById(R.id.wifiNOOK)).setVisibility(RelativeLayout.VISIBLE);
+                    ((ImageView)findViewById(R.id.wifilogo)).setImageResource(R.drawable.wifioff);
+                }
+                if(info.isRouterOffline()){
+                    ((RelativeLayout)findViewById(R.id.wifiOFFLINE)).setVisibility(RelativeLayout.VISIBLE);
+                    ((ImageView)findViewById(R.id.wifilogo)).setImageResource(R.drawable.offlinewifi);
+                }
 
             }else{
                 ((RelativeLayout)findViewById(R.id.wifiinfo)).setVisibility(RelativeLayout.GONE);
@@ -194,6 +208,9 @@ public void swUsr(View v){
             ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0.00");
             String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0";
             Double tot= Double.parseDouble(lastBalance);
+            ((TextView)findViewById(R.id.totalText)).setTextColor(0xff666666);
+            ((TextView) findViewById(R.id.leyenda1Text)).setText("Pagar antes de:");
+            ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.VISIBLE);
             if(tot<=0){
                 ((TextView) findViewById(R.id.leyenda1Text)).setText("Estás al corriente gracias por tu pago");
                 ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
@@ -211,13 +228,12 @@ public void swUsr(View v){
                         ((TextView) findViewById(R.id.fechaText)).setText(mediumFormat.format(fechaLimiteDate));
                         Calendar cal = Calendar.getInstance();
                         if (fechaLimiteDate.getTime() < cal.getTime().getTime()&&saldo>0) {
-                            TextView myText = (TextView) findViewById(R.id.totalText );
-                            Animation anim = new AlphaAnimation(0.0f, 1.0f);
-                            anim.setDuration(50); //You can manage the time of the blink with this parameter
-                            anim.setStartOffset(20);
-                            anim.setRepeatMode(Animation.REVERSE);
-                            anim.setRepeatCount(Animation.INFINITE);
-                            myText.startAnimation(anim);
+                            ((TextView)findViewById(R.id.totalText)).setTextColor(0xff666666);
+                            ((TextView) findViewById(R.id.fechaText)).setText("Inmediato");
+                            if(info.isIzziStatus()){
+                                ((TextView) findViewById(R.id.leyenda1Text)).setText("Tu servicio se encuentra suspendido");
+                                ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
+                            }
                         }
                     }else if(fechaFactura!=null){
                         if (!fechaFactura.isEmpty() && !fechaFactura.equals("0")) {

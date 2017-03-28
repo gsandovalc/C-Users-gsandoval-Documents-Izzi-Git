@@ -25,6 +25,7 @@ import telecom.televisa.com.izzi.PagoEstablecimientosActivity;
 import telecom.televisa.com.izzi.AddCardActivity;
 import telecom.televisa.com.izzi.PagosMainActivity;
 import telecom.televisa.com.izzi.PaperlessActivity;
+import telecom.televisa.com.izzi.PurchaseActivity;
 import telecom.televisa.com.izzi.PushNotificationCenterActivity;
 import telecom.televisa.com.izzi.R;
 import telecom.televisa.com.izzi.RecuperaPass;
@@ -110,6 +111,9 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                 return new Integer(2);
             }else if(respondTo instanceof EditAccountActivity){
                 izziPassResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziPassResponse.class);
+                return response;
+            }else if(respondTo instanceof PurchaseActivity){
+                MobileExtrasResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), MobileExtrasResponse.class);
                 return response;
             }
             else{

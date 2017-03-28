@@ -268,6 +268,10 @@ public class Usuario extends Model implements MobileResponse {
     @Expose
     private List<Cuentas> cuentasAsociadas;
     @Expose
+    private List<ExtrasInt> complementosINT;
+    @Expose
+    private List<ExtrasTv> complementosTV;
+    @Expose
     @Column
     private String wifiName="";
     @Expose
@@ -297,6 +301,66 @@ public class Usuario extends Model implements MobileResponse {
     @Expose
     @Column
     private boolean withSmsNumber=false;
+    @Expose
+    @Column
+    private boolean routerOffline = false;
+    @Expose
+    @Column
+    private String serviceName = "";
+    @Expose
+    @Column
+    private boolean izziStatus=false;
+
+    @Expose
+    @Column
+    private boolean wifiStatus=false;
+
+    public boolean isWifiStatus() {
+        return wifiStatus;
+    }
+
+    public List<ExtrasInt> getComplementosINT() {
+        return complementosINT;
+    }
+
+    public void setComplementosINT(List<ExtrasInt> complementosINT) {
+        this.complementosINT = complementosINT;
+    }
+
+    public List<ExtrasTv> getComplementosTV() {
+        return complementosTV;
+    }
+
+    public void setComplementosTV(List<ExtrasTv> complementosTV) {
+        this.complementosTV = complementosTV;
+    }
+
+    public void setWifiStatus(boolean wifiStatus) {
+        this.wifiStatus = wifiStatus;
+    }
+    public boolean isRouterOffline() {
+        return routerOffline;
+    }
+
+    public void setRouterOffline(boolean routerOffline) {
+        this.routerOffline = routerOffline;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public boolean isIzziStatus() {
+        return izziStatus;
+    }
+
+    public void setIzziStatus(boolean izziStatus) {
+        this.izziStatus = izziStatus;
+    }
 
     public String getCountNotifications() {
         return countNotifications;

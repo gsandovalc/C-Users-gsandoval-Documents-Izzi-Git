@@ -62,10 +62,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:textSize="21sp"
+                    android:textSize="19sp"
                     android:textAllCaps="true"
                     android:text="Buenos días "
-                    android:textColor="#686868"
+                    android:textColor="#585858"
                     android:id="@+id/greating" />
 
                 <TextView
@@ -157,7 +157,14 @@
         </LinearLayout>
 
      </LinearLayout>
-
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_height="15dp"
+        android:layout_alignParentRight="true"
+        android:alpha=".4"
+        android:src="@drawable/adelante"
+        android:layout_marginRight="10dp"/>
 </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -193,7 +200,7 @@
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:text="Mi Factura"
+            android:text="Pago en línea"
             android:textSize="14sp"
                 android:gravity="center_vertical"
             android:textStyle="bold"
@@ -268,9 +275,197 @@
             </LinearLayout>
 
         </LinearLayout>
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_marginTop="70dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:alpha=".4"
+            android:src="@drawable/adelante"
+            android:layout_marginRight="10dp"/>
     </RelativeLayout>
 
 
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/wifiinfo"
+            android:minHeight="120dp"
+            >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:background="@color/izzi_naranja"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="Mi Wifi"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:layout_marginLeft="5dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:background="#fff"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_marginLeft="15dp"
+                        android:id="@+id/wifilogo"
+                        android:src="@drawable/miwifi"
+                        android:layout_height="75dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_weight=".4">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#999999"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mi red:"
+                                    android:id="@+id/textView9" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#999999"
+                                    android:layout_height="wrap_content"
+                                    android:text="Contraseña:"
+                                    android:id="@+id/textView11" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#999"
+                                    android:layout_height="wrap_content"
+                                    android:text="Dispositivos conectados:"
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:paddingLeft="5dp"
+                                android:layout_weight=".6">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textSize="14sp"
+                                    android:id="@+id/ssid"
+                                    android:textColor="#000"
+                                    android:layout_height="wrap_content"
+                                    android:text="Nombre de mi red"
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#000"
+                                    android:id="@+id/ssid_pass"
+                                    android:layout_height="wrap_content"
+                                    android:text="Contraseña"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#000"
+                                    android:id="@+id/ssid_peers"
+                                    android:layout_height="wrap_content"
+                                    android:text="Dispositivos conectados:"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="#fff"
+                android:id="@+id/wifiNOOK"
+                android:visibility="gone"
+                android:clickable="true"
+                android:onClick="ayudaa"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="105dp"
+                android:layout_height="85dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Tu red WiFi está apagada.  ¿Deseas que te ayudemos?"
+                    android:layout_centerVertical="true"
+                    android:textColor="#666"
+                    android:layout_marginRight="45dp"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/adelante"
+                    android:layout_marginRight="10dp"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="#fff"
+                android:id="@+id/wifiOFFLINE"
+                android:clickable="true"
+                android:onClick="ayudaa"
+
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="105dp"
+                android:layout_height="85dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Tu equipo está fuera de linea. ¿Deseas que te ayudemos?"
+                    android:layout_centerVertical="true"
+                    android:textColor="#666"
+                    android:layout_marginRight="45dp"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="15dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/adelante"
+                    android:alpha=".4"
+                    android:layout_marginRight="10dp"/>
+
+            </RelativeLayout>
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/right"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
 
 
 
@@ -346,137 +541,29 @@
             </LinearLayout>
 
         </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@color/izzi_rosa"
+            android:textColor="#fff"
+            android:text="Crece tus servicios"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="10dp"
+            android:textSize="14sp"
+            android:layout_marginRight="20dp"/>
         <ImageView
             android:layout_width="10dp"
+            android:layout_marginTop="70dp"
             android:layout_height="15dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/right"
+            android:alpha=".4"
+            android:src="@drawable/adelante"
             android:layout_marginRight="10dp"/>
     </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/wifiinfo"
-            android:minHeight="120dp"
-            >
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="5dp"
-                android:background="@color/izzi_naranja"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:text="Mi Wifi"
-                    android:textSize="14sp"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    android:layout_marginLeft="5dp"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:background="#fff"
-                    android:orientation="horizontal">
-                    <ImageView
-                        android:layout_width="75dp"
-                        android:layout_marginLeft="15dp"
-                        android:src="@drawable/miwifi"
-                        android:layout_height="75dp" />
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
-                            android:layout_gravity="center_vertical"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
 
-                           <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_weight=".4">
-
-                               <TextView
-                                   android:layout_width="wrap_content"
-                                   android:textSize="14sp"
-                                   android:textColor="#999999"
-                                   android:layout_height="wrap_content"
-                                   android:text="Mi red:"
-                                   android:id="@+id/textView9" />
-
-                               <TextView
-                                   android:layout_width="wrap_content"
-                                   android:textSize="14sp"
-                                   android:textColor="#999999"
-                                   android:layout_height="wrap_content"
-                                   android:text="Contraseña:"
-                                   android:id="@+id/textView11" />
-
-                               <TextView
-                                   android:layout_width="wrap_content"
-                                   android:textSize="14sp"
-                                   android:textColor="#999"
-                                   android:layout_height="wrap_content"
-                                   android:text="Dispositivos conectados:"
-                                    />
-                        </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:paddingLeft="5dp"
-                                android:layout_weight=".6">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:textSize="14sp"
-                                    android:id="@+id/ssid"
-                                    android:textColor="#000"
-                                    android:layout_height="wrap_content"
-                                    android:text="Nombre de mi red"
-                                    />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:textSize="14sp"
-                                    android:textColor="#000"
-                                    android:id="@+id/ssid_pass"
-                                    android:layout_height="wrap_content"
-                                    android:text="Contraseña"
-                                    />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:textSize="14sp"
-                                    android:textColor="#000"
-                                    android:id="@+id/ssid_peers"
-                                    android:layout_height="wrap_content"
-                                    android:text="Dispositivos conectados:"
-                                    />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </LinearLayout>
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="15dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/right"
-                android:layout_marginRight="10dp"/>
-        </RelativeLayout>
 
 
     <RelativeLayout
@@ -546,6 +633,14 @@
             </LinearLayout>
 
         </LinearLayout>
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_marginTop="70dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:alpha=".4"
+            android:src="@drawable/adelante"
+            android:layout_marginRight="10dp"/>
     </RelativeLayout>
 </LinearLayout>
     </ScrollView>
