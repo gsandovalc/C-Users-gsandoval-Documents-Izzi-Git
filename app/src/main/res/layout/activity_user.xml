@@ -520,7 +520,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="15sp"
+                            android:textSize="14sp"
                             android:textColor="#6f6f6f"
                             android:layout_height="wrap_content"
                             android:text="Mi servicio actual:"
@@ -529,8 +529,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:textSize="16sp"
+                            android:layout_marginTop="2dp"
+                            android:textSize="15sp"
                             android:textStyle="bold"
                             android:text="55 52 43 03 30"
                             android:textColor="#6f6f6f"
@@ -544,7 +544,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:padding="2dp"
             android:background="@color/izzi_rosa"
             android:textColor="#fff"
             android:text="Crece tus servicios"
@@ -552,7 +552,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="10dp"
-            android:textSize="14sp"
+            android:textSize="13 sp"
             android:layout_marginRight="20dp"/>
         <ImageView
             android:layout_width="10dp"
