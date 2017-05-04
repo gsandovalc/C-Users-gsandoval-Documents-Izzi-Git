@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:textSize="19sp"
+                    android:textSize="17dp"
                     android:textAllCaps="true"
                     android:text="Buenos días "
                     android:textColor="#585858"
@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:textSize="22sp"
+                    android:textSize="22dp"
                     android:layout_marginTop="2dp"
                     android:textAllCaps="true"
                     android:text="Carlos"
@@ -94,7 +94,7 @@
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="13dp"
                                 android:textColor="#999999"
                                 android:layout_height="wrap_content"
                                 android:text="Cuenta:"
@@ -102,14 +102,14 @@
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="13dp"
                                 android:textColor="#999999"
                                 android:layout_height="wrap_content"
                                 android:text="Teléfono:"
                                 android:id="@+id/textView5" />
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="13dp"
                                 android:textColor="#999"
                                 android:layout_height="wrap_content"
                                 android:text="Referencia:"
@@ -129,7 +129,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="13dp"
                                 android:text="55 52 43 03 30"
                                 android:textColor="#000"
                                 android:id="@+id/accountText" />
@@ -137,14 +137,14 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="13dp"
                                 android:text="55 52 43 03 30"
                                 android:textColor="#000"
                                 android:id="@+id/phoneText" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="14sp"
+                                android:textSize="13dp"
                                 android:text="55 52 43 03 30"
                                 android:textColor="#000"
                                 android:id="@+id/referenceText" />
@@ -166,6 +166,11 @@
         android:src="@drawable/adelante"
         android:layout_marginRight="10dp"/>
 </RelativeLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -200,8 +205,8 @@
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:text="Pago en línea"
-            android:textSize="14sp"
+            android:text="Pago en Línea"
+            android:textSize="13dp"
                 android:gravity="center_vertical"
             android:textStyle="bold"
             android:textColor="#fff"
@@ -237,7 +242,7 @@
                         android:textColor="#666"
                         android:layout_gravity="left"
                         android:gravity="left"
-                        android:textSize="30sp"
+                        android:textSize="30dp"
                         android:layout_centerInParent="true" />
 
                     <LinearLayout
@@ -253,7 +258,7 @@
                             android:layout_marginTop="0dp"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:textSize="14sp"
+                            android:textSize="12dp"
                             android:layout_centerHorizontal="true" />
                         <TextView
                             android:layout_width="wrap_content"
@@ -266,7 +271,7 @@
                             android:layout_marginLeft="2dp"
                             android:layout_gravity="center"
                             android:gravity="center"
-                            android:textSize="14sp"
+                            android:textSize="12dp"
                             android:layout_centerHorizontal="true" />
                     </LinearLayout>
 
@@ -303,7 +308,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:text="Mi Wifi"
-                    android:textSize="14sp"
+                    android:textSize="13dp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
                     android:textStyle="bold"
@@ -343,7 +348,7 @@
 
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="14sp"
+                                    android:textSize="13dp"
                                     android:textColor="#999999"
                                     android:layout_height="wrap_content"
                                     android:text="Mi red:"
@@ -351,7 +356,7 @@
 
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="14sp"
+                                    android:textSize="13dp"
                                     android:textColor="#999999"
                                     android:layout_height="wrap_content"
                                     android:text="Contraseña:"
@@ -359,7 +364,7 @@
 
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="14sp"
+                                    android:textSize="13dp"
                                     android:textColor="#999"
                                     android:layout_height="wrap_content"
                                     android:text="Dispositivos conectados:"
@@ -373,7 +378,7 @@
                                 android:layout_weight=".6">
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="14sp"
+                                    android:textSize="13dp"
                                     android:id="@+id/ssid"
                                     android:textColor="#000"
                                     android:layout_height="wrap_content"
@@ -382,7 +387,7 @@
 
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="14sp"
+                                    android:textSize="13dp"
                                     android:textColor="#000"
                                     android:id="@+id/ssid_pass"
                                     android:layout_height="wrap_content"
@@ -390,7 +395,7 @@
                                     />
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="14sp"
+                                    android:textSize="13dp"
                                     android:textColor="#000"
                                     android:id="@+id/ssid_peers"
                                     android:layout_height="wrap_content"
@@ -443,8 +448,9 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="Tu equipo está fuera de linea. ¿Deseas que te ayudemos?"
+                    android:text="Tu equipo está  fuera de línea. ¿Deseas que te ayudemos?"
                     android:layout_centerVertical="true"
+                    android:textSize="13dp"
                     android:textColor="#666"
                     android:layout_marginRight="45dp"
                     android:layout_height="wrap_content" />
@@ -454,6 +460,34 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:src="@drawable/adelante"
+                    android:alpha=".4"
+                    android:layout_marginRight="10dp"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="#fff"
+                android:id="@+id/noDexter"
+                android:layout_marginTop="35dp"
+                android:clickable="true"
+                android:onClick="refresh"
+                android:layout_marginLeft="105dp"
+                android:layout_height="85dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Desconexión temporal de tu red. Se resolverá en breve."
+                    android:layout_centerVertical="true"
+                    android:textSize="13dp"
+                    android:textColor="#666"
+                    android:layout_marginRight="45dp"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/refresh_nodexter"
                     android:alpha=".4"
                     android:layout_marginRight="10dp"/>
 
@@ -487,7 +521,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="Mis Servicios"
-                android:textSize="14sp"
+                android:textSize="13dp"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:textStyle="bold"
@@ -520,7 +554,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:textSize="14sp"
+                            android:textSize="12dp"
                             android:textColor="#6f6f6f"
                             android:layout_height="wrap_content"
                             android:text="Mi servicio actual:"
@@ -530,7 +564,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:textSize="15sp"
+                            android:textSize="14dp"
                             android:textStyle="bold"
                             android:text="55 52 43 03 30"
                             android:textColor="#6f6f6f"
@@ -552,7 +586,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="10dp"
-            android:textSize="13 sp"
+            android:textSize="13dp"
             android:layout_marginRight="20dp"/>
         <ImageView
             android:layout_width="10dp"
@@ -585,7 +619,7 @@
                 android:text="Mi código de barras"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
-                android:textSize="14sp"
+                android:textSize="13dp"
                 android:textStyle="bold"
                 android:textColor="#000"
                 android:layout_marginLeft="5dp"/>
@@ -644,6 +678,7 @@
     </RelativeLayout>
 </LinearLayout>
     </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
@@ -678,7 +713,7 @@
 
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
-        android:textSize="10sp"
+        android:textSize="10dp"
         android:textColor="#000"/>
 </LinearLayout>
         <LinearLayout
@@ -698,11 +733,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mi estado de cuenta"
+                android:text="Mi Estado de Cuenta"
 
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 android:textColor="#000"/>
         </LinearLayout>
         <LinearLayout
@@ -726,7 +761,7 @@
 
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal"
-                android:textSize="10sp"
+                android:textSize="10dp"
                 android:textColor="#000"/>
         </LinearLayout>
 

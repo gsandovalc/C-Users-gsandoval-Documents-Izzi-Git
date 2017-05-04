@@ -370,9 +370,21 @@ public class MainActivity extends IzziActivity implements IzziRespondable {
             for(PagosList pago:sr.getPagos()){
                 pago.save();
             }
-            if(sr.getComplementosTV()!=null)
-                for(ExtrasTv et:sr.getComplementosTV())
+            if(sr.getComplementosTVN()!=null) {
+                String exclude="";
+                for (ExtrasTv et : sr.getComplementosTVN()) {
+                    if (et ==null)
+                        continue;
+                    String ext="";
+                    for(String s:et.getExclude()){
+                        ext+=s+",";
+                    }
+                    if(et.getExclude().size()>0)
+                    et.setExcludeMe(ext.substring(0,ext.length()-1));
                     et.save();
+                }
+
+            }
             if(sr.getComplementosINT()!=null)
                 for(ExtrasInt et:sr.getComplementosINT())
                     et.save();

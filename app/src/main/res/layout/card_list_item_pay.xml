@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:text="Eliminar"
             android:textColor="#fff"
-            android:textSize="17sp"
+            android:textSize="17dp"
             android:layout_gravity="center"
             android:gravity="center"/>
     </LinearLayout>
@@ -64,7 +64,7 @@
                 android:gravity="center_vertical"
                 android:layout_gravity="center_vertical"
                 android:textColor="#D60270"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:layout_alignParentBottom="true"
                 android:text="MasterCard / Vigente"/>
             <TextView
@@ -75,7 +75,7 @@
                 android:layout_alignParentRight="true"
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:textStyle="bold"
                 android:layout_centerInParent="true"
                 android:textColor="#000"

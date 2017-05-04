@@ -270,7 +270,7 @@ public class Usuario extends Model implements MobileResponse {
     @Expose
     private List<ExtrasInt> complementosINT;
     @Expose
-    private List<ExtrasTv> complementosTV;
+    private List<ExtrasTv> complementosTVN;
     @Expose
     @Column
     private String wifiName="";
@@ -287,6 +287,30 @@ public class Usuario extends Model implements MobileResponse {
     @Column
     private boolean displayWifiInfo=false;
 
+
+    @Expose
+    @Column
+    private boolean dexterDead=false;
+
+    @Expose
+    @Column
+    private String totalServicios="";
+
+    public boolean isDexterDead() {
+        return dexterDead;
+    }
+
+    public void setDexterDead(boolean dexterDead) {
+        this.dexterDead = dexterDead;
+    }
+
+    public String getTotalServicios() {
+        return totalServicios;
+    }
+
+    public void setTotalServicios(String totalServicios) {
+        this.totalServicios = totalServicios;
+    }
 
     @Expose
     @Column
@@ -327,13 +351,6 @@ public class Usuario extends Model implements MobileResponse {
         this.complementosINT = complementosINT;
     }
 
-    public List<ExtrasTv> getComplementosTV() {
-        return complementosTV;
-    }
-
-    public void setComplementosTV(List<ExtrasTv> complementosTV) {
-        this.complementosTV = complementosTV;
-    }
 
     public void setWifiStatus(boolean wifiStatus) {
         this.wifiStatus = wifiStatus;
@@ -1084,4 +1101,13 @@ public class Usuario extends Model implements MobileResponse {
     public void setParentAccount(String parentAccount) {
         this.parentAccount = parentAccount;
     }
+
+    public List<ExtrasTv> getComplementosTVN() {
+        return complementosTVN;
+    }
+
+    public void setComplementosTVN(List<ExtrasTv> complementosTVN) {
+        this.complementosTVN = complementosTVN;
+    }
+
 }

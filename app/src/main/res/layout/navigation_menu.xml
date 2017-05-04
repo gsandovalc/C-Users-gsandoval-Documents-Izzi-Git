@@ -27,7 +27,7 @@
             android:clickable="true"
 
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal">
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/imageViewp"
@@ -55,7 +55,7 @@
                     android:id="@+id/nombre"
                     android:textAllCaps="true"
                     android:textColor="@color/izzi_menu_font"
-                    android:textSize="17sp"
+                    android:textSize="14dp"
                     android:text="Carlos Velez"/>
 
                 <TextView
@@ -65,8 +65,8 @@
                     android:layout_marginTop="5dp"
                     android:id="@+id/contrato"
                     android:textColor="@color/izzi_menu_font"
-                    android:textSize="15sp"
-                    android:text="11094921"/>
+                    android:textSize="12dp"
+                    android:text=""/>
             </LinearLayout>
 
         </LinearLayout>
@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content">
                     <!--<LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:layout_height="50dp"
                         android:clickable="true"
                         android:id="@+id/vHome"
@@ -116,16 +116,16 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Home"
                             android:gravity="center_vertical"/>
                     </LinearLayout>-->
                     <!--<LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:layout_height="50dp"
                         android:id="@+id/vServices"
                         android:onClick="goToView"
@@ -140,40 +140,17 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Mis Servicios"
                             android:gravity="center_vertical"/>
                     </LinearLayout>-->
-                    <!--<LinearLayout
-                        android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
-                        android:layout_height="50dp"
-                        android:id="@+id/vLegales"
-                        android:onClick="goToView"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginTop="2dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/legales_g"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
-                            android:layout_gravity="center_vertical"
-                            android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
-                            android:text="Legales"
-                            android:gravity="center_vertical"/>
-                    </LinearLayout>-->
+                    <!---->
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:clickable="true"
                         android:id="@+id/notifica"
                         android:onClick="goToView"
@@ -189,16 +166,16 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Centro de mensajes"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:clickable="true"
                         android:onClick="goToView"
                         android:id="@+id/lugarespago"
@@ -214,16 +191,16 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Lugares de pago"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:visibility="gone"
                         android:id="@+id/vEstado"
                         android:onClick="goToView"
@@ -239,16 +216,16 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Estado de cuenta"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:layout_height="50dp"
                         android:clickable="true"
                         android:id="@+id/miscuentas"
@@ -264,16 +241,16 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Mis cuentas"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:visibility="gone"
                         android:layout_height="50dp"
                         android:orientation="horizontal">
@@ -287,17 +264,17 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Pagos"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:layout_height="50dp"
                         android:visibility="gone"
                         android:orientation="horizontal">
@@ -311,17 +288,17 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Chatea con nosotros"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:layout_height="50dp"
                         android:clickable="true"
                         android:onClick="goToView"
@@ -337,15 +314,38 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Guía de programación"
                             android:gravity="center_vertical"/>
                     </LinearLayout>
 
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:paddingLeft="12dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/vLegales"
+                        android:onClick="goToView"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="2dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/legales_g"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="12dp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/izzi_menu_font"
+                            android:textSize="12dp"
+                            android:text="Legales"
+                            android:gravity="center_vertical"/>
+                    </LinearLayout>
                     <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_marginLeft="10dp"
@@ -355,7 +355,7 @@
                         android:background="@drawable/ggline"></LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:paddingLeft="15dp"
+                        android:paddingLeft="12dp"
                         android:layout_height="50dp"
                         android:orientation="horizontal">
                         <ImageView
@@ -368,10 +368,10 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginLeft="12dp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/izzi_menu_font"
-                            android:textSize="15sp"
+                            android:textSize="12dp"
                             android:text="Ajustes"
                             android:gravity="center_vertical"/>
                     </LinearLayout>-->
@@ -388,8 +388,17 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:layout_alignParentBottom="true"
                     >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:textSize="10dp"
+                        android:textColor="#bebebe"
+                        android:layout_marginBottom="10dp"
+                        android:text="Version 3.0"/>
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="2dp"
@@ -400,7 +409,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:clickable="true"
-                android:paddingLeft="15dp"
+                android:paddingLeft="12dp"
                 android:onClick="logout"
                 android:orientation="horizontal">
                 <ImageView
@@ -414,10 +423,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="12dp"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/izzi_menu_font"
-                    android:textSize="15sp"
+                    android:textSize="12dp"
                     android:text="Cerrar sesión"
                     android:gravity="center_vertical"
                     android:id="@+id/textView4" />

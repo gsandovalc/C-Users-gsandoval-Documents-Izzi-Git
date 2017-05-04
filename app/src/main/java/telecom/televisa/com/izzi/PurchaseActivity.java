@@ -61,10 +61,16 @@ public class PurchaseActivity extends IzziActivity implements IzziRespondable {
                     tv.setTextColor(0xff000000);
                     extras+=ei.getEx_id()+",";
                     price+=Double.parseDouble(ei.getPrice());
+                    price+=Double.parseDouble(ei.getAjuste());
                     ll.addView(tv);
                 }
             }
-        ((TextView)findViewById(R.id.price)).setText("por $"+price+" + al mes");
+        try {
+            price += Double.parseDouble(AES.decrypt(info.getTotalServicios()));
+        }catch(Exception e){
+
+        }
+        ((TextView)findViewById(R.id.price)).setText("por $"+price+" al mes");
     }
     public void showMenu(View v){
         finish();
@@ -100,9 +106,9 @@ public class PurchaseActivity extends IzziActivity implements IzziRespondable {
             showError(mer.getIzziError(),20);
         }
         else{
-            showError("Estamos procesando tu solicitud",0);
+            showError("Tu solicitud esta siendo procesada, muchas gracias.",6666);
             setResult(6);
-            finish();
+
         }
     }
 

@@ -35,7 +35,7 @@ android:layout_marginLeft="15dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/nombre"
                 android:textColor="#fff"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:text="Carlos Velez"/>
             <TextView
                 android:layout_width="fill_parent"
@@ -44,8 +44,8 @@ android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
                 android:id="@+id/contrato"
                 android:textColor="#fff"
-                android:textSize="15sp"
-                android:text="11094921"/>
+                android:textSize="15dp"
+                android:text=""/>
         </LinearLayout>
     </LinearLayout>
     <ScrollView
@@ -91,7 +91,7 @@ android:layout_marginLeft="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:textSize="17sp"
+            android:textSize="17dp"
             android:layout_marginLeft="5dp"
             android:text="Cerrar sessión"/>
 

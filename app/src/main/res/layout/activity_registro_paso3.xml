@@ -21,7 +21,7 @@
         android:text="Éxito :)"
         android:textColor="#000"
         android:id="@+id/textView"
-        android:textSize="17sp"
+        android:textSize="17dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     <LinearLayout
@@ -38,7 +38,7 @@
             android:text="Hemos enviado un correo electrónico a :"
             android:textColor="#000"
             android:id="@+id/textView2"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
         <TextView
@@ -50,7 +50,7 @@
             android:text="Hemos enviado un correo electrónico a :"
             android:textColor="#000"
             android:id="@+id/email"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -63,7 +63,7 @@
             android:text="Por favor revisa tu bandeja de entrada"
             android:textColor="#000"
 
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -79,7 +79,7 @@
         android:gravity="center"
         android:text="¿No recibiste el correo electrónico?"
         android:textColor="#D60270"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
     <TextView
@@ -90,7 +90,7 @@
         android:clickable="true"
         android:onClick="close"
         android:layout_gravity="center"
-        android:textSize="17sp"
+        android:textSize="17dp"
         android:textStyle="bold"
         android:textColor="#fff"
         android:layout_alignParentBottom="true"

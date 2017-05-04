@@ -14,7 +14,7 @@ import android.widget.TextView;
  * Created by cevelez on 09/03/2016.
  */
 public class IzziActivity extends Activity  {
-    protected void showError(String error,int type){
+    protected void showError(String error, final int type){
         if(type==0) {
             new AlertDialog.Builder(this)
                     .setTitle("izzi")
@@ -35,6 +35,8 @@ public class IzziActivity extends Activity  {
             layout=R.layout.nointernet_error;
         else if(type==3)
             layout=R.layout.slowinternet_error;
+        else if(type==6666)
+            layout=R.layout.confirma;
         else
             layout=R.layout.unexpected_error;
         final Dialog popup = new Dialog(this,android.R.style.Theme_Translucent);
@@ -51,6 +53,8 @@ public class IzziActivity extends Activity  {
             @Override
             public void onClick(View v) {
                 popup.dismiss();
+                if(type==6666)
+                    finish();
             }
         });
     }

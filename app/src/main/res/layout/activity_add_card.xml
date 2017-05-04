@@ -33,7 +33,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:textStyle="bold"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:layout_marginLeft="5dp"
             android:text="Listo"
             android:layout_centerVertical="true"
@@ -86,7 +86,7 @@
                 android:textStyle="bold"
                 android:layout_marginLeft="10dp"
                 android:textColor="#fff"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:gravity="center"
 
                 android:layout_centerHorizontal="true" />
@@ -109,7 +109,7 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:textColor="#000"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="O"
@@ -141,7 +141,7 @@
             android:text="Ingresa el número de tu tarjeta"
 
             android:textColor="#000"
-            android:textSize="15sp"
+            android:textSize="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="1dp"
             />
@@ -154,7 +154,7 @@
                 android:layout_marginTop="5dp"
                 app:include_exp="false"
                 android:ems="6"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 app:include_zip="false"
                 app:include_security="false"
                 android:background="#FFFFFF"
@@ -195,7 +195,7 @@
 
                 android:layout_marginTop="5dp"
                 android:textColor="#000"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="1dp"
                 />
@@ -224,7 +224,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:ems="6"
-                        android:textSize="15sp"
+                        android:textSize="15dp"
                         android:textColorHint="#b1b1b1"
                         android:maxLength="5"
                         android:hint="MM/YY"
@@ -269,7 +269,7 @@
 
                     android:layout_marginTop="5dp"
                     android:textColor="#000000"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:layout_marginBottom="1dp"
                     />
                 <RelativeLayout
@@ -290,7 +290,7 @@
                             android:layout_height="fill_parent"
                             android:inputType="number"
                             android:ems="6"
-                            android:textSize="15sp"
+                            android:textSize="15dp"
                             android:maxLength="16"
                             android:background="#FFFFFF"
                             android:layout_gravity="center_vertical"

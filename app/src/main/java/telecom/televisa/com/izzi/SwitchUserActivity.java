@@ -35,14 +35,15 @@ import televisa.telecom.com.util.PagosListAdapter;
 import televisa.telecom.com.util.izziLoginResponse;
 
 
-public class SwitchUserActivity extends MenuActivity implements IzziRespondable {
+public class SwitchUserActivity extends IzziActivity implements IzziRespondable {
     ListView lv;
     List<Cuentas> cuentas;
     SwitchUserActivity act=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_switch_user);
+
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_switch_user);
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         ImageView im=(ImageView)findViewById(R.id.show_menu);
         im.setImageResource(R.drawable.regresar);
@@ -52,10 +53,13 @@ public class SwitchUserActivity extends MenuActivity implements IzziRespondable 
             startActivity(i);
             return;
         }
-        if(info.isEsNegocios()) {
-            ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
-        }
+        //
+        ((TextView)findViewById(R.id.h_title)).setText("Selecciona una cuenta");
+
         initList();
+    }
+    private void showMenu(){
+        finish();
     }
 
     private void initList(){
@@ -115,25 +119,27 @@ public class SwitchUserActivity extends MenuActivity implements IzziRespondable 
                     .show();
             return;
         }
-        IzziMovilApplication app=(IzziMovilApplication)getApplication();
-        String user="";
-        String password="";
-        String cuenta="";
-        String type="";
-        user=app.getCurrentUser().getUserName();
-        password=app.getCurrentUser().getPassword();
-        try {
-            cuenta = app.getCurrentUser().getParentAccount().equals("") ? AES.decrypt(app.getCurrentUser().getCvNumberAccount()) : app.getCurrentUser().getParentAccount();
-            type=app.getCurrentUser().getParentType().equals("") ? (app.getCurrentUser().isEsNegocios()?"1":"0") : app.getCurrentUser().getParentType();
-        }catch(Exception e){
 
-        }
-        new Delete().from(Usuario.class).execute();
-        new Delete().from(PagosList.class).execute();
-        new Delete().from(Cuentas.class).execute();
-        new Delete().from(ExtrasTv.class).execute();
-        new Delete().from(ExtrasInt.class).execute();
+
         if(((izziLoginResponse)response).getIzziErrorCode().isEmpty()){
+            IzziMovilApplication app=(IzziMovilApplication)getApplication();
+            String user="";
+            String password="";
+            String cuenta="";
+            String type="";
+            user=app.getCurrentUser().getUserName();
+            password=app.getCurrentUser().getPassword();
+            try {
+                cuenta = app.getCurrentUser().getParentAccount().equals("") ? AES.decrypt(app.getCurrentUser().getCvNumberAccount()) : app.getCurrentUser().getParentAccount();
+                type=app.getCurrentUser().getParentType().equals("") ? (app.getCurrentUser().isEsNegocios()?"1":"0") : app.getCurrentUser().getParentType();
+            }catch(Exception e){
+
+            }
+            new Delete().from(Usuario.class).execute();
+            new Delete().from(PagosList.class).execute();
+            new Delete().from(Cuentas.class).execute();
+            new Delete().from(ExtrasTv.class).execute();
+            new Delete().from(ExtrasInt.class).execute();
             Usuario sr=((izziLoginResponse)response).getResponse();
 
             sr.setParentType(type);
@@ -151,9 +157,20 @@ public class SwitchUserActivity extends MenuActivity implements IzziRespondable 
                 for(Cuentas ac:sr.getCuentasAsociadas())
                     ac.save();
             }
-            if(sr.getComplementosTV()!=null)
-                for(ExtrasTv et:sr.getComplementosTV())
+            if(sr.getComplementosTVN()!=null) {
+                String exclude="";
+                for (ExtrasTv et : sr.getComplementosTVN()) {
+                    String ext="";
+                    if (et ==null)
+                        continue;
+                    for(String s:et.getExclude()){
+                        ext+=s+",";
+                    }
+                    if(et.getExclude().size()>0)
+                        et.setExcludeMe(ext.substring(0,ext.length()-1));
                     et.save();
+                }
+            }
             if(sr.getComplementosINT()!=null)
                 for(ExtrasInt et:sr.getComplementosINT())
                     et.save();
@@ -179,7 +196,8 @@ public class SwitchUserActivity extends MenuActivity implements IzziRespondable 
                 sr.setExtraInternet(extra);
             }
             sr.save();
-            this.finish();
+            setResult(666);
+            finish();
             ((IzziMovilApplication)this.getApplication()).setCurrentUser(sr);
             ((IzziMovilApplication)this.getApplication()).setLogged(true);
             Intent i=new Intent(getApplicationContext(),UserActivity.class);
@@ -187,10 +205,22 @@ public class SwitchUserActivity extends MenuActivity implements IzziRespondable 
         }else{
             // mostrar mensaje rosa de usuario o contraseña invalido si es el caso
             //si no popup
-
+            new AlertDialog.Builder(this)
+                    .setTitle("izzi")
+                    .setMessage("Ocurrio un error al cargar la información.\n Intentarlo de nuevo")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            dialog.dismiss();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
         }
 
     }
+
+
 
     @Override
     public void slowInternet() {

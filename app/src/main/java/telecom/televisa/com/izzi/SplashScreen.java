@@ -2,6 +2,8 @@ package telecom.televisa.com.izzi;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,7 +66,10 @@ public class SplashScreen extends Activity  {
                     }
                 }
                 ((IzziMovilApplication)getApplication()).setCurrentUser(currentUser);
-                new AsyncLoginUpdate(((IzziMovilApplication)getApplication()),true).execute(mp);
+                if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.HONEYCOMB)
+                  new AsyncLoginUpdate(((IzziMovilApplication)getApplication()),true).execute(mp);
+                else
+                    new AsyncLoginUpdate(((IzziMovilApplication)getApplication()),true).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mp);
                 if(currentUser.isExtrasTelefono()){
                     String [] extra=currentUser.getExtraTelefono().split("##");
                     List<String> ex=new ArrayList<>();

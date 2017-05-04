@@ -29,7 +29,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Lo sentimos"
             android:gravity="clip_horizontal"
-            android:textSize="18sp"/>
+            android:textSize="18dp"/>
 
         <ImageView
             android:layout_width="130dp"
@@ -48,7 +48,7 @@
             android:layout_gravity="center_horizontal"
             android:text="Tu tarjeta fue rechazada"
             android:gravity="clip_horizontal"
-            android:textSize="14sp"/>
+            android:textSize="14dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:layout_marginRight="15dp"
             android:text="Te recomendamos contactar a tu banco para solicitar una aclaracion"
             android:gravity="center_horizontal"
-            android:textSize="14sp"/>
+            android:textSize="14dp"/>
 
 
     </LinearLayout>
@@ -86,7 +86,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:layout_marginLeft="5dp"
                 android:text="Intentar con otra tarjeta"
                 android:layout_centerVertical="true"

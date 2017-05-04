@@ -39,7 +39,7 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Bancos"
-                      android:textSize="16sp"
+                      android:textSize="16dp"
                       android:textStyle="bold"
                       android:textColor="#00C1B5"/>
                     <TextView
@@ -48,7 +48,7 @@
                         android:id="@+id/bancoH"
                         android:layout_alignParentRight="true"
                         android:text="Pago reflejado en 24 hrs."
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:textColor="#00C1B5"/>
                     </RelativeLayout>
 
@@ -81,14 +81,14 @@
                                 android:textColor="#000"
                                 android:id="@+id/bankName1"
                                 android:textStyle="bold"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:text="Banamex"
                                 android:layout_height="wrap_content" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:textColor="#000"
                                 android:id="@+id/bankRef1"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:text="Ref:00332030390004930389409"
                                 android:layout_height="wrap_content" />
                             </LinearLayout>
@@ -100,7 +100,7 @@
                             android:id="@+id/geolocBank1"
                             android:onClick="findBank"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="10sp"
+                            android:layout_marginRight="10dp"
                             android:layout_height="40dp"/>
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -127,14 +127,14 @@
                                 android:textColor="#000"
                                 android:id="@+id/bankName2"
                                 android:textStyle="bold"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:text="Banamex"
                                 android:layout_height="wrap_content" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:textColor="#000"
                                 android:id="@+id/bankRef2"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:text="Ref:00332030390004930389409"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -143,7 +143,7 @@
                             android:background="@drawable/geoloc"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="10sp"
+                            android:layout_marginRight="10dp"
                             android:clickable="true"
                             android:onClick="findBank"
                             android:id="@+id/geolocBank2"
@@ -174,14 +174,14 @@
                                 android:textColor="#000"
                                 android:id="@+id/bankName3"
                                 android:textStyle="bold"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:text="Banamex"
                                 android:layout_height="wrap_content" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:textColor="#000"
                                 android:id="@+id/bankRef3"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:text="Ref:00332030390004930389409"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -190,7 +190,7 @@
                             android:background="@drawable/geoloc"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="10sp"
+                            android:layout_marginRight="10dp"
                             android:clickable="true"
                             android:onClick="findBank"
                             android:id="@+id/geolocBank3"
@@ -220,14 +220,14 @@
                                 android:textColor="#000"
                                 android:id="@+id/bankName4"
                                 android:textStyle="bold"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:text="Banamex"
                                 android:layout_height="wrap_content" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:textColor="#000"
                                 android:id="@+id/bankRef4"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:text="Ref:00332030390004930389409"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -239,7 +239,7 @@
                             android:clickable="true"
                             android:onClick="findBank"
                             android:id="@+id/geolocBank4"
-                            android:layout_marginRight="10sp"
+                            android:layout_marginRight="10dp"
                             android:layout_height="40dp"/>
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -266,14 +266,14 @@
                                 android:textColor="#000"
                                 android:id="@+id/bankName5"
                                 android:textStyle="bold"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:text="Banamex"
                                 android:layout_height="wrap_content" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:textColor="#000"
                                 android:id="@+id/bankRef5"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:text="Ref:00332030390004930389409"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -285,7 +285,7 @@
                             android:id="@+id/geolocBank5"
                             android:layout_centerVertical="true"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="10sp"
+                            android:layout_marginRight="10dp"
                             android:layout_height="40dp"/>
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -313,14 +313,14 @@
                             android:textColor="#000"
                             android:id="@+id/bankName6"
                             android:textStyle="bold"
-                            android:textSize="14sp"
+                            android:textSize="14dp"
                             android:text="Banamex"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:textColor="#000"
                             android:id="@+id/bankRef6"
-                            android:textSize="12sp"
+                            android:textSize="12dp"
                             android:text="Ref:00332030390004930389409"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -332,7 +332,7 @@
                         android:clickable="true"
                         android:onClick="findBank"
                         android:id="@+id/geolocBank6"
-                        android:layout_marginRight="10sp"
+                        android:layout_marginRight="10dp"
                         android:layout_height="40dp"/>
                     <LinearLayout
                         android:layout_width="fill_parent"
@@ -359,14 +359,14 @@
                                 android:textColor="#000"
                                 android:id="@+id/bankName7"
                                 android:textStyle="bold"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:text="Banamex"
                                 android:layout_height="wrap_content" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:textColor="#000"
                                 android:id="@+id/bankRef7"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:text="Ref:00332030390004930389409"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -378,7 +378,7 @@
                             android:clickable="true"
                             android:onClick="findBank"
                             android:id="@+id/geolocBank7"
-                            android:layout_marginRight="10sp"
+                            android:layout_marginRight="10dp"
                             android:layout_height="40dp"/>
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -405,14 +405,14 @@
                                 android:textColor="#000"
                                 android:id="@+id/bankName8"
                                 android:textStyle="bold"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:text="Banamex"
                                 android:layout_height="wrap_content" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:textColor="#000"
                                 android:id="@+id/bankRef8"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:text="Ref:00332030390004930389409"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -424,7 +424,7 @@
                             android:clickable="true"
                             android:onClick="findBank"
                             android:id="@+id/geolocBank8"
-                            android:layout_marginRight="10sp"
+                            android:layout_marginRight="10dp"
                             android:layout_height="40dp"/>
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -451,14 +451,14 @@
                                 android:textColor="#000"
                                 android:id="@+id/bankName9"
                                 android:textStyle="bold"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:text="Banamex"
                                 android:layout_height="wrap_content" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:textColor="#000"
                                 android:id="@+id/bankRef9"
-                                android:textSize="12sp"
+                                android:textSize="12dp"
                                 android:text="Ref:00332030390004930389409"
                                 android:layout_height="wrap_content" />
                         </LinearLayout>
@@ -470,7 +470,7 @@
                             android:clickable="true"
                             android:onClick="findBank"
                             android:id="@+id/geolocBank9"
-                            android:layout_marginRight="10sp"
+                            android:layout_marginRight="10dp"
                             android:layout_height="40dp"/>
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -499,14 +499,14 @@
                                android:textColor="#000"
                                android:id="@+id/bankName10"
                                android:textStyle="bold"
-                               android:textSize="14sp"
+                               android:textSize="14dp"
                                android:text="Banamex"
                                android:layout_height="wrap_content" />
                            <TextView
                                android:layout_width="wrap_content"
                                android:textColor="#000"
                                android:id="@+id/bankRef10"
-                               android:textSize="12sp"
+                               android:textSize="12dp"
                                android:text="Ref:00332030390004930389409"
                                android:layout_height="wrap_content" />
                        </LinearLayout>
@@ -518,7 +518,7 @@
                            android:clickable="true"
                            android:onClick="findBank"
                            android:id="@+id/geolocBank10"
-                           android:layout_marginRight="10sp"
+                           android:layout_marginRight="10dp"
                            android:layout_height="40dp"/>
                        <LinearLayout
                            android:layout_width="fill_parent"
@@ -539,7 +539,7 @@
                         android:layout_height="wrap_content"
                         android:text="Tiendas"
                         android:id="@+id/tiendaN"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:textStyle="bold"
                         android:textColor="#00C1B5"/>
                     <TextView
@@ -548,7 +548,7 @@
                         android:layout_alignParentRight="true"
                         android:text="Pago reflejado en 24 hrs."
                         android:id="@+id/tiendaH"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:textColor="#00C1B5"/>
                 </RelativeLayout>
                 <RelativeLayout
@@ -580,7 +580,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName1"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Elektra"
                                     android:layout_height="wrap_content" />
                                 <TextView
@@ -588,7 +588,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
 
-                                    android:textSize="10sp"
+                                    android:textSize="10dp"
                                     android:textColor="#00C1B5"/>
 
                             </LinearLayout>
@@ -598,7 +598,7 @@
                                 android:layout_centerVertical="true"
                                 android:id="@+id/geolocTienda1"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:layout_height="40dp"/>
@@ -627,7 +627,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName2"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="7ELEVEN"
                                     android:layout_height="wrap_content" />
 
@@ -640,7 +640,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -667,7 +667,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName3"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Walmart"
                                     android:layout_height="wrap_content" />
 
@@ -678,7 +678,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
                                 android:id="@+id/geolocTienda3"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:layout_height="40dp"/>
@@ -707,7 +707,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName4"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Bodega Aurrera"
                                     android:layout_height="wrap_content" />
 
@@ -720,7 +720,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:id="@+id/geolocTienda4"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -747,7 +747,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName5"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Bodega Aurrera Express"
                                     android:layout_height="wrap_content" />
 
@@ -757,7 +757,7 @@
                                 android:background="@drawable/geoloc"
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:id="@+id/geolocTienda5"
                                 android:clickable="true"
                                 android:onClick="findBank"
@@ -788,7 +788,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName6"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Sam´s Club"
                                     android:layout_height="wrap_content" />
 
@@ -801,7 +801,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -828,7 +828,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName7"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Suburbia"
                                     android:layout_height="wrap_content" />
 
@@ -840,7 +840,7 @@
                                 android:layout_alignParentRight="true"
                                 android:clickable="true"
                                 android:onClick="findBank"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:id="@+id/geolocTienda7"
                                 android:layout_height="40dp"/>
                             <LinearLayout
@@ -868,7 +868,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName8"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Sanborns"
                                     android:layout_height="wrap_content" />
 
@@ -881,7 +881,7 @@
                                 android:id="@+id/geolocTienda8"
                                 android:clickable="true"
                                 android:onClick="findBank"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -908,7 +908,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName9"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Sears"
                                     android:layout_height="wrap_content" />
 
@@ -921,7 +921,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:id="@+id/geolocTienda9"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -948,7 +948,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName10"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Sears"
                                     android:layout_height="wrap_content" />
 
@@ -961,7 +961,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:id="@+id/geolocTienda10"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -988,14 +988,14 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName11"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Elektra"
                                     android:layout_height="wrap_content" />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentRight="true"
-                                    android:textSize="10sp"
+                                    android:textSize="10dp"
                                     android:textColor="#00C1B5"/>
 
                             </LinearLayout>
@@ -1005,7 +1005,7 @@
                                 android:layout_centerVertical="true"
                                 android:id="@+id/geolocTienda11"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:layout_height="40dp"/>
@@ -1034,7 +1034,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName12"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="7ELEVEN"
                                     android:layout_height="wrap_content" />
 
@@ -1047,7 +1047,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -1074,7 +1074,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName13"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Walmart"
                                     android:layout_height="wrap_content" />
 
@@ -1085,7 +1085,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
                                 android:id="@+id/geolocTienda13"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:layout_height="40dp"/>
@@ -1114,7 +1114,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName14"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Bodega Aurrera"
                                     android:layout_height="wrap_content" />
 
@@ -1127,7 +1127,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:id="@+id/geolocTienda14"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -1154,7 +1154,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName15"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Bodega Aurrera Express"
                                     android:layout_height="wrap_content" />
 
@@ -1164,7 +1164,7 @@
                                 android:background="@drawable/geoloc"
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:id="@+id/geolocTienda15"
                                 android:clickable="true"
                                 android:onClick="findBank"
@@ -1195,7 +1195,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName16"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Sam´s Club"
                                     android:layout_height="wrap_content" />
 
@@ -1208,7 +1208,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:layout_alignParentRight="true"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -1235,7 +1235,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName17"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Suburbia"
                                     android:layout_height="wrap_content" />
 
@@ -1247,7 +1247,7 @@
                                 android:layout_alignParentRight="true"
                                 android:clickable="true"
                                 android:onClick="findBank"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:id="@+id/geolocTienda17"
                                 android:layout_height="40dp"/>
                             <LinearLayout
@@ -1275,7 +1275,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName18"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Sanborns"
                                     android:layout_height="wrap_content" />
 
@@ -1288,7 +1288,7 @@
                                 android:id="@+id/geolocTienda18"
                                 android:clickable="true"
                                 android:onClick="findBank"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -1315,7 +1315,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName19"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Sears"
                                     android:layout_height="wrap_content" />
 
@@ -1328,7 +1328,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:id="@+id/geolocTienda19"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -1355,7 +1355,7 @@
                                     android:textColor="#000"
                                     android:id="@+id/tiendaName20"
                                     android:textStyle="bold"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:text="Sears"
                                     android:layout_height="wrap_content" />
 
@@ -1368,7 +1368,7 @@
                                 android:clickable="true"
                                 android:onClick="findBank"
                                 android:id="@+id/geolocTienda20"
-                                android:layout_marginRight="10sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="40dp"/>
                             <LinearLayout
                                 android:layout_width="fill_parent"
@@ -1402,7 +1402,7 @@
             android:layout_centerVertical="true"
             android:onClick="help"
             android:layout_gravity="center"
-            android:layout_marginRight="10sp"
+            android:layout_marginRight="10dp"
             android:layout_height="20dp"/>
 
     </LinearLayout>

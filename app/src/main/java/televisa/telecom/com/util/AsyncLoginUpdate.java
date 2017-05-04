@@ -111,9 +111,20 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
                 for(Cuentas ac:sr.getCuentasAsociadas())
                     ac.save();
             }
-            if(sr.getComplementosTV()!=null)
-                for(ExtrasTv et:sr.getComplementosTV())
+            if(sr.getComplementosTVN()!=null) {
+                String exclude="";
+                for (ExtrasTv et : sr.getComplementosTVN()) {
+                    String ext="";
+                    if (et ==null)
+                        continue;
+                    for(String s:et.getExclude()){
+                        ext+=s+",";
+                    }
+                    if(et.getExclude().size()>0)
+                        et.setExcludeMe(ext.substring(0,ext.length()-1));
                     et.save();
+                }
+            }
             if(sr.getComplementosINT()!=null)
                 for(ExtrasInt et:sr.getComplementosINT())
                     et.save();

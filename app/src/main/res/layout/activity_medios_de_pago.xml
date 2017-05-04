@@ -35,7 +35,7 @@
             android:layout_marginBottom="35dp"
             android:layout_marginRight="0dp"
             android:text="Estas son tus tarjetas registradas"
-            android:textSize="13sp"/>
+            android:textSize="13dp"/>
     </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="250dp"
         android:gravity="center_horizontal"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_height="wrap_content" />

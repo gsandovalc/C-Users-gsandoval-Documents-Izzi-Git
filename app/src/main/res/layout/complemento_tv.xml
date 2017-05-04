@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#717171"
                 android:gravity="center_horizontal"
-                android:textSize="17sp"
+                android:textSize="17dp"
                 android:id="@+id/intextname"
                 android:maxHeight="50dp"
 
@@ -50,8 +50,8 @@
                 android:layout_height="70dp"
                 android:id="@+id/descrip1"
                 android:textColor="#000"
-                android:layout_marginTop="10dp"
-                android:textSize="14sp"
+                android:layout_marginTop="5dp"
+                android:textSize="12dp"
                 />
 
         </LinearLayout>
@@ -75,7 +75,7 @@
                 android:textColor="@color/izzi_rosa"
                 android:gravity="left"
                 android:textStyle="bold"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:text="+ "
                 />
             <TextView
@@ -85,7 +85,7 @@
                 android:gravity="left"
                 android:id="@+id/extprice"
                 android:textStyle="bold"
-                android:textSize="13sp"
+                android:textSize="13dp"
                 android:text="$160 mas al mes"
                 />
         </LinearLayout>
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#717171"
                     android:gravity="center_horizontal"
-                    android:textSize="17sp"
+                    android:textSize="17dp"
                     android:id="@+id/intextname2"
                     android:maxHeight="50dp"
 
@@ -141,10 +141,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:id="@+id/descrip2"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
 
                     android:textColor="#000"
-                    android:textSize="14sp"
+                    android:textSize="12dp"
                     />
 
             </LinearLayout>
@@ -168,7 +168,7 @@
                     android:textColor="@color/izzi_rosa"
                     android:gravity="left"
                     android:textStyle="bold"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:text="+ "
                     />
                 <TextView
@@ -178,7 +178,7 @@
                     android:gravity="left"
                     android:id="@+id/extprice2"
                     android:textStyle="bold"
-                    android:textSize="13sp"
+                    android:textSize="13dp"
                     android:text="$160 mas al mes"
                     />
             </LinearLayout>

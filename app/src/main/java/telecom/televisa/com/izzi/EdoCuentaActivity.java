@@ -35,18 +35,19 @@ import televisa.telecom.com.ws.IzziWS;
 
 public class EdoCuentaActivity extends IzziActivity implements IzziRespondable {
     boolean sendmail=false;
+    izziEdoCuentaResponse estado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edo_cuenta);
         izziEdoCuentaResponse estado;  // VHP segun yo jajajaja
         ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
-
+        ((TextView) findViewById(R.id.periodo)).setVisibility(TextView.GONE);
         ((TextView)findViewById(R.id.h_title)).setText("Estado de cuenta");
         try {
 
             Usuario info = ((IzziMovilApplication) getApplication()).getCurrentUser();
-            ((TextView)findViewById(R.id.totalText)).setText("$ "+AES.decrypt(info.getCvLastBalance())+".00");
+            ((TextView)findViewById(R.id.totalText)).setText("$ "+AES.decrypt(info.getCvLastBalance()));
             int bal=Integer.parseInt(AES.decrypt(info.getCvLastBalance()));
             if(bal>0){
                 ((TextView) findViewById(R.id.aclara)).setText("Pagar");
@@ -97,9 +98,9 @@ public class EdoCuentaActivity extends IzziActivity implements IzziRespondable {
             mp.put("METHOD", "estado/send");
             mp.put("user", usuario.getUserName());
             mp.put("cuenta", AES.decrypt(usuario.getCvNumberAccount()));
-            mp.put("month", meses.get(AES.decrypt(UserActivity.estado.getResponse().getMes())));
+            mp.put("month", meses.get(AES.decrypt(estado.getResponse().getMes())));
             String ano=Calendar.getInstance().get(Calendar.YEAR)+"";
-            if(Integer.parseInt(meses.get(AES.decrypt(UserActivity.estado.getResponse().getMes())))==12){
+            if(Integer.parseInt(meses.get(AES.decrypt(estado.getResponse().getMes())))==12){
                 if(Calendar.getInstance().get(Calendar.MONTH)==0){
                     ano=(Calendar.getInstance().get(Calendar.YEAR)-1)+"";
                 }
@@ -158,16 +159,18 @@ public void aclaraciones(View v){
             return;
         }
         izziEdoCuentaResponse rs=(izziEdoCuentaResponse)response;
-
+estado=rs;
         if(!rs.getIzziErrorCode().isEmpty()){
 
             return;
         }
+
         ((RelativeLayout)findViewById(R.id.vista)).setVisibility(RelativeLayout.GONE);
         //si la fecha de la factura del estado de cuenta nos llega nula es que no existe y debemos de ocultar los campos que no tenemos
         //UserActivity.estado;
         try {
-            ((TextView) findViewById(R.id.mes)).setText(AES.decrypt(rs.getResponse().getMes()));
+            int acumulador=0;
+            ((TextView) findViewById(R.id.periodo)).setVisibility(TextView.VISIBLE);
             ((TextView) findViewById(R.id.periodo)).setText("Período del "+AES.decrypt(rs.getResponse().getPeriodo()));
             ((TextView) findViewById(R.id.limite)).setText(AES.decrypt(rs.getResponse().getFechaLimite()));
             ((TextView) findViewById(R.id.anterior)).setText(AES.decrypt(rs.getResponse().getSaldoAnterior()));
@@ -175,41 +178,27 @@ public void aclaraciones(View v){
             ((TextView) findViewById(R.id.paqName)).setText(AES.decrypt(rs.getResponse().getPaquete()));
             ((TextView) findViewById(R.id.paqP)).setText(AES.decrypt(rs.getResponse().getTotalPaquete()));
             if(rs.getResponse().isExtraTV()){
-                ((LinearLayout)findViewById(R.id.tv)).setVisibility(LinearLayout.VISIBLE);
-                ((TextView) findViewById(R.id.tvTot)).setText(AES.decrypt(rs.getResponse().getTotalTV()));
-            }else{
-                ((LinearLayout)findViewById(R.id.tv)).setVisibility(LinearLayout.GONE);
+                acumulador+=Integer.parseInt(AES.decrypt(rs.getResponse().getTotalTV()).substring(1));
             }
             if(rs.getResponse().isExtraTel()){
-                ((LinearLayout)findViewById(R.id.tel)).setVisibility(LinearLayout.VISIBLE);
-                ((TextView) findViewById(R.id.telTot)).setText(AES.decrypt(rs.getResponse().getTotalTel()));
-            }else{
-                ((LinearLayout)findViewById(R.id.tel)).setVisibility(LinearLayout.GONE);
+                acumulador+=Integer.parseInt(AES.decrypt(rs.getResponse().getTotalTel()).substring(1));
             }
             if(rs.getResponse().isExtraInt()){
-                ((LinearLayout)findViewById(R.id.inter)).setVisibility(LinearLayout.VISIBLE);
-                ((TextView) findViewById(R.id.intTot)).setText(AES.decrypt(rs.getResponse().getTotalInt()));
-            }else{
-                ((LinearLayout)findViewById(R.id.inter)).setVisibility(LinearLayout.GONE);
+                acumulador+=Integer.parseInt(AES.decrypt(rs.getResponse().getTotalInt()).substring(1));
             }
+            ((LinearLayout)findViewById(R.id.veo)).setVisibility(LinearLayout.VISIBLE);
             if(rs.getResponse().isExtraVeo()){
-                ((LinearLayout)findViewById(R.id.veo)).setVisibility(LinearLayout.VISIBLE);
-                ((TextView) findViewById(R.id.veoTot)).setText(AES.decrypt(rs.getResponse().getTotalInt()));
-            }else{
-                ((LinearLayout)findViewById(R.id.veo)).setVisibility(LinearLayout.GONE);
+                acumulador+=Integer.parseInt(AES.decrypt(rs.getResponse().getTotalVeo()).substring(1));
+
             }
+            ((TextView) findViewById(R.id.veoTot)).setText("$"+acumulador);
+            ((LinearLayout)findViewById(R.id.otros)).setVisibility(LinearLayout.VISIBLE);
             if(rs.getResponse().isExtraOtros()){
-                ((LinearLayout)findViewById(R.id.otros)).setVisibility(LinearLayout.VISIBLE);
-                ((TextView) findViewById(R.id.otrosTot)).setText(AES.decrypt(rs.getResponse().getTotalInt()));
+                ((TextView) findViewById(R.id.otrosTot)).setText(AES.decrypt(rs.getResponse().getTotalOtros()));
             }else{
-                ((LinearLayout)findViewById(R.id.otros)).setVisibility(LinearLayout.GONE);
+                ((TextView) findViewById(R.id.otrosTot)).setText("$ 0");
             }
-            if(rs.getResponse().isExtraBonus()){
-                ((LinearLayout)findViewById(R.id.bon)).setVisibility(LinearLayout.VISIBLE);
-                ((TextView) findViewById(R.id.bonTot)).setText(AES.decrypt(rs.getResponse().getTotalInt()));
-            }else{
-                ((LinearLayout)findViewById(R.id.bon)).setVisibility(LinearLayout.GONE);
-            }
+
             ((TextView) findViewById(R.id.st)).setText(AES.decrypt(rs.getResponse().getSubTotal()));
             ((TextView) findViewById(R.id.tp)).setText(AES.decrypt(rs.getResponse().getPagos()));
             ((TextView) findViewById(R.id.infop)).setText(AES.decrypt(rs.getResponse().getPagoTexto()));

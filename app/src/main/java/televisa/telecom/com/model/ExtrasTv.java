@@ -4,6 +4,10 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.google.gson.annotations.Expose;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Carlos on 26/03/17.
  */
@@ -30,6 +34,23 @@ public class ExtrasTv extends Model {
     @Column
     @Expose
     private String promo="";
+    @Expose
+    private List<String> exclude;
+
+    public List<String> getExcludeUtil() {
+        return Arrays.asList(excludeMe.split(","));
+    }
+
+    public void setExcludeUtil(List<String> excludeUtil) {
+        this.excludeUtil = excludeUtil;
+    }
+
+    private List<String> excludeUtil;
+    @Column
+    @Expose
+    private String ajuste="0.0";
+    @Column
+    private String excludeMe="";
 
     public boolean isSelected() {
         return selected;
@@ -41,7 +62,6 @@ public class ExtrasTv extends Model {
 
     @Column
     @Expose
-
     private boolean actualExtra=false;
 
     private boolean selected=false;
@@ -99,4 +119,27 @@ public class ExtrasTv extends Model {
         this.actualExtra = actualExtra;
     }
 
+    public List<String> getExclude() {
+        return exclude;
+    }
+
+    public void setExclude(List<String> exclude) {
+        this.exclude = exclude;
+    }
+
+    public String getAjuste() {
+        return ajuste;
+    }
+
+    public void setAjuste(String ajuste) {
+        this.ajuste = ajuste;
+    }
+
+    public String getExcludeMe() {
+        return excludeMe;
+    }
+
+    public void setExcludeMe(String excludeMe) {
+        this.excludeMe = excludeMe;
+    }
 }

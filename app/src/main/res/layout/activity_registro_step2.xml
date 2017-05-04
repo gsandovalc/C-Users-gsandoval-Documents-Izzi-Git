@@ -33,7 +33,7 @@
         android:text="Selecciona una opción"
         android:textColor="#000"
         android:id="@+id/textView"
-        android:textSize="17sp"
+        android:textSize="17dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     <TextView
@@ -44,7 +44,7 @@
         android:clickable="true"
         android:onClick="registro"
         android:layout_gravity="center"
-        android:textSize="17sp"
+        android:textSize="17dp"
         android:textStyle="bold"
         android:textColor="#000"
         android:layout_alignParentBottom="true"
@@ -91,7 +91,7 @@
                     android:layout_marginLeft="60dp"
                     android:gravity="center_vertical"
                     android:layout_marginRight="20dp"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:textColor="#000"
                     android:text="Deseo confirmar mi cuenta, mediante un correo electrónico"/>
             </RelativeLayout>
@@ -133,7 +133,7 @@
                     android:gravity="center_vertical"
                     android:layout_marginRight="20dp"
                     android:textColor="#000"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:text="Deseo confirmar mi cuenta, mediante un mensaje de texto (SMS)."/>
             </RelativeLayout>
 

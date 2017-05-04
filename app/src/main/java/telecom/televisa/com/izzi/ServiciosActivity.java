@@ -94,6 +94,18 @@ public class ServiciosActivity extends IzziActivity {
             ((ImageView)ll.findViewById(index%2==0?R.id.icon:R.id.icon2)).setImageResource(R.drawable.rcheck);
             et.setSelected(true);
         }
+        for(ExtrasTv etv:complementosTV){
+            List<String> le=et.getExcludeUtil();
+            if(le!=null){
+                for(String se:le){
+                    if(se.equals(etv.getEx_id())) {
+                        etv.setSelected(false);
+                        int indx=complementosTV.indexOf(etv);
+                        ((ImageView)itemsTV.get(indx).findViewById(indx%2==0?R.id.icon:R.id.icon2)).setImageResource(R.drawable.shopcart);
+                    }
+                }
+            }
+        }
         calculatechanges();
     }
     private void calculatechanges(){
@@ -111,6 +123,9 @@ public class ServiciosActivity extends IzziActivity {
                 if(ei.isSelected()) {
                     ll.setVisibility(LinearLayout.VISIBLE);
                     findViewById(R.id.clear).setVisibility(ImageView.VISIBLE);
+                }
+                else{
+
                 }
     }
 

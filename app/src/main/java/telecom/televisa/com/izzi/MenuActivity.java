@@ -106,8 +106,11 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
                 break;
             case R.id.miscuentas:
                 i=new Intent(getApplicationContext(),SwitchUserActivity.class);
-                finish();
-                break;
+                startActivityForResult(i,30);
+                startActivity(i);
+                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                return;
+
             case R.id.profile:
                 i=new Intent(getApplicationContext(),UserActivity.class);
                 finish();
@@ -118,11 +121,14 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
                 break;
             case R.id.vGuide:
                 i=new Intent(getApplicationContext(),TvGuideActivity.class);
-                finish();
+
                 break;
             case R.id.notifica:
                 i=new Intent(getApplicationContext(),PushNotificationCenterActivity.class);
                 showMenu(v);
+                break;
+            case R.id.vLegales:
+                i=new Intent(getApplicationContext(),LegalesActivity.class);
                 break;
             default:
                 break;
@@ -401,6 +407,8 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
             layout=R.layout.slowinternet_error;
         else if(type==4)
             layout=R.layout.sendmail;
+        else if(type==6666)
+            layout=R.layout.confirma;
             else
             layout=R.layout.unexpected_error;
         final Dialog popup = new Dialog(this,android.R.style.Theme_Translucent);

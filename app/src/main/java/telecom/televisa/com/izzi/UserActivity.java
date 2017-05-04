@@ -9,7 +9,9 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Base64;
 import android.util.Config;
 import android.util.Log;
@@ -25,6 +27,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
+import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.zxing.BarcodeFormat;
 import com.kissmetrics.sdk.KISSmetricsAPI;
@@ -52,6 +55,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.logging.StreamHandler;
 
 import televisa.telecom.com.model.Card;
 import televisa.telecom.com.model.PagosList;
@@ -64,22 +68,26 @@ import televisa.telecom.com.util.CodeBarGenerator;
 import televisa.telecom.com.util.FileCache;
 import televisa.telecom.com.util.ImageLoader;
 import televisa.telecom.com.util.IzziRespondable;
+import televisa.telecom.com.util.MobileStatusResponse;
+import televisa.telecom.com.util.PulltoRefreshAsyncResponse;
 import televisa.telecom.com.util.izziEdoCuentaResponse;
 import televisa.telecom.com.util.izziLoginResponse;
 import televisa.telecom.com.ws.IzziWS;
 
 
-public class UserActivity extends MenuActivity implements IzziRespondable{
+public class UserActivity extends MenuActivity implements IzziRespondable, SwipeRefreshLayout.OnRefreshListener{
     SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzzz yyyy", Locale.ENGLISH);
 
     Usuario usrin=null;
+    Usuario info;
     NumberFormat baseFormat = NumberFormat.getCurrencyInstance(new Locale("es","MX"));
     GoogleCloudMessaging gcm;
     String regid;
     String PROJECT_NUMBER = "726810758992";
     Bitmap img=null;
-
+    SwipeRefreshLayout swipeLayout;
     public static izziEdoCuentaResponse estado;
+    boolean service=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +95,12 @@ public class UserActivity extends MenuActivity implements IzziRespondable{
         setContentView(R.layout.activity_user);
         super.onCreate(savedInstanceState);
         AsyncLoginUpdate.refresca=this;
+        swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(this);
+        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         if(info.isEsNegocios()) {
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
@@ -115,7 +129,7 @@ public void swUsr(View v){
                 regid = gcm.register(PROJECT_NUMBER);
                 Map<String, String> mapa=new HashMap<>();
                 mapa.put("device",regid);
-                mapa.put("account",usrin.getCvNumberAccount());
+                mapa.put("account",info.getCvNumberAccount());
                 mapa.put("type",AES.encrypt("2"));
                 IzziWS.callWebService(mapa,"push/register");
                 msg=("Device registered, registration ID=" + regid);
@@ -148,7 +162,8 @@ public void swUsr(View v){
 
     void init(){
         final UserActivity act=this;
-        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+
+         info=((IzziMovilApplication)getApplication()).getCurrentUser();
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         String greating="";
         if(hour>=6&&hour<12)
@@ -167,6 +182,8 @@ public void swUsr(View v){
             ((RelativeLayout)findViewById(R.id.wifiNOOK)).setVisibility(RelativeLayout.GONE);
             ((ImageView)findViewById(R.id.wifilogo)).setImageResource(R.drawable.miwifi);
             ((RelativeLayout)findViewById(R.id.wifiOFFLINE)).setVisibility(RelativeLayout.GONE);
+            ((RelativeLayout)findViewById(R.id.noDexter)).setVisibility(RelativeLayout.GONE);
+            ((RelativeLayout)findViewById(R.id.wifiinfo)).setVisibility(RelativeLayout.VISIBLE);
 
             if(info.isDisplayWifiInfo()) {
                 if(!info.isRouterOffline()&&info.isWifiStatus()) {
@@ -181,6 +198,10 @@ public void swUsr(View v){
                 if(info.isRouterOffline()){
                     ((RelativeLayout)findViewById(R.id.wifiOFFLINE)).setVisibility(RelativeLayout.VISIBLE);
                     ((ImageView)findViewById(R.id.wifilogo)).setImageResource(R.drawable.offlinewifi);
+                }
+                if(info.isDexterDead()){
+                    ((RelativeLayout)findViewById(R.id.noDexter)).setVisibility(RelativeLayout.VISIBLE);
+                    ((ImageView)findViewById(R.id.wifilogo)).setImageResource(R.drawable.nodexter);
                 }
 
             }else{
@@ -204,8 +225,8 @@ public void swUsr(View v){
             ((TextView) findViewById(R.id.accountText)).setText(info.getCvNumberAccount() != null ? AES.decrypt(info.getCvNumberAccount()): "");
             ((TextView)findViewById(R.id.referenceText)).setText(barcode_data);
             String paquete=info.getPaquete() != null ? AES.decrypt(info.getPaquete()): "No disponible";
-            ((TextView) findViewById(R.id.paqueteText)).setText(paquete.replace("+","\n+\n"));
-            ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0.00");
+            ((TextView) findViewById(R.id.paqueteText)).setText(paquete);
+            ((TextView) findViewById(R.id.totalText)).setText(info.getCvLastBalance() != null ? "$"+AES.decrypt(info.getCvLastBalance()): "0");
             String lastBalance=info.getCvLastBalance() != null ? AES.decrypt(info.getCvLastBalance()): "0";
             Double tot= Double.parseDouble(lastBalance);
             ((TextView)findViewById(R.id.totalText)).setTextColor(0xff666666);
@@ -216,7 +237,7 @@ public void swUsr(View v){
                 ((TextView) findViewById(R.id.fechaText)).setVisibility(TextView.GONE);
             }
             double saldo=Double.parseDouble(lastBalance);
-            lastBalance="$"+lastBalance+".00";
+            lastBalance="$"+lastBalance;
             ((TextView) findViewById(R.id.totalText)).setText(lastBalance);
             String fecha=info.getFechaLimite() != null ? AES.decrypt(info.getFechaLimite()): null;
             String fechaFactura=info.getFechaFactura() != null ? AES.decrypt(info.getFechaFactura()): null;
@@ -297,22 +318,21 @@ public void swUsr(View v){
 
     }
     public void servicios(View v){
-        Intent myIntent = new Intent(this, ServiciosActivity.class);
-        startActivityForResult(myIntent, 0);
-    }
-    public void estadoCuenta(View v){
+
+
+        Map<String,String> mp=new HashMap<>();
         try {
-            Usuario info = ((IzziMovilApplication) getApplication()).getCurrentUser();
-            Map<String, String> mp = new HashMap<>();
-            mp.put("METHOD", "estado");
-            mp.put("user", AES.encrypt(info.getUserName()));
-            mp.put("cuenta", info.getCvNumberAccount());
-            mp.put("token", info.getToken());
-            new AsyncResponse(this, false).execute(mp);
+            mp.put("METHOD", "mobileUpdateService/checkStatus");
+            mp.put("account", AES.decrypt(info.getCvNumberAccount()));
+            service = true;
+            new AsyncResponse(this, true).execute(mp);
         }catch(Exception e){
-            e.printStackTrace();
+
         }
+
+
     }
+
 
     public void foto(View v){
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
@@ -354,39 +374,44 @@ public void swUsr(View v){
     @Override
     public void notifyChanges(Object response) {
         //vemos el pedo del estado de cuenta
+        swipeLayout.setRefreshing(false);
         if(response==null){
-            new AlertDialog.Builder(this)
-                    .setTitle("izzi")
-                    .setMessage("Lo sentimos, aun no esta disponible el detalle de tu factura de este mes")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
             return;
         }
-        izziEdoCuentaResponse rs=(izziEdoCuentaResponse)response;
+        if(!service) {
+            izziLoginResponse rs = (izziLoginResponse) response;
 
-        if(!rs.getIzziErrorCode().isEmpty()){
-            new AlertDialog.Builder(this)
-                    .setTitle("izzi")
-                    .setMessage("Lo sentimos, aun no esta disponible el detalle de tu factura de este mes")
-                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            // continue with delete
-                            dialog.dismiss();
-                        }
-                    })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .show();
+            if (!rs.getIzziErrorCode().isEmpty()) {
+                return;
+            }
+
+            info.setDisplayWifiInfo(rs.getResponse().isDisplayWifiInfo());
+            info.setWifiName(rs.getResponse().getWifiName());
+            info.setWifiPass(rs.getResponse().getWifiPass());
+            info.setWifiPeers(rs.getResponse().getWifiPeers());
+            info.setWifiStatus(rs.getResponse().isWifiStatus());
+            info.setRouterOffline(rs.getResponse().isRouterOffline());
+            info.setDexterDead(rs.getResponse().isDexterDead());
+            info.save();
+            ((IzziMovilApplication)getApplication()).setCurrentUser(info);
+            init();
+            swipeLayout.setRefreshing(false);
             return;
+        }else{
+            service=false;
+            if(response==null){
+                Intent myIntent = new Intent(this, ServiciosActivity.class);
+                startActivityForResult(myIntent, 0);
+                return;
+            }
+            MobileStatusResponse rs=(MobileStatusResponse)response;
+            if (!rs.getIzziErrorCode().isEmpty()) {
+                showError("Tu solicitud esta siendo procesada, muchas gracias.",6666);
+                return;
+            }
+            Intent myIntent = new Intent(this, ServiciosActivity.class);
+            startActivityForResult(myIntent, 0);
         }
-        Intent myIntent = new Intent(this, EdoCuentaActivity.class);
-        startActivityForResult(myIntent, 0);
-        estado=rs;
 
     }
 
@@ -490,6 +515,28 @@ public void swUsr(View v){
             super.onPostExecute(result);
             }
         
+    }
+    public void refresh(View v){
+        onRefresh();
+    }
+    @Override
+    public void onRefresh() {
+        try {
+            Map<String, String> ma = new HashMap<>();
+            ma.put("METHOD", "refresh/account");
+            ma.put("password", AES.encrypt(info.getPassword()));
+            ma.put("account", info.getCvNumberAccount());
+            ma.put("user", AES.encrypt(info.getUserName()));
+            new PulltoRefreshAsyncResponse(this,false).execute(ma);
+        }catch(Exception e){
+
+        }
+    }
+    @Override
+    public void onActivityReenter(int resultCode, Intent data) {
+        super.onActivityReenter(resultCode, data);
+        if(resultCode==666)
+            finish();
     }
 
 }

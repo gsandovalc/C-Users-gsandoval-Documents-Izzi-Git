@@ -81,10 +81,6 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                 String ahhh =(String) IzziWS.callWebService(params[0], metodo);
                 izziDondePagarResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziDondePagarResponse.class);
                 return response;
-            }else if(respondTo instanceof UserActivity) {
-                izziEdoCuentaResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziEdoCuentaResponse.class);
-                return response;
-
             }else if(respondTo instanceof Registro_main_activity||respondTo instanceof RegistroStep2Activity||respondTo instanceof RegistroPaso3||respondTo instanceof SMSConfirmaActivity) {
                 izziValidateResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), izziValidateResponse.class);
                 return response;
@@ -114,6 +110,9 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                 return response;
             }else if(respondTo instanceof PurchaseActivity){
                 MobileExtrasResponse response=gson.fromJson((String) IzziWS.callWebService(params[0], metodo), MobileExtrasResponse.class);
+                return response;
+            }else if (respondTo instanceof UserActivity){
+                MobileStatusResponse response=gson.fromJson((String)IzziWS.callWebService(params[0],metodo),MobileStatusResponse.class);
                 return response;
             }
             else{

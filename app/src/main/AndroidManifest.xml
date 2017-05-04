@@ -67,10 +67,10 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="AA_DB_NAME"
-            android:value="izziDB.db" />
+            android:value="izziDB2.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="12" />
+            android:value="1" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

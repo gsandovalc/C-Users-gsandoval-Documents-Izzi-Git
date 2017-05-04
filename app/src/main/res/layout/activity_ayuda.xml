@@ -74,7 +74,7 @@
                                 android:layout_marginTop="0dp"
                                 android:layout_gravity="center"
                                 android:gravity="left"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:layout_centerHorizontal="true" />
 
                         </LinearLayout>
@@ -151,7 +151,7 @@
                                 android:layout_marginTop="0dp"
                                 android:layout_gravity="center"
                                 android:gravity="left"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:layout_centerHorizontal="true" />
 
                         </LinearLayout>
@@ -179,6 +179,7 @@
                 android:layout_height="wrap_content"
                 android:minHeight="90dp"
                 android:clickable="true"
+                android:id="@+id/drwifi"
                 android:onClick="chatdr"
                 >
 
@@ -227,7 +228,7 @@
                                     android:layout_marginTop="0dp"
                                     android:layout_gravity="center"
                                     android:gravity="left"
-                                    android:textSize="14sp"
+                                    android:textSize="14dp"
                                     android:layout_centerHorizontal="true" />
 
                             </LinearLayout>
@@ -255,6 +256,7 @@
             android:layout_height="wrap_content"
             android:minHeight="90dp"
             android:clickable="true"
+            android:visibility="gone"
             android:onClick="chat"
             >
 
@@ -305,7 +307,7 @@
                                 android:layout_marginTop="0dp"
                                 android:layout_gravity="center"
                                 android:gravity="left"
-                                android:textSize="14sp"
+                                android:textSize="14dp"
                                 android:layout_centerHorizontal="true"
                                  />
 
@@ -366,7 +368,7 @@
 
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
-                    android:textSize="10sp"
+                    android:textSize="10dp"
                     android:textColor="#000"/>
             </LinearLayout>
             <LinearLayout
@@ -390,7 +392,7 @@
 
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
-                    android:textSize="10sp"
+                    android:textSize="10dp"
                     android:textColor="#000"/>
             </LinearLayout>
             <LinearLayout
@@ -412,7 +414,7 @@
 
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal"
-                    android:textSize="10sp"
+                    android:textSize="10dp"
                     android:textColor="#000"/>
             </LinearLayout>
 

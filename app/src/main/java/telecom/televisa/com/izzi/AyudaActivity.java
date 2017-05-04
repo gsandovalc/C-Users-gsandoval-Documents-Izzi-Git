@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import televisa.telecom.com.model.Usuario;
@@ -18,6 +19,11 @@ public class AyudaActivity extends Activity {
         setContentView(R.layout.activity_ayuda);
         ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
         ((TextView)findViewById(R.id.h_title)).setText("Ayuda");
+        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+        String telefono="";
+        if(info.isLegacy()){
+            ((RelativeLayout)findViewById(R.id.drwifi)).setVisibility(RelativeLayout.GONE);
+        }
 
     }
     public void showMenu(View v){

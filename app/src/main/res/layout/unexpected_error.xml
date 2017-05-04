@@ -23,7 +23,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
-        android:textSize="12sp"
+        android:textSize="12dp"
         android:gravity="center"
         android:id="@+id/error_desc"
         android:textColor="#fff"
