@@ -299,9 +299,9 @@
                         android:layout_width="0dp"
                         android:layout_height="fill_parent"
                         android:textColor="@color/izzi_text_color"
-                        android:textSize="15dp"
+                        android:textSize="13dp"
                         android:layout_marginLeft="15dp"
-                        android:text="Complementos"
+                        android:text="Complementos + consumos"
                         android:gravity="center_vertical"
                         android:textStyle="bold"
                         android:layout_weight=".5"/>
@@ -329,7 +329,7 @@
                         android:textColor="@color/izzi_text_color"
                         android:textSize="15dp"
                         android:layout_marginLeft="15dp"
-                        android:text="Cargos variables"
+                        android:text="Otros cargos"
                         android:gravity="center_vertical"
                         android:layout_weight=".5"/>
                     <TextView
