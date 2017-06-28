@@ -17,7 +17,63 @@
         android:background="#ffffff"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true">
-    <include layout="@layout/headerextra" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="#d60270"
+            android:layout_width="fill_parent"
+            android:layout_height="46dp">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:id="@+id/hcontainer"
+                android:layout_height="46dp"
+                >
+
+
+                <TextView
+                    android:id="@+id/h_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:text="Tu servicio actual"
+                    android:textColor="#fff"
+                    android:textSize="18dp"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:clickable="true"
+                    android:onClick="showMenu"
+                    android:layout_height="45dp">
+                    <ImageView
+                        android:id="@+id/show_menu"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="left"
+
+                        android:layout_height="match_parent"
+                        android:padding="3dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/wflecha" />
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/show_exmenu"
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentRight="true"
+                    android:clickable="true"
+                    android:onClick="showModal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/info" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
             <LinearLayout
                 android:background="#fff"
                 android:layout_width="fill_parent"

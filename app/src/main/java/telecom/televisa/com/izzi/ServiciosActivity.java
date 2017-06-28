@@ -43,9 +43,7 @@ public class ServiciosActivity extends IzziActivity {
         info=((IzziMovilApplication)getApplication()).getCurrentUser();
        final ServiciosActivity activity=this;
         //llenamos obtenemnos los campos de texto
-        ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
 
-        ((TextView)findViewById(R.id.h_title)).setText("Tu servicio actual");
         try {
             String pac=info.getServiceName() != null ? AES.decrypt(info.getServiceName()): "No disponible";
             pac = pac.replaceAll("\\+", "\n\\+\n");

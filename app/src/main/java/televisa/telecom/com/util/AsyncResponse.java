@@ -21,6 +21,7 @@ import java.util.Map;
 
 import telecom.televisa.com.izzi.EditAccountActivity;
 import telecom.televisa.com.izzi.EdoCuentaActivity;
+import telecom.televisa.com.izzi.InternetHelpActivity;
 import telecom.televisa.com.izzi.PagoEstablecimientosActivity;
 import telecom.televisa.com.izzi.AddCardActivity;
 import telecom.televisa.com.izzi.PagosMainActivity;
@@ -34,6 +35,7 @@ import telecom.televisa.com.izzi.RegistroStep2Activity;
 import telecom.televisa.com.izzi.Registro_main_activity;
 import telecom.televisa.com.izzi.SMSConfirmaActivity;
 import telecom.televisa.com.izzi.UserActivity;
+import telecom.televisa.com.izzi.WifiManagementActivity;
 import televisa.telecom.com.ws.IzziWS;
 
 /**
@@ -114,6 +116,10 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
             }else if (respondTo instanceof UserActivity){
                 MobileStatusResponse response=gson.fromJson((String)IzziWS.callWebService(params[0],metodo),MobileStatusResponse.class);
                 return response;
+            }else if(respondTo instanceof InternetHelpActivity){
+                return IzziWS.callWebService(params[0],metodo);
+            }else if(respondTo instanceof WifiManagementActivity){
+                return IzziWS.callWebService(params[0],metodo);
             }
             else{
               //  izziLoginResponse responsse=gsb.create().fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);

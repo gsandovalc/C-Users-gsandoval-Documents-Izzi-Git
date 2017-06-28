@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#717171"
                 android:gravity="center_horizontal"
-                android:textSize="17dp"
+                android:textSize="15dp"
                 android:id="@+id/intextname"
                 android:maxHeight="50dp"
 
@@ -42,7 +42,7 @@
                 android:text="tiene promo"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:textSize="12dp"
+                android:textSize="10dp"
                 android:textColor="@color/izzi_rosa"
                 android:id="@+id/promo1"/>
             <TextView
@@ -50,8 +50,8 @@
                 android:layout_height="70dp"
                 android:id="@+id/descrip1"
                 android:textColor="#000"
-                android:layout_marginTop="5dp"
-                android:textSize="12dp"
+                android:layout_marginTop="2dp"
+                android:textSize="10dp"
                 />
 
         </LinearLayout>
@@ -65,7 +65,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal"
             android:layout_marginTop="5dp"
             android:layout_height="wrap_content">
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#717171"
                     android:gravity="center_horizontal"
-                    android:textSize="17dp"
+                    android:textSize="15dp"
                     android:id="@+id/intextname2"
                     android:maxHeight="50dp"
 
@@ -134,17 +134,17 @@
                     android:text="tiene promo"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     android:textColor="@color/izzi_rosa"
                     android:id="@+id/promo2"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:id="@+id/descrip2"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="2dp"
 
                     android:textColor="#000"
-                    android:textSize="12dp"
+                    android:textSize="10dp"
                     />
 
             </LinearLayout>
@@ -158,7 +158,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="5dp"
                 android:orientation="horizontal"
                 android:layout_marginTop="5dp"
                 android:layout_height="wrap_content">

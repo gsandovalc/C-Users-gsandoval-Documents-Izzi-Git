@@ -61,6 +61,7 @@
         </receiver>
 
         <service android:name=".GcmMessageHandler" />
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -70,7 +71,7 @@
             android:value="izziDB2.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="1" />
+            android:value="2" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -240,7 +241,16 @@
             android:name=".AyudaActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name=".PurchaseActivity"
+        <activity
+            android:name=".PurchaseActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".WifiManagementActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <activity android:name=".InternetHelpActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
     </application>

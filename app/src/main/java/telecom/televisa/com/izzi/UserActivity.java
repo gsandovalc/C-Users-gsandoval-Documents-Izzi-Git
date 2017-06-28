@@ -173,7 +173,7 @@ public void swUsr(View v){
         else if(hour>=20 &&hour<24)
             greating="BUENAS NOCHES";
         else
-            greating="¿AÚN DESPIETO?";
+            greating="¿AÚN DESPIERTO?";
 
         ((TextView)findViewById(R.id.greating)).setText(greating);
         if(info.isEsNegocios())
@@ -184,7 +184,8 @@ public void swUsr(View v){
             ((RelativeLayout)findViewById(R.id.wifiOFFLINE)).setVisibility(RelativeLayout.GONE);
             ((RelativeLayout)findViewById(R.id.noDexter)).setVisibility(RelativeLayout.GONE);
             ((RelativeLayout)findViewById(R.id.wifiinfo)).setVisibility(RelativeLayout.VISIBLE);
-
+            ((TextView) findViewById(R.id.ssid_peers)).setVisibility(TextView.VISIBLE);
+            ((TextView)findViewById(R.id.conectados)).setText("Dispositivos conectados:");
             if(info.isDisplayWifiInfo()) {
                 if(!info.isRouterOffline()&&info.isWifiStatus()) {
                     ((TextView) findViewById(R.id.ssid)).setText(AES.decrypt(info.getWifiName()));
@@ -192,8 +193,11 @@ public void swUsr(View v){
                     ((TextView) findViewById(R.id.ssid_peers)).setText(AES.decrypt(info.getWifiPeers()));
                     //modificiar
                 }if(!info.isWifiStatus()){
-                    ((RelativeLayout)findViewById(R.id.wifiNOOK)).setVisibility(RelativeLayout.VISIBLE);
+                    ((TextView)findViewById(R.id.conectados)).setText("Tu red WiFi está apagada");
+                    ((TextView) findViewById(R.id.ssid)).setText(AES.decrypt(info.getWifiName()));
+                    ((TextView) findViewById(R.id.ssid_pass)).setText(AES.decrypt(info.getWifiPass()));
                     ((ImageView)findViewById(R.id.wifilogo)).setImageResource(R.drawable.wifioff);
+                    ((TextView) findViewById(R.id.ssid_peers)).setVisibility(TextView.INVISIBLE);
                 }
                 if(info.isRouterOffline()){
                     ((RelativeLayout)findViewById(R.id.wifiOFFLINE)).setVisibility(RelativeLayout.VISIBLE);
@@ -339,6 +343,12 @@ public void swUsr(View v){
         startActivityForResult(intent, 57);
     }
 
+    public void wifiManager(View v){
+        //call new activity for wifi management
+        Intent myIntent = new Intent(this, WifiManagementActivity.class);
+        startActivityForResult(myIntent, 0);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

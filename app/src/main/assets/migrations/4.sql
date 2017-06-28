@@ -1,1 +1,0 @@
-Alter TABLE Usuario add column esNegocios INTEGER;

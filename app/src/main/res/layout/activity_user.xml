@@ -326,6 +326,13 @@
                         android:id="@+id/wifilogo"
                         android:src="@drawable/miwifi"
                         android:layout_height="75dp" />
+
+                    <!-- relative aca para el pollo-->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:clickable="true"
+                        android:onClick="wifiManager"
+                        android:layout_height="match_parent">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -333,6 +340,8 @@
                         android:layout_gravity="center_vertical"
                         android:gravity="center_vertical"
                         android:orientation="vertical">
+
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
@@ -344,28 +353,29 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_weight=".4">
+                                android:layout_weight=".6">
 
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="13dp"
+                                    android:textSize="12dp"
                                     android:textColor="#999999"
                                     android:layout_height="wrap_content"
-                                    android:text="Mi red:"
+                                    android:text="Mi Red:"
                                     android:id="@+id/textView9" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="13dp"
+                                    android:textSize="12dp"
                                     android:textColor="#999999"
                                     android:layout_height="wrap_content"
-                                    android:text="Contraseña:"
+                                    android:text="Mi Contraseña:"
                                     android:id="@+id/textView11" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="13dp"
+                                    android:textSize="12dp"
                                     android:textColor="#999"
+                                    android:id="@+id/conectados"
                                     android:layout_height="wrap_content"
                                     android:text="Dispositivos conectados:"
                                     />
@@ -374,11 +384,12 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:paddingLeft="5dp"
-                                android:layout_weight=".6">
+                                android:paddingLeft="3dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_weight=".4">
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="13dp"
+                                    android:textSize="12dp"
                                     android:id="@+id/ssid"
                                     android:textColor="#000"
                                     android:layout_height="wrap_content"
@@ -387,7 +398,7 @@
 
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="13dp"
+                                    android:textSize="12dp"
                                     android:textColor="#000"
                                     android:id="@+id/ssid_pass"
                                     android:layout_height="wrap_content"
@@ -395,7 +406,7 @@
                                     />
                                 <TextView
                                     android:layout_width="wrap_content"
-                                    android:textSize="13dp"
+                                    android:textSize="12dp"
                                     android:textColor="#000"
                                     android:id="@+id/ssid_peers"
                                     android:layout_height="wrap_content"
@@ -404,6 +415,17 @@
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="15dp"
+                            android:alpha=".4"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/adelante"
+                            android:layout_marginRight="1dp"/>
+                   </RelativeLayout>
+                    <!--fin relative aca para el pollo-->
+
 
                 </LinearLayout>
 
@@ -564,7 +586,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
-                            android:textSize="14dp"
+                            android:textSize="12dp"
                             android:textStyle="bold"
                             android:text="55 52 43 03 30"
                             android:textColor="#6f6f6f"

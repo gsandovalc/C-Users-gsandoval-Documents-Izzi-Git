@@ -18,6 +18,15 @@ public class Usuario extends Model implements MobileResponse {
     @Expose
     @Column
     public String userName;
+
+
+    @Expose
+    @Column
+    private String cmaddrs="";
+    @Expose
+    @Column
+    private String model="";
+
     @Expose
     @Column
     public String password;
@@ -1110,4 +1119,19 @@ public class Usuario extends Model implements MobileResponse {
         this.complementosTVN = complementosTVN;
     }
 
+    public String getCmaddrs() {
+        return cmaddrs;
+    }
+
+    public void setCmaddrs(String cmaddrs) {
+        this.cmaddrs = cmaddrs;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
 }
