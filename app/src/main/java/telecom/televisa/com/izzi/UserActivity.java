@@ -110,8 +110,8 @@ public class UserActivity extends MenuActivity implements IzziRespondable, Swipe
 
         init();
         new LongOperation().execute();
-        KISSmetricsAPI.sharedAPI().record("Login Primera Vez en Apps", KISSmetricsAPI.RecordCondition.RECORD_ONCE_PER_INSTALL);
-        KISSmetricsAPI.sharedAPI().record("Login en Apps");
+        KISSmetricsAPI.sharedAPI().record("Primer Login Android", KISSmetricsAPI.RecordCondition.RECORD_ONCE_PER_INSTALL);
+        KISSmetricsAPI.sharedAPI().record("Uso en Android");
     }
 
 public void swUsr(View v){

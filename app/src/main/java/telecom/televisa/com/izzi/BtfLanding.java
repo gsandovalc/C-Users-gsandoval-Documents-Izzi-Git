@@ -7,6 +7,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
+
+import java.util.Map;
+
 
 public class BtfLanding extends Activity {
 
@@ -39,7 +49,6 @@ public class BtfLanding extends Activity {
         overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
         finish();
     }
-
 
 
 }
