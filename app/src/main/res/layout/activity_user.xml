@@ -524,7 +524,105 @@
         </RelativeLayout>
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick=""
+            android:minHeight="120dp"
+            >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:background="@color/izzi_amarillo"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="Mi TV"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:layout_marginLeft="5dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:background="#fff"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/mitv"
+                        android:layout_height="75dp"
+                         />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mis equipos de video"
+                            android:digits=""
+                            android:textColor="#666"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:textSize="14dp"
+                            android:layout_centerInParent="true" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Equipos:"
+
+                                android:textColor="#666"
+                                android:layout_marginTop="0dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textSize="12dp"
+                                android:layout_centerHorizontal="true" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3"
+                                android:id="@+id/numEquipos"
+                                android:layout_alignParentBottom="true"
+                                android:textColor="#666"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginLeft="5dp"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textSize="12dp"
+                                android:layout_centerHorizontal="true" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_marginTop="70dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:alpha=".4"
+                android:src="@drawable/adelante"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -622,82 +720,7 @@
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:onClick="establecimientos"
-        android:minHeight="120dp"
-        >
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            android:background="@color/izzi_amarillo"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="Mi código de barras"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:textSize="13dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_marginLeft="5dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:background="#fff"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="fill_parent"
-                            android:layout_gravity="center"
-                            android:layout_centerHorizontal="true"
-                            android:layout_height="60dp"
-                            android:id="@+id/codebar"
-                            />
-                    </RelativeLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:textColor="#6f6f6f"
-                        android:id="@+id/codetext"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:text="Con este código puedes pagar en Tiendas izzi y en tiendas de Grupo Walmart."
-                        android:textColor="#6f6f6f"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <ImageView
-            android:layout_width="10dp"
-            android:layout_marginTop="70dp"
-            android:layout_height="15dp"
-            android:layout_alignParentRight="true"
-            android:alpha=".4"
-            android:src="@drawable/adelante"
-            android:layout_marginRight="10dp"/>
-    </RelativeLayout>
 </LinearLayout>
     </ScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
@@ -723,7 +746,7 @@
 
     android:layout_gravity="center_horizontal"
     android:gravity="center_horizontal"
-        android:layout_weight=".333">
+        android:layout_weight=".25">
 <ImageView
     android:layout_width="35dp"
     android:layout_height="35dp"
@@ -747,7 +770,7 @@
             android:onClick="edocuenta"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:layout_weight=".333">
+            android:layout_weight=".25">
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -768,10 +791,34 @@
             android:orientation="vertical"
             android:alpha=".5"
             android:clickable="true"
+            android:onClick="establecimientos"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:layout_weight=".25">
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/barras"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Código de barras"
+
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="10dp"
+                android:textColor="#000"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:alpha=".5"
+            android:clickable="true"
             android:onClick="ayudaa"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:layout_weight=".333">
+            android:layout_weight=".25">
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"

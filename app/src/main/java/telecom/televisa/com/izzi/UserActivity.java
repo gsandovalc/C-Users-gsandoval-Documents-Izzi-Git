@@ -220,10 +220,10 @@ public void swUsr(View v){
             }
             String barcode_data = AES.decrypt(info.getBarcode());
             Bitmap bitmap = null;
-            ImageView iv = (ImageView) findViewById(R.id.codebar);
-            bitmap = CodeBarGenerator.encodeAsBitmap(barcode_data, BarcodeFormat.CODE_128, 600, 300);
-            iv.setImageBitmap(bitmap);
-            ((TextView)findViewById(R.id.codetext)).setText(barcode_data);
+         //   ImageView iv = (ImageView) findViewById(R.id.codebar);
+           // bitmap = CodeBarGenerator.encodeAsBitmap(barcode_data, BarcodeFormat.CODE_128, 600, 300);
+            //iv.setImageBitmap(bitmap);
+            //((TextView)findViewById(R.id.codetext)).setText(barcode_data);
             ((TextView) findViewById(R.id.nameText)).setText(info.getNombreContacto() != null ? AES.decrypt(info.getNombreContacto()).split(" ")[0] +" "+AES.decrypt(info.getApellidoPaterno()): "");
             ((TextView) findViewById(R.id.phoneText)).setText(info.getTelefonoPrincipal() != null ? AES.decrypt(info.getTelefonoPrincipal()):"");
             ((TextView) findViewById(R.id.accountText)).setText(info.getCvNumberAccount() != null ? AES.decrypt(info.getCvNumberAccount()): "");

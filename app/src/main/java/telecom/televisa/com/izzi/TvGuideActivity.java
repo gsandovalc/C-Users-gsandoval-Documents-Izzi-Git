@@ -281,6 +281,7 @@ public class TvGuideActivity extends IzziActivity implements ScrollViewListener,
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(4000);
+
         mDemoSlider.setVisibility(SliderLayout.VISIBLE);
         setCanales();
         setLineUp();

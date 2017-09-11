@@ -347,6 +347,64 @@ public class Usuario extends Model implements MobileResponse {
     @Expose
     @Column
     private boolean wifiStatus=false;
+    @Expose
+    @Column
+    private boolean tieneTv=false;
+    @Expose
+    @Column
+    private String totalTv="";
+    @Expose
+    @Column
+    private String totalSD="";
+    @Expose
+    @Column
+    private String totalHD="";
+
+    @Expose
+    @Column
+    private String totalDvr="";
+
+
+    public boolean isTieneTv() {
+        return tieneTv;
+    }
+
+    public void setTieneTv(boolean tieneTv) {
+        this.tieneTv = tieneTv;
+    }
+
+    public String getTotalTv() {
+        return totalTv;
+    }
+
+    public void setTotalTv(String totalTv) {
+        this.totalTv = totalTv;
+    }
+
+    public String getTotalSD() {
+        return totalSD;
+    }
+
+    public void setTotalSD(String totalSD) {
+        this.totalSD = totalSD;
+    }
+
+    public String getTotalHD() {
+        return totalHD;
+    }
+
+    public void setTotalHD(String totalHD) {
+        this.totalHD = totalHD;
+    }
+
+    public String getTotalDvr() {
+        return totalDvr;
+    }
+
+    public void setTotalDvr(String totalDvr) {
+        this.totalDvr = totalDvr;
+    }
+
 
     public boolean isWifiStatus() {
         return wifiStatus;
