@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:layout_height="match_parent"
+    tools:context="telecom.televisa.com.izzi.NoMiradaTroubleshoot">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="80dp"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/izzi_amarillo"
+        android:layout_width="fill_parent"
+        android:layout_height="46dp">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:id="@+id/hcontainer"
+            android:layout_height="46dp"
+            >
+            <TextView
+                android:id="@+id/h_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:text="Gestión de Mi TV"
+                android:textColor="#000"
+                android:textSize="16dp"
+
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:onClick="showMenu"
+                android:layout_height="45dp">
+                <ImageView
+                    android:id="@+id/show_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="left"
+
+                    android:layout_height="match_parent"
+                    android:padding="3dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/regresar" />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/show_exmenu"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:onClick="showModal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/info" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/problema1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#b1b1b1"
+            android:layout_height="20dp">
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="17dp"
+            android:textColor="#000"
+            android:layout_height="wrap_content"
+            android:text="El problema se presenta en:"
+            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_height="40dp">
+
+        <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+            android:onClick="allChannels"
+            android:clickable="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+        android:background="@color/izzi_rosa"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:text="Todos los canales"
+        android:layout_weight=".5"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:onClick="someChannels"
+            android:clickable="true"
+            android:text="Algunos canales"
+            android:background="@color/izzi_turquesa"
+            android:layout_weight=".5"/>
+
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/audioTodos">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#b1b1b1"
+                android:layout_height="20dp">
+                </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="15dp"
+                android:textColor="#000"
+                android:layout_height="wrap_content"
+                android:text="Para resolver tu problema es necesario revisar que las conexiones de los cables de audio y video (RCA - HDMI) estén bien conectados a tu equipo de video:"
+                />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/conectors"/>
+            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/audioalgunos">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#b1b1b1"
+                android:layout_height="20dp">
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="15dp"
+                android:textColor="#000"
+                android:layout_height="wrap_content"
+                android:text="Para resolver tu problema es necesario que te comuniques con nosotros"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/problema2">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#b1b1b1"
+                android:layout_height="20dp">
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="17dp"
+                android:textColor="#000"
+                android:layout_height="wrap_content"
+                android:text="El problema se presenta en:"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:onClick="allChannels2"
+                    android:clickable="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/izzi_rosa"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:textSize="13dp"
+                    android:text="Todos los canales"
+                    android:layout_weight=".5"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:textSize="13dp"
+                    android:onClick="someChannels2"
+                    android:clickable="true"
+                    android:text="Algunos canales"
+                    android:background="@color/izzi_turquesa"
+                    android:layout_weight=".5"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/senalTodos">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="#b1b1b1"
+                    android:layout_height="20dp">
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:text="Para resolver tu problema es necesario revisar que las conexiones de los cables de audio y video (RCA - HDMI) estén bien conectados a tu equipo de video:"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/conectors"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="v"
+                android:id="@+id/senalAlgunos">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="#b1b1b1"
+                    android:layout_height="20dp">
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:text="Para resolver tu problema es necesario que te comuniques con nosotros"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/problema3">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="#b1b1b1"
+                    android:layout_height="20dp">
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:text="Para resolver tu problema es necesario desconectar y conectar tu equipo de video de la corriente eléctrica"
+                    />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="30dp"
+                    android:src="@drawable/unplug"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:id="@+id/problema4">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="#b1b1b1"
+                    android:layout_height="20dp">
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"
+                    android:text="Para resolver tu problema es necesario reiniciar tu equipo de video."
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:clickable="true"
+                    android:onClick="sendRestart"
+                    android:background="@color/izzi_amarillo"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="16dp"
+                        android:textColor="#000"
+                        android:text="Reiniciar"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lastStep"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="¿Se soluciono tu problema?"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"/>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:background="#ccD60270"
+                android:onClick="goToChat"
+                android:clickable="true"
+                android:layout_weight=".5">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textColor="#fff"
+                    android:textAlignment="center"
+                    android:textSize="16dp"
+                    android:gravity="center"
+                    android:text="Chatea"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:background="#cc00C1B5"
+                android:layout_weight=".5">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:clickable="true"
+                    android:onClick="call"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:text="Llámanos"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

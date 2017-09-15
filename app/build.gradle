@@ -46,9 +46,11 @@ dependencies {
     compile 'net.hockeyapp.android:HockeySDK:3.5.0'
     compile 'com.squareup.picasso:picasso:2.3.2'
     compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.daimajia.slider:library:1.1.2@aar'
+    compile 'com.daimajia.slider:library:1.1.5@aar'
     compile 'com.google.android.gms:play-services-gcm:7.5.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.11'
     compile 'com.github.dbachelder:CreditCardEntry:1.4.7'
     compile 'com.hudomju:swipe-to-dismiss-undo:1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.android.support:appcompat-v7:22.2.1'
 }

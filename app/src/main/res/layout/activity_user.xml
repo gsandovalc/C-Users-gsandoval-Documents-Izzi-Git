@@ -527,7 +527,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick=""
+            android:onClick="goToVideo"
+            android:clickable="true"
+            android:id="@+id/tienetv"
             android:minHeight="120dp"
             >
             <LinearLayout
@@ -608,6 +610,28 @@
                                 android:textSize="12dp"
                                 android:layout_centerHorizontal="true" />
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:id="@+id/dvr"
+
+                                android:src="@drawable/dvr"/>
+                            <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                                android:id="@+id/hd"
+                            android:src="@drawable/hd"/>
+                            <ImageView
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:id="@+id/sd"
+                                android:src="@drawable/sd"/>
+                            </LinearLayout>
 
                     </LinearLayout>
 

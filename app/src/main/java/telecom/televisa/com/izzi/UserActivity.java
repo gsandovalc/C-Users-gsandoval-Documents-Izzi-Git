@@ -224,6 +224,27 @@ public void swUsr(View v){
            // bitmap = CodeBarGenerator.encodeAsBitmap(barcode_data, BarcodeFormat.CODE_128, 600, 300);
             //iv.setImageBitmap(bitmap);
             //((TextView)findViewById(R.id.codetext)).setText(barcode_data);
+            if(!info.isTieneTv())
+                ((RelativeLayout)findViewById(R.id.tienetv)).setVisibility(RelativeLayout.GONE);
+            else{
+                ((RelativeLayout)findViewById(R.id.tienetv)).setVisibility(RelativeLayout.VISIBLE);
+                boolean tieneDVR=AES.decrypt(info.getTotalDvr()).equals("0");
+                boolean tieneHD=AES.decrypt(info.getTotalHD()).equals("0");
+                boolean tieneSD=AES.decrypt(info.getTotalSD()).equals("0");
+                if(tieneDVR)
+                    ((ImageView)findViewById(R.id.dvr)).setVisibility(View.GONE);
+                else
+                    ((ImageView)findViewById(R.id.dvr)).setVisibility(View.VISIBLE);
+                if(tieneHD)
+                    ((ImageView)findViewById(R.id.hd)).setVisibility(View.GONE);
+                else
+                    ((ImageView)findViewById(R.id.hd)).setVisibility(View.VISIBLE);
+                if(tieneSD)
+                    ((ImageView)findViewById(R.id.sd)).setVisibility(View.GONE);
+                else
+                    ((ImageView)findViewById(R.id.sd)).setVisibility(View.VISIBLE);
+            }
+            ((TextView)findViewById(R.id.numEquipos)).setText(AES.decrypt(info.getTotalTv()));
             ((TextView) findViewById(R.id.nameText)).setText(info.getNombreContacto() != null ? AES.decrypt(info.getNombreContacto()).split(" ")[0] +" "+AES.decrypt(info.getApellidoPaterno()): "");
             ((TextView) findViewById(R.id.phoneText)).setText(info.getTelefonoPrincipal() != null ? AES.decrypt(info.getTelefonoPrincipal()):"");
             ((TextView) findViewById(R.id.accountText)).setText(info.getCvNumberAccount() != null ? AES.decrypt(info.getCvNumberAccount()): "");
@@ -467,7 +488,10 @@ public void swUsr(View v){
             Intent myIntent = new Intent(this, PagosMainActivity.class);
             startActivityForResult(myIntent, 0);
     }
-
+    public void goToVideo(View v){
+        Intent myIntent = new Intent(this, VideoManagerActivity.class);
+        startActivityForResult(myIntent, 0);
+    }
     private class UploadFileToServer extends AsyncTask<Void, Integer, String> {
 
         @Override

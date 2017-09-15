@@ -22,6 +22,8 @@ import java.util.Map;
 import telecom.televisa.com.izzi.EditAccountActivity;
 import telecom.televisa.com.izzi.EdoCuentaActivity;
 import telecom.televisa.com.izzi.InternetHelpActivity;
+import telecom.televisa.com.izzi.MiradaTroubleShoot;
+import telecom.televisa.com.izzi.NoMiradaTroubleshoot;
 import telecom.televisa.com.izzi.PagoEstablecimientosActivity;
 import telecom.televisa.com.izzi.AddCardActivity;
 import telecom.televisa.com.izzi.PagosMainActivity;
@@ -35,6 +37,7 @@ import telecom.televisa.com.izzi.RegistroStep2Activity;
 import telecom.televisa.com.izzi.Registro_main_activity;
 import telecom.televisa.com.izzi.SMSConfirmaActivity;
 import telecom.televisa.com.izzi.UserActivity;
+import telecom.televisa.com.izzi.VideoManagerActivity;
 import telecom.televisa.com.izzi.WifiManagementActivity;
 import televisa.telecom.com.ws.IzziWS;
 
@@ -120,6 +123,12 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                 return IzziWS.callWebService(params[0],metodo);
             }else if(respondTo instanceof WifiManagementActivity){
                 return IzziWS.callWebService(params[0],metodo);
+            }else if(respondTo instanceof VideoManagerActivity && metodo.contains("getEquipos")){
+                return gson.fromJson((String)IzziWS.callWebService(params[0],metodo),izziVideoManagerResponse.class);
+            }else if(respondTo instanceof VideoManagerActivity){
+                return gson.fromJson((String)IzziWS.callWebService(params[0],metodo),izziRecuperaResponse.class);
+            }else if(respondTo instanceof NoMiradaTroubleshoot ||respondTo instanceof MiradaTroubleShoot){
+                return gson.fromJson((String)IzziWS.callWebService(params[0],metodo),izziRecuperaResponse.class);
             }
             else{
               //  izziLoginResponse responsse=gsb.create().fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);

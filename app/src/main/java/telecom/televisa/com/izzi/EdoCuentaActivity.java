@@ -161,7 +161,7 @@ public void aclaraciones(View v){
         izziEdoCuentaResponse rs=(izziEdoCuentaResponse)response;
 estado=rs;
         if(!rs.getIzziErrorCode().isEmpty()){
-
+            ((RelativeLayout)findViewById(R.id.vista)).setVisibility(RelativeLayout.VISIBLE);
             return;
         }
 
@@ -207,7 +207,7 @@ estado=rs;
             ((TextView) findViewById(R.id.total)).setText("$"+AES.decrypt(info.getCvLastBalance()));
 
         }catch(Exception e){
-
+            ((RelativeLayout)findViewById(R.id.vista)).setVisibility(RelativeLayout.VISIBLE);
         }
 
 

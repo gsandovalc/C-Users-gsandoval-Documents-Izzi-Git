@@ -1,0 +1,1347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#fff"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="telecom.televisa.com.izzi.VideoManagerActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/izzi_amarillo"
+        android:layout_width="fill_parent"
+        android:layout_height="46dp">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:id="@+id/hcontainer"
+            android:layout_height="46dp"
+            >
+
+
+            <TextView
+                android:id="@+id/h_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:text="Gestión de Mi TV"
+                android:textColor="#000"
+                android:textSize="18dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
+            <LinearLayout
+                android:layout_width="60dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:onClick="showMenu"
+                android:layout_height="45dp">
+                <ImageView
+                    android:id="@+id/show_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="left"
+
+                    android:layout_height="match_parent"
+                    android:padding="3dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/regresar" />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/show_exmenu"
+                android:layout_width="50dp"
+                android:layout_height="fill_parent"
+                android:layout_alignParentRight="true"
+                android:clickable="true"
+                android:onClick="showModal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/info" />
+
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".4">
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="match_parent"
+        />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="30dp"
+                android:layout_alignParentBottom="true">
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="center"
+                    android:id="@+id/alias"
+                    android:text=""
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:id="@+id/serial"
+                    android:textColor="#555555"
+                    android:textSize="14dp" />
+            </LinearLayout>
+        </RelativeLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".6">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/aliasnomirada"
+                    android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:background="#b1b1b1"
+                    android:layout_height="20dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:textColor="#fff"
+                        android:textSize="15dp"
+                        android:textStyle="bold"
+                        android:text="Edición"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:clickable="true"
+                            android:onClick="showHelp1"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="120dp"
+                                android:layout_height="match_parent"
+                                android:id="@+id/ssid_cont"
+                                android:paddingRight="5dp"
+
+                                android:paddingLeft="25dp">
+                                <LinearLayout
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    >
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/alias"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="40dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                >
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mi Equipo de Video"
+                                    android:textColor="#555555"
+                                    android:gravity="left"
+                                    android:textSize="14dp"
+                                    android:layout_marginTop="25dp"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="5dp"/>
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Equipo de Video"
+                                    android:id="@+id/ssid2"
+                                    android:textColor="#000"
+                                    android:gravity="left"
+                                    android:textSize="14dp"
+                                    android:textStyle="bold"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="10dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="100dp"
+                            android:id="@+id/editIm1"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/editinfo"/>
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="0dp"
+                        android:id="@+id/chng_ssid"
+                        android:background="#4d959a">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="#fff"
+                            android:textSize="15dp"
+                            android:text="¿Cómo quieres llamar a tu Equipo de Video?"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_width="0dp"
+                                android:layout_marginLeft="20dp"
+                                android:id="@+id/e_ssid"
+                                android:layout_weight=".7"
+                                android:inputType="textVisiblePassword"
+                                android:hint="Nuevo nombre de tu Equipo de Video"
+                                android:textColor="#000"
+                                android:imeOptions="actionDone"
+                                android:paddingLeft="10dp"
+                                android:textSize="13dp"
+
+                                android:background="#fff"
+                                android:layout_height="40dp" />
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight=".25"
+                                android:layout_marginLeft="15dp"
+                                android:layout_height="40dp"
+                                android:layout_gravity="right"
+                                android:layout_marginRight="25dp"
+                                android:layout_marginTop="10dp"
+                                android:background="#17ae03">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:textColor="#fff"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textSize="17dp"
+                                    android:textAlignment="center"
+                                    android:onClick="setCajaName"
+                                    android:clickable="true"
+                                    android:text="OK"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#55bebebe"
+                        android:layout_alignParentBottom="true"></LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#b1b1b1"
+                android:layout_height="20dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="#fff"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:text="¿Tienes problemas con tu TV?"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:clickable="true"
+                android:onClick="problema1"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="120dp"
+                            android:layout_height="match_parent"
+                            android:paddingRight="5dp"
+
+                            android:paddingLeft="25dp">
+                            <LinearLayout
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                               >
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/audio"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+
+                            android:layout_marginRight="40dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            >
+
+                            <TextView
+
+                                android:id="@+id/textView13"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentBottom="true"
+
+                                android:layout_marginBottom="5dp"
+                                android:gravity="center_vertical"
+                                android:text="No tengo audio"
+                                android:textColor="#555555"
+                                android:textSize="14dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/flecha"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#55bebebe"
+                        android:layout_alignParentBottom="true"></LinearLayout>
+                </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:onClick="problema2"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="120dp"
+                                android:layout_height="match_parent"
+                                android:paddingRight="5dp"
+
+                                android:paddingLeft="25dp">
+                                <LinearLayout
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    >
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/senal"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="40dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center_vertical"
+                                    android:text="No tengo señal"
+                                    android:textColor="#555555"
+                                    android:textSize="14dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="20dp"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/flecha"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#55bebebe"
+                            android:layout_alignParentBottom="true"></LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:onClick="problema3"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="120dp"
+                                android:layout_height="match_parent"
+                                android:paddingRight="5dp"
+
+                                android:paddingLeft="25dp">
+                                <LinearLayout
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    >
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/noprende"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="40dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center_vertical"
+                                    android:text="Mi equipo no enciende"
+                                    android:textColor="#555555"
+                                    android:textSize="14dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="20dp"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/flecha"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#55bebebe"
+                            android:layout_alignParentBottom="true"></LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:onClick="problema4"
+                    android:layout_height="wrap_content">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="120dp"
+                                android:layout_height="match_parent"
+                                android:paddingRight="5dp"
+
+                                android:paddingLeft="25dp">
+                                <LinearLayout
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_marginBottom="5dp"
+                                    >
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:src="@drawable/noguia"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_marginRight="40dp"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginBottom="5dp"
+                                    android:gravity="center_vertical"
+                                    android:text="La guía no tiene información
+"
+                                    android:textColor="#555555"
+                                    android:textSize="14dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="20dp"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/flecha"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#55bebebe"
+                            android:layout_alignParentBottom="true"></LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/mirada">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:background="#b1b1b1"
+                        android:layout_height="20dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textColor="#fff"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:text="TV en vivo"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM2"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+
+
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/tvvivonosenal"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+                                        android:gravity="center_vertical"
+                                        android:text="No tengo señal"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM1"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+
+
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/tvvivoaudio"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+
+                                        android:gravity="center_vertical"
+                                        android:text="No tengo audio"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM3"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+
+
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/tvvivonoguide"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+                                        android:gravity="center_vertical"
+                                        android:text="La guía no tiene información
+"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:background="#b1b1b1"
+                        android:layout_height="20dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textColor="#fff"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:text="On Demand en TV"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM4"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+
+
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/sinresultados"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+
+                                        android:gravity="center_vertical"
+                                        android:text="Sin resultados en catálogo"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM5"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/vodtrouble"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+
+                                        android:gravity="center_vertical"
+                                        android:text="Problema en uno o más contenidos"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:background="#b1b1b1"
+
+                        android:layout_height="20dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textColor="#fff"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:text="izzi Go"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM6"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+
+
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/izzigonotv"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+
+                                        android:gravity="center_vertical"
+                                        android:text="No puedo visualizar TV en vivo"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM7"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/vod"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+
+                                        android:gravity="center_vertical"
+                                        android:text="No puedo visualizar On Demand"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:background="#b1b1b1"
+                        android:layout_height="20dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textColor="#fff"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:text="Mi equipo no enciende"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM8"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/noluzmirada"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+
+                                        android:gravity="center_vertical"
+                                        android:text="Mi equipo no enciende"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:background="#b1b1b1"
+                        android:layout_height="20dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textColor="#fff"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:text="No recuerdo mi PIN"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM9"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/lostpin"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+
+                                        android:gravity="center_vertical"
+                                        android:text="No recuerdo mi PIN"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:background="#b1b1b1"
+                        android:layout_height="20dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:textColor="#fff"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            android:text="Ya pagué y sigo sin servicio"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:onClick="problemaM10"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="120dp"
+                                    android:layout_height="match_parent"
+                                    android:paddingRight="5dp"
+
+                                    android:paddingLeft="25dp">
+                                    <LinearLayout
+                                        android:layout_width="70dp"
+                                        android:layout_height="70dp"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="5dp"
+                                        android:layout_marginBottom="5dp"
+                                        >
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:src="@drawable/malpago"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_marginRight="40dp"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical"
+                                    >
+
+                                    <TextView
+
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_marginBottom="5dp"
+
+                                        android:gravity="center_vertical"
+                                        android:text="Ya pagué y sigo sin servicio"
+                                        android:textColor="#555555"
+                                        android:textSize="14dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@drawable/flecha"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="#55bebebe"
+                                android:layout_alignParentBottom="true"></LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+</LinearLayout>
