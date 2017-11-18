@@ -55,22 +55,26 @@ public class NoMiradaTroubleshoot extends IzziActivity implements IzziRespondabl
         findViewById(R.id.audioTodos).setVisibility(View.VISIBLE);
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
         findViewById(R.id.audioalgunos).setVisibility(View.GONE);
+        problema+="-Todos los canales";
     }
     public void someChannels(View v){
         findViewById(R.id.audioTodos).setVisibility(View.GONE);
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
         findViewById(R.id.audioalgunos).setVisibility(View.VISIBLE);
+        problema+="-algunos canales";
     }
 
     public void allChannels2(View v){
         findViewById(R.id.senalTodos).setVisibility(View.VISIBLE);
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
         findViewById(R.id.senalAlgunos).setVisibility(View.GONE);
+        problema+="-Todos los canales";
     }
     public void someChannels2(View v){
         findViewById(R.id.senalTodos).setVisibility(View.GONE);
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
         findViewById(R.id.senalAlgunos).setVisibility(View.VISIBLE);
+        problema+="-Algunos canales";
     }
 
     public void sendRestart(View v){
@@ -85,6 +89,7 @@ public class NoMiradaTroubleshoot extends IzziActivity implements IzziRespondabl
             parametross.put("pass", AES.encrypt(info.getPassword()));
             new AsyncResponse(this, false).execute(parametross);
             findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
+            problema+="-Restart";
         }catch(Exception e){
 
         }
@@ -101,6 +106,7 @@ public class NoMiradaTroubleshoot extends IzziActivity implements IzziRespondabl
     }
     public void goToChat(View v){
         Intent i = new Intent(getApplicationContext(), ChatActivity.class);
+        i.putExtra("asunto",problema);
         startActivity(i);
     }
     public void call(View v){

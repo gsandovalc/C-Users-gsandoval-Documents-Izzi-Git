@@ -101,19 +101,7 @@
                 android:orientation="horizontal"
                 android:layout_height="40dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:onClick="allChannels"
-                    android:clickable="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@color/izzi_rosa"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textSize="13dp"
-                    android:text="Todos los canales"
-                    android:layout_weight=".5"/>
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -126,6 +114,19 @@
                     android:clickable="true"
                     android:text="Algunos canales"
                     android:background="@color/izzi_turquesa"
+                    android:layout_weight=".5"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:onClick="allChannels"
+                    android:clickable="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/izzi_rosa"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:textSize="13dp"
+                    android:text="Todos los canales"
                     android:layout_weight=".5"/>
 
             </LinearLayout>
@@ -155,6 +156,28 @@
                     android:layout_height="140dp"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/conectors"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:clickable="true"
+                    android:visibility="visible"
+                    android:onClick="sendRestart"
+                    android:background="@color/izzi_amarillo"
+                    android:layout_height="40dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="16dp"
+                        android:textColor="#000"
+                        android:text="Reiniciar"/>
+                </LinearLayout>
+
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -205,6 +228,19 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_height="40dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:textSize="13dp"
+                    android:onClick="someChannels2"
+                    android:clickable="true"
+                    android:text="Algunos canales"
+                    android:background="@color/izzi_turquesa"
+                    android:layout_weight=".5"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -219,19 +255,7 @@
                     android:textSize="13dp"
                     android:text="Todos los canales"
                     android:layout_weight=".5"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textSize="13dp"
-                    android:onClick="someChannels2"
-                    android:clickable="true"
-                    android:text="Algunos canales"
-                    android:background="@color/izzi_turquesa"
-                    android:layout_weight=".5"/>
+
 
             </LinearLayout>
             <LinearLayout
@@ -267,7 +291,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:clickable="true"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:onClick="sendRestart"
                     android:background="@color/izzi_amarillo"
                     android:layout_height="40dp">
@@ -427,7 +451,7 @@
                     android:textColor="#fff"
                     android:gravity="center"
                     android:textSize="13dp"
-                    android:text="No puedo verlo"
+                    android:text="No se ve"
                     android:layout_weight=".5"/>
                 <TextView
                     android:layout_width="0dp"
@@ -439,7 +463,7 @@
                     android:textSize="13dp"
                     android:onClick="otros"
                     android:clickable="true"
-                    android:text="Audio/Subtitulos"
+                    android:text="Otro"
                     android:background="@color/izzi_turquesa"
                     android:layout_weight=".5"/>
 
@@ -533,7 +557,7 @@
                     android:textSize="15dp"
                     android:textColor="#000"
                     android:layout_height="wrap_content"
-                    android:text="Para resolver tu problema es necesario revisar la conexión de datos de tu dispositivo móvil."
+                    android:text="Para resolver tu problema es necesario que te comuniques con nosotros."
                     />
 
             </LinearLayout>
@@ -563,7 +587,7 @@
                     android:textSize="15dp"
                     android:textColor="#000"
                     android:layout_height="wrap_content"
-                    android:text="Para resolver tu problema, es necesario restablecer la contraseña original (1111)."
+                    android:text="Para resolver tu problema, es necesario restablecer la contraseña original (0000)."
                     />
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -130,7 +130,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="13dp"
-                                android:text="55 52 43 03 30"
+                                android:text=""
                                 android:textColor="#000"
                                 android:id="@+id/accountText" />
 
@@ -138,14 +138,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="13dp"
-                                android:text="55 52 43 03 30"
+                                android:text=""
                                 android:textColor="#000"
                                 android:id="@+id/phoneText" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="13dp"
-                                android:text="55 52 43 03 30"
+                                android:text=""
                                 android:textColor="#000"
                                 android:id="@+id/referenceText" />
                         </LinearLayout>
@@ -647,6 +647,77 @@
                 android:src="@drawable/adelante"
                 android:layout_marginRight="10dp"/>
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="goToPhone"
+            android:clickable="true"
+            android:id="@+id/tienetel"
+            android:minHeight="120dp"
+            >
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:background="#686565"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="Mi Teléfono"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:layout_marginLeft="5dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:background="#fff"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/mitel"
+                        android:layout_height="75dp"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mis equipos de video"
+                            android:digits=""
+                            android:id="@+id/miteltext"
+                            android:textColor="#666"
+                            android:layout_gravity="left"
+                            android:gravity="left"
+                            android:textSize="14dp"
+                            android:layout_centerInParent="true" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_marginTop="70dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:alpha=".4"
+                android:src="@drawable/adelante"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -710,7 +781,7 @@
                             android:layout_marginTop="2dp"
                             android:textSize="12dp"
                             android:textStyle="bold"
-                            android:text="55 52 43 03 30"
+                            android:text=""
                             android:textColor="#6f6f6f"
                             android:id="@+id/paqueteText" />
                     </LinearLayout>

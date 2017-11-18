@@ -1,3 +1,4 @@
-
-ALTER TABLE Usuario add column model TEXT;
-ALTER TABLE Usuario add column cmaddrs TEXT;
+ALTER TABLE Usuario add column izziPhone1 TEXT;
+ALTER TABLE Usuario add column izziPhone2 TEXT;
+ALTER TABLE Usuario add column manage_tel INTEGER;
+ALTER TABLE Usuario add column dosLineas INTEGER;

@@ -26,6 +26,10 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
     private LinearLayout help1;
     private LinearLayout help2;
     private int animDuration=200;
+    private String problema="";
+    private int typo=0;
+    private boolean restrt=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,7 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
     }
 
     public void showHelp1(View view) {
+        typo=1;
         if(!isHelp1Opened){
             openHelp1();
             isHelp1Opened=true;
@@ -46,6 +51,7 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
         }
     }
     public void showHelp2(View view) {
+        typo=2;
         if(!isHelp2Opened){
             openHelp2();
             isHelp2Opened=true;
@@ -54,6 +60,7 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
         }else{
             closeHelp2();
             isHelp2Opened=false;
+
         }
     }
     private void openHelp1(){
@@ -127,12 +134,25 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
             mp.put("cmd",AES.encrypt("4"));
             mp.put("value",AES.encrypt(""));
             new AsyncResponse(this,false).execute(mp);
+            restrt=true;
+
         }catch(Exception e){
 
         }
     }
     public void goToChat(View v){
         Intent i = new Intent(getApplicationContext(), ChatActivity.class);
+        String asunto="";
+        if(typo==1)
+            asunto="-Internet Lento";
+        else if(typo==2)
+            asunto="-No puedo navegar";
+        else
+            asunto="";
+        if(restrt)
+            asunto+="-Restart";
+
+        i.putExtra("asunto","Problemas de Red"+asunto);
         startActivity(i);
     }
     public void call(View v){

@@ -10,7 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
         <include layout="@layout/headerextra" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -512,6 +514,81 @@
                 android:layout_alignParentBottom="true"
                 android:background="#bebebe"></LinearLayout>
         </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:paddingTop="10dp"
+                android:onClick="domicilia"
+                android:clickable="true"
+                android:layout_height="80dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:orientation="horizontal"
+                        android:background="#fff"
+                        >
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="20dp"
+                            android:src="@drawable/cardg"
+                            android:id="@+id/imageView5" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textColor="#828282"
+                            android:text="Domiciliacion"
+                            android:textSize="15dp"
+                            android:textAllCaps="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="#fff"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:textColor="#000"
+                            android:text="NOMBRE"
+                            android:textSize="16dp"
+                            android:layout_marginLeft="55dp"
+                            android:id="@+id/tardom"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="100dp"
+                    android:clickable="true"
+                    android:onClick="nextDomi"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_gravity="right"
+
+                        android:layout_marginRight="20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/adelante"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#bebebe"></LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
         </ScrollView>
     </LinearLayout>

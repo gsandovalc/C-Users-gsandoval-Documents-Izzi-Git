@@ -31,17 +31,20 @@ public class ChatActivity extends Activity {
         setContentView(R.layout.activity_chat);
         ((TextView)findViewById(R.id.h_title)).setText("Chat");
         ((ImageView)findViewById(R.id.show_menu)).setImageResource(R.drawable.regresar);
+        String asunto=getIntent().getStringExtra("asunto")==null?"Session de Chat":getIntent().getStringExtra("asunto");
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         Builder builder = new Builder();
         try {
+
+            //izzi.custhelp.com/app/chat/chat_landing/Incident.Subject/Sesion de Chat/Contact.Name.First/CARLOS/Contact.Name.Last/VELEZ/Contact.Address.Country/4/Contact.Address.StateOrProvince/235/Contact.Email.0.Address/cevelez@izzi.mx/Incident.CustomFields.c.tst_mat/16
             builder.scheme("https")
                     .authority("izzi.custhelp.com")
                     .appendPath("app")
                     .appendPath("chat")
-                    .appendPath("chat_launch")
-                    .appendQueryParameter("name", AES.decrypt(info.getNombreContacto()))
-                    .appendQueryParameter("last", AES.decrypt(info.getApellidoPaterno()))
-                    .appendQueryParameter("mail", info.getUserName());
+                    .appendPath("chat_landing").appendPath("Incident.Subject").appendPath(asunto).appendPath("Contact.Name.First").appendPath(AES.decrypt(info.getCvNameAccount()).split(" ")[0]).appendPath("Contact.Name.Last")
+                    .appendPath(AES.decrypt(info.getApellidoPaterno())).appendPath("Contact.Address.Country").appendPath("4").appendPath("Contact.Address.StateOrProvince").appendPath("235").appendPath("Contact.Email.0.Address")
+                    .appendPath(info.getUserName()).appendPath("Incident.CustomFields.c.tst_mat").appendPath(AES.decrypt(info.getCvNumberAccount()));
+
             String myUrl = builder.build().toString();
 
          final   WebView wv= ((WebView)findViewById(R.id.webview));

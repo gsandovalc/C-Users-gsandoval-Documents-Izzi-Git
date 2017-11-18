@@ -145,6 +145,11 @@ public class EditAccountActivity extends IzziActivity implements IzziRespondable
             ((TextView) findViewById(R.id.mail)).setText(AES.decrypt(info.getCorreoContacto()));
             ((TextView) findViewById(R.id.movil)).setText(AES.decrypt(info.getTelefonoPrincipal()));
             ((TextView) findViewById(R.id.address)).setText(AES.decrypt(info.getCvMailAddres()));
+            if(info.isDomiciliado())
+                ((TextView)findViewById(R.id.tardom)).setText(AES.decrypt(info.getDom_card()));
+            else{
+                ((TextView)findViewById(R.id.tardom)).setText("Domiciliar Tarjeta");
+            }
             ImageLoader loader;
             loader=new ImageLoader(this);
             if(info.getFotoPerfil()!=null) {
@@ -260,6 +265,11 @@ public class EditAccountActivity extends IzziActivity implements IzziRespondable
             super.onPostExecute(result);
         }
 
+    }
+
+    public void domicilia(View v){
+        Intent i =new Intent(this,DomiciliaActivity.class);
+        startActivity(i);
     }
 
     public String validateNewPass(String pass1) {

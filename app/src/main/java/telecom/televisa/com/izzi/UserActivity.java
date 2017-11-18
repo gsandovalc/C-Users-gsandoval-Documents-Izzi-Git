@@ -211,6 +211,18 @@ public void swUsr(View v){
             }else{
                 ((RelativeLayout)findViewById(R.id.wifiinfo)).setVisibility(RelativeLayout.GONE);
             }
+            if(!info.isManage_tel()){
+                ((RelativeLayout)findViewById(R.id.tienetel)).setVisibility(View.GONE);
+            }else{
+                String telefonos= "Mi Teléfono:";
+                if(info.isDosLineas()){
+                    telefonos+=AES.decrypt(info.getIzziPhone1())+", "+ AES.decrypt(info.getIzziPhone2());
+                }else{
+                    telefonos+=AES.decrypt(info.getIzziPhone1());
+                }
+                ((TextView)findViewById(R.id.miteltext)).setText(telefonos);
+
+            }
             String count=AES.decrypt(info.getCountNotifications());
             int noti=Integer.parseInt(count);
             if(noti>0){
@@ -571,6 +583,12 @@ public void swUsr(View v){
         super.onActivityReenter(resultCode, data);
         if(resultCode==666)
             finish();
+    }
+
+    public void goToPhone(View v){
+        Intent i =new Intent(this,PhoneActivity.class);
+        startActivity(i);
+
     }
 
 }

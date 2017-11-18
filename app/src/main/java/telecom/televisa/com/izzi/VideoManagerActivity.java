@@ -56,6 +56,7 @@ public class VideoManagerActivity extends IzziActivity implements IzziRespondabl
         ((TextView)findViewById(R.id.ssid2)).setText(equiposLista.get(i).getAlias());
     }
 
+
     @Override
     public void onPageScrollStateChanged(int i) {
 

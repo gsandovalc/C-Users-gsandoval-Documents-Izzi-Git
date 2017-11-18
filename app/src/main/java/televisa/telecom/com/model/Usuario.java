@@ -259,8 +259,7 @@ public class Usuario extends Model implements MobileResponse {
     @Expose
     @Column
     private boolean esMigrado=false;
-    @Expose
-    @Column
+
     private boolean esNegocios=false;
     @Expose
     @Column
@@ -364,6 +363,86 @@ public class Usuario extends Model implements MobileResponse {
     @Column
     private String totalDvr="";
 
+    @Expose
+    @Column
+    private String dom_card="";
+    @Expose
+    @Column
+    private String dom_type="";
+
+    @Expose
+    @Column
+    private boolean domiciliado=false;
+
+    @Expose
+    @Column
+    private boolean manage_tel=false;
+    @Expose
+    @Column
+    private boolean dosLineas=false;
+
+    @Expose
+    @Column
+    private String izziPhone1="";
+    @Expose
+    @Column
+    private String izziPhone2="";
+
+    public boolean isManage_tel() {
+        return manage_tel;
+    }
+
+    public void setManage_tel(boolean manage_tel) {
+        this.manage_tel = manage_tel;
+    }
+
+    public boolean isDosLineas() {
+        return dosLineas;
+    }
+
+    public void setDosLineas(boolean dosLineas) {
+        this.dosLineas = dosLineas;
+    }
+
+    public String getIzziPhone1() {
+        return izziPhone1;
+    }
+
+    public void setIzziPhone1(String izziPhone1) {
+        this.izziPhone1 = izziPhone1;
+    }
+
+    public String getIzziPhone2() {
+        return izziPhone2;
+    }
+
+    public void setIzziPhone2(String izziPhone2) {
+        this.izziPhone2 = izziPhone2;
+    }
+
+    public String getDom_card() {
+        return dom_card;
+    }
+
+    public void setDom_card(String dom_card) {
+        this.dom_card = dom_card;
+    }
+
+    public String getDom_type() {
+        return dom_type;
+    }
+
+    public void setDom_type(String dom_type) {
+        this.dom_type = dom_type;
+    }
+
+    public boolean isDomiciliado() {
+        return domiciliado;
+    }
+
+    public void setDomiciliado(boolean domiciliado) {
+        this.domiciliado = domiciliado;
+    }
 
     public boolean isTieneTv() {
         return tieneTv;

@@ -93,19 +93,7 @@
         android:orientation="horizontal"
         android:layout_height="40dp">
 
-        <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-            android:onClick="allChannels"
-            android:clickable="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-        android:background="@color/izzi_rosa"
-            android:textColor="#fff"
-            android:gravity="center"
-            android:textSize="13dp"
-            android:text="Todos los canales"
-        android:layout_weight=".5"/>
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -118,6 +106,19 @@
             android:clickable="true"
             android:text="Algunos canales"
             android:background="@color/izzi_turquesa"
+            android:layout_weight=".5"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:onClick="allChannels"
+            android:clickable="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/izzi_rosa"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:text="Todos los canales"
             android:layout_weight=".5"/>
 
     </LinearLayout>
@@ -147,6 +148,27 @@
                     android:layout_height="140dp"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/conectors"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:clickable="true"
+                android:onClick="sendRestart"
+                android:background="@color/izzi_amarillo"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="16dp"
+                    android:textColor="#000"
+                    android:text="Reiniciar"/>
+            </LinearLayout>
+
             </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -198,19 +220,7 @@
                 android:orientation="horizontal"
                 android:layout_height="40dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:onClick="allChannels2"
-                    android:clickable="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@color/izzi_rosa"
-                    android:textColor="#fff"
-                    android:gravity="center"
-                    android:textSize="13dp"
-                    android:text="Todos los canales"
-                    android:layout_weight=".5"/>
+
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -223,6 +233,19 @@
                     android:clickable="true"
                     android:text="Algunos canales"
                     android:background="@color/izzi_turquesa"
+                    android:layout_weight=".5"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:onClick="allChannels2"
+                    android:clickable="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/izzi_rosa"
+                    android:textColor="#fff"
+                    android:gravity="center"
+                    android:textSize="13dp"
+                    android:text="Todos los canales"
                     android:layout_weight=".5"/>
 
             </LinearLayout>
@@ -252,13 +275,34 @@
                     android:layout_height="140dp"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/conectors"/>
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:clickable="true"
+                android:onClick="sendRestart"
+                android:background="@color/izzi_amarillo"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="16dp"
+                    android:textColor="#000"
+                    android:text="Reiniciar"/>
+            </LinearLayout>
+
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical"
-                android:visibility="v"
+                android:visibility="gone"
                 android:id="@+id/senalAlgunos">
                 <LinearLayout
                     android:layout_width="match_parent"

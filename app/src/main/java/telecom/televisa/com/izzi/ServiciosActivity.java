@@ -55,6 +55,7 @@ public class ServiciosActivity extends IzziActivity {
                     LayoutInflater inflater = LayoutInflater.from(activity);
                     LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.complemento_item_int, null, false);
                     ((TextView)layout.findViewById(R.id.descriptionC)).setText(complemento);
+
                     internet.addView(layout, -1, (int)(int)Util.dpToPx(this,15));
                 }
             }else
@@ -177,6 +178,12 @@ calculatechanges();
                     ((TextView)layout.findViewById(R.id.intextname)).setText(ei.getName());
                     ((TextView)layout.findViewById(R.id.extprice)).setText("$"+ei.getPrice()+" al mes");
                     parent.addView(layout,size,size);
+                    if(ei.isTienePromo()){
+                        ( (TextView)layout.findViewById(R.id.promo)).setVisibility(View.VISIBLE);
+                        ( (TextView)layout.findViewById(R.id.promo)).setText(ei.getPromo());
+                    }else{
+                        ( (TextView)layout.findViewById(R.id.promo)).setVisibility(View.GONE);
+                    }
                     itemsInt.add(layout);
                 }
             }else{

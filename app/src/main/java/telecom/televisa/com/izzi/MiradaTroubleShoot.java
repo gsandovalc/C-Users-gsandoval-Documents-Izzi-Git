@@ -94,11 +94,13 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
     }
 
     public void allChannels(View v){
+        problema+="-Todos los canales";
         findViewById(R.id.audioTodos).setVisibility(View.VISIBLE);
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
         findViewById(R.id.audioalgunos).setVisibility(View.GONE);
     }
     public void someChannels(View v){
+        problema+="-Algunos canales";
         findViewById(R.id.audioTodos).setVisibility(View.GONE);
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
         findViewById(R.id.audioalgunos).setVisibility(View.VISIBLE);
@@ -106,12 +108,14 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
 
     public void allChannels2(View v){
         findViewById(R.id.senalTodos).setVisibility(View.VISIBLE);
+        problema+="-Todos los canales";
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
         findViewById(R.id.senalAlgunos).setVisibility(View.GONE);
     }
     public void someChannels2(View v){
         findViewById(R.id.senalTodos).setVisibility(View.GONE);
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
+        problema+="-Algunos canales";
         findViewById(R.id.senalAlgunos).setVisibility(View.VISIBLE);
     }
 
@@ -119,12 +123,14 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
         findViewById(R.id.otrosprob).setVisibility(View.GONE);
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
         findViewById(R.id.noverlo).setVisibility(View.VISIBLE);
+        problema+="-Tienes problemas con FOX, HBO, blim, rentas u otros";
     }
 
     public void otros(View v){
         findViewById(R.id.noverlo).setVisibility(View.GONE);
         findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
         findViewById(R.id.otrosprob).setVisibility(View.VISIBLE);
+        problema+="-Audio, subtitulos";
     }
 
     public void sendRestart(View v){
@@ -142,6 +148,8 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
         }catch(Exception e){
 
         }
+
+        problema+="-Restart";
     }
 
     public void sendRestartPIN(View v){
@@ -159,6 +167,7 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
         }catch(Exception e){
 
         }
+        problema+="-PINReset";
     }
 
     public void sendRestartPay(View v){
@@ -173,6 +182,7 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
             parametross.put("pass", AES.encrypt(info.getPassword()));
             new AsyncResponse(this, false).execute(parametross);
             findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
+            problema+="-Pago Sin Recuperar Servicio";
         }catch(Exception e){
 
         }
@@ -190,12 +200,15 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
             parametross.put("pass", AES.encrypt(info.getPassword()));
             new AsyncResponse(this, false).execute(parametross);
             findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
+            problema+="-Refresh";
         }catch(Exception e){
 
         }
     }
     public void goToChat(View v){
         Intent i = new Intent(getApplicationContext(), ChatActivity.class);
+        i.putExtra("asunto",problema);
+
         startActivity(i);
     }
     public void call(View v){
