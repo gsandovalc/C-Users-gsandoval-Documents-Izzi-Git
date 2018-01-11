@@ -7,6 +7,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.PurchaseEvent;
+import com.crashlytics.android.answers.StartCheckoutEvent;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +31,7 @@ public class PurchaseActivity extends IzziActivity implements IzziRespondable {
     List<ExtrasTv> complementosTV;
     Usuario info;
     String extras="";
+    List<String> selectedExt=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +45,12 @@ public class PurchaseActivity extends IzziActivity implements IzziRespondable {
     }
     private void initList(){
         double price=0.0;
+        int conta=0;
         LinearLayout ll=(LinearLayout)findViewById(R.id.containerextras);
         if(complementosINT!=null)
             for(ExtrasInt ei:complementosINT){
                 if(ei.isSelected()){
+                    conta++;
                     TextView tv = new TextView(this);
                     tv.setText("- " +ei.getName()+"          "+"$"+ei.getPrice());
                     tv.setTextSize(22);
@@ -48,12 +58,14 @@ public class PurchaseActivity extends IzziActivity implements IzziRespondable {
                     tv.setTextColor(0xff000000);
                     extras+=ei.getEx_id()+",";
                     price+=Double.parseDouble(ei.getPrice());
+                    selectedExt.add(ei.getName()+"##"+ei.getPrice()+"##Internet##"+ei.getEx_id());
                     ll.addView(tv);
                 }
             }
         if(complementosTV!=null)
             for(ExtrasTv ei:complementosTV){
                 if(ei.isSelected()){
+                    conta++;
                     TextView tv = new TextView(this);
                     tv.setText("- " +ei.getName()+"          "+"$"+ei.getPrice());
                     tv.setTextSize(22);
@@ -62,10 +74,15 @@ public class PurchaseActivity extends IzziActivity implements IzziRespondable {
                     extras+=ei.getEx_id()+",";
                     price+=Double.parseDouble(ei.getPrice());
                     price+=Double.parseDouble(ei.getAjuste());
+                    selectedExt.add(ei.getName()+"##"+ei.getPrice()+"##Video##"+ei.getEx_id());
                     ll.addView(tv);
                 }
             }
         try {
+            Answers.getInstance().logStartCheckout(new StartCheckoutEvent()
+                    .putTotalPrice(BigDecimal.valueOf(price))
+                    .putCurrency(Currency.getInstance("MXN"))
+                    .putItemCount(conta));
             price += Double.parseDouble(AES.decrypt(info.getTotalServicios()));
         }catch(Exception e){
 
@@ -77,6 +94,13 @@ public class PurchaseActivity extends IzziActivity implements IzziRespondable {
     }
 
     public void checkout(View v){
+        for(String s:selectedExt){
+            Answers.getInstance().logPurchase(new PurchaseEvent()
+                    .putItemPrice(new BigDecimal(s.split("##")[1]))
+                    .putCurrency(Currency.getInstance("MXN"))
+                    .putItemName(s.split("##")[0]).putItemType(s.split("##")[2]).putItemId(s.split("##")[3])
+                    .putSuccess(true));
+        }
         Map<String,String> mp=new HashMap<>();
 
         try {

@@ -15,6 +15,10 @@ import android.widget.TextView;
  */
 public class IzziActivity extends Activity  {
     protected void showError(String error, final int type){
+        if(isFinishing())
+            return;
+
+
         if(type==0) {
             new AlertDialog.Builder(this)
                     .setTitle("izzi")

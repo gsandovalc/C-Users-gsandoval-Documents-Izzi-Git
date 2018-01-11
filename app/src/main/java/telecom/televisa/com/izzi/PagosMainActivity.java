@@ -176,6 +176,8 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
                         tv.setVisibility(TextView.VISIBLE);
                         return;
                     }
+                    if(selectedCard==null)
+                        return;
                     int tipot=Integer.parseInt(selectedCard.getCardType());
                     if(tipot==3&&cvv.length()!=4){
                         tv.setVisibility(TextView.VISIBLE);
@@ -197,6 +199,14 @@ public class PagosMainActivity extends IzziActivity implements IzziRespondable{
                         mp.put("ammount", info.getCvLastBalance());
                         mp.put("user", user);
                         new AsyncResponse(acti, false).execute(mp);
+                        System.out.println("");
+                        for (String name: mp.keySet()){
+
+                            String key =name.toString();
+                            String value = mp.get(name).toString();
+                            System.out.println(key + ":" + value);
+
+                        }
                     }catch(Exception e){
 
                     }

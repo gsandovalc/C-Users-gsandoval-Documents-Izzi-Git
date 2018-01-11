@@ -27,6 +27,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
+import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.zxing.BarcodeFormat;
@@ -102,8 +105,18 @@ public class UserActivity extends MenuActivity implements IzziRespondable, Swipe
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+        if(info==null) {
+            logout(new View(this));
+            return;
+        }
         if(info.isEsNegocios()) {
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
+        }
+        Crashlytics.setUserName(info.getUserName());
+        try {
+            Crashlytics.setUserIdentifier(AES.decrypt(info.getCvNumberAccount()));
+        }catch(Exception e){
+
         }
         FileCache fc=new FileCache(this);
         fc.clear();
@@ -176,6 +189,11 @@ public void swUsr(View v){
             greating="¿AÚN DESPIERTO?";
 
         ((TextView)findViewById(R.id.greating)).setText(greating);
+        if(info==null) {
+            logout(new View(this));
+            return;
+        }
+
         if(info.isEsNegocios())
             ((ImageView) findViewById(R.id.splash_logo)).setImageResource(R.drawable.negocios);
         try {
@@ -355,6 +373,11 @@ public void swUsr(View v){
 
     }
     public void servicios(View v){
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Mis servicios").putContentType("home main").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         Map<String,String> mp=new HashMap<>();
@@ -381,6 +404,13 @@ public void swUsr(View v){
         Intent myIntent = new Intent(this, WifiManagementActivity.class);
         startActivityForResult(myIntent, 0);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Mi Wifi").putContentType("home main").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -465,11 +495,20 @@ public void swUsr(View v){
     public void edocuenta(View v){
         Intent i=new Intent(getApplicationContext(),EdoCuentaActivity.class);
         startActivity(i);
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("edo cuenta").putContentType("home tabbar").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
     public void ayudaa(View v){
         Intent i=new Intent(getApplicationContext(),AyudaActivity.class);
         startActivity(i);
+        try{
+        Answers.getInstance().logContentView(new ContentViewEvent().putContentName("ayuda").putContentType("home tabbar").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+    }catch (Exception e){}
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
     public void notifications(View v){
@@ -483,6 +522,9 @@ public void swUsr(View v){
         Intent myIntent;
         myIntent = new Intent(this, MediosDePagoActivity.class);
         startActivityForResult(myIntent, 0);
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Codigo de barras").putContentType("home tabbar").putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user", info.getUserName()));
+        }catch (Exception e){}
         overridePendingTransition( R.transition.slide_in_up, R.transition.slide_out_up );
 
     }
@@ -490,6 +532,12 @@ public void swUsr(View v){
         Intent myIntent = new Intent(this, EditAccountActivity.class);
         startActivityForResult(myIntent, 0);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("configuracion").putContentType("home main").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     public void pagos(View v){
         Intent myIntent = new Intent(this, ListaPagosActivity.class);
@@ -499,10 +547,22 @@ public void swUsr(View v){
     public void pay(View v){
             Intent myIntent = new Intent(this, PagosMainActivity.class);
             startActivityForResult(myIntent, 0);
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Pago en linea").putContentType("home main").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     public void goToVideo(View v){
         Intent myIntent = new Intent(this, VideoManagerActivity.class);
         startActivityForResult(myIntent, 0);
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Mi Video").putContentType("home main").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     private class UploadFileToServer extends AsyncTask<Void, Integer, String> {
 
@@ -586,6 +646,12 @@ public void swUsr(View v){
     }
 
     public void goToPhone(View v){
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Mi Telefono").putContentType("home main").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Intent i =new Intent(this,PhoneActivity.class);
         startActivity(i);
 

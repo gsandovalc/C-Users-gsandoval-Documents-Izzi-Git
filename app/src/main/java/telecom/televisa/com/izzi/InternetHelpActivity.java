@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,6 +67,7 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
         }
     }
     private void openHelp1(){
+        typo=1;
         ValueAnimator va = ValueAnimator.ofInt(0, Util.dpToPx(this,155));
         va.setDuration(animDuration);
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -93,6 +97,7 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
     }
 
     private void openHelp2(){
+        typo=2;
         ValueAnimator va = ValueAnimator.ofInt(0, Util.dpToPx(this,155));
         va.setDuration(animDuration);
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -125,6 +130,12 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
     public void restart(View v){
         try {
             Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+
+            try {
+                Answers.getInstance().logCustom(new CustomEvent("wifi_restart").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+            }catch (Exception e){
+
+            }
             Map<String,String> mp=new HashMap<>();
             mp.put("METHOD","wifiManager/update");
             mp.put("account", info.getCvNumberAccount());
@@ -143,9 +154,9 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
     public void goToChat(View v){
         Intent i = new Intent(getApplicationContext(), ChatActivity.class);
         String asunto="";
-        if(typo==1)
+        if(typo==2)
             asunto="-Internet Lento";
-        else if(typo==2)
+        else if(typo==1)
             asunto="-No puedo navegar";
         else
             asunto="";

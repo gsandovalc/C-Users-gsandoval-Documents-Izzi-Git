@@ -2,8 +2,10 @@ package telecom.televisa.com.izzi;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
+import com.crashlytics.android.Crashlytics;
 import com.kissmetrics.sdk.KISSmetricsAPI;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,16 +23,8 @@ public class IzziMovilApplication extends com.activeandroid.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        try{
-            ActiveAndroid.execSQL("ALTER TABLE Usuario ADD COLUMN ttAccount TEXT;");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        try{
-            ActiveAndroid.execSQL("CREATE TABLE Push(message TEXT,correo TEXT,fecha TEXT,status TEXT);");
-        }catch(Exception e){
+        Fabric.with(this, new Crashlytics());
 
-        }
         KISSmetricsAPI.sharedAPI("831d7f420b079a7e41295f416c7141393cec4032", getApplicationContext());
         KISSmetricsAPI.sharedAPI().autoRecordInstalls();
         KISSmetricsAPI.sharedAPI().autoSetAppProperties();

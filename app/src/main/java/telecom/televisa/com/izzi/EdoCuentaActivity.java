@@ -14,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
+
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
@@ -75,6 +78,12 @@ public class EdoCuentaActivity extends IzziActivity implements IzziRespondable {
         Intent  i=new Intent(getApplicationContext(),ListaPagosActivity.class);
         startActivity(i);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+        try {
+            Usuario info = ((IzziMovilApplication) getApplication()).getCurrentUser();
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Historial de pagos").putContentType("edo tabbar").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
     public void sendBill(View v){
@@ -108,6 +117,11 @@ public class EdoCuentaActivity extends IzziActivity implements IzziRespondable {
             mp.put("year",ano);
             new AsyncResponse(this,true).execute(mp);
             sendmail=true;
+            try {
+                Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Enviar por correo edo").putContentType("edo tabbar").putCustomAttribute("account",AES.decrypt(usuario.getCvNumberAccount())).putCustomAttribute("user",usuario.getUserName()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }catch(Exception e){
             showError("Tu estado de cuenta aun no esta disponible",1);
         }

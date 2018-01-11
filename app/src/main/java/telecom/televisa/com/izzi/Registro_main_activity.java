@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 import com.facebook.AccessToken;
 
 import java.util.HashMap;
@@ -23,6 +25,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.izziValidateResponse;
@@ -278,6 +281,11 @@ public class Registro_main_activity extends IzziActivity implements IzziResponda
             return;
         }
         Intent i=new Intent(this,RegistroStep2Activity.class);
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("registro paso 1").putContentType("formulario").putCustomAttribute("account", AES.decrypt(mp.get("account"))));
+        }catch(Exception e){
+
+        }
         i.putExtra("response",resp);
         i.putExtra("user",(HashMap)mp);
         startActivityForResult(i,20);

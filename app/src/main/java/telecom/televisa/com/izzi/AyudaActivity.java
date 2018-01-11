@@ -21,6 +21,11 @@ public class AyudaActivity extends Activity {
         ((TextView)findViewById(R.id.h_title)).setText("Ayuda");
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         String telefono="";
+        if(info==null){
+            finish();
+            return;
+        }
+
         if(info.isLegacy()){
             ((RelativeLayout)findViewById(R.id.drwifi)).setVisibility(RelativeLayout.GONE);
         }

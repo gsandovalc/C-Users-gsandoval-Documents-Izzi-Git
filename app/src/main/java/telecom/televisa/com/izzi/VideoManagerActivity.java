@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
@@ -122,7 +124,11 @@ public class VideoManagerActivity extends IzziActivity implements IzziRespondabl
             parametross.put("alias", AES.encrypt(ssid));
             parametross.put("account", info.getCvNumberAccount());
             ((EditText)findViewById(R.id.e_ssid)).setText("");
+            try {
+                Answers.getInstance().logCustom(new CustomEvent("video_change_id").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+            }catch (Exception e){
 
+            }
             new AsyncResponse(this,false).execute(parametross);
         }catch(Exception e){
 
@@ -228,10 +234,15 @@ public class VideoManagerActivity extends IzziActivity implements IzziRespondabl
                     mDemoSlider.setCustomAnimation(new DescriptionAnimation());
                     mDemoSlider.stopAutoCycle();
                     mDemoSlider.addOnPageChangeListener(this);
-                    mDemoSlider.setCurrentPosition(0);
+                    try {
+                        mDemoSlider.setCurrentPosition(0);
+                    }catch(Exception e){
+
+                    }
 
                 } else {
                     //mostrar error
+                    finish();
                 }
             }
         }
@@ -247,12 +258,17 @@ public class VideoManagerActivity extends IzziActivity implements IzziRespondabl
         noMirada(1);
     }
     private void noMirada(int problem){
-        Intent i=new Intent(this,NoMiradaTroubleshoot.class);
-        String serie=equiposLista.get(mDemoSlider.getCurrentPosition()).getSerialNumber();
+        try {
+            Intent i = new Intent(this, NoMiradaTroubleshoot.class);
 
-        i.putExtra("problema",problem);
-        i.putExtra("serie",serie);
-        startActivity(i);
+            String serie = equiposLista.get(mDemoSlider.getCurrentPosition()).getSerialNumber();
+
+            i.putExtra("problema", problem);
+            i.putExtra("serie", serie);
+            startActivity(i);
+        }catch(Exception e){
+            finish();
+        }
     }
     public void problema2(View v){
         noMirada(2);
@@ -295,10 +311,14 @@ public class VideoManagerActivity extends IzziActivity implements IzziRespondabl
     }
     private void mirada(int problem){
         Intent i=new Intent(this,MiradaTroubleShoot.class);
-        String serie=equiposLista.get(mDemoSlider.getCurrentPosition()).getSerialNumber();
-        i.putExtra("problema",problem);
-        i.putExtra("serie",serie);
-        startActivity(i);
+        try {
+            String serie = equiposLista.get(mDemoSlider.getCurrentPosition()).getSerialNumber();
+            i.putExtra("problema", problem);
+            i.putExtra("serie", serie);
+            startActivity(i);
+        }catch(Exception e){
+
+        }
     }
 
 }

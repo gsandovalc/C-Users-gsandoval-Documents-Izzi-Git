@@ -1,0 +1,44 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+ update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  before_all do
+    ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+    gradle(task: "clean")
+  end
+
+
+
+  desc "Deploy a new version to Beta Test on Google Play use version:[major|minor|rel]"
+  lane :deployBetaTest do
+      gradle(task:'doIncrementBuild')
+      gradle(task: 'assemble', build_type: 'Release')
+
+      # This gets the signed APK
+      # You could do a "puts" after this to make sure
+      apk_path = Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+
+      # Pass the signed APK into supply 
+      supply(
+        apk: apk_path,
+        package_name: "telecom.televisa.com.izzi",
+        track: "alpha",
+        skip_upload_metadata: true,
+        skip_upload_images: true,
+        skip_upload_screenshots: true
+      )
+        slack(
+        message: "Fastlane betaTest"
+      )
+  end
+end

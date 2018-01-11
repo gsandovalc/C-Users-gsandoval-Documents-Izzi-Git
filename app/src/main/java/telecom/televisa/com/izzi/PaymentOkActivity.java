@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.activeandroid.query.Delete;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 import com.kissmetrics.sdk.KISSmetricsAPI;
 
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import java.util.Map;
 
 import televisa.telecom.com.model.PagosList;
 import televisa.telecom.com.model.Usuario;
+import televisa.telecom.com.util.AES;
 import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.IzziRespondable;
 import televisa.telecom.com.util.izziLoginResponse;
@@ -36,24 +39,18 @@ public class PaymentOkActivity extends IzziActivity implements IzziRespondable {
         Intent i=getIntent();
         ((TextView)findViewById(R.id.autorizacion)).setText(i.getExtras().getString("auth"));
         KISSmetricsAPI.sharedAPI().record("Pago realizado en Apps");
+        Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+        try {
+            Answers.getInstance().logCustom(new CustomEvent("pago exitoso").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("ammount",AES.decrypt(info.getCvLastBalance())));
+        }catch (Exception e){
+
+        }
     }
     public void askDom(View v){
         showMenu(v);
 
     }
-    public void showMenu(View v){
-        Usuario usuario=((IzziMovilApplication)getApplication()).getCurrentUser();
-        Map<String,String> mp=new HashMap<>();
 
-        String user="";
-        String password="";
-        user=usuario.getUserName();
-        password=usuario.getPassword();
-        mp.put("METHOD","login");
-        mp.put("user",user);
-        mp.put("password",password);
-        new AsyncResponse(this,true).execute(mp);
-    }
    public void finishPayment(View v){
        showMenu(v);
    }

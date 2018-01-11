@@ -26,6 +26,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.activeandroid.query.Delete;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
+import com.crashlytics.android.answers.LoginEvent;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -33,6 +36,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -98,6 +102,7 @@ public class MainActivity extends IzziActivity implements IzziRespondable {
                 switch (event.getAction()){
                     case MotionEvent.ACTION_DOWN:
                         txtview.setTransformationMethod(null);
+                        Answers.getInstance().logCustom(new CustomEvent("login show/hide password"));
                         break;
 
                     case MotionEvent.ACTION_MOVE:
@@ -109,6 +114,7 @@ public class MainActivity extends IzziActivity implements IzziRespondable {
 
                         break;
                 }
+
                 return false;            }
         });
 
@@ -354,6 +360,7 @@ public class MainActivity extends IzziActivity implements IzziRespondable {
             String user="";
             String password="";
             user=((EditText)findViewById(R.id.user)).getText().toString();
+            Answers.getInstance().logLogin(new LoginEvent().putSuccess(true).putMethod(fromfb?"Facebook":"izzi credentials").putCustomAttribute("user",user));
             password=((EditText)findViewById(R.id.password)).getText().toString();
             if(fromfb){
                 try {
@@ -365,6 +372,8 @@ public class MainActivity extends IzziActivity implements IzziRespondable {
                 sr.setUserName(user);
                 sr.setPassword(password);
             }
+
+
             sr.setToken(((izziLoginResponse)response).getToken());
             if(sr.getPagos()!=null)
             for(PagosList pago:sr.getPagos()){

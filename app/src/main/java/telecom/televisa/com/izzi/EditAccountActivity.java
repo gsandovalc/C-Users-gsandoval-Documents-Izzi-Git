@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
+
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -177,6 +180,12 @@ public class EditAccountActivity extends IzziActivity implements IzziRespondable
         izziPassResponse ipr=(izziPassResponse)response;
         try {
            if(ipr.getResponse().getStatus().equals("OK")){
+               Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+               try {
+                   Answers.getInstance().logCustom(new CustomEvent("actualizar contraseña").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+               }catch (Exception e){
+
+               }
                showError("Tu contraseña se cambio con exito",0);
                //Actualizar
                info.setPassword(oldpass);
@@ -252,6 +261,13 @@ public class EditAccountActivity extends IzziActivity implements IzziRespondable
                 Object response =  IzziWS.callWebService(ma,metodo);
                 String str="Hola";
                 str=str+str;
+                Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+                try {
+                    Answers.getInstance().logCustom(new CustomEvent("actualizar fotografia").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+                }catch (Exception e){
+
+                }
+
             }catch (Exception e){
                 e.printStackTrace();
             }

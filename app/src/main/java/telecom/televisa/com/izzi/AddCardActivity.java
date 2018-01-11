@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
 import com.devmarvel.creditcardentry.library.CreditCardForm;
 
 import java.text.ParseException;
@@ -72,9 +74,14 @@ public class AddCardActivity extends IzziActivity implements IzziRespondable {
             showError("Revisa la fecha de expiración",0);
             return;
         }
-        mes=((EditText)findViewById(R.id.cardExp)).getText().toString().split("/")[0];
-        ano=((EditText)findViewById(R.id.cardExp)).getText().toString().split("/")[1];
-        numero=cc.getCardNumber().replace(" ","");
+        try {
+            mes = ((EditText) findViewById(R.id.cardExp)).getText().toString().split("/")[0];
+            ano = ((EditText) findViewById(R.id.cardExp)).getText().toString().split("/")[1];
+            numero = cc.getCardNumber().replace(" ", "");
+        }catch(Exception e){
+            showError("Revisa la fecha de expiración",0);
+            return;
+        }
         try {
             cardType = cc.getCardType().name().toLowerCase();
         }catch(Exception e){
@@ -147,6 +154,7 @@ public class AddCardActivity extends IzziActivity implements IzziRespondable {
         mp.put("date",AES.encrypt(date));
         mp.put("user",AES.encrypt(info.getUserName()));
         new AsyncResponse(this,false).execute(mp);
+        Answers.getInstance().logCustom(new CustomEvent("agregar tarjeta").putCustomAttribute("user",info.getUserName()).putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())));
     }catch(Exception e){
 
     }

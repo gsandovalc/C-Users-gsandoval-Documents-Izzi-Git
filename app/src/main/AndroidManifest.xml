@@ -70,10 +70,10 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="AA_DB_NAME"
-            android:value="izziDB6.db" />
+            android:value="izziDB11.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="2" />
+            android:value="1" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -282,6 +282,9 @@
         <activity android:name=".PhoneTroubleShootActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="5afac0233a1be91d9400ff77e67758da37bc2d96" />
     </application>
 
 </manifest>

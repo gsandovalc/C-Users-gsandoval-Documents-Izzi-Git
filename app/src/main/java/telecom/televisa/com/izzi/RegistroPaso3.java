@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
+
 import java.util.HashMap;
 
 import televisa.telecom.com.util.AES;
@@ -39,6 +42,7 @@ public class RegistroPaso3 extends IzziActivity implements IzziRespondable {
             mp.put("METHOD", "registro/re-authorize");
             mp.put("account", map.get("account"));
             mp.put("type", AES.encrypt("0"));
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("registro confirmacion reenviar correo").putContentType("registro").putCustomAttribute("account",AES.decrypt(map.get("account"))));
             new AsyncResponse(this, false).execute(mp);
         }catch(Exception e){
 

@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -145,6 +148,11 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
             parametross.put("pass", AES.encrypt(info.getPassword()));
             new AsyncResponse(this, false).execute(parametross);
             findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
+            try {
+                Answers.getInstance().logCustom(new CustomEvent("video restart").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+            }catch (Exception e){
+
+            }
         }catch(Exception e){
 
         }
@@ -164,6 +172,11 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
             parametross.put("pass", AES.encrypt(info.getPassword()));
             new AsyncResponse(this, false).execute(parametross);
             findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
+            try {
+                Answers.getInstance().logCustom(new CustomEvent("video pinreset").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+            }catch (Exception e){
+
+            }
         }catch(Exception e){
 
         }
@@ -182,6 +195,11 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
             parametross.put("pass", AES.encrypt(info.getPassword()));
             new AsyncResponse(this, false).execute(parametross);
             findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
+            try {
+                Answers.getInstance().logCustom(new CustomEvent("video Pago Sin Recuperar Servicio").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+            }catch (Exception e){
+
+            }
             problema+="-Pago Sin Recuperar Servicio";
         }catch(Exception e){
 
@@ -200,6 +218,11 @@ public class MiradaTroubleShoot extends IzziActivity implements IzziRespondable 
             parametross.put("pass", AES.encrypt(info.getPassword()));
             new AsyncResponse(this, false).execute(parametross);
             findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
+            try {
+                Answers.getInstance().logCustom(new CustomEvent("video Refresh").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+            }catch (Exception e){
+
+            }
             problema+="-Refresh";
         }catch(Exception e){
 

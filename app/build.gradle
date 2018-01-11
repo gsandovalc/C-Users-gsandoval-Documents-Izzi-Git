@@ -1,4 +1,115 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+def readVersion(){
+    def versionFile=new File(project.rootDir,'version.properties')
+    def version=new Properties()
+    def stream
+    try{
+        stream=new FileInputStream(versionFile)
+        version.load(stream)
+    }catch (FileNotFoundException i){}
+    finally {
+        if(stream!=null)
+            stream.close()
+    }
+    if(!version['major'])version['major']="1"
+    if(!version['minor'])version['minor']="0"
+    if(!version['rel'])version['rel']="0"
+    if(!version['build'])version['build']="0"
+    return version
+
+}
+def readVersionName(){
+    def version=readVersion()
+    return "${version['major']}.${version['minor']}.${version['rel']}"
+}
+def readBuildCode(){
+    def version=readVersion()
+    def build=version['build'] as int
+    return build
+}
+
+def incrementBuildNumber(){
+    def versionFile=new File(project.rootDir,'version.properties')
+    def version=readVersion()
+    def build =version['build'] as int
+    build++
+    version['build']= build.toString();
+    def stream = new FileOutputStream(versionFile)
+    try{
+        version.store(stream,null)
+    }catch (FileNotFoundException i){}
+    finally {
+        if(stream!=null)
+            stream.close()
+    }
+    println "El numero de build es "+build
+    return build
+
+}
+
+
+def incrementVersionNumber(def type="minor") {
+    def versionFile = new File(project.rootDir, 'version.properties')
+    def version = readVersion()
+
+    def major = version['major'] as int
+    def minor = version['minor'] as int
+    def rel = version['rel'] as int
+    if (type == 'major') {
+        major++
+        minor = 0
+        rel = 0
+    } else if (type == 'minor') {
+        minor++;
+        rel = 0
+    }else{
+        rel++;
+    }
+    version['major'] =major
+    version['minor'] =minor
+    version['rel'] =rel
+    def stream = new FileOutputStream(versionFile)
+    try{
+        version.store(stream,null)
+    }catch (FileNotFoundException i){}
+    finally {
+        if(stream!=null)
+            stream.close()
+    }
+    println "la version es "+major+"."+minor+"."+rel
+    return major+"."+minor+"."+rel
+}
+task doMajorVersionIncrement<<{
+    println "Incrementando major version"
+    incrementVersionNumber('major')
+}
+task doMinorVersionIncrement<<{
+    println "Incrementando minor version"
+    incrementVersionNumber('minor')
+}
+task doRelVersionIncrement<<{
+    println "Incrementando rel version"
+    incrementVersionNumber('rel')
+}
+
+task doIncrementBuild<<{
+    println "Incrementando el build"
+    incrementBuildNumber()
+}
 
 android {
     compileSdkVersion 22
@@ -8,13 +119,21 @@ android {
         applicationId "telecom.televisa.com.izzi"
         minSdkVersion 16
         targetSdkVersion 16
-        versionCode 59
-        versionName "3.4.9"
+        versionCode readBuildCode()
+        versionName readVersionName()
+    }
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
-
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -53,4 +172,11 @@ dependencies {
     compile 'com.hudomju:swipe-to-dismiss-undo:1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:appcompat-v7:22.2.1'
+    compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+        transitive = true;
+    }
+    compile('com.crashlytics.sdk.android:answers:1.4.1@aar') {
+        transitive = true;
+    }
+
 }

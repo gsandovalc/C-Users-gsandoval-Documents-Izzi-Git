@@ -155,7 +155,16 @@ public class AsyncLoginUpdate extends AsyncTask<Map<String,String>, Object, Obje
                 refresca.refresh();
 
         }else{
-            //llenar una bandera de error en el login async
+            if(r.getIzziErrorCode().equals("101")) {
+                new Delete().from(Usuario.class).execute();
+                new Delete().from(PagosList.class).execute();
+                new Delete().from(Cuentas.class).execute();
+                new Delete().from(ExtrasTv.class).execute();
+                new Delete().from(ExtrasInt.class).execute();
+                ((IzziMovilApplication)respondTo).setCurrentUser(null);
+
+                ((IzziMovilApplication)respondTo).setLogged(false);
+            }
         }
 
     }

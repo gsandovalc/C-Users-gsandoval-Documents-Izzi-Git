@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.SignUpEvent;
+
 import java.util.HashMap;
 
 import televisa.telecom.com.util.AES;
@@ -91,6 +94,13 @@ public class RegistroStep2Activity extends IzziActivity implements IzziRespondab
            i=new Intent(this,SMSConfirmaActivity.class);
         i.putExtra("response",resp);
         i.putExtra("user",(HashMap)map);
+        try {
+            Answers.getInstance().logSignUp(new SignUpEvent()
+                    .putMethod(selected==1?"email":"sms").putCustomAttribute("user",AES.decrypt(map.get("user"))).putCustomAttribute("account",AES.decrypt(map.get("account")))
+                    .putSuccess(true));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         startActivity(i);
     }
 

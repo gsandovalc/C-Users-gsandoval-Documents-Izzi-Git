@@ -12,6 +12,7 @@ import com.activeandroid.query.Select;
 import com.appsflyer.AppsFlyerLib;
 import com.facebook.FacebookSdk;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,17 +28,23 @@ import televisa.telecom.com.util.AsyncResponse;
 import televisa.telecom.com.util.IzziRespondable;
 
 
+
+
 public class SplashScreen extends Activity  {
     private Usuario currentUser;
-    private static final long SPLASH_SCREEN_DELAY = 3000;
+    private static final long SPLASH_SCREEN_DELAY = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+
+
+
         AppsFlyerLib.setAppsFlyerKey("PNd7NVL8bDNQjHXJYj7dVH");
         AppsFlyerLib.sendTracking(getApplicationContext());
 
-        AppsFlyerLib.sendTracking(getApplicationContext());
 
 
         List<Usuario> usr= new Select().from(Usuario.class).execute();
@@ -110,8 +117,6 @@ public class SplashScreen extends Activity  {
                 Intent mainIntent = new Intent().setClass(
                         SplashScreen.this, BtfLanding.class);
                 startActivity(mainIntent);
-                // Close the activity so the user won't able to go back this
-                // activity pressing Back button
                 finish();
             }
         };

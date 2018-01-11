@@ -13,11 +13,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.activeandroid.query.Select;
+import com.crashlytics.android.answers.AddToCartEvent;
+import com.crashlytics.android.answers.Answers;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Currency;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -129,6 +133,25 @@ public class ServiciosActivity extends IzziActivity {
     }
 
     public void sendChanges(View v){
+        if(complementosINT!=null)
+            for(ExtrasInt ei:complementosINT)
+                if(ei.isSelected()) {
+                    Answers.getInstance().logAddToCart(new AddToCartEvent()
+                            .putItemPrice(new BigDecimal(ei.getPrice()))
+                            .putCurrency(Currency.getInstance("MXN"))
+                            .putItemName(ei.getName())
+                            .putItemType("Internet").putItemId(ei.getEx_id()));
+                }
+        if(complementosTV!=null)
+            for(ExtrasTv ei:complementosTV)
+                if(ei.isSelected()) {
+                    Answers.getInstance().logAddToCart(new AddToCartEvent()
+                            .putItemPrice(new BigDecimal(ei.getPrice()))
+                            .putCurrency(Currency.getInstance("MXN"))
+                            .putItemName(ei.getName())
+                            .putItemType("Video").putItemId(ei.getEx_id()));
+                }
+
         Intent  i =new Intent(this,PurchaseActivity.class);
         startActivityForResult(i,6);
 

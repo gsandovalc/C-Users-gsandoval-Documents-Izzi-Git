@@ -500,7 +500,7 @@
                         android:layout_width="match_parent"
                         android:textColor="#000"
                         android:text="NOMBRE"
-                        android:textSize="16dp"
+                        android:textSize="13dp"
                         android:layout_marginLeft="55dp"
                         android:id="@+id/address"
                         android:layout_gravity="center_vertical"
@@ -571,7 +571,7 @@
                 <LinearLayout
                     android:layout_width="100dp"
                     android:clickable="true"
-                    android:onClick="nextDomi"
+                    android:onClick="domicilia"
                     android:layout_alignParentRight="true"
                     android:gravity="right"
                     android:layout_height="match_parent">

@@ -29,6 +29,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.activeandroid.query.Delete;
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
 
 import televisa.telecom.com.controls.ResideMenu;
 import televisa.telecom.com.controls.ResideMenuItem;
@@ -99,20 +101,33 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
 
     public void goToView(View v){
         Intent i=null;
+        String nombre="";
         switch(v.getId()){
             case R.id.lugarespago:
                 i=new Intent(getApplicationContext(),PagoEstablecimientosActivity.class);
+                nombre="Lugares de pago";
                 showMenu(v);
                 break;
             case R.id.miscuentas:
                 i=new Intent(getApplicationContext(),SwitchUserActivity.class);
                 startActivityForResult(i,30);
+                nombre="Mis cuentas";
                 startActivity(i);
+                try {
+                    Answers.getInstance().logContentView(new ContentViewEvent().putContentName(nombre).putContentType("menu lateral").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 return;
 
             case R.id.profile:
                 i=new Intent(getApplicationContext(),UserActivity.class);
+                try {
+                    Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Home").putContentType("menu lateral").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 finish();
                 break;
             case R.id.vEstado:
@@ -121,19 +136,25 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
                 break;
             case R.id.vGuide:
                 i=new Intent(getApplicationContext(),TvGuideActivity.class);
-
+                nombre="Guia de programacion";
                 break;
             case R.id.notifica:
                 i=new Intent(getApplicationContext(),PushNotificationCenterActivity.class);
+                nombre="Centro de mensajes";
                 showMenu(v);
                 break;
             case R.id.vLegales:
                 i=new Intent(getApplicationContext(),LegalesActivity.class);
+                nombre="Legales";
                 break;
             default:
                 break;
         }
-
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName(nombre).putContentType("menu lateral").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         startActivity(i);
         overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 
@@ -344,6 +365,11 @@ public class MenuActivity extends Activity implements DrawerLayout.DrawerListene
         startActivity(i);
         finish();
         overridePendingTransition(R.transition.fade_in, R.transition.fade_out);
+        try {
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("Logout").putContentType("menu lateral").putCustomAttribute("account",AES.decrypt(info.getCvNumberAccount())).putCustomAttribute("user",info.getUserName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return;
     }
 

@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
+
 import java.util.HashMap;
 
 import televisa.telecom.com.util.AES;
@@ -64,6 +67,10 @@ public class SMSConfirmaActivity extends IzziActivity implements IzziRespondable
             mp.put("account", map.get("account"));
             mp.put("verification", AES.encrypt(code));
             new AsyncResponse(this, false).execute(mp);
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("registro confirmacion  sms").putContentType("registro").putCustomAttribute("account",AES.decrypt(map.get("account"))));
+
+
+
         }catch(Exception e){
 
         }

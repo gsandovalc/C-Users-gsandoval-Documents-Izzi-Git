@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.ContentViewEvent;
+import com.crashlytics.android.answers.CustomEvent;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,6 +84,7 @@ public class RecuperaPass extends IzziActivity  implements IzziRespondable {
             mp.put("account", AES.encrypt(account));
             mp.put("type", AES.encrypt(type));
             new AsyncResponse(this, false).execute(mp);
+            Answers.getInstance().logContentView(new ContentViewEvent().putContentName("recupera contrseña").putContentType(type.equals("1")?"email":"sms"));
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -88,6 +91,11 @@ public class NoMiradaTroubleshoot extends IzziActivity implements IzziRespondabl
             parametross.put("serial", AES.encrypt(serie));
             parametross.put("pass", AES.encrypt(info.getPassword()));
             new AsyncResponse(this, false).execute(parametross);
+            try {
+                Answers.getInstance().logCustom(new CustomEvent("video Restart").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+            }catch (Exception e){
+
+            }
             findViewById(R.id.lastStep).setVisibility(View.VISIBLE);
             problema+="-Restart";
         }catch(Exception e){

@@ -20,6 +20,9 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.answers.CustomEvent;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,6 +63,8 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
                     if(mode.toLowerCase().contains("tg1652")){
                         ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.tg1652);
                     }
+                }else if(mode.toLowerCase().contains("cisco")){
+                    ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.cisco);
                 }else{
                     ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.tecnicolor);
                 }
@@ -73,7 +78,7 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
         TextView passwd=(TextView)findViewById(R.id.passwd);
         final Switch swtch=(Switch)findViewById(R.id.wifiSwtch);
         final TextView status=(TextView)findViewById(R.id.wistatus);
-         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
+        final Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
 
         try{
             String modelo=AES.decrypt(info.getModel());
@@ -85,6 +90,8 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
                 if(modelo.toLowerCase().contains("tg1652")){
                     ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.tg1652);
                 }
+            }else if(modelo.toLowerCase().contains("cisco")){
+                ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.cisco);
             }else{
                 ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.tecnicolor);
             }
@@ -112,10 +119,20 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     if(b) {
-                        swtch.setTrackDrawable(ContextCompat.getDrawable(act, R.drawable.custom_track2));
-                        if(!firstTime&&!((IzziMovilApplication)getApplication()).getCurrentUser().isWifiStatus())
-                        turnWifiOnOff(true);
-                        status.setText("Apagar Mi Red");
+                        try {
+                            swtch.setTrackDrawable(ContextCompat.getDrawable(act, R.drawable.custom_track2));
+                            if (!firstTime && !((IzziMovilApplication) getApplication()).getCurrentUser().isWifiStatus()) {
+                                turnWifiOnOff(true);
+                                try {
+                                    Answers.getInstance().logCustom(new CustomEvent("wifi_on_off").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+                                }catch (Exception e){
+
+                                }
+                            }
+                            status.setText("Apagar Mi Red");
+                        }catch(Exception e){
+
+                        }
 
                     }else{
                         swtch.setTrackDrawable(ContextCompat.getDrawable(act, R.drawable.custom_track));
@@ -123,6 +140,11 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
                             AlertDialog.Builder builder = new AlertDialog.Builder(act);
                             builder.setMessage("Si apagas tu Red, todos tus dispositivos perderán conexión WiFi").setPositiveButton("Aceptar", dialogClickListener)
                                     .setNegativeButton("Cancelar", dialogClickListener).show();
+                            try {
+                                Answers.getInstance().logCustom(new CustomEvent("wifi_on_off").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+                            }catch (Exception e){
+
+                            }
                         }
 
                     }
@@ -132,6 +154,7 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
             if(info.isWifiStatus()){
                 swtch.setChecked(true);
                 status.setText("Apagar Mi Red");
+
             }else{
                 swtch.setChecked(false);
                 status.setText("Prender Mi Red");
@@ -215,6 +238,8 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
                     if(mode.toLowerCase().contains("tg1652")){
                         ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.tg1652);
                     }
+                }else if(mode.toLowerCase().contains("cisco")){
+                    ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.cisco);
                 }else{
                     ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.tecnicolor);
                 }
@@ -273,6 +298,8 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
                     if(mode.toLowerCase().contains("tg1652")){
                         ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.tg1652);
                     }
+                }else if(mode.toLowerCase().contains("cisco")){
+                    ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.cisco);
                 }else{
                     ((ImageView)findViewById(R.id.imageView1)).setImageResource(R.drawable.tecnicolor);
                 }
@@ -289,12 +316,23 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
     public void notifyChanges(Object response) {
         if(response!=null){
             //0 el generico
+            final Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
             switch (action){
                 case 1:
                     showError("El cambio de nombre de tu Red WiFi fue exitoso. Actualiza tus dispositivos para asegurar su conexión.",0);
+                    try {
+                        Answers.getInstance().logCustom(new CustomEvent("wifi_change_ssid").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+                    }catch (Exception e){
+
+                    }
                     break;
                 case 2:
                     showError("El cambio de contraseña fue exitoso, actualiza tus dispositivos para asegurar su conexión.\n",0);
+                    try {
+                        Answers.getInstance().logCustom(new CustomEvent("wifi_change_password").putCustomAttribute("user", info.getUserName()).putCustomAttribute("account", AES.decrypt(info.getCvNumberAccount())));
+                    }catch (Exception e){
+
+                    }
                     break;
             }
 
@@ -302,6 +340,7 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
         }else{
             showError("Error inesperado",783);
         }
+        init();
     }
 
     @Override
@@ -338,6 +377,7 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
                 switch (which){
                     case DialogInterface.BUTTON_POSITIVE:
                         setSSID2(new View(act));
+
                         break;
 
                     case DialogInterface.BUTTON_NEGATIVE:
@@ -366,7 +406,8 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
             info.setWifiName(AES.encrypt(ssid));
             info.save();
             ((EditText)findViewById(R.id.e_ssid)).setText("");
-
+            ((TextView)findViewById(R.id.ssid_name)).setText(ssid);
+            ((TextView)findViewById(R.id.ssid2)).setText(ssid);
             action=1;
             new AsyncResponse(this,false).execute(mp);
         }catch(Exception e){
@@ -427,7 +468,9 @@ public class WifiManagementActivity extends IzziActivity implements IzziResponda
             new AsyncResponse(this,false).execute(mp);
             info.setWifiPass(AES.encrypt(pass));
             info.save();
+
             ((EditText)findViewById(R.id.e_pass)).setText("");
+            ((TextView)findViewById(R.id.passwd)).setText(pass);
 
             init();
             action=2;

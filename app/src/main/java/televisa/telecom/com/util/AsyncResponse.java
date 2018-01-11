@@ -235,6 +235,7 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
             respondTo.notifyChanges(response);
         }catch(Exception e){
             e.printStackTrace();
+            respondTo.notifyChanges(null);
 
         }
 

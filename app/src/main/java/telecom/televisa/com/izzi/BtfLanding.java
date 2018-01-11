@@ -3,9 +3,12 @@ package telecom.televisa.com.izzi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ResponseHandler;
@@ -24,7 +27,15 @@ public class BtfLanding extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_btf_landing);
+        WebView wv= ((WebView)findViewById(R.id.wv));
+        String url="https://www.izzi.mx/unity/misc/";
+        wv.loadUrl(url);
+        wv.setWebViewClient(new WebViewClient() {
 
+            public void onPageFinished(WebView view, String url) {
+                view.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 
