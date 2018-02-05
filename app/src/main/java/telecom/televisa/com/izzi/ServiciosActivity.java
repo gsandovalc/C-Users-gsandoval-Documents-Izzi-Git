@@ -170,6 +170,8 @@ public class ServiciosActivity extends IzziActivity {
     public void intclick(View v){
         int index=itemsInt.indexOf((LinearLayout)v);
         String s="";
+        if(complementosINT==null)
+            return;
         for(int i=0;i<complementosINT.size();i++){
             ExtrasInt ei=complementosINT.get(i);
             LinearLayout ll=itemsInt.get(i);

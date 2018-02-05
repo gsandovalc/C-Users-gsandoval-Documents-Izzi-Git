@@ -80,7 +80,44 @@
                 />
 
         </LinearLayout>
+        <LinearLayout
+        android:layout_width="fill_parent"
+        android:background="#55555555"
+        android:layout_height="1dp"
+        />
 
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            >
+            <ImageView
+                android:layout_width="20dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center_vertical"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/telefonito"/>
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:inputType="number"
+                android:ems="6"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="4dp"
+                android:textSize="15dp"
+                android:hint="Teléfono registrado"
+                android:background="#FFFFFF"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:id="@+id/telreg"
+                />
+
+        </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
             android:background="#55555555"
@@ -207,6 +244,7 @@
 
                 </LinearLayout>
         </LinearLayout>
+
 
 
     </LinearLayout>

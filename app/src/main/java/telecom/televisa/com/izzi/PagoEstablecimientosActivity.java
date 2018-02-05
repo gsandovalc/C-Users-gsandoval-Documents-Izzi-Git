@@ -2,8 +2,11 @@ package telecom.televisa.com.izzi;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import televisa.telecom.com.controls.PopoverView;
@@ -109,7 +113,12 @@ public class PagoEstablecimientosActivity extends IzziActivity implements IzziRe
         Uri gmmIntentUri = Uri.parse("geo:0,0?q="+v.getTag());
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
-        startActivity(mapIntent);
+        try {
+            if (isIntentAvailable(this))
+                startActivity(mapIntent);
+        }catch (Exception s){
+
+        }
     }
     public void showModal(View v){
         rootView = (RelativeLayout)findViewById(R.id.vista).getParent();
@@ -201,5 +210,15 @@ public class PagoEstablecimientosActivity extends IzziActivity implements IzziRe
     @Override
     public void popoverViewDidDismiss(PopoverView view) {
 
+    }
+
+    public static boolean isIntentAvailable(Context context) {
+        final PackageManager packageManager = context.getPackageManager();
+        final Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                Uri.parse("geo:32.5558485,34.65522447"));
+        List<ResolveInfo> list =
+                packageManager.queryIntentActivities(intent,
+                        PackageManager.MATCH_DEFAULT_ONLY);
+        return list.size() > 0;
     }
 }

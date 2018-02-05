@@ -33,6 +33,7 @@ public class ChannelListAdapter extends ArrayAdapter<izziGuideResponse.TVStation
         this.filter=filter;
         List<izziGuideResponse.TVStation> objectsAux=new ArrayList<>();
         if(filter>0){
+            if(objects!=null)
             for (int i=0;i<objects.size();i++) {
                 int canall = Integer.parseInt(objects.get(i).getCanal());
                 if (filter == 1 && canall > 500 && canall < 600)

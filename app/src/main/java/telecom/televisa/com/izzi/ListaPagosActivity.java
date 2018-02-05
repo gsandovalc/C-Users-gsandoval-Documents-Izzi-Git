@@ -44,6 +44,11 @@ public class ListaPagosActivity extends IzziActivity  implements IzziRespondable
         lv=(ListView)findViewById(R.id.lista_pagos);
         IzziMovilApplication app=(IzziMovilApplication)getApplication();
         ((LinearLayout)findViewById(R.id.sinpagos)).setVisibility(LinearLayout.GONE);
+        if(app.getCurrentUser()==null){
+            finish();
+            return;
+        }
+
         pagos=app.getCurrentUser().getPagos();
         lv.setVisibility(ListView.VISIBLE);
         if(pagos==null){

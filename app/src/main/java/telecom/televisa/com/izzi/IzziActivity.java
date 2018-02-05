@@ -51,6 +51,9 @@ public class IzziActivity extends Activity  {
         lp.dimAmount=0f; // Dim level. 0.0 - no dim, 1.0 - completely opaque
         popup.getWindow().setAttributes(lp);
         popup.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        if(isFinishing())
+            return;
+
         popup.show();
         ((TextView)popup.findViewById(R.id.error_desc)).setText(error);
         ((RelativeLayout)popup.findViewById(R.id.fondoError)).setOnClickListener(new View.OnClickListener() {

@@ -70,7 +70,10 @@ public class TvGuideActivity extends IzziActivity implements ScrollViewListener,
         cal.set(Calendar.SECOND,0);
         fechaInicial=cal.getTime();
          info=((IzziMovilApplication)getApplication()).getCurrentUser();
-
+        if(info==null){
+            finish();
+            return;
+        }
         new GetGuide(this,true,info.getRpt()).execute(new HashMap<String, String>());
         setTimeLine();
         initControls();
@@ -242,6 +245,8 @@ public class TvGuideActivity extends IzziActivity implements ScrollViewListener,
     @Override
     public void notifyChanges(Object response) {
         if(response==null) {
+            if(isFinishing())
+                return;
             new AlertDialog.Builder(this)
                     .setTitle("izzi")
                     .setMessage("Ocurrio un error al cargar la información.\n ¿Deseas intentarlo de nuevo?")
@@ -262,6 +267,7 @@ public class TvGuideActivity extends IzziActivity implements ScrollViewListener,
             return;
 
         }
+
         lineUp=((izziGuideResponse)response).getResponse().getLineUp();
         List<String> bann=((izziGuideResponse)response).getResponse().getBanners();
         Map<String,String> mapa=new HashMap<>();
@@ -310,14 +316,12 @@ filter=3;
                 break;
         }
         ListView lv = (ListView)findViewById(R.id.channel_list);
-
-        lv.setAdapter(null);
         ChannelListAdapter channelAdapter=null;
         channelAdapter = new ChannelListAdapter(this, R.layout.channel_list_item, lineUp,filter);
         lv.setAdapter(channelAdapter);
 
         ListView tl=listViewRight;
-        tl.setAdapter(null);
+
         ViewListAdapter vla=new ViewListAdapter(this,R.layout.program_item,lineUp,this,filter);
         vla.startdate=fechaInicial.getTime();
         tl.setAdapter(vla);

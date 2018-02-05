@@ -161,9 +161,11 @@ public class Registro_main_activity extends IzziActivity implements IzziResponda
         String user="";
         String password="";
         String contrato="";
+        String tel="";
         user=((EditText)findViewById(R.id.user)).getText().toString();
         password=((EditText)findViewById(R.id.password)).getText().toString();
         contrato=((EditText)findViewById(R.id.contrato)).getText().toString();
+        tel=((EditText)findViewById(R.id.telreg)).getText().toString();
         if(contrato.isEmpty()) {
             new AlertDialog.Builder(this)
                     .setTitle("izzi")
@@ -182,6 +184,21 @@ public class Registro_main_activity extends IzziActivity implements IzziResponda
             new AlertDialog.Builder(this)
                     .setTitle("izzi")
                     .setMessage("Tu número de cuenta es incorrecto")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            dialog.dismiss();
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+            return;
+        }
+
+        if(tel.length()<8) {
+            new AlertDialog.Builder(this)
+                    .setTitle("izzi")
+                    .setMessage("Tu número de telefono es incorrecto")
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
@@ -254,6 +271,7 @@ public class Registro_main_activity extends IzziActivity implements IzziResponda
         mp.put("user", user);
         mp.put("pass", password);
         mp.put("account", contrato);
+        mp.put("tel",tel);
         new AsyncResponse(this,true).execute(mp);
     }
     public  boolean isEmailValid(String email) {

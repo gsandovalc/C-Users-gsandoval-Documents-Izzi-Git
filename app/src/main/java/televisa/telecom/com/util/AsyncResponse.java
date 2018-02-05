@@ -19,6 +19,7 @@ import java.net.SocketTimeoutException;
 import java.util.Map;
 
 
+import telecom.televisa.com.izzi.DomiciliaActivity;
 import telecom.televisa.com.izzi.EditAccountActivity;
 import telecom.televisa.com.izzi.EdoCuentaActivity;
 import telecom.televisa.com.izzi.InternetHelpActivity;
@@ -129,6 +130,8 @@ public class AsyncResponse extends AsyncTask<Map<String,String>, Object, Object>
                 return gson.fromJson((String)IzziWS.callWebService(params[0],metodo),izziRecuperaResponse.class);
             }else if(respondTo instanceof NoMiradaTroubleshoot ||respondTo instanceof MiradaTroubleShoot){
                 return gson.fromJson((String)IzziWS.callWebService(params[0],metodo),izziRecuperaResponse.class);
+            }else if(respondTo instanceof DomiciliaActivity){
+                return (String)IzziWS.callWebService(params[0],metodo);
             }
             else{
               //  izziLoginResponse responsse=gsb.create().fromJson((String) IzziWS.callWebService(params[0], metodo), izziLoginResponse.class);

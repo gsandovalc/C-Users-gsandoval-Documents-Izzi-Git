@@ -106,6 +106,9 @@ public class SwitchUserActivity extends IzziActivity implements IzziRespondable 
             response= (Object)(new izziLoginResponse());
             ((izziLoginResponse)response).setIzziError("Error inesperado");
             ((izziLoginResponse)response).setIzziErrorCode("999");
+            if(isFinishing()){
+                return;
+            }
             new AlertDialog.Builder(this)
                     .setTitle("izzi")
                     .setMessage("Ocurrio un error al cargar la información.\n Intentarlo de nuevo")

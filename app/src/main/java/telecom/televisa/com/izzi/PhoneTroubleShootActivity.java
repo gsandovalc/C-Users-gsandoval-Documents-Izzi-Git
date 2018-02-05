@@ -40,6 +40,10 @@ public class PhoneTroubleShootActivity extends IzziActivity implements IzziRespo
                 break;
 
         }
+        if(((IzziMovilApplication)getApplication()).getCurrentUser()==null){
+            finish();
+            return;
+        }
         if(!((IzziMovilApplication)getApplication()).getCurrentUser().isDisplayWifiInfo())
             findViewById(R.id.rest).setVisibility(View.GONE);
     }

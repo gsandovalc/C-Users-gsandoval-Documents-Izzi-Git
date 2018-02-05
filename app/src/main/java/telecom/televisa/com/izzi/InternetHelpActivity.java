@@ -169,12 +169,9 @@ public class InternetHelpActivity extends IzziActivity implements IzziRespondabl
     public void call(View v){
         Usuario info=((IzziMovilApplication)getApplication()).getCurrentUser();
         String telefono="";
-        if(info.isLegacy()){
+
             telefono="018001205000";
-        }else{
-            telefono="018001205000";
-            System.out.println("Es izzi");
-        }
+
 
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + telefono));

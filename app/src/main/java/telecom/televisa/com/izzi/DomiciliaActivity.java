@@ -58,8 +58,13 @@ public class DomiciliaActivity extends IzziActivity implements IzziRespondable {
             showError("Revisa la fecha de expiración",0);
             return;
         }
-        mes=((EditText)findViewById(R.id.cardExp)).getText().toString().split("/")[0];
-        ano=((EditText)findViewById(R.id.cardExp)).getText().toString().split("/")[1];
+        try {
+            mes = ((EditText) findViewById(R.id.cardExp)).getText().toString().split("/")[0];
+            ano = ((EditText) findViewById(R.id.cardExp)).getText().toString().split("/")[1];
+        }catch(Exception e){
+            showError("Revisa la fecha de expiración",0);
+            return;
+        }
         numero=cc.getCardNumber().replace(" ","");
         try {
             cardType = cc.getCardType().name().toLowerCase();
@@ -131,7 +136,7 @@ public class DomiciliaActivity extends IzziActivity implements IzziRespondable {
             String date=mes+"/"+ano;
             mp.put("type",AES.encrypt(type));
             mp.put("date",AES.encrypt(date));
-            mp.put("code",AES.encrypt("123"));
+            mp.put("code",AES.encrypt(form.getCreditCard().getSecurityCode()));
             mp.put("ammount",AES.encrypt("123"));
             mp.put("user",AES.encrypt(info.getUserName()));
             new AsyncResponse(this,false).execute(mp);
@@ -186,8 +191,11 @@ public class DomiciliaActivity extends IzziActivity implements IzziRespondable {
     }
     @Override
     public void notifyChanges(Object response) {
-
-        showError("Servicio no disponible por el momento",0);
+        if(response!=null) {
+            showError("Tu solicitud se recibió con éxito", 0);
+        }else{
+            showError("Servicio no disponible", 0);
+        }
     }
 
     @Override

@@ -46,6 +46,8 @@ public class ViewListAdapter extends ArrayAdapter<izziGuideResponse.TVStation> {
         this.objects = objects;
         List<izziGuideResponse.TVStation> objectsAux=new ArrayList<>();
         if(filter>0){
+            if(objects==null)
+                return;
             for (int i=0;i<objects.size();i++) {
                 int canall = Integer.parseInt(objects.get(i).getCanal());
                 if (filter == 1 && canall > 500 && canall < 600)

@@ -77,6 +77,7 @@ public class MainActivity extends IzziActivity implements IzziRespondable {
             return;
         }
         FacebookSdk.sdkInitialize(getApplicationContext());
+
         callbackManager = CallbackManager.Factory.create();
 
 
@@ -301,6 +302,10 @@ public class MainActivity extends IzziActivity implements IzziRespondable {
     }
 
     public void fbLogin(View v){
+       if( !FacebookSdk.isInitialized()){
+           FacebookSdk.sdkInitialize(this);
+           return;
+       }
         if(AccessToken.getCurrentAccessToken()!=null){
             Map<String,String> mp=new HashMap<>();
             mp.put("METHOD","login/facebook");

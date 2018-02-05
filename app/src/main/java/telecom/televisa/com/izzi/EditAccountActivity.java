@@ -2,12 +2,15 @@ package telecom.televisa.com.izzi;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -53,7 +56,19 @@ public class EditAccountActivity extends IzziActivity implements IzziRespondable
         init();
     }
     public void foto(View v){
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+        Context context = this;
+        PackageManager packageManager = context.getPackageManager();
+
+        // if device support camera?
+        if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+            //yes
+
+        }else{
+            //no
+           return;
+        }
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 57);
     }
 
@@ -130,10 +145,17 @@ public class EditAccountActivity extends IzziActivity implements IzziRespondable
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        if(data==null)
+            return;
         if (requestCode == 57&& resultCode == RESULT_OK) {
             ImageView mImageView=(ImageView) findViewById(R.id.imageView1);
+
             Bundle extras = data.getExtras();
+            if(extras ==null)
+                return;
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            if(imageBitmap==null)
+                return;
             mImageView.setImageBitmap(imageBitmap);
             img=imageBitmap;
             new UploadFileToServer().execute();

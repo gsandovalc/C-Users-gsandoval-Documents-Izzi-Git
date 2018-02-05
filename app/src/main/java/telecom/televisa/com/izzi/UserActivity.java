@@ -100,7 +100,7 @@ public class UserActivity extends MenuActivity implements IzziRespondable, Swipe
         AsyncLoginUpdate.refresca=this;
         swipeLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(this);
-        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
+        swipeLayout.setColorSchemeColors(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
@@ -178,6 +178,11 @@ public void swUsr(View v){
 
          info=((IzziMovilApplication)getApplication()).getCurrentUser();
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
+        if(info==null) {
+            logout(new View(this));
+            return;
+        }
         String greating="";
         if(hour>=6&&hour<12)
             greating="BUENOS DIAS";
@@ -396,7 +401,11 @@ public void swUsr(View v){
 
     public void foto(View v){
         Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        startActivityForResult(intent, 57);
+        try {
+            startActivityForResult(intent, 57);
+        }catch(Exception e){
+
+        }
     }
 
     public void wifiManager(View v){

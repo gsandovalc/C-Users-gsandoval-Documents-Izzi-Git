@@ -25,17 +25,23 @@ public class BtfLanding extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_btf_landing);
-        WebView wv= ((WebView)findViewById(R.id.wv));
-        String url="https://www.izzi.mx/unity/misc/";
-        wv.loadUrl(url);
-        wv.setWebViewClient(new WebViewClient() {
 
-            public void onPageFinished(WebView view, String url) {
-                view.setVisibility(View.VISIBLE);
-            }
-        });
+        try {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_btf_landing);
+            WebView wv = ((WebView) findViewById(R.id.wv));
+            String url = "https://www.izzi.mx/unity/misc/";
+            wv.loadUrl(url);
+            wv.setWebViewClient(new WebViewClient() {
+
+                public void onPageFinished(WebView view, String url) {
+                    view.setVisibility(View.VISIBLE);
+                }
+            });
+        }catch(Exception e){
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_btf_landing2);
+        }
     }
 
 
